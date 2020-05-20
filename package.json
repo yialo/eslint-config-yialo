@@ -1,0 +1,22 @@
+{
+  "author": "Aleksei Arro <polsck@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/yialo/eslint-config-yialo/issues"
+  },
+  "description": "Yialo's ESLint configuration",
+  "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
+  "keywords": [
+    "eslint"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "eslint-config-yialo",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1"
+}
