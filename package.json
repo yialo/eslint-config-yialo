@@ -6,17 +6,37 @@
   "description": "Yialo's ESLint configuration",
   "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
   "keywords": [
-    "eslint"
+    "check",
+    "checker",
+    "code style",
+    "code",
+    "eslint",
+    "javascript",
+    "js",
+    "lint",
+    "linter",
+    "quality",
+    "strict",
+    "validate",
+    "verify"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "name": "eslint-config-yialo",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "babel-eslint": "10.1.0",
+    "eslint-import-resolver-webpack": "0.12.2",
+    "eslint-plugin-babel": "5.3.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jsx-a11y": "6.3.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.4"
+  }
 }
