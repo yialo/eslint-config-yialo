@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = {
+const baseRules = {
   'import/default': 'error',
   'import/dynamic-import-chunkname': 'off',
   'import/export': 'error',
@@ -84,7 +84,13 @@ const rules = {
   'import/unambiguous': 'off',
 };
 
-const settings = {
+const nodeRules = {
+  'import/no-commonjs': 'off',
+  'import/no-extraneous-dependencies': 'off',
+  'import/no-nodejs-modules': 'off',
+};
+
+const baseSettings = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -101,10 +107,20 @@ const settings = {
       '.tsx'
     ]
   },
-  'import/resolver': 'webpack'
+  'import/resolver': 'webpack',
+};
+
+const nodeSettings = {
+  'import/resolver': 'node',
 };
 
 module.exports = {
-  rules:
-  settings,
+  ruleGroups: {
+    base: baseRules,
+    node: nodeRules,
+  },
+  settingGroups: {
+    base: baseSettings,
+    node: nodeSettings,
+  },
 };

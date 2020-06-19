@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+const rules = {
   'promise/always-return': 'off',
   'promise/avoid-new': 'off',
   'promise/catch-or-return': [
@@ -20,4 +20,8 @@ module.exports = {
   'promise/prefer-await-to-callbacks': 'off',
   'promise/prefer-await-to-then': 'off',
   'promise/valid-params': 'error',
+};
+
+module.exports = {
+  rules,
 };

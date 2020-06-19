@@ -1,6 +1,10 @@
 'use strict';
 
-const nodeRules = require('./groups/node.js');
+const {
+  ruleGroups: { node: importRules },
+  settingGroups: { node: importSettngs },
+} = require('./groups/import.js');
+const { rules: nodeRules } = require('./groups/node.js');
 
 const importRules = {
   'import/no-commonjs': 'off',
@@ -18,16 +22,13 @@ module.exports = {
     sourceType: 'script',
   },
   plugins: [
-    'babel',
-    'import',
     'node',
-    'promise',
   ],
   rules: {
     ...importRules,
     ...nodeRules,
   },
   settings: {
-    'import/resolver': 'node',
+    ...importSettngs,
   },
 };

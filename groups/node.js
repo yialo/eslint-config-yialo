@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = {
+const rules = {
   'node/handle-callback-err': 'off',
   'node/no-callback-literal': 'off',
   'node/no-exports-assign': 'error',
@@ -39,3 +39,7 @@ module.exports = {
   'node/prefer-promises/dns': 'off',
   'node/prefer-promises/fs': 'off',
 };
+
+module.exports = {
+  rules,
+}
