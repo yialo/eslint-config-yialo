@@ -88,6 +88,7 @@ const rules = {
       commentPattern: '^no default$',
     },
   ],
+  'default-case-last': 'error',
   'default-param-last': 'error',
   'dot-notation': [
     'error',
@@ -310,6 +311,7 @@ const rules = {
   'no-lone-blocks': 'error',
   'no-lonely-if': 'error',
   'no-loop-func': 'error',
+  'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
   'no-misleading-character-class': 'error',
   'no-mixed-operators': [
@@ -368,6 +370,7 @@ const rules = {
       allowForLoopAfterthoughts: true,
     },
   ],
+  'no-promise-executor-return': 'error',
   'no-proto': 'error',
   'no-prototype-builtins': 'error',
   'no-redeclare': 'error',
@@ -435,6 +438,7 @@ const rules = {
     'toolbar',
     'top',
   ],
+  'no-restricted-exports': 'off',
   'no-restricted-imports': 'off',
   'no-restricted-properties': [
     'error',
@@ -540,6 +544,7 @@ const rules = {
     },
   ],
   'no-unreachable': 'error',
+  'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
   'no-unsafe-negation': 'error',
   'no-unused-expressions': [
@@ -567,6 +572,7 @@ const rules = {
       variables: false,
     },
   ],
+  'no-useless-backreference': 'error',
   'no-useless-call': 'off',
   'no-useless-catch': 'error',
   'no-useless-computed-key': 'error',
