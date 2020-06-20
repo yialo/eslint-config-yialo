@@ -1,6 +1,6 @@
 'use strict';
 
-const { baseRules } = require('./groups/base.js');
+const { rules: baseRules } = require('./groups/base.js');
 const {
   ruleGroups: { base: importRules },
   settingGroups: { base: importSettings },
