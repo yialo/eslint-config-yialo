@@ -4,6 +4,9 @@ const {
   webRules: importWebRules,
   webSettings: importWebSettings,
 } = require('../plugins/import.js');
+const { webRules: pureWebRules } = require('../plugins/pure.js');
+
+const { rules: babelRules } = require('./plugins/babel.js');
 const { rules: jsxA11yRules } = require('./plugins/jsx-a11y.js');
 const {
   rules: reactRules,
@@ -28,6 +31,8 @@ module.exports = {
     'react-hooks',
   ],
   rules: {
+    ...pureWebRules,
+    ...babelRules,
     ...importWebRules,
     ...jsxA11yRules,
     ...reactRules,

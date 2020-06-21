@@ -1,10 +1,12 @@
 'use strict';
 
-const { nodeRules } = require('./plugins/node.js');
 const {
   nodeRules: importNodeRules,
   nodeSettings: importNodeSettings,
 } = require('../plugins/import.js');
+const { nodeRules: pureNodeRules } = require('../plugins/pure.js');
+
+const { rules: nodeRules } = require('./plugins/node.js');
 
 module.exports = {
   extends: ['../abstract-preset/index.js'],
@@ -15,8 +17,9 @@ module.exports = {
     'node',
   ],
   rules: {
-    ...nodeRules,
+    ...pureNodeRules,
     ...importNodeRules,
+    ...nodeRules,
   },
   settings: {
     ...importNodeSettings,
