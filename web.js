@@ -2,8 +2,8 @@
 
 const { rules: baseRules } = require('./groups/base.js');
 const {
-  ruleGroups: { base: importRules },
-  settingGroups: { base: importSettings },
+  baseRules: importBaseRules,
+  webRules: importWebRules,
 } = require('./groups/import.js');
 const { rules: jsxA11yRules } = require('./groups/jsx-a11y.js');
 const { rules: promiseRules } = require('./groups/promise.js');
@@ -33,14 +33,39 @@ module.exports = {
   ],
   rules: {
     ...baseRules,
-    ...importRules,
+    ...importBaseRules,
+    ...importWebRules,
     ...jsxA11yRules,
     ...promiseRules,
     ...reactRules,
     ...reactHooksRules,
+    'import/no-unassigned-import': [
+      'error',
+      {
+        allow: [
+          '**/*.{?(s)css,jp?(e)g,png,svg}',
+        ],
+      },
+    ],
   },
   settings: {
-    ...importSettings,
     ...reactSettings,
-  }
+    'import/extensions': [
+      '.js',
+      '.jsx',
+      '.ts',
+      '.tsx'
+    ],
+    'import/ignore': [
+      'node_modules',
+      '\\.json$'
+    ],
+    'import/parsers': {
+      '@typescript-eslint/parser': [
+        '.ts',
+        '.tsx'
+      ],
+    },
+    'import/resolver': 'webpack',
+  },
 };

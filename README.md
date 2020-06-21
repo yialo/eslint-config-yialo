@@ -6,11 +6,27 @@
 npm install -DE eslint-config-yialo
 ```
 
-<!-- ## Usage
+## Usage
 
-This package contains three different rulesets for [Stylelint](https://github.com/stylelint/stylelint):
+There are several rules which are probably need to define in end-user config:
 
-* `base`: for plain CSS and CSS Modules
+* in `rules` section:
+  * `import/no-unassigned-import`
+* in `settings` section:
+  * `import/extensions`
+  * `import/ignore`
+  * `import/parsers`
+  * `import/resolver`
+
+This package contains several rulesets for [ESLint](https://github.com/eslint/eslint):
+
+* `node`
+* `web`
+* `web-partial-build`
+* `web-partial-jest`
+* `web-partial-typescript`
+
+<!-- * `base`: for plain CSS and CSS Modules
 * `scss`: for SCSS syntax only
 * `full`: both of previous ones
 
@@ -40,7 +56,7 @@ If you've installed `stylelint-config-yialo` locally within your project, declar
     }
     ``` -->
   
-Notice that this package requires next ones as peer dependencies:
+Notice that this package requires these ones as peer dependencies:
 
 * [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
 * [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser)
@@ -55,3 +71,9 @@ Notice that this package requires next ones as peer dependencies:
 * [eslint-plugin-promise](https://www.npmjs.com/package/eslint-plugin-promise)
 * [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
 * [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+
+You may install them quickly with this command:
+
+```shell
+npm install -DE @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks
+```

@@ -1,9 +1,6 @@
 'use strict';
 
-const {
-  ruleGroups: { node: importRules },
-  settingGroups: { node: importSettngs },
-} = require('./groups/import.js');
+const { nodeRules: importNodeRules } = require('./groups/import.js');
 const { rules: nodeRules } = require('./groups/node.js');
 
 module.exports = {
@@ -19,10 +16,10 @@ module.exports = {
     'node',
   ],
   rules: {
-    ...importRules,
     ...nodeRules,
+    ...importNodeRules,
   },
   settings: {
-    ...importSettngs,
+    'import/resolver': 'node',
   },
 };

@@ -3,12 +3,7 @@
 const rules = {
   'promise/always-return': 'off',
   'promise/avoid-new': 'off',
-  'promise/catch-or-return': [
-    'error',
-    {
-      allowFinally: true,
-    },
-  ],
+  'promise/catch-or-return': 'off',
   'promise/no-callback-in-promise': 'off',
   'promise/no-native': 'off',
   'promise/no-nesting': 'error',
