@@ -61,6 +61,7 @@ const nodeRules = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
   'import/no-nodejs-modules': 'off',
+  'import/no-unassigned-import': 'error',
 };
 
 const webRules = {
@@ -82,10 +83,51 @@ const webRules = {
     },
   ],
   'import/no-nodejs-modules': 'error',
+  'import/no-unassigned-import': [
+    'error',
+    {
+      allow: [
+        '**/*.{?(s)css,jp?(e)g,png,svg}',
+      ],
+    },
+  ],
+};
+
+const nodeSettings = {
+  'import/extensions': [
+    '.js',
+  ],
+  'import/ignore': [
+    'node_modules',
+    '\\.json$',
+  ],
+  'import/resolver': 'node',
+};
+
+const webSettings = {
+  'import/extensions': [
+    '.js',
+    '.jsx',
+    '.ts',
+    '.tsx',
+  ],
+  'import/ignore': [
+    'node_modules',
+    '\\.json$',
+  ],
+  'import/parsers': {
+    '@typescript-eslint/parser': [
+      '.ts',
+      '.tsx',
+    ],
+  },
+  'import/resolver': 'webpack',
 };
 
 module.exports = {
   baseRules,
   nodeRules,
+  nodeSettings,
   webRules,
+  webSettings,
 };

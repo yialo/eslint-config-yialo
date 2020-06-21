@@ -4,6 +4,10 @@
     "url": "https://github.com/yialo/eslint-config-yialo/issues"
   },
   "description": "Yialo's ESLint configuration",
+  "devDependencies": {
+    "eslint": "7.3.0",
+    "eslint-plugin-import": "2.21.2"
+  },
   "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
   "keywords": [
     "check",
