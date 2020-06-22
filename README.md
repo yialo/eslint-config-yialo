@@ -12,11 +12,38 @@ There are several rules which are probably need to define in end-user config:
 
 * in `rules` section:
   * `import/no-unassigned-import`
+
+    Default:
+
+    ```js
+    'import/no-unassigned-import': 'error'
+    ```
+
+    Example of usage with [webpack](https://webpack.js.org/):
+
+    ```js
+    'import/no-unassigned-import': [
+      'error',
+      {
+        allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
+      },
+    ]
+    ```
+
 * in `settings` section:
-  * `import/extensions`
-  * `import/ignore`
-  * `import/parsers`
   * `import/resolver`
+
+    Web default:
+
+    ```js
+    'import/resolver': 'webpack'
+    ```
+
+    Node default:
+
+    ```js
+    'import/resolver': 'node'
+    ```
 
 This package contains several rulesets for [ESLint](https://github.com/eslint/eslint):
 
