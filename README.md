@@ -33,13 +33,26 @@ There are several rules which are probably need to define in end-user config:
 * in `settings` section:
   * `import/resolver`
 
-    Web default:
+    webpack default:
 
     ```js
     'import/resolver': 'webpack'
     ```
 
-    Node default:
+    Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
+
+    ```js
+    'import/resolver': {
+      webpack: {
+        config: './config/webpack.config.js',
+        env: {
+          target: development,
+        },
+      },
+    }
+    ```
+
+    Node.js default:
 
     ```js
     'import/resolver': 'node'
@@ -47,11 +60,10 @@ There are several rules which are probably need to define in end-user config:
 
 This package contains several rulesets for [ESLint](https://github.com/eslint/eslint):
 
-* `node`
-* `web`
-* `web-partial-build`
-* `web-partial-jest`
-* `web-partial-typescript`
+* `preset-node.js`
+* `preset-webpack.js`
+* `mixin-jest.js`
+* `mixin-typescript.js`
 
 <!-- * `base`: for plain CSS and CSS Modules
 * `scss`: for SCSS syntax only
