@@ -35,6 +35,7 @@ const baseRules = {
   'import/no-relative-parent-imports': 'off',
   'import/no-restricted-paths': 'off',
   'import/no-self-import': 'error',
+  'import/no-unassigned-import': 'error',
   'import/no-unresolved': [
     'error',
     {
@@ -61,7 +62,6 @@ const nodeRules = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
   'import/no-nodejs-modules': 'off',
-  'import/no-unassigned-import': 'error',
 };
 
 const webRules = {
@@ -83,23 +83,24 @@ const webRules = {
     },
   ],
   'import/no-nodejs-modules': 'error',
-  'import/no-unassigned-import': [
-    'error',
-    {
-      allow: [
-        '**/*.{?(s)css,jp?(e)g,png,svg}',
-      ],
-    },
+};
+
+const baseSettings = {
+  'import/ignore': [
+    'node_modules',
+    '\\.json$',
   ],
+  'import/parsers': {
+    '@typescript-eslint/parser': [
+      '.ts',
+      '.tsx',
+    ],
+  },
 };
 
 const nodeSettings = {
   'import/extensions': [
     '.js',
-  ],
-  'import/ignore': [
-    'node_modules',
-    '\\.json$',
   ],
   'import/resolver': 'node',
 };
@@ -111,21 +112,12 @@ const webSettings = {
     '.ts',
     '.tsx',
   ],
-  'import/ignore': [
-    'node_modules',
-    '\\.json$',
-  ],
-  'import/parsers': {
-    '@typescript-eslint/parser': [
-      '.ts',
-      '.tsx',
-    ],
-  },
   'import/resolver': 'webpack',
 };
 
 module.exports = {
   baseRules,
+  baseSettings,
   nodeRules,
   nodeSettings,
   webRules,
