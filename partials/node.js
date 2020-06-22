@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = {
+const nodeRules = {
   'node/handle-callback-err': 'off',
   'node/no-callback-literal': 'off',
   'node/no-exports-assign': 'error',
@@ -41,5 +41,5 @@ const rules = {
 };
 
 module.exports = {
-  rules,
+  nodeRules,
 };

@@ -1,5 +1,7 @@
 # TODO
 
+* FIXME: `semi`/`babel/semi` for Node env
+
 * Add README
 * Add preset for base JS usage (not necessary for web)
   * Add preset for Node.js usage (base + node)

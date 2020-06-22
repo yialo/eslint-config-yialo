@@ -46,5 +46,8 @@
     "type": "git",
     "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
   },
+  "scripts": {
+    "test": "eslint ./**/*.js"
+  },
   "version": "0.0.1"
 }

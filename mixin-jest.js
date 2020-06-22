@@ -2,7 +2,7 @@
 
 module.exports = {
   extends: [
-    '../abstract-preset/index.js',
+    './preset-abstract.js',
     'plugin:jest/recommended',
   ],
   env: {
