@@ -841,14 +841,4 @@ module.exports = {
     'import/no-nodejs-modules': 'off',
     'import/no-unassigned-import': 'error',
   },
-  settings: {
-    'import/extensions': [
-      '.js',
-    ],
-    'import/ignore': [
-      'node_modules',
-      '\\.json$',
-    ],
-    'import/resolver': 'node',
-  },
 };
