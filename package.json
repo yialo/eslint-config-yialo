@@ -14,15 +14,24 @@
     "checker",
     "code style",
     "code",
+    "commonjs",
     "eslint",
+    "esm",
     "javascript",
     "js",
+    "jsx",
     "lint",
     "linter",
+    "node",
     "quality",
+    "react",
     "strict",
+    "ts",
+    "tsx",
+    "typescript",
     "validate",
-    "verify"
+    "verify",
+    "webpack"
   ],
   "license": "MIT",
   "main": "web.js",
@@ -49,5 +58,5 @@
   "scripts": {
     "test": "eslint ./**/*.js"
   },
-  "version": "0.0.1"
+  "version": "0.1.0"
 }

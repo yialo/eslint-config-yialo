@@ -8,55 +8,7 @@ npm install -DE eslint-config-yialo
 
 ## Usage
 
-There are several rules which are probably need to define in end-user config:
-
-* in `rules` section:
-  * `import/no-unassigned-import`
-
-    Default:
-
-    ```js
-    'import/no-unassigned-import': 'error'
-    ```
-
-    Example of usage with [webpack](https://webpack.js.org/):
-
-    ```js
-    'import/no-unassigned-import': [
-      'error',
-      {
-        allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
-      },
-    ]
-    ```
-
-* in `settings` section:
-  * `import/resolver`
-
-    webpack default:
-
-    ```js
-    'import/resolver': 'webpack'
-    ```
-
-    Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
-
-    ```js
-    'import/resolver': {
-      webpack: {
-        config: './config/webpack.config.js',
-        env: {
-          target: development,
-        },
-      },
-    }
-    ```
-
-    Node.js default:
-
-    ```js
-    'import/resolver': 'node'
-    ```
+### End-user config example
 
 This package contains several rulesets for [ESLint](https://github.com/eslint/eslint):
 
@@ -65,37 +17,98 @@ This package contains several rulesets for [ESLint](https://github.com/eslint/es
 * `mixin-jest.js`
 * `mixin-typescript.js`
 
-<!-- * `base`: for plain CSS and CSS Modules
-* `scss`: for SCSS syntax only
-* `full`: both of previous ones
+They may be used in high-level and `overrides` blocks:
 
-If you've installed `stylelint-config-yialo` locally within your project, declare your stylelint config extension:
+```yaml
+extends:
+  - yialo/preset-webpack.js
+globals:
+  process: readonly
+ignorePatterns:
+  - '*.html'
+  - /dist/
+overrides:
+  - extends:
+      - yialo/mixin-jest.js
+    files:
+      - ./**/*.{spec,test}.js?(x)
+  - extends:
+      - yialo/preset-node.js
+    files:
+      - ./config/**/*.js
+      - ./scripts/**/*.js
+  - extends:
+      - yialo/mixin-typescript.js
+    files:
+      - ./src/**/*.ts?(x)
+rules:
+  import/no-unassigned-import:
+    - error
+    - allow:
+      - '**/*.{?(s)css,jp?(e)g,png,svg}'
+settings:
+  import/resolver:
+    webpack:
+      config: ./config/webpack.config.js
+```
 
-* For full ruleset use:
+Notice that `mixin-jest.js` and `mixin-typescript.js` are not independent configs and should be used as `extends` of `overrides` blocks only.
 
-    ```json
-    {
-      "extends": "stylelint-config-yialo"
-    }
+### Specific rules and settings
+
+There are several rules which are probably need to define in end-user config:
+
+* in `rules` section:
+  * `import/no-unassigned-import`
+
+    Default:
+
+    ```yaml
+    # .eslintrc.yaml
+    import/no-unassigned-import: error
     ```
 
-* For base ruleset use:
+    Example of usage with [webpack](https://webpack.js.org/):
 
-    ```json
-    {
-      "extends": "stylelint-config-yialo/base"
-    }
+    ```yaml
+    # .eslintrc.yaml
+    import/no-unassigned-import:
+      - error
+      - allow:
+        - '**/*.{?(s)css,jp?(e)g,png,svg}'
     ```
 
-* For SCSS-only ruleset use:
+* in `settings` section:
+  * `import/resolver`
 
-    ```json
-    {
-      "extends": "stylelint-config-yialo/scss"
-    }
-    ``` -->
-  
-Notice that this package requires these ones as peer dependencies:
+    webpack default:
+
+    ```yaml
+    # .eslintrc.yaml
+    import/resolver: webpack
+    ```
+
+    Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
+
+    ```yaml
+    # .eslintrc.yaml
+    import/resolver:
+      webpack:
+        config: ./config/webpack.config.js
+        env:
+          target: development
+    ```
+
+    Node.js default:
+
+    ```yaml
+    # .eslintrc.yaml
+    import/resolver: node
+    ```
+
+### Peer dependencies
+
+Notice that the package requires these peer dependencies:
 
 * [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
 * [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser)
