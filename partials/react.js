@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = {
+const webRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
   'react/default-props-match-prop-types': [
@@ -245,13 +245,13 @@ const rules = {
   'react/void-dom-elements-no-children': 'error',
 };
 
-const settings = {
+const webSettings = {
   react: {
     version: 'detect',
   },
 };
 
 module.exports = {
-  rules,
-  settings,
+  webRules,
+  webSettings,
 };

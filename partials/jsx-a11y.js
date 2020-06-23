@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = {
+const webRules = {
   'jsx-a11y/accessible-emoji': 'error',
   'jsx-a11y/alt-text': [
     'error',
@@ -118,5 +118,5 @@ const rules = {
 };
 
 module.exports = {
-  rules,
+  webRules,
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = {
+const baseRules = {
   'accessor-pairs': 'off',
   'array-bracket-newline': ['error', 'consistent'],
   'array-bracket-spacing': ['error', 'never'],
@@ -20,7 +20,6 @@ const rules = {
       before: true,
     },
   ],
-  'babel/semi': 'error',
   'block-scoped-var': 'error',
   'block-spacing': ['error', 'always'],
   'brace-style': [
@@ -30,7 +29,7 @@ const rules = {
       allowSingleLine: true,
     },
   ],
-  camelcase: [
+  'camelcase': [
     'error',
     {
       ignoreDestructuring: false,
@@ -76,12 +75,12 @@ const rules = {
       },
     },
   ],
-  complexity: 'off',
+  'complexity': 'off',
   'computed-property-spacing': ['error', 'never'],
   'consistent-return': 'off',
   'consistent-this': 'off',
   'constructor-super': 'error',
-  curly: ['error', 'multi-line'],
+  'curly': ['error', 'multi-line'],
   'default-case': [
     'error',
     {
@@ -97,7 +96,7 @@ const rules = {
     },
   ],
   'eol-last': ['error', 'always'],
-  eqeqeq: [
+  'eqeqeq': [
     'error',
     'always',
     {
@@ -129,7 +128,7 @@ const rules = {
   'id-length': 'off',
   'id-match': 'off',
   'implicit-arrow-linebreak': ['error', 'beside'],
-  indent: [
+  'indent': [
     'error',
     2,
     {
@@ -681,21 +680,20 @@ const rules = {
   'prefer-spread': 'error',
   'prefer-template': 'error',
   'quote-props': ['error', 'consistent'],
-  quotes: [
+  'quotes': [
     'error',
     'single',
     {
       allowTemplateLiterals: true,
     },
   ],
-  radix: 'error',
+  'radix': 'error',
 
   'require-atomic-updates': 'off',
   'require-await': 'error',
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
-  semi: 'off',
   'semi-spacing': [
     'error',
     {
@@ -740,7 +738,7 @@ const rules = {
       },
     },
   ],
-  strict: ['error', 'safe'],
+  'strict': ['error', 'safe'],
   'switch-colon-spacing': [
     'error',
     {
@@ -769,9 +767,19 @@ const rules = {
   ],
   'wrap-regex': 'off',
   'yield-star-spacing': ['error', 'after'],
-  yoda: 'error',
+  'yoda': 'error',
+};
+
+const nodeRules = {
+  'semi': ['error', 'always'],
+};
+
+const webRules = {
+  'semi': 'off',
 };
 
 module.exports = {
-  rules,
+  baseRules,
+  nodeRules,
+  webRules,
 };

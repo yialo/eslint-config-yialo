@@ -15,14 +15,6 @@ const baseRules = {
   'import/no-absolute-path': 'error',
   'import/no-amd': 'error',
   'import/no-anonymous-default-export': 'off',
-  'import/no-commonjs': [
-    'error',
-    {
-      allowConditionalRequire: false,
-      allowPrimitiveModules: false,
-      allowRequire: false,
-    },
-  ],
   'import/no-cycle': 'error',
   'import/no-default-export': 'off',
   'import/no-deprecated': 'error',
@@ -33,15 +25,6 @@ const baseRules = {
     },
   ],
   'import/no-dynamic-require': 'off',
-  'import/no-extraneous-dependencies': [
-    'error',
-    {
-      bundledDependencies: false,
-      devDependencies: false,
-      optionalDependencies: false,
-      peerDependencies: false,
-    },
-  ],
   'import/no-internal-modules': 'off',
   'import/no-mutable-exports': 'error',
   'import/no-named-as-default': 'error',
@@ -49,19 +32,10 @@ const baseRules = {
   'import/no-named-default': 'error',
   'import/no-named-export': 'off',
   'import/no-namespace': 'off',
-  'import/no-nodejs-modules': 'error',
   'import/no-relative-parent-imports': 'off',
   'import/no-restricted-paths': 'off',
   'import/no-self-import': 'error',
-  'import/no-unassigned-import': [
-    'error',
-    {
-      allow: [
-        '**/*.{?(s)css,ico,jp?(e)g,png,svg,woff2}',
-        '**/*.test.js',
-      ],
-    },
-  ],
+  'import/no-unassigned-import': 'error',
   'import/no-unresolved': [
     'error',
     {
@@ -90,37 +64,61 @@ const nodeRules = {
   'import/no-nodejs-modules': 'off',
 };
 
-const baseSettings = {
-  'import/extensions': [
-    '.js',
-    '.jsx',
-    '.ts',
-    '.tsx'
+const webRules = {
+  'import/no-commonjs': [
+    'error',
+    {
+      allowConditionalRequire: false,
+      allowPrimitiveModules: false,
+      allowRequire: false,
+    },
   ],
+  'import/no-extraneous-dependencies': [
+    'error',
+    {
+      bundledDependencies: false,
+      devDependencies: false,
+      optionalDependencies: false,
+      peerDependencies: false,
+    },
+  ],
+  'import/no-nodejs-modules': 'error',
+};
+
+const baseSettings = {
   'import/ignore': [
     'node_modules',
-    '\\\\.(css|json)$'
   ],
   'import/parsers': {
     '@typescript-eslint/parser': [
       '.ts',
-      '.tsx'
-    ]
+      '.tsx',
+    ],
   },
-  'import/resolver': 'webpack',
 };
 
 const nodeSettings = {
+  'import/extensions': [
+    '.js',
+  ],
   'import/resolver': 'node',
 };
 
+const webSettings = {
+  'import/extensions': [
+    '.js',
+    '.jsx',
+    '.ts',
+    '.tsx',
+  ],
+  'import/resolver': 'webpack',
+};
+
 module.exports = {
-  ruleGroups: {
-    base: baseRules,
-    node: nodeRules,
-  },
-  settingGroups: {
-    base: baseSettings,
-    node: nodeSettings,
-  },
+  baseRules,
+  baseSettings,
+  nodeRules,
+  nodeSettings,
+  webRules,
+  webSettings,
 };
