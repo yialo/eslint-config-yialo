@@ -8,20 +8,24 @@ npm install -DE eslint-config-yialo
 
 ## Usage
 
+This package contains several configuration presets for [ESLint](https://github.com/eslint/eslint):
+
+Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
+
+* `preset-node`
+* `preset-webpack`
+
+Mixins are not independent configs and should be used as `extends` of `overrides` blocks only.
+
+* `mixin-jest`
+* `mixin-typescript`
+
 ### End-user config example
 
-This package contains several rulesets for [ESLint](https://github.com/eslint/eslint):
-
-* `preset-node.js`
-* `preset-webpack.js`
-* `mixin-jest.js`
-* `mixin-typescript.js`
-
-They may be used in high-level and `overrides` blocks:
-
 ```yaml
+# .eslintrc.yaml
 extends:
-  - yialo/preset-webpack.js
+  - yialo/preset-webpack
 globals:
   process: readonly
 ignorePatterns:
@@ -29,16 +33,16 @@ ignorePatterns:
   - /dist/
 overrides:
   - extends:
-      - yialo/mixin-jest.js
+      - yialo/mixin-jest
     files:
       - ./**/*.{spec,test}.js?(x)
   - extends:
-      - yialo/preset-node.js
+      - yialo/preset-node
     files:
       - ./config/**/*.js
       - ./scripts/**/*.js
   - extends:
-      - yialo/mixin-typescript.js
+      - yialo/mixin-typescript
     files:
       - ./src/**/*.ts?(x)
 rules:
@@ -51,8 +55,6 @@ settings:
     webpack:
       config: ./config/webpack.config.js
 ```
-
-Notice that `mixin-jest.js` and `mixin-typescript.js` are not independent configs and should be used as `extends` of `overrides` blocks only.
 
 ### Specific rules and settings
 
