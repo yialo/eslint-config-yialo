@@ -86,6 +86,9 @@ const webRules = {
 };
 
 const baseSettings = {
+  'import/ignore': [
+    'node_modules',
+  ],
   'import/parsers': {
     '@typescript-eslint/parser': [
       '.ts',
