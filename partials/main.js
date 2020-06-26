@@ -44,7 +44,7 @@ const baseRules = {
     {
       arrays: 'always-multiline',
       exports: 'always-multiline',
-      functions: 'only-multiline',
+      functions: 'always-multiline',
       imports: 'always-multiline',
       objects: 'always-multiline',
     },
@@ -134,7 +134,7 @@ const baseRules = {
     {
       ArrayExpression: 1,
       CallExpression: {
-        arguments: 2,
+        arguments: 1,
       },
       FunctionDeclaration: {
         body: 1,
