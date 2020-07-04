@@ -33,6 +33,7 @@ const baseRules = {
     'error',
     {
       ignoreDestructuring: false,
+      ignoreGlobals: true,
       ignoreImports: false,
       properties: 'never',
     },
@@ -124,7 +125,7 @@ const baseRules = {
   ],
   'grouped-accessor-pairs': ['error', 'getBeforeSet'],
   'guard-for-in': 'error',
-  'id-blacklist': 'off',
+  'id-denylist': 'off',
   'id-length': 'off',
   'id-match': 'off',
   'implicit-arrow-linebreak': ['error', 'beside'],
