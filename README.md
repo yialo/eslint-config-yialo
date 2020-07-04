@@ -1,5 +1,7 @@
 # Yialo's ESLint configuration
 
+Package created to use with **React + TypeScript + webpack** stack.
+
 ## Installation
 
 ```shell
