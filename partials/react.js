@@ -3,12 +3,7 @@
 const webRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
-  'react/default-props-match-prop-types': [
-    'error',
-    {
-      allowRequiredDefaults: false,
-    },
-  ],
+  'react/default-props-match-prop-types': 'off',
   'react/destructuring-assignment': 'off',
   'react/display-name': 'off',
   'react/forbid-component-props': 'off',
@@ -158,12 +153,7 @@ const webRules = {
   'react/no-unescaped-entities': 'error',
   'react/no-unknown-property': 'error',
   'react/no-unsafe': 'error',
-  'react/no-unused-prop-types': [
-    'error',
-    {
-      skipShapeProps: true,
-    },
-  ],
+  'react/no-unused-prop-types': 'off',
   'react/no-unused-state': 'error',
   'react/no-will-update-set-state': 'error',
   'react/prefer-es6-class': ['error', 'always'],
@@ -174,12 +164,7 @@ const webRules = {
       ignorePureComponents: true,
     },
   ],
-  'react/prop-types': [
-    'error',
-    {
-      skipUndeclared: false,
-    },
-  ],
+  'react/prop-types': 'off',
   'react/react-in-jsx-scope': 'error',
   'react/require-default-props': [
     'error',
