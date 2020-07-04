@@ -774,6 +774,10 @@ const nodeRules = {
   'semi': ['error', 'always'],
 };
 
+const tsRules = {
+  'semi': ['error', 'always'],
+};
+
 const webRules = {
   'semi': 'off',
 };
@@ -781,5 +785,6 @@ const webRules = {
 module.exports = {
   baseRules,
   nodeRules,
+  tsRules,
   webRules,
 };
