@@ -103,6 +103,7 @@ const tsSettings = {
     '@typescript-eslint/parser': [
       '.ts',
       '.tsx',
+      '.d.ts',
     ],
   },
 };
