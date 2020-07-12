@@ -1,6 +1,7 @@
 'use strict';
 
-const { tsRules } = require('./partials/main.js');
+const { tsRules: mainRules } = require('./partials/main.js');
+const { tsSettings: importSettings } = require('./partials/import.js');
 
 module.exports = {
   extends: [
@@ -10,6 +11,9 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   rules: {
-    ...tsRules,
+    ...mainRules,
+  },
+  settings: {
+    ...importSettings,
   },
 };

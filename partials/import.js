@@ -89,12 +89,6 @@ const baseSettings = {
   'import/ignore': [
     'node_modules',
   ],
-  'import/parsers': {
-    '@typescript-eslint/parser': [
-      '.ts',
-      '.tsx',
-    ],
-  },
 };
 
 const nodeSettings = {
@@ -102,6 +96,15 @@ const nodeSettings = {
     '.js',
   ],
   'import/resolver': 'node',
+};
+
+const tsSettings = {
+  'import/parsers': {
+    '@typescript-eslint/parser': [
+      '.ts',
+      '.tsx',
+    ],
+  },
 };
 
 const webSettings = {
@@ -119,6 +122,7 @@ module.exports = {
   baseSettings,
   nodeRules,
   nodeSettings,
+  tsSettings,
   webRules,
   webSettings,
 };
