@@ -1,15 +1,22 @@
 'use strict';
 
-const { tsRules } = require('./partials/main.js');
+const { tsRules: babelRules } = require('./partials/babel.js');
+const { tsResetRules: mainResetRules } = require('./partials/main.js');
+const { tsSettings: importSettings } = require('./partials/import.js');
+const { tsRules } = require('./partials/typescript.js');
 
 module.exports = {
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    sourceType: 'module',
+  },
   plugins: ['@typescript-eslint'],
   rules: {
+    ...mainResetRules,
+    ...babelRules,
     ...tsRules,
+  },
+  settings: {
+    ...importSettings,
   },
 };
