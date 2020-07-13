@@ -775,8 +775,29 @@ const nodeRules = {
   'semi': ['error', 'always'],
 };
 
-const tsRules = {
-  'semi': ['error', 'always'],
+const tsResetRules = {
+  'constructor-super': 'off',
+  'getter-return': 'off',
+  'no-array-constructor': 'off',
+  'no-const-assign': 'off',
+  'no-dupe-args': 'off',
+  'no-dupe-class-members': 'off',
+  'no-dupe-keys': 'off',
+  'no-empty-function': 'off',
+  'no-extra-semi': 'off',
+  'no-func-assign': 'off',
+  'no-import-assign': 'off',
+  'no-new-symbol': 'off',
+  'no-obj-calls': 'off',
+  'no-redeclare': 'off',
+  'no-setter-return': 'off',
+  'no-this-before-super': 'off',
+  'no-undef': 'off',
+  'no-unreachable': 'off',
+  'no-unsafe-negation': 'off',
+  'no-unused-vars': 'off',
+  'semi': 'off',
+  'valid-typeof': 'off',
 };
 
 const webRules = {
@@ -786,6 +807,6 @@ const webRules = {
 module.exports = {
   baseRules,
   nodeRules,
-  tsRules,
+  tsResetRules,
   webRules,
 };
