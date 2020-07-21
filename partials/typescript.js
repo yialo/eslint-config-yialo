@@ -9,7 +9,12 @@ const tsRules = {
   '@typescript-eslint/no-empty-function': [
     'error',
     {
-      allow: ['arrowFunctions', 'functions', 'methods'],
+      allow: [
+        'arrowFunctions',
+        'decoratedFunctions',
+        'functions',
+        'methods',
+      ],
     },
   ],
   '@typescript-eslint/no-empty-interface': 'error',

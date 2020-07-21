@@ -37,10 +37,10 @@
   "main": "web.js",
   "name": "eslint-config-yialo",
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.6.0",
-    "@typescript-eslint/parser": "^3.6.0",
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.4.0",
+    "eslint": "^7.5.0",
     "eslint-import-resolver-webpack": "^0.12.2",
     "eslint-plugin-babel": "^5.3.1",
     "eslint-plugin-import": "^2.22.0",
@@ -49,7 +49,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.0.7"
+    "eslint-plugin-react-hooks": "^4.0.8"
   },
   "repository": {
     "type": "git",
@@ -58,5 +58,5 @@
   "scripts": {
     "test": "eslint ./**/*.js"
   },
-  "version": "0.1.5"
+  "version": "0.1.6"
 }
