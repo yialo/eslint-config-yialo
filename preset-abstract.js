@@ -20,6 +20,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020,
   },
+  reportUnusedDisableDirectives: true,
   rules: {
     ...mainRules,
     ...babelRules,
