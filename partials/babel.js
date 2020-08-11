@@ -1,7 +1,5 @@
 'use strict';
 
-const baseRules = {};
-
 const tsRules = {
   'babel/semi': 'off',
 };
@@ -11,7 +9,6 @@ const webRules = {
 };
 
 module.exports = {
-  baseRules,
   tsRules,
   webRules,
 };

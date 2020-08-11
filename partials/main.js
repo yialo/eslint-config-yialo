@@ -772,10 +772,6 @@ const baseRules = {
   'yoda': 'error',
 };
 
-const nodeRules = {
-  'semi': ['error', 'always'],
-};
-
 const tsResetRules = {
   'constructor-super': 'off',
   'getter-return': 'off',
@@ -807,7 +803,6 @@ const webRules = {
 
 module.exports = {
   baseRules,
-  nodeRules,
   tsResetRules,
   webRules,
 };

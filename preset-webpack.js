@@ -1,6 +1,6 @@
 'use strict';
 
-const { webRules: babelRules } = require('./partials/import.js');
+const { webRules: babelRules } = require('./partials/babel.js');
 const {
   webRules: importRules,
   webSettings: importSettings,
