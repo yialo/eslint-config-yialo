@@ -695,6 +695,7 @@ const baseRules = {
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
+  'semi': ['error', 'always'],
   'semi-spacing': [
     'error',
     {

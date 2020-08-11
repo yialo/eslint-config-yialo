@@ -2,10 +2,6 @@
 
 const baseRules = {};
 
-const nodeRules = {
-  'babel/semi': 'off',
-};
-
 const tsRules = {
   'babel/semi': 'off',
 };
@@ -16,7 +12,6 @@ const webRules = {
 
 module.exports = {
   baseRules,
-  nodeRules,
   tsRules,
   webRules,
 };

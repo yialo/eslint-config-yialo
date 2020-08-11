@@ -1,6 +1,5 @@
 'use strict';
 
-const { baseRules: babelRules } = require('./partials/babel.js');
 const {
   baseRules: importRules,
   baseSettings: importSettings,
@@ -23,7 +22,6 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   rules: {
     ...mainRules,
-    ...babelRules,
     ...importRules,
     ...promiseRules,
   },

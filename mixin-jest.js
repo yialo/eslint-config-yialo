@@ -6,9 +6,7 @@ module.exports = {
   env: {
     jest: true,
   },
-  extends: [
-    './preset-abstract.js',
-  ],
+  plugins: ['jest'],
   rules: {
     ...jestRules,
   },
