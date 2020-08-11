@@ -1,11 +1,15 @@
 'use strict';
 
+const { jestRules } = require('./partials/jest.js');
+
 module.exports = {
-  extends: [
-    './preset-abstract.js',
-    'plugin:jest/recommended',
-  ],
   env: {
     jest: true,
+  },
+  extends: [
+    './preset-abstract.js',
+  ],
+  rules: {
+    ...jestRules,
   },
 };
