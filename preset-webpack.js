@@ -23,11 +23,6 @@ module.exports = {
     sourceType: 'module',
     allowImportExportEverywhere: false,
   },
-  plugins: [
-    'jsx-a11y',
-    'react',
-    'react-hooks',
-  ],
   rules: {
     ...mainRules,
     ...babelRules,

@@ -12,9 +12,15 @@ module.exports = {
     es6: true,
   },
   plugins: [
+    '@typescript-eslint',
     'babel',
     'import',
+    'jest',
+    'jsx-a11y',
+    'node',
     'promise',
+    'react-hooks',
+    'react',
   ],
   parserOptions: {
     ecmaVersion: 2020,

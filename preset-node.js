@@ -15,7 +15,6 @@ module.exports = {
   parserOptions: {
     sourceType: 'script',
   },
-  plugins: ['node'],
   rules: {
     ...importRules,
     ...nodeRules,

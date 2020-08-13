@@ -10,7 +10,6 @@ module.exports = {
   parserOptions: {
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint'],
   rules: {
     ...mainResetRules,
     ...babelRules,
