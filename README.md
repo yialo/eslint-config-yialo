@@ -8,19 +8,32 @@ Package created to use with **React + TypeScript + webpack** stack.
 npm install -DE eslint-config-yialo
 ```
 
+```shell
+yarn add eslint-config-yialo -DE
+```
+
+## Uninstallation
+
+```shell
+npm uninstall -DE eslint-config-yialo
+```
+
+```shell
+yarn remove eslint-config-yialo -DE
+```
+
 ## Usage
 
 This package contains several configuration presets for [ESLint](https://github.com/eslint/eslint):
 
 Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
 
+* `preset-base`
 * `preset-node`
 * `preset-webpack`
-
-Mixins are not independent configs and should be used as `extends` of `overrides` blocks only.
-
-* `mixin-jest`
-* `mixin-typescript`
+* `preset-webpack-jest`
+* `preset-webpack-typescript`
+* `preset-webpack-typescript-jest`
 
 ### End-user config example
 
@@ -35,7 +48,7 @@ ignorePatterns:
   - /dist/
 overrides:
   - extends:
-      - yialo/mixin-jest
+      - yialo/preset-webpack-jest
     files:
       - ./**/*.{spec,test}.js?(x)
   - extends:
@@ -44,7 +57,7 @@ overrides:
       - ./config/**/*.js
       - ./scripts/**/*.js
   - extends:
-      - yialo/mixin-typescript
+      - yialo/preset-webpack-typescript
     files:
       - ./src/**/*.ts?(x)
 rules:
@@ -130,28 +143,20 @@ Notice that the package requires these peer dependencies:
 
 You may install them quickly with this command:
 
-* npm
+```shell
+npm install -DE @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks
+```
 
-  ```shell
-  npm install -DE @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks
-  ```
-
-* yarn
-
-  ```shell
-  yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks -DE
-  ```
+```shell
+yarn add @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks -DE
+```
 
 Command for quick removal of them:
 
-* npm
+```shell
+npm uninstall -D @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks
+```
 
-  ```shell
-  npm uninstall -D @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks
-  ```
-
-* yarn
-
-  ```shell
-  yarn remove @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks -D
-  ```
+```shell
+yarn remove @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks -D
+```

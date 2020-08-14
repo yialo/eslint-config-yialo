@@ -695,6 +695,7 @@ const baseRules = {
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
+  'semi': ['error', 'always'],
   'semi-spacing': [
     'error',
     {
@@ -771,10 +772,6 @@ const baseRules = {
   'yoda': 'error',
 };
 
-const nodeRules = {
-  'semi': ['error', 'always'],
-};
-
 const tsResetRules = {
   'constructor-super': 'off',
   'getter-return': 'off',
@@ -800,13 +797,12 @@ const tsResetRules = {
   'valid-typeof': 'off',
 };
 
-const webRules = {
+const webResetRules = {
   'semi': 'off',
 };
 
 module.exports = {
   baseRules,
-  nodeRules,
   tsResetRules,
-  webRules,
+  webResetRules,
 };
