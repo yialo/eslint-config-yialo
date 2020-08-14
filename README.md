@@ -35,6 +35,34 @@ Presets may be used at high-level of config as well as `extends` of `overrides` 
 * `preset-webpack-typescript`
 * `preset-webpack-typescript-jest`
 
+**CAUTION!**  
+In case of any [webpack](https://webpack.js.org/)-based preset usage you MUST define `resolver` explicitly in `settings` section for correct application of aliases and extensions from `webpack.resolve` config block.
+
+Basic example:
+
+  ```yaml
+  # .eslintrc.yaml
+  import/resolver: webpack
+  ```
+
+  Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
+
+  ```yaml
+  # .eslintrc.yaml
+  import/resolver:
+    webpack:
+      config: ./config/webpack.config.js
+      env:
+        target: development
+  ```
+
+  Node.js resolver (default):
+
+  ```yaml
+  # .eslintrc.yaml
+  import/resolver: node
+  ```
+
 ### End-user config example
 
 ```yaml
@@ -93,34 +121,6 @@ There are several rules which are probably need to define in end-user config:
       - error
       - allow:
         - '**/*.{?(s)css,jp?(e)g,png,svg}'
-    ```
-
-* in `settings` section:
-  * `import/resolver`
-
-    webpack default:
-
-    ```yaml
-    # .eslintrc.yaml
-    import/resolver: webpack
-    ```
-
-    Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
-
-    ```yaml
-    # .eslintrc.yaml
-    import/resolver:
-      webpack:
-        config: ./config/webpack.config.js
-        env:
-          target: development
-    ```
-
-    Node.js default:
-
-    ```yaml
-    # .eslintrc.yaml
-    import/resolver: node
     ```
 
 ### Peer dependencies
