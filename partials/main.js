@@ -797,12 +797,12 @@ const tsResetRules = {
   'valid-typeof': 'off',
 };
 
-const webRules = {
+const webResetRules = {
   'semi': 'off',
 };
 
 module.exports = {
   baseRules,
   tsResetRules,
-  webRules,
+  webResetRules,
 };

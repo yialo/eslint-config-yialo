@@ -1,7 +1,7 @@
 'use strict';
 
 const webRules = {
-  'react-hooks/exhaustive-deps': 'off',
+  'react-hooks/exhaustive-deps': 'warn',
   'react-hooks/rules-of-hooks': 'error',
 };
 
