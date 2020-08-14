@@ -86,24 +86,27 @@ const webRules = {
 };
 
 const baseSettings = {
-  'import/ignore': [
-    'node_modules',
-  ],
-};
-
-const nodeSettings = {
   'import/extensions': [
     '.js',
+  ],
+  'import/ignore': [
+    'node_modules',
   ],
   'import/resolver': 'node',
 };
 
 const tsSettings = {
+  'import/extensions': [
+    '.js',
+    '.jsx',
+    '.ts',
+    '.tsx',
+  ],
   'import/parsers': {
     '@typescript-eslint/parser': [
+      '.d.ts',
       '.ts',
       '.tsx',
-      '.d.ts',
     ],
   },
 };
@@ -112,8 +115,6 @@ const webSettings = {
   'import/extensions': [
     '.js',
     '.jsx',
-    '.ts',
-    '.tsx',
   ],
   'import/resolver': 'webpack',
 };
@@ -122,7 +123,6 @@ module.exports = {
   baseRules,
   baseSettings,
   nodeRules,
-  nodeSettings,
   tsSettings,
   webRules,
   webSettings,
