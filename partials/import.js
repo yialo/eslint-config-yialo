@@ -92,7 +92,6 @@ const baseSettings = {
   'import/ignore': [
     'node_modules',
   ],
-  'import/resolver': 'node',
 };
 
 const tsSettings = {
@@ -116,7 +115,6 @@ const webSettings = {
     '.js',
     '.jsx',
   ],
-  'import/resolver': 'webpack',
 };
 
 module.exports = {
