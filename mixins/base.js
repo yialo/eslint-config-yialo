@@ -1,12 +1,12 @@
 'use strict';
 
-const { disabledRules: babelRules } = require('../partials/babel.js');
+const { disabledRules: babelRules } = require('../partials/babel');
 const {
   baseRules: importRules,
   baseSettings: importSettings,
-} = require('../partials/import.js');
-const { baseRules: mainRules } = require('../partials/main.js');
-const { baseRules: promiseRules } = require('../partials/promise.js');
+} = require('../partials/import');
+const { baseRules: mainRules } = require('../partials/main');
+const { baseRules: promiseRules } = require('../partials/promise');
 
 module.exports = {
   env: {

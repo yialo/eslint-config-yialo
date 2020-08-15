@@ -1,17 +1,17 @@
 'use strict';
 
-const { enabledRules: babelRules } = require('../partials/babel.js');
+const { enabledRules: babelRules } = require('../partials/babel');
 const {
   webRules: importRules,
   webSettings: importSettings,
-} = require('../partials/import.js');
-const { webRules: jsxA11yRules } = require('../partials/jsx-a11y.js');
-const { webResetRules: mainRules } = require('../partials/main.js');
+} = require('../partials/import');
+const { webRules: jsxA11yRules } = require('../partials/jsx-a11y');
+const { babelResetRules: mainRules } = require('../partials/main');
 const {
   webRules: reactRules,
   webSettings: reactSettings,
-} = require('../partials/react.js');
-const { webRules: reactHooksRules } = require('../partials/react-hooks.js');
+} = require('../partials/react');
+const { webRules: reactHooksRules } = require('../partials/react-hooks');
 
 module.exports = {
   env: {
@@ -29,7 +29,7 @@ module.exports = {
     ...mainRules,
     ...babelRules,
     ...importRules,
-    ...jsxA11yRules,
+    ..xA11yRules,
     ...reactRules,
     ...reactHooksRules,
   },

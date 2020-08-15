@@ -29,15 +29,6 @@ const nonExtensibleRules = {
       allowSingleLine: true,
     },
   ],
-  'camelcase': [
-    'error',
-    {
-      ignoreDestructuring: false,
-      ignoreGlobals: true,
-      ignoreImports: false,
-      properties: 'never',
-    },
-  ],
   'capitalized-comments': 'off',
   'class-methods-use-this': 'off',
   'comma-dangle': [
@@ -89,6 +80,7 @@ const nonExtensibleRules = {
   ],
   'default-case-last': 'error',
   'default-param-last': 'error',
+  'dot-location': ['error', 'property'],
   'dot-notation': [
     'error',
     {
@@ -210,13 +202,6 @@ const nonExtensibleRules = {
   ],
   'multiline-comment-style': 'off',
   'multiline-ternary': 'off',
-  'new-cap': [
-    'error',
-    {
-      capIsNew: false,
-      newIsCap: true,
-    },
-  ],
   'new-parens': 'error',
   'newline-per-chained-call': [
     'error',
@@ -276,7 +261,6 @@ const nonExtensibleRules = {
   'no-inline-comments': 'off',
   'no-inner-declarations': 'error',
   'no-invalid-regexp': 'error',
-  'no-invalid-this': 'off',
   'no-irregular-whitespace': 'error',
   'no-iterator': 'error',
   'no-label-var': 'error',
@@ -518,14 +502,6 @@ const nonExtensibleRules = {
   ],
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
-  'no-unused-expressions': [
-    'error',
-    {
-      allowShortCircuit: false,
-      allowTaggedTemplates: false,
-      allowTernary: false,
-    },
-  ],
   'no-unused-labels': 'error',
   'no-use-before-define': [
     'error',
@@ -564,7 +540,6 @@ const nonExtensibleRules = {
       multiline: true,
     },
   ],
-  'object-curly-spacing': ['error', 'always'],
   'object-property-newline': [
     'error',
     {
@@ -644,17 +619,9 @@ const nonExtensibleRules = {
   'prefer-spread': 'error',
   'prefer-template': 'error',
   'quote-props': ['error', 'consistent'],
-  'quotes': [
-    'error',
-    'single',
-    {
-      allowTemplateLiterals: true,
-    },
-  ],
   'radix': 'error',
 
   'require-atomic-updates': 'off',
-  'require-await': 'error',
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
@@ -728,89 +695,6 @@ const nonExtensibleRules = {
   'yoda': 'error',
 };
 
-const extensibleRules = {
-  'constructor-super': 'error',
-  'getter-return': [
-    'error',
-    {
-      allowImplicit: true,
-    },
-  ],
-  'no-array-constructor': 'error',
-  'no-const-assign': 'error',
-  'no-dupe-args': 'error',
-  'no-dupe-class-members': 'error',
-  'no-dupe-keys': 'error',
-  'no-empty-function': [
-    'error',
-    {
-      allow: ['arrowFunctions', 'functions', 'methods'],
-    },
-  ],
-  'no-extra-semi': 'error',
-  'no-func-assign': 'error',
-  'no-import-assign': 'error',
-  'no-new-symbol': 'error',
-  'no-obj-calls': 'error',
-  'no-redeclare': 'error',
-  'no-setter-return': 'error',
-  'no-this-before-super': 'error',
-  'no-undef': 'error',
-  'no-unreachable': 'error',
-  'no-unsafe-negation': 'error',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'after-used',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
-  'semi': ['error', 'always'],
-  'valid-typeof': [
-    'error',
-    {
-      requireStringLiterals: true,
-    },
-  ],
-};
-
-const tsResetRules = {
-  'constructor-super': 'off',
-  'getter-return': 'off',
-  'no-array-constructor': 'off',
-  'no-const-assign': 'off',
-  'no-dupe-args': 'off',
-  'no-dupe-class-members': 'off',
-  'no-dupe-keys': 'off',
-  'no-empty-function': 'off',
-  'no-extra-semi': 'off',
-  'no-func-assign': 'off',
-  'no-import-assign': 'off',
-  'no-new-symbol': 'off',
-  'no-obj-calls': 'off',
-  'no-redeclare': 'off',
-  'no-setter-return': 'off',
-  'no-this-before-super': 'off',
-  'no-undef': 'off',
-  'no-unreachable': 'off',
-  'no-unsafe-negation': 'off',
-  'no-unused-vars': 'off',
-  'semi': 'off',
-  'valid-typeof': 'off',
-};
-
-const baseRules = {
-  ...nonExtensibleRules,
-  ...extensibleRules,
-};
-
-const webResetRules = {
-  'semi': 'off',
-};
-
 module.exports = {
-  baseRules,
-  tsResetRules,
-  webResetRules,
+  nonExtensibleRules,
 };

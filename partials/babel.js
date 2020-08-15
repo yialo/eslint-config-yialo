@@ -1,5 +1,7 @@
 'use strict';
 
+const { extensibleRules } = require('./main');
+
 const disabledRules = {
   'babel/camelcase': 'off',
   'babel/new-cap': 'off',
@@ -12,7 +14,7 @@ const disabledRules = {
 };
 
 const enabledRules = {
-  'babel/semi': 'error',
+  'babel/semi': extensibleRules.semi,
 };
 
 module.exports = {
