@@ -18,7 +18,7 @@ const regularRules = {
     exceptAfterOverload: true,
   }),
   '@typescript-eslint/no-array-constructor': extensibleRules['no-array-constructor'],
-  '@typescript-eslint/no-dupe-class-members': extensibleRules['no-dupe-class-members'],
+  '@typescript-eslint/no-dupe-class-members': 'off',
   '@typescript-eslint/no-empty-function': extendTsRule('no-empty-function', {
     allow: [
       'arrowFunctions',
@@ -44,7 +44,7 @@ const regularRules = {
   '@typescript-eslint/no-useless-constructor': extensibleRules['no-useless-constructor'],
   '@typescript-eslint/quotes': extensibleRules.quotes,
   '@typescript-eslint/semi': extensibleRules.semi,
-  '@typescript-eslint/space-before-function-paren'
+  '@typescript-eslint/space-before-function-paren': extensibleRules['space-before-function-paren'],
 };
 
 const typeCheckRules = {

@@ -2,7 +2,12 @@
 
 const { getDisabledRuleSet } = require('../utils');
 
-// TODO: MAYBE implement with Object.keys iteration of tsRegularExtensibleRules
+/**
+ * Explanation:
+ * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/eslint-recommended.ts
+ * All diagnostic codes:
+ * https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
+ */
 const tsCompatibilityRules = {
   'constructor-super': 'error',
   'getter-return': [
@@ -11,12 +16,23 @@ const tsCompatibilityRules = {
       allowImplicit: true,
     },
   ],
+  'no-const-assign': 'error',
+  'no-dupe-args': 'error',
+  'no-dupe-class-members': 'error',
+  'no-dupe-keys': 'error',
+  'no-func-assign': 'error',
+  'no-import-assign': 'error',
+  'no-new-symbol': 'error',
+  'no-obj-calls': 'error',
+  'no-redeclare': 'error',
+  'no-setter-return': 'error',
+  'no-this-before-super': 'error',
+  'no-undef': 'error',
+  'no-unreachable': 'error',
+  'no-unsafe-negation': 'error',
 };
 
-const tsCompatibilityResetRules = {
-  'constructor-super': 'off',
-  'getter-return': 'off',
-};
+const tsCompatibilityResetRules = getDisabledRuleSet(tsCompatibilityRules);
 
 const tsRegularExtensibleRules = {
   'brace-style': [
@@ -87,7 +103,6 @@ const tsRegularExtensibleRules = {
     },
   ],
   'no-array-constructor': 'error',
-  'no-dupe-class-members': 'error',
   'no-empty-function': [
     'error',
     {
@@ -127,21 +142,6 @@ const tsRegularExtensibleRules = {
       named: 'never',
     },
   ],
-
-
-  'no-const-assign': 'error',
-  'no-dupe-args': 'error',
-  'no-dupe-keys': 'error',
-  'no-func-assign': 'error',
-  'no-import-assign': 'error',
-  'no-new-symbol': 'error',
-  'no-obj-calls': 'error',
-  'no-redeclare': 'error',
-  'no-setter-return': 'error',
-  'no-this-before-super': 'error',
-  'no-undef': 'error',
-  'no-unreachable': 'error',
-  'no-unsafe-negation': 'error',
 };
 
 // TODO: implement with Object.keys iteration of tsRegularExtensibleRules
@@ -156,7 +156,6 @@ const tsRegularResetRules = {
   'keyword-spacing': 'off',
   'lines-between-class-members': 'off',
   'no-array-constructor': 'off',
-  'no-dupe-class-members': 'off',
   'no-empty-function': 'off',
   'no-extra-parens': 'off',
   'no-extra-semi': 'off',
@@ -168,21 +167,6 @@ const tsRegularResetRules = {
   // 'no-use-before-define': 'off',
   'no-useless-constructor': 'off',
   'space-before-function-paren': 'off',
-
-
-  'no-const-assign': 'off',
-  'no-dupe-args': 'off',
-  'no-dupe-keys': 'off',
-  'no-func-assign': 'off',
-  'no-import-assign': 'off',
-  'no-new-symbol': 'off',
-  'no-obj-calls': 'off',
-  'no-redeclare': 'off',
-  'no-setter-return': 'off',
-  'no-this-before-super': 'off',
-  'no-undef': 'off',
-  'no-unreachable': 'off',
-  'no-unsafe-negation': 'off',
 };
 
 const tsTypeCheckExtensibleRules = {
