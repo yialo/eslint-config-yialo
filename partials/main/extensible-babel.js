@@ -1,5 +1,7 @@
 'use strict';
 
+const { getDisabledRuleSet } = require('../utils');
+
 const babelExtensibleRules = {
   'camelcase': [
     'error',
@@ -17,28 +19,10 @@ const babelExtensibleRules = {
       newIsCap: true,
     },
   ],
-  'no-invalid-this': 'off',
-  'no-unused-expressions': [
-    'error',
-    {
-      allowShortCircuit: false,
-      allowTaggedTemplates: false,
-      allowTernary: false,
-    },
-  ],
   'object-curly-spacing': ['error', 'always'],
-  'quotes': [
-    'error',
-    'single',
-    {
-      allowTemplateLiterals: true,
-    },
-  ],
 };
 
-const babelResetRules = {
-  'semi': 'off',
-};
+const babelResetRules = getDisabledRuleSet(babelExtensibleRules);
 
 module.exports = {
   babelExtensibleRules,

@@ -1,21 +1,22 @@
 'use strict';
 
-const { extensibleRules } = require('./main');
+// TODO: replace with @babel/eslint-parser and @babel/eslint-plugin when Babel 8 would be released
 
-const disabledRules = {
-  'babel/camelcase': 'off',
-  'babel/new-cap': 'off',
-  'babel/no-invalid-this': 'off',
-  'babel/no-unused-expressions': 'off',
-  'babel/object-curly-spacing': 'off',
-  'babel/quotes': 'off',
-  'babel/semi': 'off',
-  'babel/valid-typeof': 'off',
-};
+const { extensibleRules } = require('./main');
+const { getDisabledRuleSet } = require('./utils');
 
 const enabledRules = {
+  'babel/camelcase': extensibleRules.camelcase,
+  'babel/new-cap': extensibleRules['new-cap'],
+  'babel/no-invalid-this': extensibleRules['no-invalid-this'],
+  'babel/no-unused-expressions': extensibleRules['no-unused-expressions'],
+  'babel/object-curly-spacing': extensibleRules['object-curly-spacing'],
+  'babel/quotes': extensibleRules.quotes,
   'babel/semi': extensibleRules.semi,
+  'babel/valid-typeof': extensibleRules['valid-typeof'],
 };
+
+const disabledRules = getDisabledRuleSet(enabledRules);
 
 module.exports = {
   disabledRules,

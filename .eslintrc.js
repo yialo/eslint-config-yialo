@@ -148,7 +148,7 @@ module.exports = {
       {
         ArrayExpression: 1,
         CallExpression: {
-          arguments: 2,
+          arguments: 1,
         },
         FunctionDeclaration: {
           body: 1,

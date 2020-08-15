@@ -1,6 +1,9 @@
 'use strict';
 
-const tsRegularExtensibleRules = {
+const { getDisabledRuleSet } = require('../utils');
+
+// TODO: MAYBE implement with Object.keys iteration of tsRegularExtensibleRules
+const tsCompatibilityRules = {
   'constructor-super': 'error',
   'getter-return': [
     'error',
@@ -8,18 +11,127 @@ const tsRegularExtensibleRules = {
       allowImplicit: true,
     },
   ],
+};
+
+const tsCompatibilityResetRules = {
+  'constructor-super': 'off',
+  'getter-return': 'off',
+};
+
+const tsRegularExtensibleRules = {
+  'brace-style': [
+    'error',
+    '1tbs',
+    {
+      allowSingleLine: false,
+    },
+  ],
+  'comma-spacing': [
+    'error',
+    {
+      after: true,
+      before: false,
+    },
+  ],
+  'default-param-last': 'error',
+  'func-call-spacing': ['error', 'never'],
+  'indent': [
+    'error',
+    2,
+    {
+      ArrayExpression: 1,
+      CallExpression: {
+        arguments: 1,
+      },
+      FunctionDeclaration: {
+        body: 1,
+        parameters: 1,
+      },
+      FunctionExpression: {
+        body: 1,
+        parameters: 1,
+      },
+      ImportDeclaration: 1,
+      ObjectExpression: 1,
+      SwitchCase: 1,
+      VariableDeclarator: 1,
+      flatTernaryExpressions: false,
+      ignoreComments: false,
+      outerIIFEBody: 1,
+    },
+  ],
+  'init-declarations': 'off',
+  'keyword-spacing': [
+    'error',
+    {
+      after: true,
+      before: true,
+      overrides: {
+        case: {
+          after: true,
+        },
+        return: {
+          after: true,
+        },
+        throw: {
+          after: true,
+        },
+      },
+    },
+  ],
+  'lines-between-class-members': [
+    'error',
+    'always',
+    {
+      exceptAfterSingleLine: true,
+    },
+  ],
   'no-array-constructor': 'error',
-  'no-const-assign': 'error',
-  'no-dupe-args': 'error',
   'no-dupe-class-members': 'error',
-  'no-dupe-keys': 'error',
   'no-empty-function': [
     'error',
     {
-      allow: ['arrowFunctions', 'functions', 'methods'],
+      allow: [
+        'arrowFunctions',
+        'functions',
+        'methods',
+      ],
     },
   ],
+  'no-extra-parens': 'off',
   'no-extra-semi': 'error',
+  'no-loss-of-precision': 'error',
+  'no-magic-numbers': 'off',
+  'no-unused-vars': [
+    'error',
+    {
+      args: 'after-used',
+      ignoreRestSiblings: true,
+      vars: 'all',
+    },
+  ],
+  'no-use-before-define': [
+    'error',
+    {
+      classes: true,
+      functions: true,
+      variables: false,
+    },
+  ],
+  'no-useless-constructor': 'error',
+  'space-before-function-paren': [
+    'error',
+    {
+      anonymous: 'always',
+      asyncArrow: 'always',
+      named: 'never',
+    },
+  ],
+
+
+  'no-const-assign': 'error',
+  'no-dupe-args': 'error',
+  'no-dupe-keys': 'error',
   'no-func-assign': 'error',
   'no-import-assign': 'error',
   'no-new-symbol': 'error',
@@ -30,26 +142,37 @@ const tsRegularExtensibleRules = {
   'no-undef': 'error',
   'no-unreachable': 'error',
   'no-unsafe-negation': 'error',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'after-used',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
 };
 
+// TODO: implement with Object.keys iteration of tsRegularExtensibleRules
 const tsRegularResetRules = {
-  'constructor-super': 'off',
-  'getter-return': 'off',
+  'brace-style': 'off',
+  'comma-spacing': 'off',
+  'default-param-last': 'off',
+  'func-call-spacing': 'off',
+  // TODO: enable when @typescript-eslint/indent would be fixed
+  // 'indent': 'off',
+  'init-declarations': 'off',
+  'keyword-spacing': 'off',
+  'lines-between-class-members': 'off',
   'no-array-constructor': 'off',
+  'no-dupe-class-members': 'off',
+  'no-empty-function': 'off',
+  'no-extra-parens': 'off',
+  'no-extra-semi': 'off',
+  'no-loss-of-precision': 'off',
+  'no-magic-numbers': 'off',
+  // TODO: enable when @typescript-eslint/indent would be fixed
+  // 'no-unused-vars': 'off',
+  // TODO: enable when @typescript-eslint/indent would be fixed
+  // 'no-use-before-define': 'off',
+  'no-useless-constructor': 'off',
+  'space-before-function-paren': 'off',
+
+
   'no-const-assign': 'off',
   'no-dupe-args': 'off',
-  'no-dupe-class-members': 'off',
   'no-dupe-keys': 'off',
-  'no-empty-function': 'off',
-  'no-extra-semi': 'off',
   'no-func-assign': 'off',
   'no-import-assign': 'off',
   'no-new-symbol': 'off',
@@ -60,25 +183,29 @@ const tsRegularResetRules = {
   'no-undef': 'off',
   'no-unreachable': 'off',
   'no-unsafe-negation': 'off',
-  'no-unused-vars': 'off',
-  'semi': 'off',
-  'valid-typeof': 'off',
 };
 
 const tsTypeCheckExtensibleRules = {
+  'dot-notation': [
+    'error',
+    {
+      allowKeywords: true,
+    },
+  ],
   'require-await': 'error',
+  'no-return-await': 'error',
 };
 
-const tsTypeCheckResetRules = {
-  'require-await': 'off',
-};
+const tsTypeCheckResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
 
 const tsExtensibleRules = {
+  ...tsCompatibilityRules,
   ...tsRegularExtensibleRules,
   ...tsTypeCheckExtensibleRules,
 };
 
 const tsResetRules = {
+  ...tsCompatibilityResetRules,
   ...tsRegularResetRules,
   ...tsTypeCheckResetRules,
 };

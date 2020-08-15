@@ -22,13 +22,6 @@ const nonExtensibleRules = {
   ],
   'block-scoped-var': 'error',
   'block-spacing': ['error', 'always'],
-  'brace-style': [
-    'error',
-    '1tbs',
-    {
-      allowSingleLine: true,
-    },
-  ],
   'capitalized-comments': 'off',
   'class-methods-use-this': 'off',
   'comma-dangle': [
@@ -39,13 +32,6 @@ const nonExtensibleRules = {
       functions: 'always-multiline',
       imports: 'always-multiline',
       objects: 'always-multiline',
-    },
-  ],
-  'comma-spacing': [
-    'error',
-    {
-      after: true,
-      before: false,
     },
   ],
   'comma-style': [
@@ -79,14 +65,7 @@ const nonExtensibleRules = {
     },
   ],
   'default-case-last': 'error',
-  'default-param-last': 'error',
   'dot-location': ['error', 'property'],
-  'dot-notation': [
-    'error',
-    {
-      allowKeywords: true,
-    },
-  ],
   'eol-last': ['error', 'always'],
   'eqeqeq': [
     'error',
@@ -96,7 +75,6 @@ const nonExtensibleRules = {
     },
   ],
   'for-direction': 'error',
-  'func-call-spacing': ['error', 'never'],
   'func-name-matching': 'off',
   'func-names': 'off',
   'func-style': 'off',
@@ -114,32 +92,6 @@ const nonExtensibleRules = {
   'id-length': 'off',
   'id-match': 'off',
   'implicit-arrow-linebreak': ['error', 'beside'],
-  'indent': [
-    'error',
-    2,
-    {
-      ArrayExpression: 1,
-      CallExpression: {
-        arguments: 1,
-      },
-      FunctionDeclaration: {
-        body: 1,
-        parameters: 1,
-      },
-      FunctionExpression: {
-        body: 1,
-        parameters: 1,
-      },
-      ImportDeclaration: 1,
-      ObjectExpression: 1,
-      SwitchCase: 1,
-      VariableDeclarator: 1,
-      flatTernaryExpressions: false,
-      ignoreComments: false,
-      outerIIFEBody: 1,
-    },
-  ],
-  'init-declarations': 'off',
   'jsx-quotes': ['error', 'prefer-double'],
   'key-spacing': [
     'error',
@@ -148,34 +100,9 @@ const nonExtensibleRules = {
       beforeColon: false,
     },
   ],
-  'keyword-spacing': [
-    'error',
-    {
-      after: true,
-      before: true,
-      overrides: {
-        case: {
-          after: true,
-        },
-        return: {
-          after: true,
-        },
-        throw: {
-          after: true,
-        },
-      },
-    },
-  ],
   'line-comment-position': 'off',
   'linebreak-style': ['error', 'unix'],
   'lines-around-comment': 'off',
-  'lines-between-class-members': [
-    'error',
-    'always',
-    {
-      exceptAfterSingleLine: true,
-    },
-  ],
   'max-classes-per-file': ['error', 1],
   'max-depth': 'off',
   'max-len': [
@@ -251,7 +178,6 @@ const nonExtensibleRules = {
   'no-extra-bind': 'error',
   'no-extra-boolean-cast': 'error',
   'no-extra-label': 'error',
-  'no-extra-parens': 'off',
   'no-fallthrough': 'error',
   'no-floating-decimal': 'error',
   'no-global-assign': 'error',
@@ -274,8 +200,6 @@ const nonExtensibleRules = {
   'no-lone-blocks': 'error',
   'no-lonely-if': 'error',
   'no-loop-func': 'error',
-  'no-loss-of-precision': 'error',
-  'no-magic-numbers': 'off',
   'no-misleading-character-class': 'error',
   'no-mixed-operators': [
     'error',
@@ -465,7 +389,6 @@ const nonExtensibleRules = {
     },
   ],
   'no-return-assign': ['error', 'always'],
-  'no-return-await': 'error',
   'no-script-url': 'error',
   'no-self-assign': [
     'error',
@@ -503,20 +426,11 @@ const nonExtensibleRules = {
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
   'no-unused-labels': 'error',
-  'no-use-before-define': [
-    'error',
-    {
-      classes: true,
-      functions: true,
-      variables: false,
-    },
-  ],
   'no-useless-backreference': 'error',
   'no-useless-call': 'off',
   'no-useless-catch': 'error',
   'no-useless-computed-key': 'error',
   'no-useless-concat': 'error',
-  'no-useless-constructor': 'error',
   'no-useless-escape': 'error',
   'no-useless-rename': [
     'error',
@@ -637,14 +551,6 @@ const nonExtensibleRules = {
   'sort-keys': 'off',
   'sort-vars': 'off',
   'space-before-blocks': 'error',
-  'space-before-function-paren': [
-    'error',
-    {
-      anonymous: 'always',
-      asyncArrow: 'always',
-      named: 'never',
-    },
-  ],
   'space-in-parens': ['error', 'never'],
   'space-infix-ops': 'error',
   'space-unary-ops': [
