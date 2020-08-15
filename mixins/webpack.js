@@ -29,7 +29,7 @@ module.exports = {
     ...mainRules,
     ...babelRules,
     ...importRules,
-    ..xA11yRules,
+    ...jsxA11yRules,
     ...reactRules,
     ...reactHooksRules,
   },
