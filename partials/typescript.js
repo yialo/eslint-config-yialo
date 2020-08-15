@@ -1,6 +1,6 @@
 'use strict';
 
-const tsRules = {
+const extensionRules = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/ban-ts-comment': 'error',
   '@typescript-eslint/ban-types': 'error',
@@ -18,7 +18,7 @@ const tsRules = {
     },
   ],
   '@typescript-eslint/no-empty-interface': 'error',
-  '@typescript-eslint/no-explicit-any': 'warn',
+  '@typescript-eslint/no-explicit-any': 'off',
   '@typescript-eslint/no-extra-non-null-assertion': 'error',
   '@typescript-eslint/no-extra-semi': 'error',
   '@typescript-eslint/no-inferrable-types': 'error',
@@ -42,6 +42,14 @@ const tsRules = {
   '@typescript-eslint/triple-slash-reference': 'error',
 };
 
+const ownRules = {
+  '@typescript-eslint/array-type': 'off',
+  '@typescript-eslint/await-thenable': 'error',
+};
+
 module.exports = {
-  tsRules,
+  tsRules: {
+    ...extensionRules,
+    ...ownRules,
+  },
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const baseRules = {
+const nonExtensibleRules = {
   'accessor-pairs': 'off',
   'array-bracket-newline': ['error', 'consistent'],
   'array-bracket-spacing': ['error', 'never'],
@@ -80,7 +80,6 @@ const baseRules = {
   'computed-property-spacing': ['error', 'never'],
   'consistent-return': 'off',
   'consistent-this': 'off',
-  'constructor-super': 'error',
   'curly': ['error', 'multi-line'],
   'default-case': [
     'error',
@@ -115,12 +114,6 @@ const baseRules = {
     {
       after: true,
       before: false,
-    },
-  ],
-  'getter-return': [
-    'error',
-    {
-      allowImplicit: true,
     },
   ],
   'grouped-accessor-pairs': ['error', 'getBeforeSet'],
@@ -232,7 +225,6 @@ const baseRules = {
     },
   ],
   'no-alert': 'warn',
-  'no-array-constructor': 'error',
   'no-async-promise-executor': 'error',
   'no-await-in-loop': 'error',
   'no-bitwise': 'error',
@@ -248,7 +240,6 @@ const baseRules = {
     },
   ],
   'no-console': 'off',
-  'no-const-assign': 'error',
   'no-constant-condition': 'warn',
   'no-constructor-return': 'error',
   'no-continue': 'error',
@@ -256,10 +247,7 @@ const baseRules = {
   'no-debugger': 'off',
   'no-delete-var': 'error',
   'no-div-regex': 'off',
-  'no-dupe-args': 'error',
-  'no-dupe-class-members': 'error',
   'no-dupe-else-if': 'error',
-  'no-dupe-keys': 'error',
   'no-duplicate-case': 'error',
   'no-duplicate-imports': 'off',
   'no-else-return': [
@@ -270,12 +258,6 @@ const baseRules = {
   ],
   'no-empty': 'error',
   'no-empty-character-class': 'error',
-  'no-empty-function': [
-    'error',
-    {
-      allow: ['arrowFunctions', 'functions', 'methods'],
-    },
-  ],
   'no-empty-pattern': 'error',
   'no-eq-null': 'off',
   'no-eval': 'error',
@@ -285,15 +267,12 @@ const baseRules = {
   'no-extra-boolean-cast': 'error',
   'no-extra-label': 'error',
   'no-extra-parens': 'off',
-  'no-extra-semi': 'error',
   'no-fallthrough': 'error',
   'no-floating-decimal': 'error',
-  'no-func-assign': 'error',
   'no-global-assign': 'error',
   'no-implicit-coercion': 'off',
   'no-implicit-globals': 'off',
   'no-implied-eval': 'error',
-  'no-import-assign': 'error',
   'no-inline-comments': 'off',
   'no-inner-declarations': 'error',
   'no-invalid-regexp': 'error',
@@ -353,9 +332,7 @@ const baseRules = {
   'no-new': 'error',
   'no-new-func': 'error',
   'no-new-object': 'error',
-  'no-new-symbol': 'error',
   'no-new-wrappers': 'error',
-  'no-obj-calls': 'error',
   'no-octal': 'error',
   'no-octal-escape': 'error',
   'no-param-reassign': [
@@ -373,7 +350,6 @@ const baseRules = {
   'no-promise-executor-return': 'error',
   'no-proto': 'error',
   'no-prototype-builtins': 'error',
-  'no-redeclare': 'error',
   'no-regex-spaces': 'error',
   'no-restricted-globals': [
     'error',
@@ -515,14 +491,12 @@ const baseRules = {
   ],
   'no-self-compare': 'error',
   'no-sequences': 'error',
-  'no-setter-return': 'error',
   'no-shadow': 'error',
   'no-shadow-restricted-names': 'error',
   'no-sparse-arrays': 'error',
   'no-tabs': 'error',
   'no-template-curly-in-string': 'off',
   'no-ternary': 'off',
-  'no-this-before-super': 'error',
   'no-throw-literal': 'error',
   'no-trailing-spaces': [
     'error',
@@ -531,7 +505,6 @@ const baseRules = {
       skipBlankLines: false,
     },
   ],
-  'no-undef': 'error',
   'no-undef-init': 'error',
   'no-undefined': 'off',
   'no-underscore-dangle': 'off',
@@ -543,10 +516,8 @@ const baseRules = {
       defaultAssignment: false,
     },
   ],
-  'no-unreachable': 'error',
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
-  'no-unsafe-negation': 'error',
   'no-unused-expressions': [
     'error',
     {
@@ -556,14 +527,6 @@ const baseRules = {
     },
   ],
   'no-unused-labels': 'error',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'after-used',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
   'no-use-before-define': [
     'error',
     {
@@ -695,7 +658,6 @@ const baseRules = {
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
-  'semi': ['error', 'always'],
   'semi-spacing': [
     'error',
     {
@@ -753,12 +715,6 @@ const baseRules = {
   'template-tag-spacing': ['error', 'never'],
   'unicode-bom': ['error', 'never'],
   'use-isnan': 'error',
-  'valid-typeof': [
-    'error',
-    {
-      requireStringLiterals: true,
-    },
-  ],
   'vars-on-top': 'error',
   'wrap-iife': [
     'error',
@@ -770,6 +726,53 @@ const baseRules = {
   'wrap-regex': 'off',
   'yield-star-spacing': ['error', 'after'],
   'yoda': 'error',
+};
+
+const extensibleRules = {
+  'constructor-super': 'error',
+  'getter-return': [
+    'error',
+    {
+      allowImplicit: true,
+    },
+  ],
+  'no-array-constructor': 'error',
+  'no-const-assign': 'error',
+  'no-dupe-args': 'error',
+  'no-dupe-class-members': 'error',
+  'no-dupe-keys': 'error',
+  'no-empty-function': [
+    'error',
+    {
+      allow: ['arrowFunctions', 'functions', 'methods'],
+    },
+  ],
+  'no-extra-semi': 'error',
+  'no-func-assign': 'error',
+  'no-import-assign': 'error',
+  'no-new-symbol': 'error',
+  'no-obj-calls': 'error',
+  'no-redeclare': 'error',
+  'no-setter-return': 'error',
+  'no-this-before-super': 'error',
+  'no-undef': 'error',
+  'no-unreachable': 'error',
+  'no-unsafe-negation': 'error',
+  'no-unused-vars': [
+    'error',
+    {
+      args: 'after-used',
+      ignoreRestSiblings: true,
+      vars: 'all',
+    },
+  ],
+  'semi': ['error', 'always'],
+  'valid-typeof': [
+    'error',
+    {
+      requireStringLiterals: true,
+    },
+  ],
 };
 
 const tsResetRules = {
@@ -795,6 +798,11 @@ const tsResetRules = {
   'no-unused-vars': 'off',
   'semi': 'off',
   'valid-typeof': 'off',
+};
+
+const baseRules = {
+  ...nonExtensibleRules,
+  ...extensibleRules,
 };
 
 const webResetRules = {
