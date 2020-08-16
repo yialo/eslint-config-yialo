@@ -26,6 +26,7 @@ module.exports = {
   parser: 'espree',
   parserOptions: {
     ecmaVersion: 2020,
+    sourceType: 'script',
   },
   reportUnusedDisableDirectives: true,
   rules: {
