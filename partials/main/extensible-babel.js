@@ -3,15 +3,6 @@
 const { getDisabledRuleSet } = require('../utils');
 
 const babelExtensibleRules = {
-  'camelcase': [
-    'error',
-    {
-      ignoreDestructuring: false,
-      ignoreGlobals: true,
-      ignoreImports: false,
-      properties: 'never',
-    },
-  ],
   'new-cap': [
     'error',
     {

@@ -12,20 +12,7 @@ const commonExtensibleRules = {
       allowTernary: false,
     },
   ],
-  'quotes': [
-    'error',
-    'single',
-    {
-      allowTemplateLiterals: true,
-    },
-  ],
   'semi': ['error', 'always'],
-  'valid-typeof': [
-    'error',
-    {
-      requireStringLiterals: true,
-    },
-  ],
 };
 
 const commonResetRules = getDisabledRuleSet(commonExtensibleRules);

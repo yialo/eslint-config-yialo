@@ -30,6 +30,12 @@ const tsCompatibilityRules = {
   'no-undef': 'error',
   'no-unreachable': 'error',
   'no-unsafe-negation': 'error',
+  'valid-typeof': [
+    'error',
+    {
+      requireStringLiterals: true,
+    },
+  ],
 };
 
 const tsCompatibilityResetRules = getDisabledRuleSet(tsCompatibilityRules);
@@ -134,6 +140,13 @@ const tsRegularExtensibleRules = {
     },
   ],
   'no-useless-constructor': 'error',
+  'quotes': [
+    'error',
+    'single',
+    {
+      allowTemplateLiterals: true,
+    },
+  ],
   'space-before-function-paren': [
     'error',
     {

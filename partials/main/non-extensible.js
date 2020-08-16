@@ -22,6 +22,15 @@ const nonExtensibleRules = {
   ],
   'block-scoped-var': 'error',
   'block-spacing': ['error', 'always'],
+  'camelcase': [
+    'error',
+    {
+      ignoreDestructuring: false,
+      ignoreGlobals: true,
+      ignoreImports: false,
+      properties: 'never',
+    },
+  ],
   'capitalized-comments': 'off',
   'class-methods-use-this': 'off',
   'comma-dangle': [
