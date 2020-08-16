@@ -3,6 +3,7 @@
 const { getDisabledRuleSet } = require('../utils');
 
 /**
+ * NOTE:
  * Explanation:
  * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/eslint-recommended.ts
  * All diagnostic codes:
