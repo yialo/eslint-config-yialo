@@ -14,16 +14,16 @@ const { babelExtensibleRules } = require('./main');
 const { getDisabledRuleSet } = require('./utils');
 
 const enabledRules = {
-  // Old!
+  // Old
   'babel/camelcase': 'off',
   'babel/new-cap': babelExtensibleRules['new-cap'],
   'babel/no-invalid-this': babelExtensibleRules['no-invalid-this'],
   'babel/no-unused-expressions': babelExtensibleRules['no-unused-expressions'],
   'babel/object-curly-spacing': babelExtensibleRules['object-curly-spacing'],
-  // Old!
+  // Old
   'babel/quotes': 'off',
   'babel/semi': babelExtensibleRules.semi,
-  // Old!
+  // Old
   'babel/valid-typeof': 'off',
 };
 
