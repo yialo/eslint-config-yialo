@@ -44,7 +44,8 @@ const regularRules = {
   '@typescript-eslint/no-useless-constructor': tsExtensibleRules['no-useless-constructor'],
   '@typescript-eslint/quotes': tsExtensibleRules.quotes,
   '@typescript-eslint/semi': tsExtensibleRules.semi,
-  '@typescript-eslint/space-before-function-paren': tsExtensibleRules['space-before-function-paren'],
+  '@typescript-eslint/space-before-function-paren':
+    tsExtensibleRules['space-before-function-paren'],
 };
 
 const typeCheckRules = {

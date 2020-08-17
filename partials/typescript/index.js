@@ -1,19 +1,32 @@
 'use strict';
 
+const { getDisabledRuleSet } = require('../utils');
+
 const {
-  regularRules: extendedRegularRules,
-  typeCheckRules: extendedTypeCheckRules,
+  regularRules: enabledExtendedRegularRules,
+  typeCheckRules: enabledExtendedTypeCheckRules,
 } = require('./extended');
 const {
-  regularRules: ownRegularRules,
-  typeCheckRules: ownTypeCheckRules,
+  regularRules: enabledOwnRegularRules,
+  typeCheckRules: enabledOwnTypeCheckRules,
 } = require('./own');
 
+const disabledExtendedRegularRules = getDisabledRuleSet(enabledExtendedRegularRules);
+const disabledExtendedTypeCheckRules = getDisabledRuleSet(enabledExtendedTypeCheckRules);
+const disabledOwnRegularRules = getDisabledRuleSet(enabledOwnRegularRules);
+const disabledOwnTypeCheckRules = getDisabledRuleSet(enabledOwnTypeCheckRules);
+
 module.exports = {
-  tsRules: {
-    ...extendedRegularRules,
-    ...extendedTypeCheckRules,
-    ...ownRegularRules,
-    ...ownTypeCheckRules,
+  disabledRules: {
+    ...disabledExtendedRegularRules,
+    ...disabledExtendedTypeCheckRules,
+    ...disabledOwnRegularRules,
+    ...disabledOwnTypeCheckRules,
+  },
+  enabledRules: {
+    ...enabledExtendedRegularRules,
+    ...enabledExtendedTypeCheckRules,
+    ...enabledOwnRegularRules,
+    ...enabledOwnTypeCheckRules,
   },
 };

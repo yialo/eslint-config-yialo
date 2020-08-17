@@ -1,15 +1,11 @@
 'use strict';
 
-const { disabledRules } = require('../partials/babel');
-const { babelExtensibleRules } = require('../partials/main');
+const { disabledRules: babelRules } = require('../partials/babel');
+const { babelExtensibleRules: mainRules } = require('../partials/main');
 
 module.exports = {
-  parser: 'babel-eslint',
-  parserOptions: {
-    allowImportExportEverywhere: false,
-  },
   rules: {
-    ...disabledRules,
-    ...babelExtensibleRules,
+    ...mainRules,
+    ...babelRules,
   },
 };
