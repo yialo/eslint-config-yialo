@@ -1,9 +1,6 @@
 'use strict';
 
 const { tsExtensibleRules } = require('../main');
-const { createRuleExtender } = require('../utils');
-
-const extendTsRule = createRuleExtender(tsExtensibleRules);
 
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],
@@ -14,28 +11,32 @@ const regularRules = {
   // '@typescript-eslint/indent': tsExtensibleRules.indent,
   '@typescript-eslint/init-declarations': tsExtensibleRules['init-declarations'],
   '@typescript-eslint/keyword-spacing': tsExtensibleRules['keyword-spacing'],
-  '@typescript-eslint/lines-between-class-members': extendTsRule('lines-between-class-members', {
-    exceptAfterOverload: true,
-  }),
+  '@typescript-eslint/lines-between-class-members': [
+    'error',
+    'always',
+    {
+      exceptAfterOverload: true,
+      exceptAfterSingleLine: true,
+    },
+  ],
   '@typescript-eslint/no-array-constructor': tsExtensibleRules['no-array-constructor'],
   '@typescript-eslint/no-dupe-class-members': 'off',
-  '@typescript-eslint/no-empty-function': extendTsRule('no-empty-function', {
-    allow: [
-      'arrowFunctions',
-      'decoratedFunctions',
-      'functions',
-      'methods',
-    ],
-  }),
+  '@typescript-eslint/no-empty-function': [
+    'error',
+    {
+      allow: [
+        'arrowFunctions',
+        'decoratedFunctions',
+        'functions',
+        'methods',
+      ],
+    },
+  ],
   '@typescript-eslint/no-extra-parens': tsExtensibleRules['no-extra-parens'],
   '@typescript-eslint/no-extra-semi': tsExtensibleRules['no-extra-semi'],
   '@typescript-eslint/no-invalid-this': tsExtensibleRules['no-invalid-this'],
   '@typescript-eslint/no-loss-of-precision': tsExtensibleRules['no-loss-of-precision'],
-  '@typescript-eslint/no-magic-numbers': extendTsRule('no-magic-numbers', {
-    ignoreEnums: false,
-    ignoreNumericLiteralTypes: false,
-    ignoreReadonlyClassProperties: false,
-  }),
+  '@typescript-eslint/no-magic-numbers': tsExtensibleRules['no-magic-numbers'],
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
   // TODO: enable when rule would be fixed
   // '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
@@ -49,11 +50,16 @@ const regularRules = {
 };
 
 const typeCheckRules = {
-  '@typescript-eslint/dot-notation': extendTsRule('dot-notation', {
-    allowPrivateClassPropertyAccess: false,
-  }),
+  '@typescript-eslint/dot-notation': [
+    'error',
+    {
+      allowKeywords: true,
+      allowPrivateClassPropertyAccess: false,
+    },
+  ],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
-  '@typescript-eslint/return-await': extendTsRule('no-return-await', 'in-try-catch'),
+  // NOTE: mirrors original 'no-return-await' rule
+  '@typescript-eslint/return-await': ['error', 'in-try-catch'],
 };
 
 module.exports = {
