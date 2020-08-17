@@ -1,6 +1,6 @@
 'use strict';
 
-const baseRules = {
+const nonExtensibleRules = {
   'accessor-pairs': 'off',
   'array-bracket-newline': ['error', 'consistent'],
   'array-bracket-spacing': ['error', 'never'],
@@ -22,13 +22,6 @@ const baseRules = {
   ],
   'block-scoped-var': 'error',
   'block-spacing': ['error', 'always'],
-  'brace-style': [
-    'error',
-    '1tbs',
-    {
-      allowSingleLine: true,
-    },
-  ],
   'camelcase': [
     'error',
     {
@@ -48,13 +41,6 @@ const baseRules = {
       functions: 'always-multiline',
       imports: 'always-multiline',
       objects: 'always-multiline',
-    },
-  ],
-  'comma-spacing': [
-    'error',
-    {
-      after: true,
-      before: false,
     },
   ],
   'comma-style': [
@@ -80,7 +66,6 @@ const baseRules = {
   'computed-property-spacing': ['error', 'never'],
   'consistent-return': 'off',
   'consistent-this': 'off',
-  'constructor-super': 'error',
   'curly': ['error', 'multi-line'],
   'default-case': [
     'error',
@@ -89,13 +74,7 @@ const baseRules = {
     },
   ],
   'default-case-last': 'error',
-  'default-param-last': 'error',
-  'dot-notation': [
-    'error',
-    {
-      allowKeywords: true,
-    },
-  ],
+  'dot-location': ['error', 'property'],
   'eol-last': ['error', 'always'],
   'eqeqeq': [
     'error',
@@ -105,7 +84,6 @@ const baseRules = {
     },
   ],
   'for-direction': 'error',
-  'func-call-spacing': ['error', 'never'],
   'func-name-matching': 'off',
   'func-names': 'off',
   'func-style': 'off',
@@ -117,44 +95,12 @@ const baseRules = {
       before: false,
     },
   ],
-  'getter-return': [
-    'error',
-    {
-      allowImplicit: true,
-    },
-  ],
   'grouped-accessor-pairs': ['error', 'getBeforeSet'],
   'guard-for-in': 'error',
   'id-denylist': 'off',
   'id-length': 'off',
   'id-match': 'off',
   'implicit-arrow-linebreak': ['error', 'beside'],
-  'indent': [
-    'error',
-    2,
-    {
-      ArrayExpression: 1,
-      CallExpression: {
-        arguments: 1,
-      },
-      FunctionDeclaration: {
-        body: 1,
-        parameters: 1,
-      },
-      FunctionExpression: {
-        body: 1,
-        parameters: 1,
-      },
-      ImportDeclaration: 1,
-      ObjectExpression: 1,
-      SwitchCase: 1,
-      VariableDeclarator: 1,
-      flatTernaryExpressions: false,
-      ignoreComments: false,
-      outerIIFEBody: 1,
-    },
-  ],
-  'init-declarations': 'off',
   'jsx-quotes': ['error', 'prefer-double'],
   'key-spacing': [
     'error',
@@ -163,34 +109,9 @@ const baseRules = {
       beforeColon: false,
     },
   ],
-  'keyword-spacing': [
-    'error',
-    {
-      after: true,
-      before: true,
-      overrides: {
-        case: {
-          after: true,
-        },
-        return: {
-          after: true,
-        },
-        throw: {
-          after: true,
-        },
-      },
-    },
-  ],
   'line-comment-position': 'off',
   'linebreak-style': ['error', 'unix'],
   'lines-around-comment': 'off',
-  'lines-between-class-members': [
-    'error',
-    'always',
-    {
-      exceptAfterSingleLine: true,
-    },
-  ],
   'max-classes-per-file': ['error', 1],
   'max-depth': 'off',
   'max-len': [
@@ -217,13 +138,6 @@ const baseRules = {
   ],
   'multiline-comment-style': 'off',
   'multiline-ternary': 'off',
-  'new-cap': [
-    'error',
-    {
-      capIsNew: false,
-      newIsCap: true,
-    },
-  ],
   'new-parens': 'error',
   'newline-per-chained-call': [
     'error',
@@ -232,7 +146,6 @@ const baseRules = {
     },
   ],
   'no-alert': 'warn',
-  'no-array-constructor': 'error',
   'no-async-promise-executor': 'error',
   'no-await-in-loop': 'error',
   'no-bitwise': 'error',
@@ -248,7 +161,6 @@ const baseRules = {
     },
   ],
   'no-console': 'off',
-  'no-const-assign': 'error',
   'no-constant-condition': 'warn',
   'no-constructor-return': 'error',
   'no-continue': 'error',
@@ -256,10 +168,7 @@ const baseRules = {
   'no-debugger': 'off',
   'no-delete-var': 'error',
   'no-div-regex': 'off',
-  'no-dupe-args': 'error',
-  'no-dupe-class-members': 'error',
   'no-dupe-else-if': 'error',
-  'no-dupe-keys': 'error',
   'no-duplicate-case': 'error',
   'no-duplicate-imports': 'off',
   'no-else-return': [
@@ -270,12 +179,6 @@ const baseRules = {
   ],
   'no-empty': 'error',
   'no-empty-character-class': 'error',
-  'no-empty-function': [
-    'error',
-    {
-      allow: ['arrowFunctions', 'functions', 'methods'],
-    },
-  ],
   'no-empty-pattern': 'error',
   'no-eq-null': 'off',
   'no-eval': 'error',
@@ -284,20 +187,15 @@ const baseRules = {
   'no-extra-bind': 'error',
   'no-extra-boolean-cast': 'error',
   'no-extra-label': 'error',
-  'no-extra-parens': 'off',
-  'no-extra-semi': 'error',
   'no-fallthrough': 'error',
   'no-floating-decimal': 'error',
-  'no-func-assign': 'error',
   'no-global-assign': 'error',
   'no-implicit-coercion': 'off',
   'no-implicit-globals': 'off',
   'no-implied-eval': 'error',
-  'no-import-assign': 'error',
   'no-inline-comments': 'off',
   'no-inner-declarations': 'error',
   'no-invalid-regexp': 'error',
-  'no-invalid-this': 'off',
   'no-irregular-whitespace': 'error',
   'no-iterator': 'error',
   'no-label-var': 'error',
@@ -311,8 +209,6 @@ const baseRules = {
   'no-lone-blocks': 'error',
   'no-lonely-if': 'error',
   'no-loop-func': 'error',
-  'no-loss-of-precision': 'error',
-  'no-magic-numbers': 'off',
   'no-misleading-character-class': 'error',
   'no-mixed-operators': [
     'error',
@@ -353,9 +249,7 @@ const baseRules = {
   'no-new': 'error',
   'no-new-func': 'error',
   'no-new-object': 'error',
-  'no-new-symbol': 'error',
   'no-new-wrappers': 'error',
-  'no-obj-calls': 'error',
   'no-octal': 'error',
   'no-octal-escape': 'error',
   'no-param-reassign': [
@@ -373,7 +267,6 @@ const baseRules = {
   'no-promise-executor-return': 'error',
   'no-proto': 'error',
   'no-prototype-builtins': 'error',
-  'no-redeclare': 'error',
   'no-regex-spaces': 'error',
   'no-restricted-globals': [
     'error',
@@ -505,7 +398,6 @@ const baseRules = {
     },
   ],
   'no-return-assign': ['error', 'always'],
-  'no-return-await': 'error',
   'no-script-url': 'error',
   'no-self-assign': [
     'error',
@@ -515,14 +407,12 @@ const baseRules = {
   ],
   'no-self-compare': 'error',
   'no-sequences': 'error',
-  'no-setter-return': 'error',
   'no-shadow': 'error',
   'no-shadow-restricted-names': 'error',
   'no-sparse-arrays': 'error',
   'no-tabs': 'error',
   'no-template-curly-in-string': 'off',
   'no-ternary': 'off',
-  'no-this-before-super': 'error',
   'no-throw-literal': 'error',
   'no-trailing-spaces': [
     'error',
@@ -531,7 +421,6 @@ const baseRules = {
       skipBlankLines: false,
     },
   ],
-  'no-undef': 'error',
   'no-undef-init': 'error',
   'no-undefined': 'off',
   'no-underscore-dangle': 'off',
@@ -543,41 +432,14 @@ const baseRules = {
       defaultAssignment: false,
     },
   ],
-  'no-unreachable': 'error',
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
-  'no-unsafe-negation': 'error',
-  'no-unused-expressions': [
-    'error',
-    {
-      allowShortCircuit: false,
-      allowTaggedTemplates: false,
-      allowTernary: false,
-    },
-  ],
   'no-unused-labels': 'error',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'after-used',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
-  'no-use-before-define': [
-    'error',
-    {
-      classes: true,
-      functions: true,
-      variables: false,
-    },
-  ],
   'no-useless-backreference': 'error',
   'no-useless-call': 'off',
   'no-useless-catch': 'error',
   'no-useless-computed-key': 'error',
   'no-useless-concat': 'error',
-  'no-useless-constructor': 'error',
   'no-useless-escape': 'error',
   'no-useless-rename': [
     'error',
@@ -601,7 +463,6 @@ const baseRules = {
       multiline: true,
     },
   ],
-  'object-curly-spacing': ['error', 'always'],
   'object-property-newline': [
     'error',
     {
@@ -681,21 +542,12 @@ const baseRules = {
   'prefer-spread': 'error',
   'prefer-template': 'error',
   'quote-props': ['error', 'consistent'],
-  'quotes': [
-    'error',
-    'single',
-    {
-      allowTemplateLiterals: true,
-    },
-  ],
   'radix': 'error',
 
   'require-atomic-updates': 'off',
-  'require-await': 'error',
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
-  'semi': ['error', 'always'],
   'semi-spacing': [
     'error',
     {
@@ -708,14 +560,6 @@ const baseRules = {
   'sort-keys': 'off',
   'sort-vars': 'off',
   'space-before-blocks': 'error',
-  'space-before-function-paren': [
-    'error',
-    {
-      anonymous: 'always',
-      asyncArrow: 'always',
-      named: 'never',
-    },
-  ],
   'space-in-parens': ['error', 'never'],
   'space-infix-ops': 'error',
   'space-unary-ops': [
@@ -753,12 +597,6 @@ const baseRules = {
   'template-tag-spacing': ['error', 'never'],
   'unicode-bom': ['error', 'never'],
   'use-isnan': 'error',
-  'valid-typeof': [
-    'error',
-    {
-      requireStringLiterals: true,
-    },
-  ],
   'vars-on-top': 'error',
   'wrap-iife': [
     'error',
@@ -772,37 +610,6 @@ const baseRules = {
   'yoda': 'error',
 };
 
-const tsResetRules = {
-  'constructor-super': 'off',
-  'getter-return': 'off',
-  'no-array-constructor': 'off',
-  'no-const-assign': 'off',
-  'no-dupe-args': 'off',
-  'no-dupe-class-members': 'off',
-  'no-dupe-keys': 'off',
-  'no-empty-function': 'off',
-  'no-extra-semi': 'off',
-  'no-func-assign': 'off',
-  'no-import-assign': 'off',
-  'no-new-symbol': 'off',
-  'no-obj-calls': 'off',
-  'no-redeclare': 'off',
-  'no-setter-return': 'off',
-  'no-this-before-super': 'off',
-  'no-undef': 'off',
-  'no-unreachable': 'off',
-  'no-unsafe-negation': 'off',
-  'no-unused-vars': 'off',
-  'semi': 'off',
-  'valid-typeof': 'off',
-};
-
-const webResetRules = {
-  'semi': 'off',
-};
-
 module.exports = {
-  baseRules,
-  tsResetRules,
-  webResetRules,
+  nonExtensibleRules,
 };
