@@ -204,14 +204,14 @@ const tsExtensibleRules = {
   ...tsTypeCheckExtensibleRules,
 };
 
-const tsResetRules = {
+const tsNonTypeCheckResetRules = {
   ...commonResetRules,
   ...tsCompatibilityResetRules,
   ...tsRegularResetRules,
-  ...tsTypeCheckResetRules,
 };
 
 module.exports = {
   tsExtensibleRules,
-  tsResetRules,
+  tsNonTypeCheckResetRules,
+  tsTypeCheckResetRules,
 };

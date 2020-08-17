@@ -1,7 +1,11 @@
 'use strict';
 
 const { babelExtensibleRules, babelResetRules } = require('./extensible-babel');
-const { tsExtensibleRules, tsResetRules } = require('./extensible-typescript');
+const {
+  tsExtensibleRules,
+  tsNonTypeCheckResetRules,
+  tsTypeCheckResetRules,
+} = require('./extensible-typescript');
 const { nonExtensibleRules } = require('./non-extensible');
 
 module.exports = {
@@ -9,5 +13,6 @@ module.exports = {
   babelExtensibleRules,
   babelResetRules,
   tsExtensibleRules,
-  tsResetRules,
+  tsNonTypeCheckResetRules,
+  tsTypeCheckResetRules,
 };

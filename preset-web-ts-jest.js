@@ -4,7 +4,7 @@ module.exports = {
   extends: [
     './mixins/base.js',
     './mixins/web.js',
-    './mixins/typescript.js',
+    './mixins/ts-nocheck.js',
     './mixins/jest.js',
   ],
 };

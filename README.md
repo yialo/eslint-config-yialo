@@ -22,108 +22,7 @@ npm uninstall -DE eslint-config-yialo
 yarn remove eslint-config-yialo -DE
 ```
 
-## Usage
-
-This package contains several configuration presets for [ESLint](https://github.com/eslint/eslint):
-
-Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
-
-* `preset-base`
-* `preset-node`
-* `preset-web-babel`
-* `preset-web-babel-jest`
-* `preset-web-ts`
-* `preset-web-ts-jest`
-
-**CAUTION!**  
-In case of any [webpack](https://webpack.js.org/)-based preset usage you MUST define `resolver` explicitly in `settings` section for correct application of aliases and extensions from `webpack.resolve` config block.
-
-Basic example:
-
-  ```yaml
-  # .eslintrc.yaml
-  import/resolver: webpack
-  ```
-
-  Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
-
-  ```yaml
-  # .eslintrc.yaml
-  import/resolver:
-    webpack:
-      config: ./config/webpack.config.js
-      env:
-        target: development
-  ```
-
-  Node.js resolver (default):
-
-  ```yaml
-  # .eslintrc.yaml
-  import/resolver: node
-  ```
-
-### End-user config example
-
-```yaml
-# .eslintrc.yaml
-extends:
-  - yialo/preset-webpack
-globals:
-  process: readonly
-ignorePatterns:
-  - '*.html'
-  - /dist/
-overrides:
-  - extends:
-      - yialo/preset-web-babel-jest
-    files:
-      - ./**/*.{spec,test}.js?(x)
-  - extends:
-      - yialo/preset-node
-    files:
-      - ./config/**/*.js
-      - ./scripts/**/*.js
-  - extends:
-      - yialo/preset-web-ts
-    files:
-      - ./src/**/*.ts?(x)
-rules:
-  import/no-unassigned-import:
-    - error
-    - allow:
-      - '**/*.{?(s)css,jp?(e)g,png,svg}'
-settings:
-  import/resolver:
-    webpack:
-      config: ./config/webpack.config.js
-```
-
-### Specific rules and settings
-
-There are several rules which are probably need to define in end-user config:
-
-* in `rules` section:
-  * `import/no-unassigned-import`
-
-    Default:
-
-    ```yaml
-    # .eslintrc.yaml
-    import/no-unassigned-import: error
-    ```
-
-    Example of usage with [webpack](https://webpack.js.org/):
-
-    ```yaml
-    # .eslintrc.yaml
-    import/no-unassigned-import:
-      - error
-      - allow:
-        - '**/*.{?(s)css,jp?(e)g,png,svg}'
-    ```
-
-### Peer dependencies
+## Peer dependencies
 
 Notice that the package requires these peer dependencies:
 
@@ -159,4 +58,142 @@ npm uninstall -D @typescript-eslint/eslint-plugin @typescript-eslint/parser babe
 
 ```shell
 yarn remove @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks -D
+```
+
+## Presets
+
+This package contains several configuration presets for [ESLint](https://github.com/eslint/eslint):
+
+Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
+
+* `preset-base`
+* `preset-node`
+* `preset-web-babel`
+* `preset-web-babel-jest`
+* `preset-web-ts`
+* `preset-web-ts-jest`
+* `preset-web-ts-check`
+* `preset-web-ts-check-jest`
+
+## Usage caveats
+
+### Custom resolver
+
+In case of any [webpack](https://webpack.js.org/)-based preset usage you MUST define `import/resolver` explicitly in `settings` section for correct applying of aliases and extensions from `webpack.resolve` config block.
+
+Basic example:
+
+```js
+// .eslintrc.js
+settings: {
+  'import/resolver': 'webpack',
+},
+```
+
+Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
+
+```js
+// .eslintrc.js
+settings: {
+  'import/resolver': {
+    webpack: {
+      config: './config/webpack.config.js',
+      env: {
+        target: 'development',
+      },
+    },
+  },
+},
+```
+
+Node.js resolver (default):
+
+```js
+// .eslintrc.js
+settings: {
+  'import/resolver': 'node',
+},
+```
+
+### Unassigned import in webpack
+
+There is rule `import/no-unassigned-import` which is probably need to be defined in end-user config in case of usage with [webpack](https://webpack.js.org/):
+
+```js
+// .eslintrc.js
+'import/no-unassigned-import': [
+  'error',
+  {
+    allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
+  },
+],
+```
+
+Default:
+
+```js
+// .eslintrc.js
+rules: {
+  'import/no-unassigned-import': 'error',
+},
+```
+
+### TypeScript config
+
+In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)-based preset usage you MUST define `tsconfigRootDir` and `project` explicitly in `parserOptions` section for correct typechecking.
+
+## End-user config example
+
+```js
+// .eslintrc.js
+module.exports = {
+  extends: ['yialo/preset-webpack'],
+  globals: {
+    process: 'readonly',
+  },
+  ignorePatterns: [
+    '*.html',
+    '/dist/',
+  ],
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json'],
+  },  
+  overrides: [
+    {
+      files: [
+        './**/*.{spec,test}.ts?(x)',
+        './**/__tests__/**/*.ts?(x)',
+      ],
+      extends: ['yialo/preset-web-ts-check-jest'],
+    },
+    {
+      files: [
+        '.eslintrc.js',
+        './config/**/*.js',
+        './scripts/**/*.js',
+      ],
+      extends: ['yialo/preset-node'],
+    },
+    {
+      files: ['./src/**/*.ts?(x)'],
+      extends: ['yialo/preset-web-ts-check'],
+    },
+  ],
+  rules: {
+    'import/no-unassigned-import': [
+      'error',
+      {
+        allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
+      },
+    ],
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: './config/webpack.config.js',
+      },
+    },
+  },
+};
 ```

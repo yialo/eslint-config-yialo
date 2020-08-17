@@ -15,10 +15,13 @@ const { disabledRules: disabledTsRules } = require('../partials/typescript');
 
 const mainRules = {
   ...nonExtensibleMainRules,
-  ...disabledBabelRules,
   ...babelExtensibleMainRules,
-  ...disabledTsRules,
   ...tsExtensibleMainRules,
+};
+
+const disabledRules = {
+  ...disabledBabelRules,
+  ...disabledTsRules,
 };
 
 module.exports = {
@@ -44,6 +47,7 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   rules: {
     ...mainRules,
+    ...disabledRules,
     ...importRules,
     ...promiseRules,
   },

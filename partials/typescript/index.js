@@ -23,10 +23,12 @@ module.exports = {
     ...disabledOwnRegularRules,
     ...disabledOwnTypeCheckRules,
   },
-  enabledRules: {
+  enabledRegularRules: {
     ...enabledExtendedRegularRules,
-    ...enabledExtendedTypeCheckRules,
     ...enabledOwnRegularRules,
+  },
+  enabledTypeCheckRules: {
+    ...enabledExtendedTypeCheckRules,
     ...enabledOwnTypeCheckRules,
   },
 };

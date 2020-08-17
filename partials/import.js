@@ -36,14 +36,6 @@ const baseRules = {
   'import/no-restricted-paths': 'off',
   'import/no-self-import': 'error',
   'import/no-unassigned-import': 'error',
-  'import/no-unresolved': [
-    'error',
-    {
-      amd: false,
-      caseSensitive: true,
-      commonjs: true,
-    },
-  ],
   'import/no-unused-modules': 'off',
   'import/no-useless-path-segments': [
     'error',
@@ -62,6 +54,14 @@ const nodeRules = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
   'import/no-nodejs-modules': 'off',
+  'import/no-unresolved': [
+    'error',
+    {
+      amd: false,
+      caseSensitive: true,
+      commonjs: true,
+    },
+  ],
 };
 
 const webRules = {
@@ -83,6 +83,14 @@ const webRules = {
     },
   ],
   'import/no-nodejs-modules': 'error',
+  'import/no-unresolved': [
+    'error',
+    {
+      amd: false,
+      caseSensitive: true,
+      commonjs: false,
+    },
+  ],
 };
 
 const baseSettings = {
