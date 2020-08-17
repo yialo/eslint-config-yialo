@@ -140,7 +140,14 @@ rules: {
 
 ### TypeScript config
 
-In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)-based preset usage you MUST define `tsconfigRootDir` and `project` explicitly in `parserOptions` section for correct typechecking.
+In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)-based preset usage you MUST define `tsconfigRootDir` and `project` explicitly in `parserOptions` section for correct typechecking:
+
+```js
+parserOptions: {
+  tsconfigRootDir: __dirname,
+  project: ['./tsconfig.json'],
+},
+```
 
 ## End-user config example
 
@@ -158,7 +165,7 @@ module.exports = {
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
-  },  
+  },
   overrides: [
     {
       files: [
