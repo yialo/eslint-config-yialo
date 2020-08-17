@@ -1,9 +1,9 @@
 'use strict';
 
 const {
-  regularRules: extensionRegularRules,
-  typeCheckRules: extensionTypeCheckRules,
-} = require('./extension');
+  regularRules: extendedRegularRules,
+  typeCheckRules: extendedTypeCheckRules,
+} = require('./extended');
 const {
   regularRules: ownRegularRules,
   typeCheckRules: ownTypeCheckRules,
@@ -11,8 +11,8 @@ const {
 
 module.exports = {
   tsRules: {
-    ...extensionRegularRules,
-    ...extensionTypeCheckRules,
+    ...extendedRegularRules,
+    ...extendedTypeCheckRules,
     ...ownRegularRules,
     ...ownTypeCheckRules,
   },

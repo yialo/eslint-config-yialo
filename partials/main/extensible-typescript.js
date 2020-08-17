@@ -1,6 +1,7 @@
 'use strict';
 
 const { getDisabledRuleSet } = require('../utils');
+const { commonExtensibleRules, commonResetRules } = require('./common-extensible');
 
 /**
  * NOTE:
@@ -197,12 +198,14 @@ const tsTypeCheckExtensibleRules = {
 const tsTypeCheckResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
 
 const tsExtensibleRules = {
+  ...commonExtensibleRules,
   ...tsCompatibilityRules,
   ...tsRegularExtensibleRules,
   ...tsTypeCheckExtensibleRules,
 };
 
 const tsResetRules = {
+  ...commonResetRules,
   ...tsCompatibilityResetRules,
   ...tsRegularResetRules,
   ...tsTypeCheckResetRules,

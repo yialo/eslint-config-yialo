@@ -1,8 +1,10 @@
 'use strict';
 
 const { getDisabledRuleSet } = require('../utils');
+const { commonExtensibleRules, commonResetRules } = require('./common-extensible');
 
 const babelExtensibleRules = {
+  ...commonExtensibleRules,
   'new-cap': [
     'error',
     {
@@ -13,7 +15,10 @@ const babelExtensibleRules = {
   'object-curly-spacing': ['error', 'always'],
 };
 
-const babelResetRules = getDisabledRuleSet(babelExtensibleRules);
+const babelResetRules = {
+  ...commonResetRules,
+  ...getDisabledRuleSet(babelExtensibleRules),
+};
 
 module.exports = {
   babelExtensibleRules,

@@ -10,19 +10,19 @@
 
 // TODO: replace with @babel/eslint-parser and @babel/eslint-plugin when Babel 8 would be released
 
-const { extensibleRules } = require('./main');
+const { babelExtensibleRules } = require('./main');
 const { getDisabledRuleSet } = require('./utils');
 
 const enabledRules = {
   // Old!
   'babel/camelcase': 'off',
-  'babel/new-cap': extensibleRules['new-cap'],
-  'babel/no-invalid-this': extensibleRules['no-invalid-this'],
-  'babel/no-unused-expressions': extensibleRules['no-unused-expressions'],
-  'babel/object-curly-spacing': extensibleRules['object-curly-spacing'],
+  'babel/new-cap': babelExtensibleRules['new-cap'],
+  'babel/no-invalid-this': babelExtensibleRules['no-invalid-this'],
+  'babel/no-unused-expressions': babelExtensibleRules['no-unused-expressions'],
+  'babel/object-curly-spacing': babelExtensibleRules['object-curly-spacing'],
   // Old!
   'babel/quotes': 'off',
-  'babel/semi': extensibleRules.semi,
+  'babel/semi': babelExtensibleRules.semi,
   // Old!
   'babel/valid-typeof': 'off',
 };
