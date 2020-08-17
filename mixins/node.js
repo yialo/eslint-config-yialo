@@ -1,7 +1,7 @@
 'use strict';
 
-const { nodeRules: importRules } = require('../partials/import.js');
-const { nodeRules } = require('../partials/node.js');
+const { nodeRules: nodeImportRules } = require('../partials/import');
+const { nodeRules } = require('../partials/node');
 
 module.exports = {
   env: {
@@ -11,7 +11,7 @@ module.exports = {
     sourceType: 'script',
   },
   rules: {
-    ...importRules,
+    ...nodeImportRules,
     ...nodeRules,
   },
 };

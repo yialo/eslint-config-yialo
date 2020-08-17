@@ -1,12 +1,28 @@
 'use strict';
 
-const { disabledRules: babelRules } = require('../partials/babel.js');
+const { disabledRules: disabledBabelRules } = require('../partials/babel');
 const {
   baseRules: importRules,
   baseSettings: importSettings,
-} = require('../partials/import.js');
-const { baseRules: mainRules } = require('../partials/main.js');
-const { baseRules: promiseRules } = require('../partials/promise.js');
+} = require('../partials/import');
+const {
+  nonExtensibleRules: nonExtensibleMainRules,
+  babelExtensibleRules: babelExtensibleMainRules,
+  tsExtensibleRules: tsExtensibleMainRules,
+} = require('../partials/main');
+const { baseRules: promiseRules } = require('../partials/promise');
+const { disabledRules: disabledTsRules } = require('../partials/typescript');
+
+const mainRules = {
+  ...nonExtensibleMainRules,
+  ...babelExtensibleMainRules,
+  ...tsExtensibleMainRules,
+};
+
+const disabledRules = {
+  ...disabledBabelRules,
+  ...disabledTsRules,
+};
 
 module.exports = {
   env: {
@@ -26,11 +42,12 @@ module.exports = {
   parser: 'espree',
   parserOptions: {
     ecmaVersion: 2020,
+    sourceType: 'script',
   },
   reportUnusedDisableDirectives: true,
   rules: {
     ...mainRules,
-    ...babelRules,
+    ...disabledRules,
     ...importRules,
     ...promiseRules,
   },

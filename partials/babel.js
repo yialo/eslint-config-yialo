@@ -1,19 +1,33 @@
 'use strict';
 
-const disabledRules = {
+/**
+ * NOTE:
+ * Old version:
+ * https://github.com/babel/eslint-plugin-babel
+ * I target the new version:
+ * https://github.com/babel/babel/tree/main/eslint/babel-eslint-plugin
+ */
+
+// TODO: replace with @babel/eslint-parser and @babel/eslint-plugin when Babel 8 would be released
+
+const { babelExtensibleRules } = require('./main');
+const { getDisabledRuleSet } = require('./utils');
+
+const enabledRules = {
+  // Old
   'babel/camelcase': 'off',
-  'babel/new-cap': 'off',
-  'babel/no-invalid-this': 'off',
-  'babel/no-unused-expressions': 'off',
-  'babel/object-curly-spacing': 'off',
+  'babel/new-cap': babelExtensibleRules['new-cap'],
+  'babel/no-invalid-this': babelExtensibleRules['no-invalid-this'],
+  'babel/no-unused-expressions': babelExtensibleRules['no-unused-expressions'],
+  'babel/object-curly-spacing': babelExtensibleRules['object-curly-spacing'],
+  // Old
   'babel/quotes': 'off',
-  'babel/semi': 'off',
+  'babel/semi': babelExtensibleRules.semi,
+  // Old
   'babel/valid-typeof': 'off',
 };
 
-const enabledRules = {
-  'babel/semi': 'error',
-};
+const disabledRules = getDisabledRuleSet(enabledRules);
 
 module.exports = {
   disabledRules,

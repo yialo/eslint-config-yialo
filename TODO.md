@@ -1,3 +1,3 @@
-# TODO
+# TODO list
 
-* Make config for `@typescript-eslint` more detailed
+* Align TS rules with [eslint-config-airbnb-typescript](https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js)
