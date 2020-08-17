@@ -30,10 +30,10 @@ Presets may be used at high-level of config as well as `extends` of `overrides` 
 
 * `preset-base`
 * `preset-node`
-* `preset-webpack`
-* `preset-webpack-jest`
-* `preset-webpack-typescript`
-* `preset-webpack-typescript-jest`
+* `preset-web-babel`
+* `preset-web-babel-jest`
+* `preset-web-ts`
+* `preset-web-ts-jest`
 
 **CAUTION!**  
 In case of any [webpack](https://webpack.js.org/)-based preset usage you MUST define `resolver` explicitly in `settings` section for correct application of aliases and extensions from `webpack.resolve` config block.
@@ -76,7 +76,7 @@ ignorePatterns:
   - /dist/
 overrides:
   - extends:
-      - yialo/preset-webpack-jest
+      - yialo/preset-web-babel-jest
     files:
       - ./**/*.{spec,test}.js?(x)
   - extends:
@@ -85,7 +85,7 @@ overrides:
       - ./config/**/*.js
       - ./scripts/**/*.js
   - extends:
-      - yialo/preset-webpack-typescript
+      - yialo/preset-web-ts
     files:
       - ./src/**/*.ts?(x)
 rules:
