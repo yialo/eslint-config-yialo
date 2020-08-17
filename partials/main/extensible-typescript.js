@@ -159,30 +159,20 @@ const tsRegularExtensibleRules = {
   ],
 };
 
-// TODO: implement with Object.keys iteration of tsRegularExtensibleRules
-const tsRegularResetRules = {
-  'brace-style': 'off',
-  'comma-spacing': 'off',
-  'default-param-last': 'off',
-  'func-call-spacing': 'off',
-  // TODO: enable when @typescript-eslint/indent would be fixed
-  // 'indent': 'off',
-  'init-declarations': 'off',
-  'keyword-spacing': 'off',
-  'lines-between-class-members': 'off',
-  'no-array-constructor': 'off',
-  'no-empty-function': 'off',
-  'no-extra-parens': 'off',
-  'no-extra-semi': 'off',
-  'no-loss-of-precision': 'off',
-  'no-magic-numbers': 'off',
-  // TODO: enable when @typescript-eslint/indent would be fixed
-  // 'no-unused-vars': 'off',
-  // TODO: enable when @typescript-eslint/indent would be fixed
-  // 'no-use-before-define': 'off',
-  'no-useless-constructor': 'off',
-  'space-before-function-paren': 'off',
-};
+// TODO: remove rules when they would be fixed
+const TEMPORARY_BROKEN_RULE_NAMES = [
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
+  'indent',
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
+  'no-unused-vars',
+  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
+  'no-use-before-define',
+];
+
+const tsRegularResetRules = getDisabledRuleSet(
+  tsRegularExtensibleRules,
+  (ruleName) => !TEMPORARY_BROKEN_RULE_NAMES.includes(ruleName),
+);
 
 const tsTypeCheckExtensibleRules = {
   'dot-notation': [
