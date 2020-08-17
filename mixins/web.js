@@ -1,8 +1,8 @@
 'use strict';
 
 const {
-  webRules: importRules,
-  webSettings: importSettings,
+  webRules: webImportRules,
+  webSettings: webImportSettings,
 } = require('../partials/import');
 const { webRules: jsxA11yRules } = require('../partials/jsx-a11y');
 const {
@@ -22,13 +22,13 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    ...importRules,
+    ...webImportRules,
     ...jsxA11yRules,
     ...reactRules,
     ...reactHooksRules,
   },
   settings: {
-    ...importSettings,
+    ...webImportSettings,
     ...reactSettings,
   },
 };

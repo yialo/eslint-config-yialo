@@ -1,12 +1,25 @@
 'use strict';
 
-const { disabledRules: babelRules } = require('../partials/babel');
+const { disabledRules: disabledBabelRules } = require('../partials/babel');
 const {
   baseRules: importRules,
   baseSettings: importSettings,
 } = require('../partials/import');
-const { baseRules: mainRules } = require('../partials/main');
+const {
+  nonExtensibleRules: nonExtensibleMainRules,
+  babelExtensibleRules: babelExtensibleMainRules,
+  tsExtensibleRules: tsExtensibleMainRules,
+} = require('../partials/main');
 const { baseRules: promiseRules } = require('../partials/promise');
+const { disabledRules: disabledTsRules } = require('../partials/typescript');
+
+const mainRules = {
+  ...nonExtensibleMainRules,
+  ...disabledBabelRules,
+  ...babelExtensibleMainRules,
+  ...disabledTsRules,
+  ...tsExtensibleMainRules,
+};
 
 module.exports = {
   env: {
@@ -31,7 +44,6 @@ module.exports = {
   reportUnusedDisableDirectives: true,
   rules: {
     ...mainRules,
-    ...babelRules,
     ...importRules,
     ...promiseRules,
   },

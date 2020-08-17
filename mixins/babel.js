@@ -1,7 +1,7 @@
 'use strict';
 
-const { enabledRules } = require('../partials/babel');
-const { babelResetRules } = require('../partials/main');
+const { enabledRules: enabledBabelRules } = require('../partials/babel');
+const { babelResetRules: babelResetMainRules } = require('../partials/main');
 
 module.exports = {
   parser: 'babel-eslint',
@@ -9,7 +9,7 @@ module.exports = {
     allowImportExportEverywhere: false,
   },
   rules: {
-    ...babelResetRules,
-    ...enabledRules,
+    ...babelResetMainRules,
+    ...enabledBabelRules,
   },
 };
