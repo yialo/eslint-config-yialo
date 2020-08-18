@@ -181,6 +181,8 @@ const tsTypeCheckExtensibleRules = {
       allowKeywords: true,
     },
   ],
+  'no-implied-eval': 'error',
+  'no-throw-literal': 'error',
   'require-await': 'error',
   'no-return-await': 'error',
 };

@@ -12,23 +12,21 @@ const regularRules = {
   '@typescript-eslint/init-declarations': tsExtensibleRules['init-declarations'],
   '@typescript-eslint/keyword-spacing': tsExtensibleRules['keyword-spacing'],
   '@typescript-eslint/lines-between-class-members': [
-    'error',
-    'always',
+    tsExtensibleRules['lines-between-class-members'][0],
+    tsExtensibleRules['lines-between-class-members'][1],
     {
+      ...tsExtensibleRules['lines-between-class-members'][2],
       exceptAfterOverload: true,
-      exceptAfterSingleLine: true,
     },
   ],
   '@typescript-eslint/no-array-constructor': tsExtensibleRules['no-array-constructor'],
   '@typescript-eslint/no-dupe-class-members': 'off',
   '@typescript-eslint/no-empty-function': [
-    'error',
+    tsExtensibleRules['no-empty-function'][0],
     {
       allow: [
-        'arrowFunctions',
+        ...tsExtensibleRules['no-empty-function'][1].allow,
         'decoratedFunctions',
-        'functions',
-        'methods',
       ],
     },
   ],
@@ -51,15 +49,19 @@ const regularRules = {
 
 const typeCheckRules = {
   '@typescript-eslint/dot-notation': [
-    'error',
+    tsExtensibleRules['dot-notation'][0],
     {
-      allowKeywords: true,
+      ...tsExtensibleRules['dot-notation'][1],
       allowPrivateClassPropertyAccess: false,
     },
   ],
+  '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],
+  '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
-  // NOTE: mirrors original 'no-return-await' rule
-  '@typescript-eslint/return-await': ['error', 'in-try-catch'],
+  '@typescript-eslint/return-await': [
+    tsExtensibleRules['no-return-await'],
+    'in-try-catch',
+  ],
 };
 
 module.exports = {
