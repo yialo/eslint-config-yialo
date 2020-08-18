@@ -25,7 +25,7 @@ const nonExtensibleRules = {
   'camelcase': [
     'error',
     {
-      ignoreDestructuring: false,
+      ignoreDestructuring: true,
       ignoreGlobals: true,
       ignoreImports: false,
       properties: 'never',
