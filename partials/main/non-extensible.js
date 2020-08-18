@@ -25,7 +25,7 @@ const nonExtensibleRules = {
   'camelcase': [
     'error',
     {
-      ignoreDestructuring: false,
+      ignoreDestructuring: true,
       ignoreGlobals: true,
       ignoreImports: false,
       properties: 'never',
@@ -192,7 +192,6 @@ const nonExtensibleRules = {
   'no-global-assign': 'error',
   'no-implicit-coercion': 'off',
   'no-implicit-globals': 'off',
-  'no-implied-eval': 'error',
   'no-inline-comments': 'off',
   'no-inner-declarations': 'error',
   'no-invalid-regexp': 'error',
@@ -413,7 +412,6 @@ const nonExtensibleRules = {
   'no-tabs': 'error',
   'no-template-curly-in-string': 'off',
   'no-ternary': 'off',
-  'no-throw-literal': 'error',
   'no-trailing-spaces': [
     'error',
     {
