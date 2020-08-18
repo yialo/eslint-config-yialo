@@ -59,7 +59,7 @@ const typeCheckRules = {
   '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
   '@typescript-eslint/return-await': [
-    tsExtensibleRules['no-return-await'][0],
+    tsExtensibleRules['no-return-await'],
     'in-try-catch',
   ],
 };
