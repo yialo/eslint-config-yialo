@@ -43,7 +43,13 @@ const regularRules = {
   '@typescript-eslint/no-require-imports': 'off',
   '@typescript-eslint/no-this-alias': 'error',
   '@typescript-eslint/no-type-alias': 'off',
-  '@typescript-eslint/no-unused-vars-experimental': 'off',
+  '@typescript-eslint/no-unused-vars-experimental': [
+    'error',
+    {
+      ignoredNamesRegex: false,
+      ignoreArgsIfArgsAfterAreUsed: false,
+    },
+  ],
   '@typescript-eslint/no-var-requires': 'error',
   '@typescript-eslint/prefer-as-const': 'error',
   '@typescript-eslint/prefer-enum-initializers': 'off',
@@ -63,10 +69,13 @@ const typeCheckRules = {
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
-  '@typescript-eslint/no-floating-promises': ['error', {
-    ignoreIIFE: false,
-    ignoreVoid: true,
-  }],
+  '@typescript-eslint/no-floating-promises': [
+    'error',
+    {
+      ignoreIIFE: false,
+      ignoreVoid: true,
+    },
+  ],
   '@typescript-eslint/no-for-in-array': 'error',
   '@typescript-eslint/no-misused-promises': 'error',
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',

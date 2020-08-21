@@ -32,6 +32,19 @@ const tsCompatibilityRules = {
   'no-undef': 'error',
   'no-unreachable': 'error',
   'no-unsafe-negation': 'error',
+  /**
+   * NOTE: TS portation is broken:
+   * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
+   * '@typescript-eslint/no-unused-vars-experimental' is used instead
+   */
+  'no-unused-vars': [
+    'error',
+    {
+      args: 'after-used',
+      ignoreRestSiblings: true,
+      vars: 'all',
+    },
+  ],
   'valid-typeof': [
     'error',
     {
@@ -125,14 +138,6 @@ const tsRegularExtensibleRules = {
   'no-extra-semi': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'after-used',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
   'no-use-before-define': [
     'error',
     {
@@ -163,8 +168,6 @@ const tsRegularExtensibleRules = {
 const TEMPORARY_BROKEN_RULE_NAMES = [
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
   'indent',
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
-  'no-unused-vars',
   // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
   'no-use-before-define',
 ];
