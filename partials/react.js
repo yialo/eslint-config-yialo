@@ -46,7 +46,7 @@ const webRules = {
     },
   ],
   'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
-  'react/jsx-fragments': ['error', 'element'],
+  'react/jsx-fragments': ['error', 'syntax'],
   'react/jsx-handler-names': 'off',
   'react/jsx-indent': ['error', 2],
   'react/jsx-indent-props': ['error', 2],
