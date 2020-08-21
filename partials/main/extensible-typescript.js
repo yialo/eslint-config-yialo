@@ -32,11 +32,6 @@ const tsCompatibilityRules = {
   'no-undef': 'error',
   'no-unreachable': 'error',
   'no-unsafe-negation': 'error',
-  /**
-   * NOTE: TS portation is broken:
-   * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
-   * '@typescript-eslint/no-unused-vars-experimental' is used instead
-   */
   'no-unused-vars': [
     'error',
     {
