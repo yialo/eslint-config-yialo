@@ -61,6 +61,8 @@ npm uninstall -D @typescript-eslint/eslint-plugin @typescript-eslint/parser babe
 yarn remove @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-eslint eslint eslint-import-resolver-webpack eslint-plugin-babel eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks typescript -D
 ```
 
+Notice that `typescript` may be regular (non-dev) dependency in your project. In this case you should add it with -SE flag instead of -DE, and remove with -S instead of -D.
+
 ## Presets
 
 This package contains several configuration presets for [ESLint](https://github.com/eslint/eslint):
