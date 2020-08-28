@@ -79,7 +79,6 @@ const typeCheckRules = {
   '@typescript-eslint/no-for-in-array': 'error',
   '@typescript-eslint/no-misused-promises': 'error',
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
-  '@typescript-eslint/no-unnecessary-condition': 'off',
   '@typescript-eslint/no-unnecessary-qualifier': 'off',
   '@typescript-eslint/no-unnecessary-type-arguments': 'off',
   '@typescript-eslint/no-unnecessary-type-assertion': 'error',
