@@ -36,8 +36,8 @@ const regularRules = {
   '@typescript-eslint/no-loss-of-precision': tsExtensibleRules['no-loss-of-precision'],
   '@typescript-eslint/no-magic-numbers': tsExtensibleRules['no-magic-numbers'],
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
-  // TODO: enable when rule would be fixed
-  // '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
+  // NOTE: broken rule, probably unwanted in favor of @typescript-eslint/no-unused-vars-experimental
+  '@typescript-eslint/no-unused-vars': 'off',
   // TODO: enable when rule would be fixed
   // '@typescript-eslint/no-use-before-define': tsExtensibleRules['no-use-before-define'],
   '@typescript-eslint/no-useless-constructor': tsExtensibleRules['no-useless-constructor'],
@@ -53,6 +53,12 @@ const typeCheckRules = {
     {
       ...tsExtensibleRules['dot-notation'][1],
       allowPrivateClassPropertyAccess: false,
+    },
+  ],
+  '@typescript-eslint/no-unnecessary-condition': [
+    tsExtensibleRules['no-constant-condition'],
+    {
+      allowConstantLoopConditions: false,
     },
   ],
   '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],

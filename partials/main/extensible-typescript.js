@@ -179,6 +179,7 @@ const tsTypeCheckExtensibleRules = {
       allowKeywords: true,
     },
   ],
+  'no-constant-condition': 'error',
   'no-implied-eval': 'error',
   'no-throw-literal': 'error',
   'require-await': 'error',
