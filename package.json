@@ -3,10 +3,25 @@
   "bugs": {
     "url": "https://github.com/yialo/eslint-config-yialo/issues"
   },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "3.10.1",
+    "@typescript-eslint/parser": "3.10.1",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.7.0",
+    "eslint-import-resolver-webpack": "0.12.2",
+    "eslint-plugin-babel": "5.3.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jest": "23.20.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react-hooks": "4.1.0"
+  },
   "description": "Yialo's ESLint configuration",
   "devDependencies": {
-    "eslint": "7.3.1",
-    "eslint-plugin-import": "2.21.2"
+    "eslint": "7.7.0",
+    "eslint-plugin-import": "2.22.0"
   },
   "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
   "keywords": [
@@ -37,19 +52,6 @@
   "main": "preset-base.js",
   "name": "eslint-config-yialo",
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.7.0",
-    "eslint-import-resolver-webpack": "^0.12.2",
-    "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jest": "^23.20.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.20.6",
-    "eslint-plugin-react-hooks": "^4.1.0",
     "typescript": "^4.0.2"
   },
   "repository": {
@@ -59,5 +61,5 @@
   "scripts": {
     "test": "eslint ./**/*.js"
   },
-  "version": "0.3.4"
+  "version": "0.4.0"
 }
