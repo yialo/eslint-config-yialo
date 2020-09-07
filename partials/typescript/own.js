@@ -91,6 +91,7 @@ const typeCheckRules = {
   '@typescript-eslint/prefer-readonly': 'off',
   '@typescript-eslint/prefer-readonly-parameter-types': 'off',
   '@typescript-eslint/prefer-reduce-type-parameter': 'off',
+  // TODO: maybe disable because of incorrect detection of 'g' flag in constructed RegExps
   '@typescript-eslint/prefer-regexp-exec': 'error',
   '@typescript-eslint/prefer-string-starts-ends-with': 'off',
   '@typescript-eslint/promise-function-async': 'off',
