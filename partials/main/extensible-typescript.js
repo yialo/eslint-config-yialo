@@ -4,7 +4,7 @@ const { getDisabledRuleSet } = require('../utils');
 const { commonExtensibleRules, commonResetRules } = require('./extensible-common');
 
 /**
- * All diagnostic codes here:
+ * NOTE: All diagnostic codes here:
  * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
  */
 const tsCompilerCompatibilityRules = {
@@ -206,7 +206,7 @@ const tsTypeCheckExtensibleResetRules = getDisabledRuleSet(tsTypeCheckExtensible
 
 const tsTypeCheckCompatibilityRules = {
   /**
-   * Because of @typescript-eslint/no-unnecessary-condition rule:
+   * NOTE: Because of @typescript-eslint/no-unnecessary-condition rule:
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
    */
   'no-constant-condition': 'error',
