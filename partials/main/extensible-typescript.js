@@ -6,9 +6,9 @@ const { commonExtensibleRules, commonResetRules } = require('./extensible-common
 /**
  * NOTE:
  * Explanation:
- * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/eslint-recommended.ts
+ * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/eslint-recommended.ts
  * All diagnostic codes:
- * https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
+ * @see https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
  */
 const tsCompatibilityRules = {
   'constructor-super': 'error',
@@ -20,13 +20,11 @@ const tsCompatibilityRules = {
   ],
   'no-const-assign': 'error',
   'no-dupe-args': 'error',
-  'no-dupe-class-members': 'error',
   'no-dupe-keys': 'error',
   'no-func-assign': 'error',
   'no-import-assign': 'error',
   'no-new-symbol': 'error',
   'no-obj-calls': 'error',
-  'no-redeclare': 'error',
   'no-setter-return': 'error',
   'no-this-before-super': 'error',
   'no-undef': 'error',
@@ -119,6 +117,7 @@ const tsRegularExtensibleRules = {
     },
   ],
   'no-array-constructor': 'error',
+  'no-dupe-class-members': 'error',
   'no-empty-function': [
     'error',
     {
@@ -133,6 +132,8 @@ const tsRegularExtensibleRules = {
   'no-extra-semi': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
+  'no-redeclare': 'error',
+  'no-shadow': 'error',
   'no-use-before-define': [
     'error',
     {

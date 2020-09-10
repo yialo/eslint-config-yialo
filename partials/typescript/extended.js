@@ -35,6 +35,8 @@ const regularRules = {
   '@typescript-eslint/no-invalid-this': tsExtensibleRules['no-invalid-this'],
   '@typescript-eslint/no-loss-of-precision': tsExtensibleRules['no-loss-of-precision'],
   '@typescript-eslint/no-magic-numbers': tsExtensibleRules['no-magic-numbers'],
+  '@typescript-eslint/no-redeclare': 'off',
+  '@typescript-eslint/no-shadow': tsExtensibleRules['no-shadow'],
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
   // NOTE: broken rule, probably unwanted in favor of @typescript-eslint/no-unused-vars-experimental
   '@typescript-eslint/no-unused-vars': 'off',
@@ -55,12 +57,7 @@ const typeCheckRules = {
       allowPrivateClassPropertyAccess: false,
     },
   ],
-  '@typescript-eslint/no-unnecessary-condition': [
-    tsExtensibleRules['no-constant-condition'],
-    {
-      allowConstantLoopConditions: false,
-    },
-  ],
+  '@typescript-eslint/no-unnecessary-condition': tsExtensibleRules['no-constant-condition'],
   '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],
   '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
