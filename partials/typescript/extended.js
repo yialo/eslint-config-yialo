@@ -5,7 +5,8 @@ const { tsExtensibleRules } = require('../main');
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],
   '@typescript-eslint/comma-spacing': tsExtensibleRules['comma-spacing'],
-  '@typescript-eslint/default-param-last': tsExtensibleRules['default-param-last'],
+  // NOTE: ts(1016)
+  '@typescript-eslint/default-param-last': 'off',
   '@typescript-eslint/func-call-spacing': tsExtensibleRules['func-call-spacing'],
   /**
    * NOTE: enable when rule would be fixed
@@ -23,7 +24,7 @@ const regularRules = {
     },
   ],
   '@typescript-eslint/no-array-constructor': tsExtensibleRules['no-array-constructor'],
-  // NOTE: ts(2393) & ts(2300)
+  // NOTE: ts(2300), ts(2393)
   '@typescript-eslint/no-dupe-class-members': 'off',
   '@typescript-eslint/no-empty-function': [
     tsExtensibleRules['no-empty-function'][0],

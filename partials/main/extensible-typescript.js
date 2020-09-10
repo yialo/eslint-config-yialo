@@ -8,7 +8,7 @@ const { commonExtensibleRules, commonResetRules } = require('./extensible-common
  * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
  */
 const tsCompilerCompatibilityRules = {
-  // NOTE: ts(2335) & ts(2377)
+  // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
   // NOTE: ts(2378)
   'getter-return': [
@@ -25,7 +25,7 @@ const tsCompilerCompatibilityRules = {
   'no-dupe-keys': 'error',
   // NOTE: ts(2539)
   'no-func-assign': 'error',
-  // NOTE: ts(2539) & ts(2540)
+  // NOTE: ts(2539), ts(2540)
   'no-import-assign': 'error',
   // NOTE: ts(2588)
   'no-new-symbol': 'error',
@@ -39,7 +39,7 @@ const tsCompilerCompatibilityRules = {
   'no-undef': 'error',
   // NOTE: ts(7027)
   'no-unreachable': 'error',
-  // NOTE: ts(2365) & ts(2360) & ts(2358)
+  // NOTE: ts(2358), ts(2360), ts(2365)
   'no-unsafe-negation': 'error',
   // NOTE: ts(2367)
   'valid-typeof': [
@@ -67,6 +67,7 @@ const tsRegularExtensibleRules = {
       before: false,
     },
   ],
+  // NOTE: ts(1016)
   'default-param-last': 'error',
   'func-call-spacing': ['error', 'never'],
   'indent': [
@@ -121,6 +122,7 @@ const tsRegularExtensibleRules = {
     },
   ],
   'no-array-constructor': 'error',
+  // NOTE: ts(2300), ts(2393)
   'no-dupe-class-members': 'error',
   'no-empty-function': [
     'error',
@@ -136,6 +138,7 @@ const tsRegularExtensibleRules = {
   'no-extra-semi': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
+  // NOTE: ts(2451)
   'no-redeclare': 'error',
   'no-shadow': 'error',
   'no-unused-vars': [
