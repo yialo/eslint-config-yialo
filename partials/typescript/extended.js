@@ -2,16 +2,15 @@
 
 const { tsExtensibleRules } = require('../main');
 
-const RULE_NAME_FROM_TS_TO_ORIGINAL = {
-  'return-await': 'no-return-await',
-};
-
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],
   '@typescript-eslint/comma-spacing': tsExtensibleRules['comma-spacing'],
   '@typescript-eslint/default-param-last': tsExtensibleRules['default-param-last'],
   '@typescript-eslint/func-call-spacing': tsExtensibleRules['func-call-spacing'],
-  // NOTE: enable when rule would be fixed
+  /**
+   * NOTE: enable when rule would be fixed
+   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md}
+   */
   '@typescript-eslint/indent': 'off',
   '@typescript-eslint/init-declarations': tsExtensibleRules['init-declarations'],
   '@typescript-eslint/keyword-spacing': tsExtensibleRules['keyword-spacing'],
@@ -45,7 +44,10 @@ const regularRules = {
   '@typescript-eslint/no-shadow': tsExtensibleRules['no-shadow'],
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
   '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
-  // NOTE: enable when rule would be fixed
+  /**
+   * NOTE: enable when rule would be fixed
+   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
+   */
   '@typescript-eslint/no-use-before-define': 'off',
   '@typescript-eslint/no-useless-constructor': tsExtensibleRules['no-useless-constructor'],
   '@typescript-eslint/quotes': tsExtensibleRules.quotes,
@@ -65,6 +67,7 @@ const typeCheckRules = {
   '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],
   '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
+  // NOTE: different name: 'no-return-await' -> 'return-await'
   '@typescript-eslint/return-await': [
     tsExtensibleRules['no-return-await'],
     'in-try-catch',

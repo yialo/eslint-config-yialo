@@ -174,13 +174,7 @@ const tsRegularExtensibleRules = {
 
 // NOTE: remove rules when they would be fixed
 const TEMPORARY_BROKEN_TS_REGULAR_RULE_NAMES = [
-  /**
-   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md}
-   */
   'indent',
-  /**
-   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
-   */
   'no-use-before-define',
 ];
 
@@ -206,7 +200,7 @@ const tsTypeCheckExtensibleResetRules = getDisabledRuleSet(tsTypeCheckExtensible
 
 const tsTypeCheckCompatibilityRules = {
   /**
-   * NOTE: Because of @typescript-eslint/no-unnecessary-condition rule:
+   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
    */
   'no-constant-condition': 'error',
