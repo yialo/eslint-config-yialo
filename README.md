@@ -103,29 +103,6 @@ settings: {
 },
 ```
 
-### Unassigned import in webpack
-
-There is rule `import/no-unassigned-import` which is probably need to be defined in end-user config in case of usage with [webpack](https://webpack.js.org/):
-
-```js
-// .eslintrc.js
-'import/no-unassigned-import': [
-  'error',
-  {
-    allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
-  },
-],
-```
-
-Default:
-
-```js
-// .eslintrc.js
-rules: {
-  'import/no-unassigned-import': 'error',
-},
-```
-
 ### TypeScript config
 
 In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)-based preset usage you MUST define `tsconfigRootDir` and `project` explicitly in `parserOptions` section for correct typechecking:
