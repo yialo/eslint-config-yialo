@@ -58,10 +58,10 @@ Presets may be used at high-level of config as well as `extends` of `overrides` 
 * `preset-node`
 * `preset-web-babel`
 * `preset-web-babel-jest`
-* `preset-web-ts`
-* `preset-web-ts-jest`
 * `preset-web-ts-check`
 * `preset-web-ts-check-jest`
+* `preset-web-ts-nocheck`
+* `preset-web-ts-nocheck-jest`
 
 ## Usage caveats
 
