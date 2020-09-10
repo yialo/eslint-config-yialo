@@ -2,12 +2,16 @@
 
 const { tsExtensibleRules } = require('../main');
 
+const RULE_NAME_FROM_TS_TO_ORIGINAL = {
+  'return-await': 'no-return-await',
+};
+
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],
   '@typescript-eslint/comma-spacing': tsExtensibleRules['comma-spacing'],
   '@typescript-eslint/default-param-last': tsExtensibleRules['default-param-last'],
   '@typescript-eslint/func-call-spacing': tsExtensibleRules['func-call-spacing'],
-  // TODO: enable when rule would be fixed
+  // NOTE: enable when rule would be fixed
   // '@typescript-eslint/indent': tsExtensibleRules.indent,
   '@typescript-eslint/init-declarations': tsExtensibleRules['init-declarations'],
   '@typescript-eslint/keyword-spacing': tsExtensibleRules['keyword-spacing'],
@@ -20,6 +24,7 @@ const regularRules = {
     },
   ],
   '@typescript-eslint/no-array-constructor': tsExtensibleRules['no-array-constructor'],
+  // NOTE: ts(2393) & ts(2300)
   '@typescript-eslint/no-dupe-class-members': 'off',
   '@typescript-eslint/no-empty-function': [
     tsExtensibleRules['no-empty-function'][0],
@@ -35,12 +40,12 @@ const regularRules = {
   '@typescript-eslint/no-invalid-this': tsExtensibleRules['no-invalid-this'],
   '@typescript-eslint/no-loss-of-precision': tsExtensibleRules['no-loss-of-precision'],
   '@typescript-eslint/no-magic-numbers': tsExtensibleRules['no-magic-numbers'],
+  // NOTE: ts(2451)
   '@typescript-eslint/no-redeclare': 'off',
   '@typescript-eslint/no-shadow': tsExtensibleRules['no-shadow'],
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
-  // NOTE: broken rule, probably unwanted in favor of @typescript-eslint/no-unused-vars-experimental
-  '@typescript-eslint/no-unused-vars': 'off',
-  // TODO: enable when rule would be fixed
+  '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
+  // NOTE: enable when rule would be fixed
   // '@typescript-eslint/no-use-before-define': tsExtensibleRules['no-use-before-define'],
   '@typescript-eslint/no-useless-constructor': tsExtensibleRules['no-useless-constructor'],
   '@typescript-eslint/quotes': tsExtensibleRules.quotes,
@@ -57,7 +62,6 @@ const typeCheckRules = {
       allowPrivateClassPropertyAccess: false,
     },
   ],
-  '@typescript-eslint/no-unnecessary-condition': tsExtensibleRules['no-constant-condition'],
   '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],
   '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
