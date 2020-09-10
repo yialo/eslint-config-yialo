@@ -175,7 +175,6 @@ const tsRegularExtensibleRules = {
 // NOTE: remove rules when they would be fixed
 const TEMPORARY_BROKEN_TS_REGULAR_RULE_NAMES = [
   'indent',
-  'no-use-before-define',
 ];
 
 const tsRegularResetRules = getDisabledRuleSet(

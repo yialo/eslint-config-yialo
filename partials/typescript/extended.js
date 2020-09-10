@@ -45,10 +45,10 @@ const regularRules = {
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
   '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
   /**
-   * NOTE: enable when rule would be fixed
+   * NOTE: rule may have issues
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
    */
-  '@typescript-eslint/no-use-before-define': 'off',
+  '@typescript-eslint/no-use-before-define': tsExtensibleRules['no-use-before-define'],
   '@typescript-eslint/no-useless-constructor': tsExtensibleRules['no-useless-constructor'],
   '@typescript-eslint/quotes': tsExtensibleRules.quotes,
   '@typescript-eslint/semi': tsExtensibleRules.semi,

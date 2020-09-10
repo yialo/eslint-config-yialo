@@ -7,6 +7,9 @@ const { enabledRegularRules: enabledRegularTsRules } = require('../partials/type
 
 module.exports = {
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    sourceType: 'module',
+  },
   rules: {
     ...tsNonTypeCheckResetMainRules,
     ...enabledRegularTsRules,
