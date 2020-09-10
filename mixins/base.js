@@ -26,7 +26,7 @@ const disabledRules = {
 
 module.exports = {
   env: {
-    es6: true,
+    es2021: true,
   },
   plugins: [
     '@typescript-eslint',
@@ -41,7 +41,6 @@ module.exports = {
   ],
   parser: 'espree',
   parserOptions: {
-    ecmaVersion: 2020,
     sourceType: 'script',
   },
   reportUnusedDisableDirectives: true,

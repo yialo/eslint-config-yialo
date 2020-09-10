@@ -5,10 +5,14 @@ const { tsExtensibleRules } = require('../main');
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],
   '@typescript-eslint/comma-spacing': tsExtensibleRules['comma-spacing'],
-  '@typescript-eslint/default-param-last': tsExtensibleRules['default-param-last'],
+  // NOTE: ts(1016)
+  '@typescript-eslint/default-param-last': 'off',
   '@typescript-eslint/func-call-spacing': tsExtensibleRules['func-call-spacing'],
-  // TODO: enable when rule would be fixed
-  // '@typescript-eslint/indent': tsExtensibleRules.indent,
+  /**
+   * NOTE: enable when rule would be fixed
+   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md}
+   */
+  '@typescript-eslint/indent': 'off',
   '@typescript-eslint/init-declarations': tsExtensibleRules['init-declarations'],
   '@typescript-eslint/keyword-spacing': tsExtensibleRules['keyword-spacing'],
   '@typescript-eslint/lines-between-class-members': [
@@ -20,6 +24,7 @@ const regularRules = {
     },
   ],
   '@typescript-eslint/no-array-constructor': tsExtensibleRules['no-array-constructor'],
+  // NOTE: ts(2300), ts(2393)
   '@typescript-eslint/no-dupe-class-members': 'off',
   '@typescript-eslint/no-empty-function': [
     tsExtensibleRules['no-empty-function'][0],
@@ -35,11 +40,16 @@ const regularRules = {
   '@typescript-eslint/no-invalid-this': tsExtensibleRules['no-invalid-this'],
   '@typescript-eslint/no-loss-of-precision': tsExtensibleRules['no-loss-of-precision'],
   '@typescript-eslint/no-magic-numbers': tsExtensibleRules['no-magic-numbers'],
+  // NOTE: ts(2451)
+  '@typescript-eslint/no-redeclare': 'off',
+  '@typescript-eslint/no-shadow': tsExtensibleRules['no-shadow'],
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
-  // NOTE: broken rule, probably unwanted in favor of @typescript-eslint/no-unused-vars-experimental
-  '@typescript-eslint/no-unused-vars': 'off',
-  // TODO: enable when rule would be fixed
-  // '@typescript-eslint/no-use-before-define': tsExtensibleRules['no-use-before-define'],
+  '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
+  /**
+   * NOTE: rule may have issues
+   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
+   */
+  '@typescript-eslint/no-use-before-define': tsExtensibleRules['no-use-before-define'],
   '@typescript-eslint/no-useless-constructor': tsExtensibleRules['no-useless-constructor'],
   '@typescript-eslint/quotes': tsExtensibleRules.quotes,
   '@typescript-eslint/semi': tsExtensibleRules.semi,
@@ -55,15 +65,10 @@ const typeCheckRules = {
       allowPrivateClassPropertyAccess: false,
     },
   ],
-  '@typescript-eslint/no-unnecessary-condition': [
-    tsExtensibleRules['no-constant-condition'],
-    {
-      allowConstantLoopConditions: false,
-    },
-  ],
   '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],
   '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
+  // NOTE: different name: 'no-return-await' -> 'return-await'
   '@typescript-eslint/return-await': [
     tsExtensibleRules['no-return-await'],
     'in-try-catch',

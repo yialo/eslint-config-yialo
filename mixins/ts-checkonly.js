@@ -1,6 +1,6 @@
 'use strict';
 
-const { tsTypeCheckResetRules: tsTypeCheckResetMainRules } = require('../partials/main');
+const { tsTypeCheckOnlyResetRules: tsTypeCheckResetMainRules } = require('../partials/main');
 const { enabledTypeCheckRules: enabledTypeCheckTsRules } = require('../partials/typescript');
 
 module.exports = {

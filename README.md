@@ -58,10 +58,10 @@ Presets may be used at high-level of config as well as `extends` of `overrides` 
 * `preset-node`
 * `preset-web-babel`
 * `preset-web-babel-jest`
-* `preset-web-ts`
-* `preset-web-ts-jest`
 * `preset-web-ts-check`
 * `preset-web-ts-check-jest`
+* `preset-web-ts-nocheck`
+* `preset-web-ts-nocheck-jest`
 
 ## Usage caveats
 
@@ -100,29 +100,6 @@ Node.js resolver (default):
 // .eslintrc.js
 settings: {
   'import/resolver': 'node',
-},
-```
-
-### Unassigned import in webpack
-
-There is rule `import/no-unassigned-import` which is probably need to be defined in end-user config in case of usage with [webpack](https://webpack.js.org/):
-
-```js
-// .eslintrc.js
-'import/no-unassigned-import': [
-  'error',
-  {
-    allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
-  },
-],
-```
-
-Default:
-
-```js
-// .eslintrc.js
-rules: {
-  'import/no-unassigned-import': 'error',
 },
 ```
 

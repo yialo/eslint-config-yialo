@@ -4,42 +4,44 @@ const { getDisabledRuleSet } = require('../utils');
 const { commonExtensibleRules, commonResetRules } = require('./extensible-common');
 
 /**
- * NOTE:
- * Explanation:
- * https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/src/configs/eslint-recommended.ts
- * All diagnostic codes:
- * https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
+ * NOTE: All diagnostic codes here:
+ * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
  */
-const tsCompatibilityRules = {
+const tsCompilerCompatibilityRules = {
+  // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
+  // NOTE: ts(2378)
   'getter-return': [
     'error',
     {
       allowImplicit: true,
     },
   ],
+  // NOTE: ts(2588)
   'no-const-assign': 'error',
+  // NOTE: ts(2300)
   'no-dupe-args': 'error',
-  'no-dupe-class-members': 'error',
+  // NOTE: ts(1117)
   'no-dupe-keys': 'error',
+  // NOTE: ts(2539)
   'no-func-assign': 'error',
+  // NOTE: ts(2539), ts(2540)
   'no-import-assign': 'error',
+  // NOTE: ts(2588)
   'no-new-symbol': 'error',
+  // NOTE: ts(2349)
   'no-obj-calls': 'error',
-  'no-redeclare': 'error',
+  // NOTE: ts(2408)
   'no-setter-return': 'error',
+  // NOTE: ts(2376)
   'no-this-before-super': 'error',
+  // NOTE: ts(2304)
   'no-undef': 'error',
+  // NOTE: ts(7027)
   'no-unreachable': 'error',
+  // NOTE: ts(2358), ts(2360), ts(2365)
   'no-unsafe-negation': 'error',
-  'no-unused-vars': [
-    'error',
-    {
-      args: 'after-used',
-      ignoreRestSiblings: true,
-      vars: 'all',
-    },
-  ],
+  // NOTE: ts(2367)
   'valid-typeof': [
     'error',
     {
@@ -48,7 +50,7 @@ const tsCompatibilityRules = {
   ],
 };
 
-const tsCompatibilityResetRules = getDisabledRuleSet(tsCompatibilityRules);
+const tsCompilerCompatibilityResetRules = getDisabledRuleSet(tsCompilerCompatibilityRules);
 
 const tsRegularExtensibleRules = {
   'brace-style': [
@@ -65,6 +67,7 @@ const tsRegularExtensibleRules = {
       before: false,
     },
   ],
+  // NOTE: ts(1016)
   'default-param-last': 'error',
   'func-call-spacing': ['error', 'never'],
   'indent': [
@@ -119,6 +122,8 @@ const tsRegularExtensibleRules = {
     },
   ],
   'no-array-constructor': 'error',
+  // NOTE: ts(2300), ts(2393)
+  'no-dupe-class-members': 'error',
   'no-empty-function': [
     'error',
     {
@@ -133,6 +138,17 @@ const tsRegularExtensibleRules = {
   'no-extra-semi': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
+  // NOTE: ts(2451)
+  'no-redeclare': 'error',
+  'no-shadow': 'error',
+  'no-unused-vars': [
+    'error',
+    {
+      args: 'after-used',
+      ignoreRestSiblings: true,
+      vars: 'all',
+    },
+  ],
   'no-use-before-define': [
     'error',
     {
@@ -159,17 +175,14 @@ const tsRegularExtensibleRules = {
   ],
 };
 
-// TODO: remove rules when they would be fixed
-const TEMPORARY_BROKEN_RULE_NAMES = [
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
+// NOTE: remove rules when they would be fixed
+const TEMPORARY_BROKEN_TS_REGULAR_RULE_NAMES = [
   'indent',
-  // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
-  'no-use-before-define',
 ];
 
 const tsRegularResetRules = getDisabledRuleSet(
   tsRegularExtensibleRules,
-  (ruleName) => !TEMPORARY_BROKEN_RULE_NAMES.includes(ruleName),
+  (ruleName) => !TEMPORARY_BROKEN_TS_REGULAR_RULE_NAMES.includes(ruleName),
 );
 
 const tsTypeCheckExtensibleRules = {
@@ -179,30 +192,45 @@ const tsTypeCheckExtensibleRules = {
       allowKeywords: true,
     },
   ],
-  'no-constant-condition': 'error',
   'no-implied-eval': 'error',
   'no-throw-literal': 'error',
   'require-await': 'error',
   'no-return-await': 'error',
 };
 
-const tsTypeCheckResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
+const tsTypeCheckExtensibleResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
+
+const tsTypeCheckCompatibilityRules = {
+  /**
+   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
+   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
+   */
+  'no-constant-condition': 'error',
+};
+
+const tsTypeCheckCompatibilityResetRules = getDisabledRuleSet(tsTypeCheckCompatibilityRules);
+
+const tsTypeCheckOnlyResetRules = {
+  ...tsTypeCheckExtensibleResetRules,
+  ...tsTypeCheckCompatibilityResetRules,
+};
 
 const tsExtensibleRules = {
   ...commonExtensibleRules,
-  ...tsCompatibilityRules,
+  ...tsCompilerCompatibilityRules,
   ...tsRegularExtensibleRules,
   ...tsTypeCheckExtensibleRules,
+  ...tsTypeCheckCompatibilityRules,
 };
 
 const tsNonTypeCheckResetRules = {
   ...commonResetRules,
-  ...tsCompatibilityResetRules,
+  ...tsCompilerCompatibilityResetRules,
   ...tsRegularResetRules,
 };
 
 module.exports = {
   tsExtensibleRules,
   tsNonTypeCheckResetRules,
-  tsTypeCheckResetRules,
+  tsTypeCheckOnlyResetRules,
 };
