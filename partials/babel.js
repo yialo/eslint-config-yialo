@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * NOTE:
- * Old version:
- * @see {@link https://github.com/babel/eslint-plugin-babel}
- * I target the new version:
- * @see {@link https://github.com/babel/babel/tree/main/eslint/babel-eslint-plugin}
- */
-
 const { babelExtensibleRules } = require('./main');
 const { getDisabledRuleSet } = require('./utils');
 
