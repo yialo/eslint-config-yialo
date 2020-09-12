@@ -29,8 +29,8 @@ module.exports = {
     es2021: true,
   },
   plugins: [
+    '@babel',
     '@typescript-eslint',
-    'babel',
     'import',
     'jest',
     'jsx-a11y',
