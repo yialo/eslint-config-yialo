@@ -103,6 +103,18 @@ settings: {
 },
 ```
 
+### Babel config
+
+In case of `preset-web-babel` or `preset-web-babel-jest` usage when Babel config file is not located in the same directory as ESLint config or has non-standard name, you MUST define `babelOptions.configFile` parser option:
+
+```js
+parserOptions: {
+  babelOptions: {
+    configFile: './config/babel.config.js',
+  },
+},
+```
+
 ### TypeScript config
 
 In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)-based preset usage you MUST define `tsconfigRootDir` and `project` explicitly in `parserOptions` section for correct typechecking:
