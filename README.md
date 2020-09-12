@@ -26,26 +26,27 @@ yarn remove eslint-config-yialo -DE
 
 Notice that the package requires these peer dependencies:
 
+* [@babel/core](https://www.npmjs.com/package/@babel/core)
 * [typescript](https://www.npmjs.com/package/typescript)
 
 You may install them quickly with this command:
 
 ```shell
-npm install -DE typescript
+npm install -DE @babel/core typescript
 ```
 
 ```shell
-yarn add typescript -DE
+yarn add @babel/core typescript -DE
 ```
 
 Command for quick removal of them:
 
 ```shell
-npm uninstall -D typescript
+npm uninstall -D @babel/core typescript
 ```
 
 ```shell
-yarn remove typescript -D
+yarn remove @babel/core typescript -D
 ```
 
 ## Presets
