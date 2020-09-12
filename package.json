@@ -1,4 +1,9 @@
 {
+  "name": "eslint-config-yialo",
+  "version": "0.5.1",
+  "scripts": {
+    "test": "eslint ./**/*.js"
+  },
   "author": "Aleksei Arro <polsck@gmail.com>",
   "bugs": {
     "url": "https://github.com/yialo/eslint-config-yialo/issues"
@@ -46,16 +51,11 @@
   ],
   "license": "MIT",
   "main": "preset-base.js",
-  "name": "eslint-config-yialo",
   "peerDependencies": {
     "typescript": "^4.0.2"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
-  },
-  "scripts": {
-    "test": "eslint ./**/*.js"
-  },
-  "version": "0.5.0"
+  }
 }
