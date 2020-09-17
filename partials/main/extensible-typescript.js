@@ -198,6 +198,12 @@ const tsTypeCheckExtensibleRules = {
   'no-return-await': 'error',
 };
 
+const tsNonTypeCheckResetRules = {
+  ...commonResetRules,
+  ...tsCompilerCompatibilityResetRules,
+  ...tsRegularResetRules,
+};
+
 const tsTypeCheckExtensibleResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
 
 const tsTypeCheckCompatibilityRules = {
@@ -221,12 +227,6 @@ const tsExtensibleRules = {
   ...tsRegularExtensibleRules,
   ...tsTypeCheckExtensibleRules,
   ...tsTypeCheckCompatibilityRules,
-};
-
-const tsNonTypeCheckResetRules = {
-  ...commonResetRules,
-  ...tsCompilerCompatibilityResetRules,
-  ...tsRegularResetRules,
 };
 
 module.exports = {
