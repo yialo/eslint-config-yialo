@@ -16,13 +16,7 @@ const webRules = {
   'react/jsx-child-element-spacing': 'off',
   'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
   'react/jsx-closing-tag-location': 'error',
-  'react/jsx-curly-brace-presence': [
-    'error',
-    {
-      children: 'never',
-      props: 'never',
-    },
-  ],
+  'react/jsx-curly-brace-presence': 'off',
   'react/jsx-curly-newline': [
     'error',
     {
