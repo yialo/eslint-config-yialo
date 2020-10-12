@@ -7,6 +7,7 @@ const regularRules = {
   '@typescript-eslint/ban-tslint-comment': 'off',
   '@typescript-eslint/ban-types': 'error',
   '@typescript-eslint/class-literal-property-style': 'off',
+  '@typescript-eslint/consistent-indexed-object-style': 'off',
   '@typescript-eslint/consistent-type-assertions': 'off',
   '@typescript-eslint/consistent-type-definitions': 'off',
   '@typescript-eslint/consistent-type-imports': 'off',

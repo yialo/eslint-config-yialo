@@ -36,6 +36,7 @@ const webRules = {
   'react/jsx-filename-extension': [
     'error',
     {
+      allow: 'as-needed',
       extensions: ['.jsx', '.tsx'],
     },
   ],

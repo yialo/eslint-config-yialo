@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-yialo",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "scripts": {
     "test": "eslint ./**/*.js"
   },
@@ -11,16 +11,16 @@
   "dependencies": {
     "@babel/eslint-parser": "7.11.5",
     "@babel/eslint-plugin": "7.11.5",
-    "@typescript-eslint/eslint-plugin": "4.1.1",
-    "@typescript-eslint/parser": "4.1.1",
-    "eslint": "7.9.0",
-    "eslint-import-resolver-webpack": "0.12.2",
-    "eslint-plugin-import": "2.22.0",
-    "eslint-plugin-jest": "24.0.1",
+    "@typescript-eslint/eslint-plugin": "4.4.0",
+    "@typescript-eslint/parser": "4.4.0",
+    "eslint": "7.11.0",
+    "eslint-import-resolver-webpack": "0.13.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "24.1.0",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react": "7.21.4",
     "eslint-plugin-react-hooks": "4.1.2"
   },
   "description": "Yialo's ESLint configuration",
@@ -53,7 +53,7 @@
   "main": "preset-base.js",
   "peerDependencies": {
     "@babel/core": "^7.11.6",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   },
   "repository": {
     "type": "git",
