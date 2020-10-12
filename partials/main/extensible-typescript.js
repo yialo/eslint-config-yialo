@@ -124,6 +124,7 @@ const tsRegularExtensibleRules = {
   'no-array-constructor': 'error',
   // NOTE: ts(2300), ts(2393)
   'no-dupe-class-members': 'error',
+  'no-duplicate-imports': 'off',
   'no-empty-function': [
     'error',
     {
