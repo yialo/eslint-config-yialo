@@ -5,7 +5,6 @@ const { tsExtensibleRules } = require('../main');
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],
   '@typescript-eslint/comma-spacing': tsExtensibleRules['comma-spacing'],
-  '@typescript-eslint/consistent-indexed-object-style': 'off',
   // NOTE: ts(1016)
   '@typescript-eslint/default-param-last': 'off',
   '@typescript-eslint/func-call-spacing': tsExtensibleRules['func-call-spacing'],
