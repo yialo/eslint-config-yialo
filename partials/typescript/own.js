@@ -91,7 +91,12 @@ const typeCheckRules = {
   '@typescript-eslint/prefer-string-starts-ends-with': 'off',
   '@typescript-eslint/promise-function-async': 'off',
   '@typescript-eslint/require-array-sort-compare': 'off',
-  '@typescript-eslint/restrict-plus-operands': 'error',
+  '@typescript-eslint/restrict-plus-operands': [
+    'error',
+    {
+      checkCompoundAssignments: true,
+    },
+  ],
   '@typescript-eslint/restrict-template-expressions': 'error',
   '@typescript-eslint/strict-boolean-expressions': 'off',
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
