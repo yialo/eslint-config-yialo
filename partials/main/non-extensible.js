@@ -112,7 +112,7 @@ const nonExtensibleRules = {
   'line-comment-position': 'off',
   'linebreak-style': ['error', 'unix'],
   'lines-around-comment': 'off',
-  'max-classes-per-file': ['error', 1],
+  'max-classes-per-file': 'off',
   'max-depth': 'off',
   'max-len': [
     'error',
