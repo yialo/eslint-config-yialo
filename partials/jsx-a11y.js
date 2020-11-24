@@ -1,7 +1,6 @@
 'use strict';
 
 const webRules = {
-  'jsx-a11y/accessible-emoji': 'error',
   'jsx-a11y/alt-text': [
     'error',
     {
