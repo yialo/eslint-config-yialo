@@ -217,7 +217,6 @@ const nonExtensibleRules = {
         ['%', '-'],
         ['%', '*'],
         ['%', '/'],
-        ['/', '*'],
         ['&', '|', '<<', '>>', '>>>'],
         ['==', '!=', '===', '!=='],
         ['&&', '||'],
@@ -247,6 +246,7 @@ const nonExtensibleRules = {
   'no-new-func': 'error',
   'no-new-object': 'error',
   'no-new-wrappers': 'error',
+  'no-nonoctal-decimal-escape': 'off',
   'no-octal': 'error',
   'no-octal-escape': 'error',
   'no-param-reassign': [
@@ -556,7 +556,6 @@ const nonExtensibleRules = {
   'sort-vars': 'off',
   'space-before-blocks': 'error',
   'space-in-parens': ['error', 'never'],
-  'space-infix-ops': 'error',
   'space-unary-ops': [
     'error',
     {

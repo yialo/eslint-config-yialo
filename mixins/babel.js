@@ -5,9 +5,6 @@ const { babelResetRules: babelResetMainRules } = require('../partials/main');
 
 module.exports = {
   parser: '@babel/eslint-parser',
-  parserOptions: {
-    allowImportExportEverywhere: false,
-  },
   rules: {
     ...babelResetMainRules,
     ...enabledBabelRules,

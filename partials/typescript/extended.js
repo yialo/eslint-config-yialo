@@ -56,6 +56,7 @@ const regularRules = {
   '@typescript-eslint/semi': tsExtensibleRules.semi,
   '@typescript-eslint/space-before-function-paren':
     tsExtensibleRules['space-before-function-paren'],
+  '@typescript-eslint/space-infix-ops': tsExtensibleRules['space-infix-ops'],
 };
 
 const typeCheckRules = {

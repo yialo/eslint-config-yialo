@@ -174,6 +174,7 @@ const tsRegularExtensibleRules = {
       named: 'never',
     },
   ],
+  'space-infix-ops': 'error',
 };
 
 // NOTE: remove rules when they would be fixed
