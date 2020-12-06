@@ -429,6 +429,12 @@ const nonExtensibleRules = {
   ],
   'no-unreachable-loop': 'error',
   'no-unsafe-finally': 'error',
+  'no-unsafe-optional-chaining': [
+    'error',
+    {
+      disallowArithmeticOperators: true,
+    },
+  ],
   'no-unused-labels': 'error',
   'no-useless-backreference': 'error',
   'no-useless-call': 'off',
