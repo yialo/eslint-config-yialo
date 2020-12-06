@@ -9,10 +9,10 @@ const regularRules = {
   '@typescript-eslint/default-param-last': 'off',
   '@typescript-eslint/func-call-spacing': tsExtensibleRules['func-call-spacing'],
   /**
-   * NOTE: enable when rule would be fixed
+   * NOTE: rule can produce issues in some cases
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md}
    */
-  '@typescript-eslint/indent': 'off',
+  '@typescript-eslint/indent': tsExtensibleRules.indent,
   '@typescript-eslint/init-declarations': tsExtensibleRules['init-declarations'],
   '@typescript-eslint/keyword-spacing': tsExtensibleRules['keyword-spacing'],
   '@typescript-eslint/lines-between-class-members': [
@@ -47,7 +47,7 @@ const regularRules = {
   '@typescript-eslint/no-unused-expressions': tsExtensibleRules['no-unused-expressions'],
   '@typescript-eslint/no-unused-vars': tsExtensibleRules['no-unused-vars'],
   /**
-   * NOTE: rule may have issues
+   * NOTE: rule can produce issues in some cases
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
    */
   '@typescript-eslint/no-use-before-define': tsExtensibleRules['no-use-before-define'],

@@ -177,15 +177,7 @@ const tsRegularExtensibleRules = {
   'space-infix-ops': 'error',
 };
 
-// NOTE: remove rules when they would be fixed
-const TEMPORARY_BROKEN_TS_REGULAR_RULE_NAMES = [
-  'indent',
-];
-
-const tsRegularResetRules = getDisabledRuleSet(
-  tsRegularExtensibleRules,
-  (ruleName) => !TEMPORARY_BROKEN_TS_REGULAR_RULE_NAMES.includes(ruleName),
-);
+const tsRegularResetRules = getDisabledRuleSet(tsRegularExtensibleRules);
 
 const tsTypeCheckExtensibleRules = {
   'dot-notation': [
