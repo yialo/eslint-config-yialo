@@ -47,6 +47,7 @@ const regularRules = {
   '@typescript-eslint/no-type-alias': 'off',
   '@typescript-eslint/no-unnecessary-type-constraint': 'off',
   '@typescript-eslint/no-var-requires': 'error',
+  '@typescript-eslint/non-nullable-type-assertion-style': 'off',
   '@typescript-eslint/prefer-as-const': 'error',
   '@typescript-eslint/prefer-enum-initializers': 'off',
   '@typescript-eslint/prefer-for-of': 'off',

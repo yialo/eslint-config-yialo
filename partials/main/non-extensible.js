@@ -148,7 +148,12 @@ const nonExtensibleRules = {
   'no-alert': 'warn',
   'no-async-promise-executor': 'error',
   'no-await-in-loop': 'error',
-  'no-bitwise': 'error',
+  'no-bitwise': [
+    'error',
+    {
+      allow: ['~'],
+    },
+  ],
   'no-caller': 'error',
   'no-case-declarations': 'error',
   'no-class-assign': 'error',
