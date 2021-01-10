@@ -43,12 +43,19 @@ const webRules = {
   'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
   'react/jsx-fragments': ['error', 'syntax'],
   'react/jsx-handler-names': 'off',
-  'react/jsx-indent': ['error', 2],
+  'react/jsx-indent': [
+    'error',
+    {
+      ignoreTernaryOperator: false,
+      indentMode: 2,
+    },
+  ],
   'react/jsx-indent-props': ['error', 2],
   'react/jsx-key': [
     'error',
     {
       checkFragmentShorthand: true,
+      checkKeyMustBeforeSpread: true,
     },
   ],
   'react/jsx-max-depth': 'off',
@@ -59,6 +66,7 @@ const webRules = {
       when: 'multiline',
     },
   ],
+  'react/jsx-newline': 'off',
   'react/jsx-no-bind': [
     'error',
     {
@@ -70,6 +78,7 @@ const webRules = {
     },
   ],
   'react/jsx-no-comment-textnodes': 'error',
+  'react/jsx-no-constructed-context-values': 'error',
   'react/jsx-no-duplicate-props': [
     'error',
     {
@@ -83,6 +92,7 @@ const webRules = {
     {
       allowReferrer: false,
       enforceDynamicLinks: 'always',
+      warnOnSpreadAttributes: true,
     },
   ],
   'react/jsx-no-undef': 'error',
