@@ -45,12 +45,18 @@ const webRules = {
   'react/jsx-handler-names': 'off',
   'react/jsx-indent': [
     'error',
+    2,
+    {
+      indentLogicalExpressions: true,
+    },
+  ],
+  'react/jsx-indent-props': [
+    'error',
     {
       ignoreTernaryOperator: false,
       indentMode: 2,
     },
   ],
-  'react/jsx-indent-props': ['error', 2],
   'react/jsx-key': [
     'error',
     {
