@@ -101,6 +101,7 @@ const typeCheckRules = {
     },
   ],
   '@typescript-eslint/restrict-template-expressions': 'error',
+  '@typescript-eslint/sort-type-union-intersection-members': 'off',
   '@typescript-eslint/strict-boolean-expressions': 'off',
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
   '@typescript-eslint/unbound-method': 'error',
