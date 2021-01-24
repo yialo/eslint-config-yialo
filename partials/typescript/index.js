@@ -21,7 +21,7 @@ module.exports = {
     ...regularExtenderTsRules,
     ...regularOwnTsRules,
   },
-  typeCheckTsRules: {
+  typeCheckOnlyTsRules: {
     ...typeCheckExtenderTsRules,
     ...typeCheckOwnTsRules,
   },
