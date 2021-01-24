@@ -1,7 +1,7 @@
 'use strict';
 
 const { nonTypeCheckTsExtensibleCoreRulesReset } = require('../partials/core');
-const { tsSettings: tsImportSettings } = require('../partials/import');
+const { tsImportSettings } = require('../partials/import');
 const { nonTypeCheckTsRules } = require('../partials/typescript');
 
 module.exports = {

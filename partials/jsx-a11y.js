@@ -1,6 +1,6 @@
 'use strict';
 
-const webRules = {
+const webJsxA11yRules = {
   'jsx-a11y/alt-text': [
     'error',
     {
@@ -117,5 +117,5 @@ const webRules = {
 };
 
 module.exports = {
-  webRules,
+  webJsxA11yRules,
 };

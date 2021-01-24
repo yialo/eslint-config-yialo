@@ -6,20 +6,17 @@ const {
   babelExtensibleCoreRules,
   tsExtensibleCoreRules,
 } = require('../partials/core');
-const {
-  baseRules: importRules,
-  baseSettings: importSettings,
-} = require('../partials/import');
-const { baseRules: promiseRules } = require('../partials/promise');
+const { baseImportRules, baseImportSettings } = require('../partials/import');
+const { basePromiseRules } = require('../partials/promise');
 const { tsRulesReset } = require('../partials/typescript');
 
-const mainRules = {
+const coreRules = {
   ...nonExtensibleCoreRules,
   ...babelExtensibleCoreRules,
   ...tsExtensibleCoreRules,
 };
 
-const disabledRules = {
+const extenderPluginRulesReset = {
   ...babelRulesReset,
   ...tsRulesReset,
 };
@@ -45,12 +42,12 @@ module.exports = {
   },
   reportUnusedDisableDirectives: true,
   rules: {
-    ...mainRules,
-    ...disabledRules,
-    ...importRules,
-    ...promiseRules,
+    ...coreRules,
+    ...extenderPluginRulesReset,
+    ...baseImportRules,
+    ...basePromiseRules,
   },
   settings: {
-    ...importSettings,
+    ...baseImportSettings,
   },
 };
