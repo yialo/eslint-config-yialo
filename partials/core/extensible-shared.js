@@ -2,7 +2,7 @@
 
 const { getDisabledRuleSet } = require('../utils');
 
-const sharedExtensibleRules = {
+const sharedExtensibleCoreRules = {
   'no-invalid-this': 'off',
   'no-unused-expressions': [
     'error',
@@ -16,9 +16,9 @@ const sharedExtensibleRules = {
   'semi': ['error', 'always'],
 };
 
-const sharedExtensibleRulesReset = getDisabledRuleSet(sharedExtensibleRules);
+const sharedExtensibleCoreRulesReset = getDisabledRuleSet(sharedExtensibleCoreRules);
 
 module.exports = {
-  sharedExtensibleRules,
-  sharedExtensibleRulesReset,
+  sharedExtensibleCoreRules,
+  sharedExtensibleCoreRulesReset,
 };
