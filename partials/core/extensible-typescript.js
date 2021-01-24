@@ -205,7 +205,7 @@ const tsNonTypeCheckExtensibleCoreRulesReset = {
 
 const tsTypeCheckExtensibleCoreRulesReset = getDisabledRuleSet(tsTypeCheckExtensibleCoreRules);
 
-const tsTypeCheckCompatibilityRules = {
+const tsTypeCheckCompatibilityExtensibleCoreRules = {
   /**
    * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
@@ -213,11 +213,13 @@ const tsTypeCheckCompatibilityRules = {
   'no-constant-condition': 'error',
 };
 
-const tsTypeCheckCompatibilityResetRules = getDisabledRuleSet(tsTypeCheckCompatibilityRules);
+const tsTypeCheckCompatibilityExtensibleCoreRulesReset = getDisabledRuleSet(
+  tsTypeCheckCompatibilityExtensibleCoreRules,
+);
 
 const tsTypeCheckOnlyResetRules = {
   ...tsTypeCheckExtensibleCoreRulesReset,
-  ...tsTypeCheckCompatibilityResetRules,
+  ...tsTypeCheckCompatibilityExtensibleCoreRulesReset,
 };
 
 const tsExtensibleRules = {
@@ -225,7 +227,7 @@ const tsExtensibleRules = {
   ...tsCompilerCompatibilityExtensibleCoreRules,
   ...tsRegularExtensibleCoreRules,
   ...tsTypeCheckExtensibleCoreRules,
-  ...tsTypeCheckCompatibilityRules,
+  ...tsTypeCheckCompatibilityExtensibleCoreRules,
 };
 
 module.exports = {
