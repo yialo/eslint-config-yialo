@@ -217,7 +217,7 @@ const tsTypeCheckCompatibilityExtensibleCoreRulesReset = getDisabledRuleSet(
   tsTypeCheckCompatibilityExtensibleCoreRules,
 );
 
-const tsTypeCheckOnlyResetRules = {
+const tsTypeCheckOnlyExtensibleCoreRulesReset = {
   ...tsTypeCheckExtensibleCoreRulesReset,
   ...tsTypeCheckCompatibilityExtensibleCoreRulesReset,
 };
@@ -233,5 +233,5 @@ const tsExtensibleRules = {
 module.exports = {
   tsExtensibleRules,
   tsNonTypeCheckExtensibleCoreRulesReset,
-  tsTypeCheckOnlyResetRules,
+  tsTypeCheckOnlyExtensibleCoreRulesReset,
 };
