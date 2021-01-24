@@ -2,7 +2,7 @@
 
 const { babelExtensibleCoreRules, babelExtensibleCoreRulesReset } = require('./extensible-babel');
 const {
-  tsExtensibleRules,
+  tsExtensibleCoreRules,
   tsNonTypeCheckExtensibleCoreRulesReset,
   tsTypeCheckOnlyExtensibleCoreRulesReset,
 } = require('./extensible-typescript');
@@ -12,7 +12,7 @@ module.exports = {
   nonExtensibleCoreRules,
   babelExtensibleCoreRules,
   babelExtensibleCoreRulesReset,
-  tsExtensibleRules,
+  tsExtensibleCoreRules,
   tsNonTypeCheckExtensibleCoreRulesReset,
   tsTypeCheckOnlyExtensibleCoreRulesReset,
 };

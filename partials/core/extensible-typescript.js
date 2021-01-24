@@ -222,7 +222,7 @@ const tsTypeCheckOnlyExtensibleCoreRulesReset = {
   ...tsTypeCheckCompatibilityExtensibleCoreRulesReset,
 };
 
-const tsExtensibleRules = {
+const tsExtensibleCoreRules = {
   ...sharedExtensibleCoreRules,
   ...tsCompilerCompatibilityExtensibleCoreRules,
   ...tsRegularExtensibleCoreRules,
@@ -231,7 +231,7 @@ const tsExtensibleRules = {
 };
 
 module.exports = {
-  tsExtensibleRules,
+  tsExtensibleCoreRules,
   tsNonTypeCheckExtensibleCoreRulesReset,
   tsTypeCheckOnlyExtensibleCoreRulesReset,
 };
