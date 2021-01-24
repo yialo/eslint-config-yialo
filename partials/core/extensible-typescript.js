@@ -184,7 +184,7 @@ const tsRegularExtensibleCoreRules = {
 
 const tsRegularExtensibleCoreRulesReset = getDisabledRuleSet(tsRegularExtensibleCoreRules);
 
-const tsTypeCheckExtensibleRules = {
+const tsTypeCheckExtensibleCoreRules = {
   'dot-notation': [
     'error',
     {
@@ -203,7 +203,7 @@ const tsNonTypeCheckResetRules = {
   ...tsRegularExtensibleCoreRulesReset,
 };
 
-const tsTypeCheckExtensibleResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
+const tsTypeCheckExtensibleCoreRulesReset = getDisabledRuleSet(tsTypeCheckExtensibleCoreRules);
 
 const tsTypeCheckCompatibilityRules = {
   /**
@@ -216,7 +216,7 @@ const tsTypeCheckCompatibilityRules = {
 const tsTypeCheckCompatibilityResetRules = getDisabledRuleSet(tsTypeCheckCompatibilityRules);
 
 const tsTypeCheckOnlyResetRules = {
-  ...tsTypeCheckExtensibleResetRules,
+  ...tsTypeCheckExtensibleCoreRulesReset,
   ...tsTypeCheckCompatibilityResetRules,
 };
 
@@ -224,7 +224,7 @@ const tsExtensibleRules = {
   ...sharedExtensibleCoreRules,
   ...tsCompilerCompatibilityExtensibleCoreRules,
   ...tsRegularExtensibleCoreRules,
-  ...tsTypeCheckExtensibleRules,
+  ...tsTypeCheckExtensibleCoreRules,
   ...tsTypeCheckCompatibilityRules,
 };
 
