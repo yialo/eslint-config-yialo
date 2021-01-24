@@ -7,7 +7,7 @@ const {
 } = require('../partials/import');
 const {
   nonExtensibleRules: nonExtensibleMainRules,
-  babelExtensibleRules: babelExtensibleMainRules,
+  babelExtensibleCoreRules,
   tsExtensibleRules: tsExtensibleMainRules,
 } = require('../partials/core');
 const { baseRules: promiseRules } = require('../partials/promise');
@@ -15,7 +15,7 @@ const { disabledRules: disabledTsRules } = require('../partials/typescript');
 
 const mainRules = {
   ...nonExtensibleMainRules,
-  ...babelExtensibleMainRules,
+  ...babelExtensibleCoreRules,
   ...tsExtensibleMainRules,
 };
 

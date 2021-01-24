@@ -1,14 +1,14 @@
 'use strict';
 
-const { babelExtensibleRules } = require('./core');
+const { babelExtensibleCoreRules } = require('./core');
 const { getDisabledRuleSet } = require('./utils');
 
 const enabledRules = {
-  '@babel/new-cap': babelExtensibleRules['new-cap'],
-  '@babel/no-invalid-this': babelExtensibleRules['no-invalid-this'],
-  '@babel/no-unused-expressions': babelExtensibleRules['no-unused-expressions'],
-  '@babel/object-curly-spacing': babelExtensibleRules['object-curly-spacing'],
-  '@babel/semi': babelExtensibleRules.semi,
+  '@babel/new-cap': babelExtensibleCoreRules['new-cap'],
+  '@babel/no-invalid-this': babelExtensibleCoreRules['no-invalid-this'],
+  '@babel/no-unused-expressions': babelExtensibleCoreRules['no-unused-expressions'],
+  '@babel/object-curly-spacing': babelExtensibleCoreRules['object-curly-spacing'],
+  '@babel/semi': babelExtensibleCoreRules.semi,
 };
 
 const disabledRules = getDisabledRuleSet(enabledRules);

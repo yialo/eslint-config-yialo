@@ -6,7 +6,7 @@ const {
   sharedExtensibleCoreRulesReset,
 } = require('./extensible-shared');
 
-const babelExtensibleRules = {
+const babelExtensibleCoreRules = {
   ...sharedExtensibleCoreRules,
   'new-cap': [
     'error',
@@ -17,12 +17,12 @@ const babelExtensibleRules = {
   ],
 };
 
-const babelResetRules = {
+const babelExtensibleCoreRulesReset = {
   ...sharedExtensibleCoreRulesReset,
-  ...getDisabledRuleSet(babelExtensibleRules),
+  ...getDisabledRuleSet(babelExtensibleCoreRules),
 };
 
 module.exports = {
-  babelExtensibleRules,
-  babelResetRules,
+  babelExtensibleCoreRules,
+  babelExtensibleCoreRulesReset,
 };
