@@ -2,7 +2,7 @@
 
 const { tsExtensibleCoreRules } = require('../core');
 
-const regularRules = {
+const regularExtenderTsRules = {
   '@typescript-eslint/brace-style': tsExtensibleCoreRules['brace-style'],
   '@typescript-eslint/comma-spacing': tsExtensibleCoreRules['comma-spacing'],
   // NOTE: ts(1016)
@@ -79,6 +79,6 @@ const typeCheckRules = {
 };
 
 module.exports = {
-  regularRules,
+  regularExtenderTsRules,
   typeCheckRules,
 };

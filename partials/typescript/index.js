@@ -3,7 +3,7 @@
 const { getDisabledRuleSet } = require('../utils');
 
 const {
-  regularRules: enabledExtendedRegularRules,
+  regularExtenderTsRules,
   typeCheckRules: enabledExtendedTypeCheckRules,
 } = require('./extended');
 const {
@@ -11,7 +11,7 @@ const {
   typeCheckRules: enabledOwnTypeCheckRules,
 } = require('./own');
 
-const disabledExtendedRegularRules = getDisabledRuleSet(enabledExtendedRegularRules);
+const disabledExtendedRegularRules = getDisabledRuleSet(regularExtenderTsRules);
 const disabledExtendedTypeCheckRules = getDisabledRuleSet(enabledExtendedTypeCheckRules);
 const disabledOwnRegularRules = getDisabledRuleSet(enabledOwnRegularRules);
 const disabledOwnTypeCheckRules = getDisabledRuleSet(enabledOwnTypeCheckRules);
@@ -24,7 +24,7 @@ module.exports = {
     ...disabledOwnTypeCheckRules,
   },
   enabledRegularRules: {
-    ...enabledExtendedRegularRules,
+    ...regularExtenderTsRules,
     ...enabledOwnRegularRules,
   },
   enabledTypeCheckRules: {
