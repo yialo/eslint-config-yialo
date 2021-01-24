@@ -57,7 +57,7 @@ const tsCompilerCompatibilityExtensibleCoreRulesReset = getDisabledRuleSet(
   tsCompilerCompatibilityExtensibleCoreRules,
 );
 
-const tsRegularExtensibleRules = {
+const tsRegularExtensibleCoreRules = {
   'brace-style': [
     'error',
     '1tbs',
@@ -182,7 +182,7 @@ const tsRegularExtensibleRules = {
   'space-infix-ops': 'error',
 };
 
-const tsRegularResetRules = getDisabledRuleSet(tsRegularExtensibleRules);
+const tsRegularExtensibleCoreRulesReset = getDisabledRuleSet(tsRegularExtensibleCoreRules);
 
 const tsTypeCheckExtensibleRules = {
   'dot-notation': [
@@ -200,7 +200,7 @@ const tsTypeCheckExtensibleRules = {
 const tsNonTypeCheckResetRules = {
   ...sharedExtensibleCoreRulesReset,
   ...tsCompilerCompatibilityExtensibleCoreRulesReset,
-  ...tsRegularResetRules,
+  ...tsRegularExtensibleCoreRulesReset,
 };
 
 const tsTypeCheckExtensibleResetRules = getDisabledRuleSet(tsTypeCheckExtensibleRules);
@@ -223,7 +223,7 @@ const tsTypeCheckOnlyResetRules = {
 const tsExtensibleRules = {
   ...sharedExtensibleCoreRules,
   ...tsCompilerCompatibilityExtensibleCoreRules,
-  ...tsRegularExtensibleRules,
+  ...tsRegularExtensibleCoreRules,
   ...tsTypeCheckExtensibleRules,
   ...tsTypeCheckCompatibilityRules,
 };
