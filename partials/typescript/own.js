@@ -1,6 +1,6 @@
 'use strict';
 
-const regularRules = {
+const regularOwnTsRules = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': 'off',
   '@typescript-eslint/ban-ts-comment': 'error',
@@ -108,6 +108,6 @@ const typeCheckRules = {
 };
 
 module.exports = {
-  regularRules,
+  regularOwnTsRules,
   typeCheckRules,
 };
