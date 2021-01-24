@@ -3,10 +3,7 @@
 const { getDisabledRuleSet } = require('../utils');
 
 const { regularExtenderTsRules, typeCheckExtenderTsRules } = require('./extended');
-const {
-  regularOwnTsRules,
-  typeCheckOwnTsRules,
-} = require('./own');
+const { regularOwnTsRules, typeCheckOwnTsRules } = require('./own');
 
 const disabledExtendedRegularRules = getDisabledRuleSet(regularExtenderTsRules);
 const disabledExtendedTypeCheckRules = getDisabledRuleSet(typeCheckExtenderTsRules);
