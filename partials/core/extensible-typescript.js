@@ -10,7 +10,7 @@ const {
  * NOTE: All diagnostic codes here:
  * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
  */
-const tsCompilerCompatibilityExtensibleCoreRules = {
+const compilerCompatibilityTsExtensibleCoreRules = {
   // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
   // NOTE: ts(2378)
@@ -53,11 +53,11 @@ const tsCompilerCompatibilityExtensibleCoreRules = {
   ],
 };
 
-const tsCompilerCompatibilityExtensibleCoreRulesReset = getDisabledRuleSet(
-  tsCompilerCompatibilityExtensibleCoreRules,
+const compilerCompatibilityTsExtensibleCoreRulesReset = getDisabledRuleSet(
+  compilerCompatibilityTsExtensibleCoreRules,
 );
 
-const tsRegularExtensibleCoreRules = {
+const regularTsExtensibleCoreRules = {
   'brace-style': [
     'error',
     '1tbs',
@@ -182,9 +182,9 @@ const tsRegularExtensibleCoreRules = {
   'space-infix-ops': 'error',
 };
 
-const tsRegularExtensibleCoreRulesReset = getDisabledRuleSet(tsRegularExtensibleCoreRules);
+const regularTsExtensibleCoreRulesReset = getDisabledRuleSet(regularTsExtensibleCoreRules);
 
-const tsTypeCheckExtensibleCoreRules = {
+const typeCheckTsExtensibleCoreRules = {
   'dot-notation': [
     'error',
     {
@@ -199,13 +199,13 @@ const tsTypeCheckExtensibleCoreRules = {
 
 const nonTypeCheckTsExtensibleCoreRulesReset = {
   ...sharedExtensibleCoreRulesReset,
-  ...tsCompilerCompatibilityExtensibleCoreRulesReset,
-  ...tsRegularExtensibleCoreRulesReset,
+  ...compilerCompatibilityTsExtensibleCoreRulesReset,
+  ...regularTsExtensibleCoreRulesReset,
 };
 
-const tsTypeCheckExtensibleCoreRulesReset = getDisabledRuleSet(tsTypeCheckExtensibleCoreRules);
+const typeCheckTsExtensibleCoreRulesReset = getDisabledRuleSet(typeCheckTsExtensibleCoreRules);
 
-const tsTypeCheckCompatibilityExtensibleCoreRules = {
+const typeCheckCompatibilityTsExtensibleCoreRules = {
   /**
    * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
@@ -213,21 +213,21 @@ const tsTypeCheckCompatibilityExtensibleCoreRules = {
   'no-constant-condition': 'error',
 };
 
-const tsTypeCheckCompatibilityExtensibleCoreRulesReset = getDisabledRuleSet(
-  tsTypeCheckCompatibilityExtensibleCoreRules,
+const typeCheckCompatibilityTsExtensibleCoreRulesReset = getDisabledRuleSet(
+  typeCheckCompatibilityTsExtensibleCoreRules,
 );
 
 const typeCheckOnlyTsExtensibleCoreRulesReset = {
-  ...tsTypeCheckExtensibleCoreRulesReset,
-  ...tsTypeCheckCompatibilityExtensibleCoreRulesReset,
+  ...typeCheckTsExtensibleCoreRulesReset,
+  ...typeCheckCompatibilityTsExtensibleCoreRulesReset,
 };
 
 const tsExtensibleCoreRules = {
   ...sharedExtensibleCoreRules,
-  ...tsCompilerCompatibilityExtensibleCoreRules,
-  ...tsRegularExtensibleCoreRules,
-  ...tsTypeCheckExtensibleCoreRules,
-  ...tsTypeCheckCompatibilityExtensibleCoreRules,
+  ...compilerCompatibilityTsExtensibleCoreRules,
+  ...regularTsExtensibleCoreRules,
+  ...typeCheckTsExtensibleCoreRules,
+  ...typeCheckCompatibilityTsExtensibleCoreRules,
 };
 
 module.exports = {
