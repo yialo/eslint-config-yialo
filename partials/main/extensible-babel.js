@@ -12,7 +12,6 @@ const babelExtensibleRules = {
       newIsCap: true,
     },
   ],
-  'object-curly-spacing': ['error', 'always'],
 };
 
 const babelResetRules = {

@@ -12,6 +12,7 @@ const commonExtensibleRules = {
       allowTernary: false,
     },
   ],
+  'object-curly-spacing': ['error', 'always'],
   'semi': ['error', 'always'],
 };
 

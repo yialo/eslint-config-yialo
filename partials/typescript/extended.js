@@ -69,6 +69,7 @@ const typeCheckRules = {
   ],
   '@typescript-eslint/no-implied-eval': tsExtensibleRules['no-implied-eval'],
   '@typescript-eslint/no-throw-literal': tsExtensibleRules['no-throw-literal'],
+  '@typescript-eslint/object-curly-spacing': tsExtensibleRules['object-curly-spacing'],
   '@typescript-eslint/require-await': tsExtensibleRules['require-await'],
   // NOTE: different name: 'no-return-await' -> 'return-await'
   '@typescript-eslint/return-await': [
