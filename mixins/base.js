@@ -2,14 +2,14 @@
 
 const { disabledRules: disabledBabelRules } = require('../partials/babel');
 const {
-  baseRules: importRules,
-  baseSettings: importSettings,
-} = require('../partials/import');
-const {
   nonExtensibleCoreRules,
   babelExtensibleCoreRules,
   tsExtensibleCoreRules,
 } = require('../partials/core');
+const {
+  baseRules: importRules,
+  baseSettings: importSettings,
+} = require('../partials/import');
 const { baseRules: promiseRules } = require('../partials/promise');
 const { tsRulesReset } = require('../partials/typescript');
 
