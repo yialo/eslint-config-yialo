@@ -1,6 +1,6 @@
 'use strict';
 
-const nonExtensibleRules = {
+const nonExtensibleCoreRules = {
   'accessor-pairs': 'off',
   'array-bracket-newline': ['error', 'consistent'],
   'array-bracket-spacing': ['error', 'never'],
@@ -616,5 +616,5 @@ const nonExtensibleRules = {
 };
 
 module.exports = {
-  nonExtensibleRules,
+  nonExtensibleCoreRules,
 };

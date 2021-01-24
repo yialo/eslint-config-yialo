@@ -1,15 +1,9 @@
 'use strict';
 
-const {
-  webRules: webImportRules,
-  webSettings: webImportSettings,
-} = require('../partials/import');
-const { webRules: jsxA11yRules } = require('../partials/jsx-a11y');
-const {
-  webRules: reactRules,
-  webSettings: reactSettings,
-} = require('../partials/react');
-const { webRules: reactHooksRules } = require('../partials/react-hooks');
+const { webImportRules, webImportSettings } = require('../partials/import');
+const { webJsxA11yRules } = require('../partials/jsx-a11y');
+const { webReactRules, webReactSettings } = require('../partials/react');
+const { webReactHooksRules } = require('../partials/react-hooks');
 
 module.exports = {
   env: {
@@ -23,12 +17,12 @@ module.exports = {
   },
   rules: {
     ...webImportRules,
-    ...jsxA11yRules,
-    ...reactRules,
-    ...reactHooksRules,
+    ...webJsxA11yRules,
+    ...webReactRules,
+    ...webReactHooksRules,
   },
   settings: {
     ...webImportSettings,
-    ...reactSettings,
+    ...webReactSettings,
   },
 };

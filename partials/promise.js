@@ -1,6 +1,6 @@
 'use strict';
 
-const baseRules = {
+const basePromiseRules = {
   'promise/always-return': 'off',
   'promise/avoid-new': 'off',
   'promise/catch-or-return': 'off',
@@ -18,5 +18,5 @@ const baseRules = {
 };
 
 module.exports = {
-  baseRules,
+  basePromiseRules,
 };
