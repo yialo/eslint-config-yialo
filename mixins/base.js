@@ -1,6 +1,6 @@
 'use strict';
 
-const { disabledRules: disabledBabelRules } = require('../partials/babel');
+const { babelRulesReset } = require('../partials/babel');
 const {
   nonExtensibleCoreRules,
   babelExtensibleCoreRules,
@@ -20,7 +20,7 @@ const mainRules = {
 };
 
 const disabledRules = {
-  ...disabledBabelRules,
+  ...babelRulesReset,
   ...tsRulesReset,
 };
 
