@@ -3,7 +3,7 @@
 const { tsSettings: tsImportSettings } = require('../partials/import');
 
 const { tsNonTypeCheckExtensibleCoreRulesReset } = require('../partials/core');
-const { enabledRegularRules: enabledRegularTsRules } = require('../partials/typescript');
+const { nonTypeCheckTsRules } = require('../partials/typescript');
 
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -12,7 +12,7 @@ module.exports = {
   },
   rules: {
     ...tsNonTypeCheckExtensibleCoreRulesReset,
-    ...enabledRegularTsRules,
+    ...nonTypeCheckTsRules,
   },
   settings: {
     ...tsImportSettings,

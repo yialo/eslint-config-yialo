@@ -5,23 +5,23 @@ const { getDisabledRuleSet } = require('../utils');
 const { regularExtenderTsRules, typeCheckExtenderTsRules } = require('./extended');
 const { regularOwnTsRules, typeCheckOwnTsRules } = require('./own');
 
-const disabledExtendedRegularRules = getDisabledRuleSet(regularExtenderTsRules);
-const disabledExtendedTypeCheckRules = getDisabledRuleSet(typeCheckExtenderTsRules);
-const disabledOwnRegularRules = getDisabledRuleSet(regularOwnTsRules);
-const disabledOwnTypeCheckRules = getDisabledRuleSet(typeCheckOwnTsRules);
+const regularExtenderTsRulesReset = getDisabledRuleSet(regularExtenderTsRules);
+const typeCheckExtenderTsRulesReset = getDisabledRuleSet(typeCheckExtenderTsRules);
+const regularOwnTsRulesReset = getDisabledRuleSet(regularOwnTsRules);
+const typeCheckOwnTsRulesReset = getDisabledRuleSet(typeCheckOwnTsRules);
 
 module.exports = {
-  disabledRules: {
-    ...disabledExtendedRegularRules,
-    ...disabledExtendedTypeCheckRules,
-    ...disabledOwnRegularRules,
-    ...disabledOwnTypeCheckRules,
+  tsRulesReset: {
+    ...regularExtenderTsRulesReset,
+    ...typeCheckExtenderTsRulesReset,
+    ...regularOwnTsRulesReset,
+    ...typeCheckOwnTsRulesReset,
   },
-  enabledRegularRules: {
+  nonTypeCheckTsRules: {
     ...regularExtenderTsRules,
     ...regularOwnTsRules,
   },
-  enabledTypeCheckRules: {
+  typeCheckTsRules: {
     ...typeCheckExtenderTsRules,
     ...typeCheckOwnTsRules,
   },

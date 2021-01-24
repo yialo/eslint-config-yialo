@@ -11,7 +11,7 @@ const {
   tsExtensibleCoreRules,
 } = require('../partials/core');
 const { baseRules: promiseRules } = require('../partials/promise');
-const { disabledRules: disabledTsRules } = require('../partials/typescript');
+const { tsRulesReset } = require('../partials/typescript');
 
 const mainRules = {
   ...nonExtensibleCoreRules,
@@ -21,7 +21,7 @@ const mainRules = {
 
 const disabledRules = {
   ...disabledBabelRules,
-  ...disabledTsRules,
+  ...tsRulesReset,
 };
 
 module.exports = {
