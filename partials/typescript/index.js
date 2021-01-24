@@ -4,7 +4,7 @@ const { getDisabledRuleSet } = require('../utils');
 
 const {
   regularExtenderTsRules,
-  typeCheckExtenderTsRules
+  typeCheckExtenderTsRules,
 } = require('./extended');
 const {
   regularRules: enabledOwnRegularRules,
