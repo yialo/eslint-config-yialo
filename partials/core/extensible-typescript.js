@@ -10,7 +10,7 @@ const {
  * NOTE: All diagnostic codes here:
  * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
  */
-const tsCompilerCompatibilityRules = {
+const tsCompilerCompatibilityExtensibleCoreRules = {
   // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
   // NOTE: ts(2378)
@@ -53,7 +53,9 @@ const tsCompilerCompatibilityRules = {
   ],
 };
 
-const tsCompilerCompatibilityResetRules = getDisabledRuleSet(tsCompilerCompatibilityRules);
+const tsCompilerCompatibilityResetRules = getDisabledRuleSet(
+  tsCompilerCompatibilityExtensibleCoreRules,
+);
 
 const tsRegularExtensibleRules = {
   'brace-style': [
@@ -220,7 +222,7 @@ const tsTypeCheckOnlyResetRules = {
 
 const tsExtensibleRules = {
   ...sharedExtensibleCoreRules,
-  ...tsCompilerCompatibilityRules,
+  ...tsCompilerCompatibilityExtensibleCoreRules,
   ...tsRegularExtensibleRules,
   ...tsTypeCheckExtensibleRules,
   ...tsTypeCheckCompatibilityRules,
