@@ -1,7 +1,7 @@
 'use strict';
 
 const { getDisabledRuleSet } = require('../utils');
-const { commonExtensibleRules, commonResetRules } = require('./extensible-common');
+const { sharedExtensibleRules, sharedExtensibleRulesReset } = require('./extensible-shared');
 
 /**
  * NOTE: All diagnostic codes here:
@@ -193,7 +193,7 @@ const tsTypeCheckExtensibleRules = {
 };
 
 const tsNonTypeCheckResetRules = {
-  ...commonResetRules,
+  ...sharedExtensibleRulesReset,
   ...tsCompilerCompatibilityResetRules,
   ...tsRegularResetRules,
 };
@@ -216,7 +216,7 @@ const tsTypeCheckOnlyResetRules = {
 };
 
 const tsExtensibleRules = {
-  ...commonExtensibleRules,
+  ...sharedExtensibleRules,
   ...tsCompilerCompatibilityRules,
   ...tsRegularExtensibleRules,
   ...tsTypeCheckExtensibleRules,

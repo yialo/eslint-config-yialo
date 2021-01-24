@@ -1,10 +1,10 @@
 'use strict';
 
 const { getDisabledRuleSet } = require('../utils');
-const { commonExtensibleRules, commonResetRules } = require('./extensible-common');
+const { sharedExtensibleRules, sharedExtensibleRulesReset } = require('./extensible-shared');
 
 const babelExtensibleRules = {
-  ...commonExtensibleRules,
+  ...sharedExtensibleRules,
   'new-cap': [
     'error',
     {
@@ -15,7 +15,7 @@ const babelExtensibleRules = {
 };
 
 const babelResetRules = {
-  ...commonResetRules,
+  ...sharedExtensibleRulesReset,
   ...getDisabledRuleSet(babelExtensibleRules),
 };
 

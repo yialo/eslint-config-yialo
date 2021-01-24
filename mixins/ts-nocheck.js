@@ -2,7 +2,7 @@
 
 const { tsSettings: tsImportSettings } = require('../partials/import');
 
-const { tsNonTypeCheckResetRules: tsNonTypeCheckResetMainRules } = require('../partials/main');
+const { tsNonTypeCheckResetRules: tsNonTypeCheckResetMainRules } = require('../partials/core');
 const { enabledRegularRules: enabledRegularTsRules } = require('../partials/typescript');
 
 module.exports = {

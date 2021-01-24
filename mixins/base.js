@@ -9,7 +9,7 @@ const {
   nonExtensibleRules: nonExtensibleMainRules,
   babelExtensibleRules: babelExtensibleMainRules,
   tsExtensibleRules: tsExtensibleMainRules,
-} = require('../partials/main');
+} = require('../partials/core');
 const { baseRules: promiseRules } = require('../partials/promise');
 const { disabledRules: disabledTsRules } = require('../partials/typescript');
 

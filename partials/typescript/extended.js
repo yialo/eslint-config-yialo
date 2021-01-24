@@ -1,6 +1,6 @@
 'use strict';
 
-const { tsExtensibleRules } = require('../main');
+const { tsExtensibleRules } = require('../core');
 
 const regularRules = {
   '@typescript-eslint/brace-style': tsExtensibleRules['brace-style'],

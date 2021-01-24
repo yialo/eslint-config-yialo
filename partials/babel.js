@@ -1,6 +1,6 @@
 'use strict';
 
-const { babelExtensibleRules } = require('./main');
+const { babelExtensibleRules } = require('./core');
 const { getDisabledRuleSet } = require('./utils');
 
 const enabledRules = {
