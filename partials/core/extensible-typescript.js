@@ -53,7 +53,7 @@ const tsCompilerCompatibilityExtensibleCoreRules = {
   ],
 };
 
-const tsCompilerCompatibilityResetRules = getDisabledRuleSet(
+const tsCompilerCompatibilityExtensibleCoreRulesReset = getDisabledRuleSet(
   tsCompilerCompatibilityExtensibleCoreRules,
 );
 
@@ -199,7 +199,7 @@ const tsTypeCheckExtensibleRules = {
 
 const tsNonTypeCheckResetRules = {
   ...sharedExtensibleCoreRulesReset,
-  ...tsCompilerCompatibilityResetRules,
+  ...tsCompilerCompatibilityExtensibleCoreRulesReset,
   ...tsRegularResetRules,
 };
 
