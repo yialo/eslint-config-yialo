@@ -6,10 +6,10 @@ const {
   tsNonTypeCheckResetRules,
   tsTypeCheckOnlyResetRules,
 } = require('./extensible-typescript');
-const { nonExtensibleRules } = require('./non-extensible');
+const { nonExtensibleCoreRules } = require('./non-extensible');
 
 module.exports = {
-  nonExtensibleRules,
+  nonExtensibleCoreRules,
   babelExtensibleCoreRules,
   babelExtensibleCoreRulesReset,
   tsExtensibleRules,
