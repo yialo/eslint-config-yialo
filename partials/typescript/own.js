@@ -62,7 +62,7 @@ const regularOwnTsRules = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-const typeCheckRules = {
+const typeCheckOwnTsRules = {
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
@@ -109,5 +109,5 @@ const typeCheckRules = {
 
 module.exports = {
   regularOwnTsRules,
-  typeCheckRules,
+  typeCheckOwnTsRules,
 };
