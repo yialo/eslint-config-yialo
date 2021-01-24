@@ -197,7 +197,7 @@ const tsTypeCheckExtensibleCoreRules = {
   'no-return-await': 'error',
 };
 
-const tsNonTypeCheckExtensibleCoreRulesReset = {
+const nonTypeCheckTsExtensibleCoreRulesReset = {
   ...sharedExtensibleCoreRulesReset,
   ...tsCompilerCompatibilityExtensibleCoreRulesReset,
   ...tsRegularExtensibleCoreRulesReset,
@@ -232,6 +232,6 @@ const tsExtensibleCoreRules = {
 
 module.exports = {
   tsExtensibleCoreRules,
-  tsNonTypeCheckExtensibleCoreRulesReset,
+  nonTypeCheckTsExtensibleCoreRulesReset,
   typeCheckOnlyTsExtensibleCoreRulesReset,
 };
