@@ -59,7 +59,7 @@ const regularExtenderTsRules = {
   '@typescript-eslint/space-infix-ops': tsExtensibleCoreRules['space-infix-ops'],
 };
 
-const typeCheckRules = {
+const typeCheckExtenderTsRules = {
   '@typescript-eslint/dot-notation': [
     tsExtensibleCoreRules['dot-notation'][0],
     {
@@ -80,5 +80,5 @@ const typeCheckRules = {
 
 module.exports = {
   regularExtenderTsRules,
-  typeCheckRules,
+  typeCheckExtenderTsRules,
 };
