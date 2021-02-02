@@ -522,7 +522,7 @@ const nonExtensibleCoreRules = {
     'error',
     {
       AssignmentExpression: {
-        array: true,
+        array: false,
         object: true,
       },
       VariableDeclarator: {
