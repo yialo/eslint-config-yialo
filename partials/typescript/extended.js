@@ -9,7 +9,7 @@ const regularExtenderTsRules = {
   '@typescript-eslint/default-param-last': 'off',
   '@typescript-eslint/func-call-spacing': tsExtensibleCoreRules['func-call-spacing'],
   /**
-   * NOTE: rule can produce issues in some cases
+   * NOTE: rule may produce issues in some cases
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md}
    */
   '@typescript-eslint/indent': tsExtensibleCoreRules.indent,
@@ -47,7 +47,7 @@ const regularExtenderTsRules = {
   '@typescript-eslint/no-unused-expressions': tsExtensibleCoreRules['no-unused-expressions'],
   '@typescript-eslint/no-unused-vars': tsExtensibleCoreRules['no-unused-vars'],
   /**
-   * NOTE: rule can produce issues in some cases
+   * NOTE: rule may produce issues in some cases
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
    */
   '@typescript-eslint/no-use-before-define': tsExtensibleCoreRules['no-use-before-define'],
