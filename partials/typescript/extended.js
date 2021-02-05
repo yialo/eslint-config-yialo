@@ -65,6 +65,7 @@ const typeCheckExtenderTsRules = {
     {
       ...tsExtensibleCoreRules['dot-notation'][1],
       allowPrivateClassPropertyAccess: false,
+      allowProtectedClassPropertyAccess: false,
     },
   ],
   '@typescript-eslint/no-implied-eval': tsExtensibleCoreRules['no-implied-eval'],
