@@ -33,16 +33,6 @@ const nonExtensibleCoreRules = {
   ],
   'capitalized-comments': 'off',
   'class-methods-use-this': 'off',
-  'comma-dangle': [
-    'error',
-    {
-      arrays: 'always-multiline',
-      exports: 'always-multiline',
-      functions: 'always-multiline',
-      imports: 'always-multiline',
-      objects: 'always-multiline',
-    },
-  ],
   'comma-style': [
     'error',
     'last',
@@ -210,7 +200,6 @@ const nonExtensibleCoreRules = {
   ],
   'no-lone-blocks': 'error',
   'no-lonely-if': 'error',
-  'no-loop-func': 'error',
   'no-misleading-character-class': 'error',
   'no-mixed-operators': [
     'error',
