@@ -4,6 +4,15 @@ const { tsExtensibleCoreRules } = require('../core');
 
 const regularExtenderTsRules = {
   '@typescript-eslint/brace-style': tsExtensibleCoreRules['brace-style'],
+  '@typescript-eslint/comma-dangle': [
+    tsExtensibleCoreRules['comma-dangle'][0],
+    {
+      ...tsExtensibleCoreRules['comma-dangle'][1],
+      enums: 'always-multiline',
+      generics: 'always-multiline',
+      tuples: 'always-multiline',
+    },
+  ],
   '@typescript-eslint/comma-spacing': tsExtensibleCoreRules['comma-spacing'],
   // NOTE: ts(1016)
   '@typescript-eslint/default-param-last': 'off',
@@ -39,6 +48,7 @@ const regularExtenderTsRules = {
   '@typescript-eslint/no-extra-parens': tsExtensibleCoreRules['no-extra-parens'],
   '@typescript-eslint/no-extra-semi': tsExtensibleCoreRules['no-extra-semi'],
   '@typescript-eslint/no-invalid-this': tsExtensibleCoreRules['no-invalid-this'],
+  '@typescript-eslint/no-loop-func': tsExtensibleCoreRules['no-loop-func'],
   '@typescript-eslint/no-loss-of-precision': tsExtensibleCoreRules['no-loss-of-precision'],
   '@typescript-eslint/no-magic-numbers': tsExtensibleCoreRules['no-magic-numbers'],
   // NOTE: ts(2451)

@@ -10,6 +10,7 @@ const sharedExtensibleCoreRules = {
       allowShortCircuit: false,
       allowTaggedTemplates: false,
       allowTernary: false,
+      enforceForJSX: true,
     },
   ],
   'object-curly-spacing': ['error', 'always'],

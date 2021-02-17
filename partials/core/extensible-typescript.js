@@ -65,6 +65,16 @@ const regularTsExtensibleCoreRules = {
       allowSingleLine: false,
     },
   ],
+  'comma-dangle': [
+    'error',
+    {
+      arrays: 'always-multiline',
+      exports: 'always-multiline',
+      functions: 'always-multiline',
+      imports: 'always-multiline',
+      objects: 'always-multiline',
+    },
+  ],
   'comma-spacing': [
     'error',
     {
@@ -142,6 +152,7 @@ const regularTsExtensibleCoreRules = {
   ],
   'no-extra-parens': 'off',
   'no-extra-semi': 'error',
+  'no-loop-func': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
   // NOTE: ts(2451)
