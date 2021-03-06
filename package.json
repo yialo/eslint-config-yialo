@@ -11,8 +11,8 @@
   "dependencies": {
     "@babel/eslint-parser": "7.13.8",
     "@babel/eslint-plugin": "7.13.0",
-    "@typescript-eslint/eslint-plugin": "4.15.2",
-    "@typescript-eslint/parser": "4.15.2",
+    "@typescript-eslint/eslint-plugin": "4.16.1",
+    "@typescript-eslint/parser": "4.16.1",
     "eslint": "7.21.0",
     "eslint-import-resolver-webpack": "0.13.0",
     "eslint-plugin-import": "2.22.1",
@@ -44,7 +44,7 @@
   "main": "preset-base.js",
   "peerDependencies": {
     "@babel/core": "^7.13.8",
-    "typescript": "~4.1.5"
+    "typescript": "^4.2.3"
   },
   "repository": {
     "type": "git",

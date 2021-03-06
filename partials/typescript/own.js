@@ -21,6 +21,7 @@ const regularOwnTsRules = {
         delimiter: 'semi',
         requireLast: true,
       },
+      multilineDetection: 'brackets',
       singleline: {
         delimiter: 'semi',
         requireLast: false,
