@@ -5,6 +5,6 @@ module.exports = {
     './mixins/base.js',
     './mixins/web.js',
     './mixins/babel.js',
-    './mixins/jest.js',
+    './mixins/jest-base.js',
   ],
 };
