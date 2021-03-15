@@ -1,12 +1,12 @@
 'use strict';
 
-const { jestRules } = require('../partials/jest');
+const { baseJestRules } = require('../partials/jest');
 
 module.exports = {
   env: {
     jest: true,
   },
   rules: {
-    ...jestRules,
+    ...baseJestRules,
   },
 };
