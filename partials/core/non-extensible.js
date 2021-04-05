@@ -397,7 +397,12 @@ const nonExtensibleCoreRules = {
     },
   ],
   'no-self-compare': 'error',
-  'no-sequences': 'error',
+  'no-sequences': [
+    'error',
+    {
+      allowInParentheses: true,
+    },
+  ],
   'no-shadow-restricted-names': 'error',
   'no-sparse-arrays': 'error',
   'no-tabs': 'error',
