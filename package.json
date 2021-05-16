@@ -9,7 +9,7 @@
     "url": "https://github.com/yialo/eslint-config-yialo/issues"
   },
   "dependencies": {
-    "@babel/eslint-parser": "7.13.14",
+    "@babel/eslint-parser": "7.14.2",
     "@babel/eslint-plugin": "7.13.16",
     "@typescript-eslint/eslint-plugin": "4.22.1",
     "@typescript-eslint/parser": "4.22.1",
@@ -43,7 +43,7 @@
   "license": "MIT",
   "main": "preset-base.js",
   "peerDependencies": {
-    "@babel/core": "^7.14.0",
+    "@babel/core": "^7.14.2",
     "typescript": "^4.2.4"
   },
   "repository": {
