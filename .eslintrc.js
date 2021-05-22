@@ -787,7 +787,7 @@ module.exports = {
     'import/dynamic-import-chunkname': 'off',
     'import/export': 'error',
     'import/exports-last': 'off',
-    'import/extensions': ['error', 'ignorePackages'],
+    'import/extensions': 'off',
     'import/first': 'error',
     'import/group-exports': 'off',
     'import/max-dependencies': 'off',
