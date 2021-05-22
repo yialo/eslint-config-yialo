@@ -13,7 +13,7 @@ const regularOwnTsRules = {
   '@typescript-eslint/consistent-type-imports': 'off',
   '@typescript-eslint/explicit-function-return-type': 'off',
   '@typescript-eslint/explicit-member-accessibility': 'off',
-  '@typescript-eslint/explicit-module-boundary-types': 'warn',
+  '@typescript-eslint/explicit-module-boundary-types': 'off',
   '@typescript-eslint/member-delimiter-style': [
     'error',
     {
