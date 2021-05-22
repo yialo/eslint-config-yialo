@@ -74,6 +74,7 @@ const typeCheckExtenderTsRules = {
     tsExtensibleCoreRules['dot-notation'][0],
     {
       ...tsExtensibleCoreRules['dot-notation'][1],
+      allowIndexSignaturePropertyAccess: false,
       allowPrivateClassPropertyAccess: false,
       allowProtectedClassPropertyAccess: false,
     },
