@@ -93,6 +93,15 @@ const webImportRules = {
   ],
 };
 
+const jestImportRules = {
+  'import/no-extraneous-dependencies': [
+    'error',
+    {
+      devDependencies: true,
+    },
+  ],
+};
+
 const baseImportSettings = {
   'import/extensions': [
     '.js',
@@ -128,6 +137,7 @@ const webImportSettings = {
 module.exports = {
   baseImportRules,
   baseImportSettings,
+  jestImportRules,
   nodeImportRules,
   tsImportSettings,
   webImportRules,
