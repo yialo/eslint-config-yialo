@@ -2,12 +2,11 @@
 
 module.exports = {
   env: {
-    es6: true,
+    es2021: true,
     node: true,
   },
   parser: 'espree',
   parserOptions: {
-    ecmaVersion: 2020,
     sourceType: 'script',
   },
   plugins: [
