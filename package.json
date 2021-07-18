@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-yialo",
-  "version": "0.5.32",
+  "version": "0.5.33",
   "scripts": {
     "test": "eslint ./**/*.js"
   },
