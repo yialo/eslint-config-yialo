@@ -4,6 +4,7 @@ const baseJestRules = {
   'jest/consistent-test-it': 'off',
   'jest/expect-expect': 'error',
   'jest/lowercase-name': 'off',
+  'jest/max-nested-describe': 'off',
   'jest/no-alias-methods': 'off',
   'jest/no-commented-out-tests': 'error',
   'jest/no-conditional-expect': 'error',
