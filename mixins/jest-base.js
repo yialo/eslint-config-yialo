@@ -1,5 +1,6 @@
 'use strict';
 
+const { jestImportRules } = require('../partials/import');
 const { baseJestRules } = require('../partials/jest');
 
 module.exports = {
@@ -8,5 +9,6 @@ module.exports = {
   },
   rules: {
     ...baseJestRules,
+    ...jestImportRules,
   },
 };

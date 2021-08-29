@@ -55,6 +55,10 @@ const baseImportRules = {
   'import/unambiguous': 'off',
 };
 
+const nextImportRules = {
+
+};
+
 const nodeImportRules = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
@@ -65,6 +69,18 @@ const nodeImportRules = {
       amd: false,
       caseSensitive: true,
       commonjs: true,
+    },
+  ],
+};
+
+const jestImportRules = {
+  'import/no-extraneous-dependencies': [
+    'error',
+    {
+      bundledDependencies: false,
+      devDependencies: true,
+      optionalDependencies: false,
+      peerDependencies: false,
     },
   ],
 };
@@ -94,15 +110,6 @@ const webImportRules = {
       amd: false,
       caseSensitive: true,
       commonjs: false,
-    },
-  ],
-};
-
-const jestImportRules = {
-  'import/no-extraneous-dependencies': [
-    'error',
-    {
-      devDependencies: true,
     },
   ],
 };
@@ -143,6 +150,7 @@ module.exports = {
   baseImportRules,
   baseImportSettings,
   jestImportRules,
+  nextImportRules,
   nodeImportRules,
   tsImportSettings,
   webImportRules,
