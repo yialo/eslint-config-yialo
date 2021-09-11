@@ -27,19 +27,7 @@
   "description": "Yialo's ESLint configuration",
   "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
   "keywords": [
-    "babel",
-    "eslint",
-    "javascript",
-    "jest",
-    "jsx",
-    "linter",
-    "nextjs",
-    "node",
-    "promise",
-    "react",
-    "tsx",
-    "typescript",
-    "webpack"
+    "eslint"
   ],
   "license": "MIT",
   "main": "preset-base.js",
