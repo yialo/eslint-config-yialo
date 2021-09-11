@@ -1,6 +1,6 @@
 'use strict';
 
-const baseJestRules = {
+const jestRules_BASE = {
   'jest/consistent-test-it': 'off',
   'jest/expect-expect': 'error',
   'jest/lowercase-name': 'off',
@@ -44,11 +44,11 @@ const baseJestRules = {
   'jest/valid-title': 'error',
 };
 
-const tsCheckJestRules = {
+const jestRules_tsCheck = {
   'jest/unbound-method': 'error',
 };
 
 module.exports = {
-  baseJestRules,
-  tsCheckJestRules,
+  jestRules_BASE,
+  jestRules_tsCheck,
 };

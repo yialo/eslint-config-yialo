@@ -1,10 +1,10 @@
 'use strict';
 
-const webReactHooksRules = {
+const reactHooksRules = {
   'react-hooks/exhaustive-deps': 'warn',
   'react-hooks/rules-of-hooks': 'error',
 };
 
 module.exports = {
-  webReactHooksRules,
+  reactHooksRules,
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const baseImportRules = {
+const importRules_BASE = {
   'import/default': 'error',
   'import/dynamic-import-chunkname': 'off',
   'import/export': 'error',
@@ -19,7 +19,6 @@ const baseImportRules = {
   'import/newline-after-import': 'error',
   'import/no-absolute-path': 'error',
   'import/no-amd': 'error',
-  'import/no-anonymous-default-export': 'off',
   'import/no-cycle': 'error',
   'import/no-default-export': 'off',
   'import/no-deprecated': 'error',
@@ -53,13 +52,26 @@ const baseImportRules = {
   'import/order': 'off',
   'import/prefer-default-export': 'off',
   'import/unambiguous': 'off',
+
+  'import/no-anonymous-default-export': 'off',
+  'import/no-commonjs': 'off',
+  'import/no-extraneous-dependencies': 'off',
+  'import/no-nodejs-modules': 'off',
+  'import/no-unresolved': [
+    'error',
+    {
+      amd: false,
+      caseSensitive: true,
+      commonjs: false,
+    },
+  ],
 };
 
-const nextImportRules = {
-
+const importRules_next = {
+  'import/no-anonymous-default-export': 'warn',
 };
 
-const nodeImportRules = {
+const importRules_node = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
   'import/no-nodejs-modules': 'off',
@@ -73,7 +85,7 @@ const nodeImportRules = {
   ],
 };
 
-const jestImportRules = {
+const importRules_jest = {
   'import/no-extraneous-dependencies': [
     'error',
     {
@@ -85,7 +97,7 @@ const jestImportRules = {
   ],
 };
 
-const webImportRules = {
+const importRules_browser = {
   'import/no-commonjs': [
     'error',
     {
@@ -114,7 +126,7 @@ const webImportRules = {
   ],
 };
 
-const baseImportSettings = {
+const importSettings_BASE = {
   'import/extensions': [
     '.js',
   ],
@@ -123,7 +135,7 @@ const baseImportSettings = {
   ],
 };
 
-const tsImportSettings = {
+const importSettings_ts = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -139,7 +151,7 @@ const tsImportSettings = {
   },
 };
 
-const webImportSettings = {
+const importSettings_browser = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -147,12 +159,12 @@ const webImportSettings = {
 };
 
 module.exports = {
-  baseImportRules,
-  baseImportSettings,
-  jestImportRules,
-  nextImportRules,
-  nodeImportRules,
-  tsImportSettings,
-  webImportRules,
-  webImportSettings,
+  importRules_BASE,
+  importRules_browser,
+  importRules_jest,
+  importRules_next,
+  importRules_node,
+  importSettings_BASE,
+  importSettings_browser,
+  importSettings_ts,
 };

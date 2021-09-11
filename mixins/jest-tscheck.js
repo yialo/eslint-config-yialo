@@ -1,9 +1,9 @@
 'use strict';
 
-const { tsCheckJestRules } = require('../partials/jest');
+const { jestRules_tsCheck } = require('../partials/jest');
 
 module.exports = {
   rules: {
-    ...tsCheckJestRules,
+    ...jestRules_tsCheck,
   },
 };

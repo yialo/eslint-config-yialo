@@ -2,7 +2,7 @@
 
 module.exports = {
   extends: [
-    './mixins/base.js',
-    './mixins/node.js',
+    '../mixins/_abstract.js',
+    '../mixins/next.js',
   ],
 };

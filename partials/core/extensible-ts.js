@@ -2,15 +2,15 @@
 
 const { getDisabledRuleSet } = require('../utils');
 const {
-  sharedExtensibleCoreRules,
-  sharedExtensibleCoreRulesReset,
-} = require('./extensible-shared');
+  coreRules_extensibleWithBabelAndTs,
+  coreRules_extensibleWithBabelAndTs_RESET,
+} = require('./extensible-babel-ts');
 
 /**
  * NOTE: All diagnostic codes here:
  * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
  */
-const compilerCompatibilityTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_compilerCompatibility = {
   // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
   // NOTE: ts(2378)
@@ -53,11 +53,11 @@ const compilerCompatibilityTsExtensibleCoreRules = {
   ],
 };
 
-const compilerCompatibilityTsExtensibleCoreRulesReset = getDisabledRuleSet(
-  compilerCompatibilityTsExtensibleCoreRules,
+const coreRules_extensibleWithTs_compilerCompatibility_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_compilerCompatibility,
 );
 
-const regularTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_regular = {
   'brace-style': [
     'error',
     '1tbs',
@@ -193,9 +193,11 @@ const regularTsExtensibleCoreRules = {
   'space-infix-ops': 'error',
 };
 
-const regularTsExtensibleCoreRulesReset = getDisabledRuleSet(regularTsExtensibleCoreRules);
+const coreRules_extensibleWithTs_regular_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_regular,
+);
 
-const typeCheckTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_typeCheck = {
   'dot-notation': [
     'error',
     {
@@ -208,15 +210,17 @@ const typeCheckTsExtensibleCoreRules = {
   'no-return-await': 'error',
 };
 
-const nonTypeCheckTsExtensibleCoreRulesReset = {
-  ...sharedExtensibleCoreRulesReset,
-  ...compilerCompatibilityTsExtensibleCoreRulesReset,
-  ...regularTsExtensibleCoreRulesReset,
+const coreRules_extensibleWithTs_nonTypeCheck_RESET = {
+  ...coreRules_extensibleWithBabelAndTs_RESET,
+  ...coreRules_extensibleWithTs_compilerCompatibility_RESET,
+  ...coreRules_extensibleWithTs_regular_RESET,
 };
 
-const typeCheckTsExtensibleCoreRulesReset = getDisabledRuleSet(typeCheckTsExtensibleCoreRules);
+const coreRules_extensibleWithTs_typeCheck_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck,
+);
 
-const typeCheckCompatibilityTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_typeCheck_compatibility = {
   /**
    * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
@@ -224,25 +228,25 @@ const typeCheckCompatibilityTsExtensibleCoreRules = {
   'no-constant-condition': 'error',
 };
 
-const typeCheckCompatibilityTsExtensibleCoreRulesReset = getDisabledRuleSet(
-  typeCheckCompatibilityTsExtensibleCoreRules,
+const coreRules_extensibleWithTs_typeCheck_compatibility_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck_compatibility,
 );
 
-const typeCheckOnlyTsExtensibleCoreRulesReset = {
-  ...typeCheckTsExtensibleCoreRulesReset,
-  ...typeCheckCompatibilityTsExtensibleCoreRulesReset,
+const coreRules_extensibleWithTs_typeCheckOnly_RESET = {
+  ...coreRules_extensibleWithTs_typeCheck_RESET,
+  ...coreRules_extensibleWithTs_typeCheck_compatibility_RESET,
 };
 
-const tsExtensibleCoreRules = {
-  ...sharedExtensibleCoreRules,
-  ...compilerCompatibilityTsExtensibleCoreRules,
-  ...regularTsExtensibleCoreRules,
-  ...typeCheckTsExtensibleCoreRules,
-  ...typeCheckCompatibilityTsExtensibleCoreRules,
+const coreRules_extensibleWithTs = {
+  ...coreRules_extensibleWithBabelAndTs,
+  ...coreRules_extensibleWithTs_compilerCompatibility_RESET,
+  ...coreRules_extensibleWithTs_regular,
+  ...coreRules_extensibleWithTs_typeCheck,
+  ...coreRules_extensibleWithTs_typeCheck_compatibility_RESET,
 };
 
 module.exports = {
-  tsExtensibleCoreRules,
-  nonTypeCheckTsExtensibleCoreRulesReset,
-  typeCheckOnlyTsExtensibleCoreRulesReset,
+  coreRules_extensibleWithTs,
+  coreRules_extensibleWithTs_nonTypeCheck_RESET,
+  coreRules_extensibleWithTs_typeCheckOnly_RESET,
 };

@@ -1,8 +1,8 @@
 'use strict';
 
-const { nonTypeCheckTsExtensibleCoreRulesReset } = require('../partials/core');
-const { tsImportSettings } = require('../partials/import');
-const { nonTypeCheckTsRules } = require('../partials/typescript');
+const { coreRules_extensibleWithTs_nonTypeCheck_RESET } = require('../partials/core');
+const { importSettings_ts } = require('../partials/import');
+const { tsRules_nonTypeCheck } = require('../partials/typescript');
 
 module.exports = {
   parser: '@typescript-eslint/parser',
@@ -10,10 +10,10 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    ...nonTypeCheckTsExtensibleCoreRulesReset,
-    ...nonTypeCheckTsRules,
+    ...coreRules_extensibleWithTs_nonTypeCheck_RESET,
+    ...tsRules_nonTypeCheck,
   },
   settings: {
-    ...tsImportSettings,
+    ...importSettings_ts,
   },
 };

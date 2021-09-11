@@ -2,12 +2,12 @@
 
 const { getDisabledRuleSet } = require('../utils');
 const {
-  sharedExtensibleCoreRules,
-  sharedExtensibleCoreRulesReset,
-} = require('./extensible-shared');
+  coreRules_extensibleWithBabelAndTs,
+  coreRules_extensibleWithBabelAndTs_RESET,
+} = require('./extensible-babel-ts');
 
-const babelExtensibleCoreRules = {
-  ...sharedExtensibleCoreRules,
+const coreRules_extensibleWithBabel = {
+  ...coreRules_extensibleWithBabelAndTs,
   'new-cap': [
     'error',
     {
@@ -17,12 +17,12 @@ const babelExtensibleCoreRules = {
   ],
 };
 
-const babelExtensibleCoreRulesReset = {
-  ...sharedExtensibleCoreRulesReset,
-  ...getDisabledRuleSet(babelExtensibleCoreRules),
+const coreRules_extensibleWithBabel_RESET = {
+  ...coreRules_extensibleWithBabelAndTs_RESET,
+  ...getDisabledRuleSet(coreRules_extensibleWithBabel),
 };
 
 module.exports = {
-  babelExtensibleCoreRules,
-  babelExtensibleCoreRulesReset,
+  coreRules_extensibleWithBabel,
+  coreRules_extensibleWithBabel_RESET,
 };

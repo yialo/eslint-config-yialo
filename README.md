@@ -55,14 +55,13 @@ This package contains several configuration presets for [ESLint](https://github.
 
 Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
 
-* `preset-base`
-* `preset-node`
-* `preset-web-babel`
-* `preset-web-babel-jest`
-* `preset-web-ts-check`
-* `preset-web-ts-check-jest`
-* `preset-web-ts-nocheck`
-* `preset-web-ts-nocheck-jest`
+* `presets/node`
+* `presets/react-babel`
+* `presets/react-babel-jest`
+* `presets/react-ts-check`
+* `presets/react-ts-check-jest`
+* `presets/react-ts-nocheck`
+* `presets/react-ts-nocheck-jest`
 
 ## Usage caveats
 
@@ -106,7 +105,7 @@ settings: {
 
 ### Babel config
 
-In case of `preset-web-babel` or `preset-web-babel-jest` usage when Babel config file is not located in the same directory as ESLint config or has non-standard name, you MUST define `babelOptions.configFile` parser option:
+In case of `presets/react-babel` or `presets/react-babel-jest` usage when Babel config file is not located in the same directory as ESLint config or has non-standard name, you MUST define `babelOptions.configFile` parser option:
 
 ```js
 parserOptions: {
@@ -132,7 +131,6 @@ parserOptions: {
 ```js
 // .eslintrc.js
 module.exports = {
-  extends: ['yialo/preset-webpack'],
   globals: {
     process: 'readonly',
   },
@@ -146,11 +144,15 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['./src/**/*.js?(x)'],
+      extends: ['yialo/presets/react-babel'],
+    },
+    {
       files: [
         './**/*.{spec,test}.ts?(x)',
         './**/__tests__/**/*.ts?(x)',
       ],
-      extends: ['yialo/preset-web-ts-check-jest'],
+      extends: ['yialo/presets/react-ts-check-jest'],
     },
     {
       files: [
@@ -158,11 +160,11 @@ module.exports = {
         './config/**/*.js',
         './scripts/**/*.js',
       ],
-      extends: ['yialo/preset-node'],
+      extends: ['yialo/presets/node'],
     },
     {
       files: ['./src/**/*.ts?(x)'],
-      extends: ['yialo/preset-web-ts-check'],
+      extends: ['yialo/presets/react-ts-check'],
     },
   ],
   rules: {

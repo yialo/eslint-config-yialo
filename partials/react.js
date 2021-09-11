@@ -1,6 +1,6 @@
 'use strict';
 
-const webReactRules = {
+const reactRules_BASE = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
   'react/default-props-match-prop-types': 'off',
@@ -241,13 +241,18 @@ const webReactRules = {
   'react/void-dom-elements-no-children': 'error',
 };
 
-const webReactSettings = {
+const reactRules_next = {
+  'react/react-in-jsx-scope': 'off',
+};
+
+const reactSettings_react = {
   react: {
     version: 'detect',
   },
 };
 
 module.exports = {
-  webReactRules,
-  webReactSettings,
+  reactRules_BASE,
+  reactRules_next,
+  reactSettings_react,
 };
