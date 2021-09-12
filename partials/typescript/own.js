@@ -77,6 +77,7 @@ const tsRules_own_typeCheck_nonExtensible = {
     },
   ],
   '@typescript-eslint/no-for-in-array': 'error',
+  '@typescript-eslint/no-meaningless-void-operator': 'off',
   '@typescript-eslint/no-misused-promises': 'error',
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
   '@typescript-eslint/no-unnecessary-condition': 'error',

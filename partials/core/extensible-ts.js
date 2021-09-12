@@ -175,6 +175,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular = {
     },
   ],
   'no-useless-constructor': 'error',
+  'padding-line-between-statements': 'off',
   'quotes': [
     'error',
     'single',

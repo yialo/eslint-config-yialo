@@ -62,6 +62,7 @@ const tsRules_extension_regular = {
    */
   '@typescript-eslint/no-use-before-define': coreRules_extensibleWithTs['no-use-before-define'],
   '@typescript-eslint/no-useless-constructor': coreRules_extensibleWithTs['no-useless-constructor'],
+  '@typescript-eslint/padding-line-between-statements': coreRules_extensibleWithTs['padding-line-between-statements'],
   '@typescript-eslint/quotes': coreRules_extensibleWithTs.quotes,
   '@typescript-eslint/semi': coreRules_extensibleWithTs.semi,
   '@typescript-eslint/space-before-function-paren':

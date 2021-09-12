@@ -497,7 +497,6 @@ const coreRules_nonExtensible = {
       switches: 'never',
     },
   ],
-  'padding-line-between-statements': 'off',
   'prefer-arrow-callback': [
     'error',
     {
