@@ -55,15 +55,15 @@ const jestRules_extension_typeCheckOnly = {
   'jest/unbound-method': tsRules_typeCheckOnly_extensibleWithJest['@typescript-eslint/unbound-method'],
 };
 
-const jestRules_extension_typeCheckOnly_RESET = getDisabledRuleSet(
+const jestRules_extension_typeCheckOnly_OFF = getDisabledRuleSet(
   jestRules_extension_typeCheckOnly,
 );
 
-const jestRules_own_RESET = getDisabledRuleSet(jestRules_own);
+const jestRules_own_OFF = getDisabledRuleSet(jestRules_own);
 
 module.exports = {
   jestRules_own,
-  jestRules_own_RESET,
+  jestRules_own_OFF,
   jestRules_extension_typeCheckOnly,
-  jestRules_extension_typeCheckOnly_RESET,
+  jestRules_extension_typeCheckOnly_OFF,
 };

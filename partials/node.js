@@ -42,9 +42,9 @@ const nodeRules = {
   'node/prefer-promises/fs': 'off',
 };
 
-const nodeRules_RESET = getDisabledRuleSet(nodeRules);
+const nodeRules_OFF = getDisabledRuleSet(nodeRules);
 
 module.exports = {
   nodeRules,
-  nodeRules_RESET,
+  nodeRules_OFF,
 };

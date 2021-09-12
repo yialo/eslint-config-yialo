@@ -118,9 +118,9 @@ const jsxA11yRules = {
   'jsx-a11y/tabindex-no-positive': 'error',
 };
 
-const jsxA11yRules_RESET = getDisabledRuleSet(jsxA11yRules);
+const jsxA11yRules_OFF = getDisabledRuleSet(jsxA11yRules);
 
 module.exports = {
   jsxA11yRules,
-  jsxA11yRules_RESET,
+  jsxA11yRules_OFF,
 };

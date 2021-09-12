@@ -3,7 +3,7 @@
 const { getDisabledRuleSet } = require('../utils');
 const {
   coreRules_extensibleWithBabelAndTs,
-  coreRules_extensibleWithBabelAndTs_RESET,
+  coreRules_extensibleWithBabelAndTs_OFF,
 } = require('./extensible-babel-ts');
 
 const coreRules_extensibleWithBabel_only = {
@@ -16,7 +16,7 @@ const coreRules_extensibleWithBabel_only = {
   ],
 };
 
-const coreRules_extensibleWithBabel_only_RESET = getDisabledRuleSet(
+const coreRules_extensibleWithBabel_only_OFF = getDisabledRuleSet(
   coreRules_extensibleWithBabel_only,
 );
 
@@ -25,12 +25,12 @@ const coreRules_extensibleWithBabel = {
   ...coreRules_extensibleWithBabel_only,
 };
 
-const coreRules_extensibleWithBabel_RESET = {
-  ...coreRules_extensibleWithBabelAndTs_RESET,
-  ...coreRules_extensibleWithBabel_only_RESET,
+const coreRules_extensibleWithBabel_OFF = {
+  ...coreRules_extensibleWithBabelAndTs_OFF,
+  ...coreRules_extensibleWithBabel_only_OFF,
 };
 
 module.exports = {
   coreRules_extensibleWithBabel,
-  coreRules_extensibleWithBabel_RESET,
+  coreRules_extensibleWithBabel_OFF,
 };

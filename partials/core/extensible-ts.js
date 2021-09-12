@@ -3,7 +3,7 @@
 const { getDisabledRuleSet } = require('../utils');
 const {
   coreRules_extensibleWithBabelAndTs,
-  coreRules_extensibleWithBabelAndTs_RESET,
+  coreRules_extensibleWithBabelAndTs_OFF,
 } = require('./extensible-babel-ts');
 
 /**
@@ -53,7 +53,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_compatibility = {
   ],
 };
 
-const coreRules_extensibleWithTs_nonTypeCheck_compatibility_RESET = getDisabledRuleSet(
+const coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_nonTypeCheck_compatibility,
 );
 
@@ -193,7 +193,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular = {
   'space-infix-ops': 'error',
 };
 
-const coreRules_extensibleWithTs_nonTypeCheck_regular_RESET = getDisabledRuleSet(
+const coreRules_extensibleWithTs_nonTypeCheck_regular_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_nonTypeCheck_regular,
 );
 
@@ -205,7 +205,7 @@ const coreRules_extensibleWithTs_typeCheck_compatibility = {
   'no-constant-condition': 'error',
 };
 
-const coreRules_extensibleWithTs_typeCheck_compatibility_RESET = getDisabledRuleSet(
+const coreRules_extensibleWithTs_typeCheck_compatibility_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_typeCheck_compatibility,
 );
 
@@ -222,7 +222,7 @@ const coreRules_extensibleWithTs_typeCheck_regular = {
   'no-return-await': 'error',
 };
 
-const coreRules_extensibleWithTs_typeCheck_regular_RESET = getDisabledRuleSet(
+const coreRules_extensibleWithTs_typeCheck_regular_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_typeCheck_regular,
 );
 
@@ -234,19 +234,19 @@ const coreRules_extensibleWithTs = {
   ...coreRules_extensibleWithTs_typeCheck_regular,
 };
 
-const coreRules_extensibleWithTs_nonTypeCheck_RESET = {
-  ...coreRules_extensibleWithBabelAndTs_RESET,
-  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_RESET,
-  ...coreRules_extensibleWithTs_nonTypeCheck_regular_RESET,
+const coreRules_extensibleWithTs_nonTypeCheck_OFF = {
+  ...coreRules_extensibleWithBabelAndTs_OFF,
+  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF,
+  ...coreRules_extensibleWithTs_nonTypeCheck_regular_OFF,
 };
 
-const coreRules_extensibleWithTs_typeCheckOnly_RESET = {
-  ...coreRules_extensibleWithTs_typeCheck_compatibility_RESET,
-  ...coreRules_extensibleWithTs_typeCheck_regular_RESET,
+const coreRules_extensibleWithTs_typeCheckOnly_OFF = {
+  ...coreRules_extensibleWithTs_typeCheck_compatibility_OFF,
+  ...coreRules_extensibleWithTs_typeCheck_regular_OFF,
 };
 
 module.exports = {
   coreRules_extensibleWithTs,
-  coreRules_extensibleWithTs_nonTypeCheck_RESET,
-  coreRules_extensibleWithTs_typeCheckOnly_RESET,
+  coreRules_extensibleWithTs_nonTypeCheck_OFF,
+  coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };

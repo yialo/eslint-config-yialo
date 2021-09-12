@@ -17,11 +17,11 @@ const coreRules_extensibleWithBabelAndTs = {
   'semi': ['error', 'always'],
 };
 
-const coreRules_extensibleWithBabelAndTs_RESET = getDisabledRuleSet(
+const coreRules_extensibleWithBabelAndTs_OFF = getDisabledRuleSet(
   coreRules_extensibleWithBabelAndTs,
 );
 
 module.exports = {
   coreRules_extensibleWithBabelAndTs,
-  coreRules_extensibleWithBabelAndTs_RESET,
+  coreRules_extensibleWithBabelAndTs_OFF,
 };

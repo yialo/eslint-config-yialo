@@ -11,9 +11,9 @@ const babelRules = {
   '@babel/semi': coreRules_extensibleWithBabel.semi,
 };
 
-const babelRules_RESET = getDisabledRuleSet(babelRules);
+const babelRules_OFF = getDisabledRuleSet(babelRules);
 
 module.exports = {
   babelRules,
-  babelRules_RESET,
+  babelRules_OFF,
 };

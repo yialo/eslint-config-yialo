@@ -7,9 +7,9 @@ const reactHooksRules = {
   'react-hooks/rules-of-hooks': 'error',
 };
 
-const reactHooksRules_RESET = getDisabledRuleSet(reactHooksRules);
+const reactHooksRules_OFF = getDisabledRuleSet(reactHooksRules);
 
 module.exports = {
   reactHooksRules,
-  reactHooksRules_RESET,
+  reactHooksRules_OFF,
 };

@@ -253,11 +253,11 @@ const reactSettings = {
   },
 };
 
-const reactRules_RESET = getDisabledRuleSet(reactRules_BASE);
+const reactRules_OFF = getDisabledRuleSet(reactRules_BASE);
 
 module.exports = {
   reactRules_BASE,
   reactRules_next,
-  reactRules_RESET,
+  reactRules_OFF,
   reactSettings,
 };

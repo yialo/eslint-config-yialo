@@ -1,6 +1,6 @@
 'use strict';
 
-const { babelRules_RESET } = require('../partials/babel');
+const { babelRules_OFF } = require('../partials/babel');
 const {
   coreRules_nonExtensible,
   coreRules_extensibleWithBabel,
@@ -8,15 +8,15 @@ const {
 } = require('../partials/core');
 const { importRules_BASE, importSettings_BASE } = require('../partials/import');
 const {
-  jestRules_own_RESET,
-  jestRules_extension_typeCheckOnly_RESET,
+  jestRules_own_OFF,
+  jestRules_extension_typeCheckOnly_OFF,
 } = require('../partials/jest');
-const { jsxA11yRules_RESET } = require('../partials/jsx-a11y');
-const { nodeRules_RESET } = require('../partials/node');
+const { jsxA11yRules_OFF } = require('../partials/jsx-a11y');
+const { nodeRules_OFF } = require('../partials/node');
 const { promiseRules } = require('../partials/promise');
-const { reactRules_RESET } = require('../partials/react');
-const { reactHooksRules_RESET } = require('../partials/react-hooks');
-const { tsRules_RESET } = require('../partials/typescript');
+const { reactRules_OFF } = require('../partials/react');
+const { reactHooksRules_OFF } = require('../partials/react-hooks');
+const { tsRules_OFF } = require('../partials/typescript');
 
 const coreRules = {
   ...coreRules_nonExtensible,
@@ -24,18 +24,18 @@ const coreRules = {
   ...coreRules_extensibleWithTs,
 };
 
-const compilerRelatedPluginRules_RESET = {
-  ...babelRules_RESET,
-  ...tsRules_RESET,
-  ...jestRules_extension_typeCheckOnly_RESET,
+const compilerRelatedPluginRules_OFF = {
+  ...babelRules_OFF,
+  ...tsRules_OFF,
+  ...jestRules_extension_typeCheckOnly_OFF,
 };
 
-const envOrFrameworkRelatedPluginRules_RESET = {
-  ...jestRules_own_RESET,
-  ...jsxA11yRules_RESET,
-  ...nodeRules_RESET,
-  ...reactRules_RESET,
-  ...reactHooksRules_RESET,
+const envOrFrameworkRelatedPluginRules_OFF = {
+  ...jestRules_own_OFF,
+  ...jsxA11yRules_OFF,
+  ...nodeRules_OFF,
+  ...reactRules_OFF,
+  ...reactHooksRules_OFF,
 };
 
 module.exports = {
@@ -68,8 +68,8 @@ module.exports = {
   },
   reportUnusedDisableDirectives: true,
   rules: {
-    ...compilerRelatedPluginRules_RESET,
-    ...envOrFrameworkRelatedPluginRules_RESET,
+    ...compilerRelatedPluginRules_OFF,
+    ...envOrFrameworkRelatedPluginRules_OFF,
     ...coreRules,
     ...importRules_BASE,
     ...promiseRules,
