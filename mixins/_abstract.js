@@ -60,7 +60,7 @@ module.exports = {
   parser: 'espree',
   parserOptions: {
     ecmaFeatures: {
-      globalReturn: false,
+      globalReturn: undefined,
       impliedStrict: false,
       jsx: false,
     },
