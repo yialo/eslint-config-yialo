@@ -31,7 +31,6 @@
     "eslint"
   ],
   "license": "MIT",
-  "main": "preset-base.js",
   "peerDependencies": {
     "@babel/core": "^7.15.5",
     "typescript": "^4.3.5"

@@ -68,11 +68,11 @@ module.exports = {
   },
   reportUnusedDisableDirectives: true,
   rules: {
+    ...compilerRelatedPluginRules_RESET,
+    ...envOrFrameworkRelatedPluginRules_RESET,
     ...coreRules,
     ...importRules_BASE,
     ...promiseRules,
-    ...compilerRelatedPluginRules_RESET,
-    ...envOrFrameworkRelatedPluginRules_RESET,
   },
   settings: {
     ...importSettings_BASE,
