@@ -100,6 +100,8 @@ const reactRules_BASE = {
     {
       allowReferrer: false,
       enforceDynamicLinks: 'always',
+      forms: false,
+      links: true,
       warnOnSpreadAttributes: true,
     },
   ],
@@ -115,6 +117,8 @@ const reactRules_BASE = {
     'error',
     {
       allowAllCaps: true,
+      allowLeadingUnderscore: false,
+      allowNamespace: false,
     },
   ],
   'react/jsx-props-no-multi-spaces': 'error',
@@ -147,7 +151,12 @@ const reactRules_BASE = {
   'react/no-access-state-in-setstate': 'error',
   'react/no-adjacent-inline-elements': 'off',
   'react/no-array-index-key': 'off',
-  'react/no-children-prop': 'error',
+  'react/no-children-prop': [
+    'error',
+    {
+      allowFunctions: false,
+    },
+  ],
   'react/no-danger': 'warn',
   'react/no-danger-with-children': 'error',
   'react/no-deprecated': 'error',
@@ -170,6 +179,7 @@ const reactRules_BASE = {
   'react/no-unused-state': 'error',
   'react/no-will-update-set-state': 'error',
   'react/prefer-es6-class': ['error', 'always'],
+  'react/prefer-exact-props': 'off',
   'react/prefer-read-only-props': 'off',
   'react/prefer-stateless-function': [
     'error',
