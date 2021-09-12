@@ -1,5 +1,7 @@
 'use strict';
 
+const { getDisabledRuleSet } = require('./utils');
+
 const reactRules_BASE = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
@@ -245,14 +247,17 @@ const reactRules_next = {
   'react/react-in-jsx-scope': 'off',
 };
 
-const reactSettings_react = {
+const reactSettings = {
   react: {
     version: 'detect',
   },
 };
 
+const reactRules_RESET = getDisabledRuleSet(reactRules_BASE);
+
 module.exports = {
   reactRules_BASE,
   reactRules_next,
-  reactSettings_react,
+  reactRules_RESET,
+  reactSettings,
 };

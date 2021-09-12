@@ -7,7 +7,15 @@ const {
   coreRules_extensibleWithTs,
 } = require('../partials/core');
 const { importRules_BASE, importSettings_BASE } = require('../partials/import');
-const { promiseRules_BASE } = require('../partials/promise');
+const {
+  jestRules_own_RESET,
+  jestRules_extension_typeCheckOnly_RESET,
+} = require('../partials/jest');
+const { jsxA11yRules_RESET } = require('../partials/jsx-a11y');
+const { nodeRules_RESET } = require('../partials/node');
+const { promiseRules } = require('../partials/promise');
+const { reactRules_RESET } = require('../partials/react');
+const { reactHooksRules_RESET } = require('../partials/react-hooks');
 const { tsRules_RESET } = require('../partials/typescript');
 
 const coreRules = {
@@ -16,14 +24,26 @@ const coreRules = {
   ...coreRules_extensibleWithTs,
 };
 
-const extensionPluginRules_RESET = {
+const compilerRelatedPluginRules_RESET = {
   ...babelRules_RESET,
   ...tsRules_RESET,
+  ...jestRules_extension_typeCheckOnly_RESET,
+};
+
+const envOrFrameworkRelatedPluginRules_RESET = {
+  ...jestRules_own_RESET,
+  ...jsxA11yRules_RESET,
+  ...nodeRules_RESET,
+  ...reactRules_RESET,
+  ...reactHooksRules_RESET,
 };
 
 module.exports = {
   env: {
+    browser: false,
     es2021: true,
+    jest: false,
+    node: false,
   },
   plugins: [
     '@babel',
@@ -39,14 +59,20 @@ module.exports = {
   ],
   parser: 'espree',
   parserOptions: {
+    ecmaFeatures: {
+      globalReturn: false,
+      impliedStrict: false,
+      jsx: false,
+    },
     sourceType: 'script',
   },
   reportUnusedDisableDirectives: true,
   rules: {
     ...coreRules,
-    ...extensionPluginRules_RESET,
     ...importRules_BASE,
-    ...promiseRules_BASE,
+    ...promiseRules,
+    ...compilerRelatedPluginRules_RESET,
+    ...envOrFrameworkRelatedPluginRules_RESET,
   },
   settings: {
     ...importSettings_BASE,

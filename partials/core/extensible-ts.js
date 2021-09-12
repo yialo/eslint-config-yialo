@@ -8,9 +8,9 @@ const {
 
 /**
  * NOTE: All diagnostic codes here:
- * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
+ * @see https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
  */
-const coreRules_extensibleWithTs_compilerCompatibility = {
+const coreRules_extensibleWithTs_nonTypeCheck_compatibility = {
   // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
   // NOTE: ts(2378)
@@ -53,11 +53,11 @@ const coreRules_extensibleWithTs_compilerCompatibility = {
   ],
 };
 
-const coreRules_extensibleWithTs_compilerCompatibility_RESET = getDisabledRuleSet(
-  coreRules_extensibleWithTs_compilerCompatibility,
+const coreRules_extensibleWithTs_nonTypeCheck_compatibility_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_nonTypeCheck_compatibility,
 );
 
-const coreRules_extensibleWithTs_regular = {
+const coreRules_extensibleWithTs_nonTypeCheck_regular = {
   'brace-style': [
     'error',
     '1tbs',
@@ -193,11 +193,23 @@ const coreRules_extensibleWithTs_regular = {
   'space-infix-ops': 'error',
 };
 
-const coreRules_extensibleWithTs_regular_RESET = getDisabledRuleSet(
-  coreRules_extensibleWithTs_regular,
+const coreRules_extensibleWithTs_nonTypeCheck_regular_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_nonTypeCheck_regular,
 );
 
-const coreRules_extensibleWithTs_typeCheck = {
+const coreRules_extensibleWithTs_typeCheck_compatibility = {
+  /**
+   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
+   * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
+   */
+  'no-constant-condition': 'error',
+};
+
+const coreRules_extensibleWithTs_typeCheck_compatibility_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck_compatibility,
+);
+
+const coreRules_extensibleWithTs_typeCheck_regular = {
   'dot-notation': [
     'error',
     {
@@ -210,39 +222,27 @@ const coreRules_extensibleWithTs_typeCheck = {
   'no-return-await': 'error',
 };
 
-const coreRules_extensibleWithTs_nonTypeCheck_RESET = {
-  ...coreRules_extensibleWithBabelAndTs_RESET,
-  ...coreRules_extensibleWithTs_compilerCompatibility_RESET,
-  ...coreRules_extensibleWithTs_regular_RESET,
-};
-
-const coreRules_extensibleWithTs_typeCheck_RESET = getDisabledRuleSet(
-  coreRules_extensibleWithTs_typeCheck,
+const coreRules_extensibleWithTs_typeCheck_regular_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck_regular,
 );
-
-const coreRules_extensibleWithTs_typeCheck_compatibility = {
-  /**
-   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
-   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
-   */
-  'no-constant-condition': 'error',
-};
-
-const coreRules_extensibleWithTs_typeCheck_compatibility_RESET = getDisabledRuleSet(
-  coreRules_extensibleWithTs_typeCheck_compatibility,
-);
-
-const coreRules_extensibleWithTs_typeCheckOnly_RESET = {
-  ...coreRules_extensibleWithTs_typeCheck_RESET,
-  ...coreRules_extensibleWithTs_typeCheck_compatibility_RESET,
-};
 
 const coreRules_extensibleWithTs = {
   ...coreRules_extensibleWithBabelAndTs,
-  ...coreRules_extensibleWithTs_compilerCompatibility_RESET,
-  ...coreRules_extensibleWithTs_regular,
-  ...coreRules_extensibleWithTs_typeCheck,
+  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility,
+  ...coreRules_extensibleWithTs_nonTypeCheck_regular,
+  ...coreRules_extensibleWithTs_typeCheck_compatibility,
+  ...coreRules_extensibleWithTs_typeCheck_regular,
+};
+
+const coreRules_extensibleWithTs_nonTypeCheck_RESET = {
+  ...coreRules_extensibleWithBabelAndTs_RESET,
+  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_RESET,
+  ...coreRules_extensibleWithTs_nonTypeCheck_regular_RESET,
+};
+
+const coreRules_extensibleWithTs_typeCheckOnly_RESET = {
   ...coreRules_extensibleWithTs_typeCheck_compatibility_RESET,
+  ...coreRules_extensibleWithTs_typeCheck_regular_RESET,
 };
 
 module.exports = {

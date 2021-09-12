@@ -6,8 +6,7 @@ const {
   coreRules_extensibleWithBabelAndTs_RESET,
 } = require('./extensible-babel-ts');
 
-const coreRules_extensibleWithBabel = {
-  ...coreRules_extensibleWithBabelAndTs,
+const coreRules_extensibleWithBabel_only = {
   'new-cap': [
     'error',
     {
@@ -17,9 +16,18 @@ const coreRules_extensibleWithBabel = {
   ],
 };
 
+const coreRules_extensibleWithBabel_only_RESET = getDisabledRuleSet(
+  coreRules_extensibleWithBabel_only,
+);
+
+const coreRules_extensibleWithBabel = {
+  ...coreRules_extensibleWithBabelAndTs,
+  ...coreRules_extensibleWithBabel_only,
+};
+
 const coreRules_extensibleWithBabel_RESET = {
   ...coreRules_extensibleWithBabelAndTs_RESET,
-  ...getDisabledRuleSet(coreRules_extensibleWithBabel),
+  ...coreRules_extensibleWithBabel_only_RESET,
 };
 
 module.exports = {

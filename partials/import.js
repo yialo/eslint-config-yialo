@@ -19,6 +19,8 @@ const importRules_BASE = {
   'import/newline-after-import': 'error',
   'import/no-absolute-path': 'error',
   'import/no-amd': 'error',
+  'import/no-anonymous-default-export': 'off',
+  'import/no-commonjs': 'off',
   'import/no-cycle': 'error',
   'import/no-default-export': 'off',
   'import/no-deprecated': 'error',
@@ -29,6 +31,7 @@ const importRules_BASE = {
     },
   ],
   'import/no-dynamic-require': 'off',
+  'import/no-extraneous-dependencies': 'off',
   'import/no-internal-modules': 'off',
   'import/no-mutable-exports': 'error',
   'import/no-named-as-default': 'error',
@@ -36,10 +39,19 @@ const importRules_BASE = {
   'import/no-named-default': 'error',
   'import/no-named-export': 'off',
   'import/no-namespace': 'off',
+  'import/no-nodejs-modules': 'off',
   'import/no-relative-parent-imports': 'off',
   'import/no-restricted-paths': 'off',
   'import/no-self-import': 'error',
   'import/no-unassigned-import': 'off',
+  'import/no-unresolved': [
+    'error',
+    {
+      amd: false,
+      caseSensitive: true,
+      commonjs: false,
+    },
+  ],
   'import/no-unused-modules': 'off',
   'import/no-useless-path-segments': [
     'error',
@@ -52,19 +64,6 @@ const importRules_BASE = {
   'import/order': 'off',
   'import/prefer-default-export': 'off',
   'import/unambiguous': 'off',
-
-  'import/no-anonymous-default-export': 'off',
-  'import/no-commonjs': 'off',
-  'import/no-extraneous-dependencies': 'off',
-  'import/no-nodejs-modules': 'off',
-  'import/no-unresolved': [
-    'error',
-    {
-      amd: false,
-      caseSensitive: true,
-      commonjs: false,
-    },
-  ],
 };
 
 const importRules_next = {
@@ -85,19 +84,7 @@ const importRules_node = {
   ],
 };
 
-const importRules_jest = {
-  'import/no-extraneous-dependencies': [
-    'error',
-    {
-      bundledDependencies: false,
-      devDependencies: true,
-      optionalDependencies: false,
-      peerDependencies: false,
-    },
-  ],
-};
-
-const importRules_browser = {
+const importRules_webBundle = {
   'import/no-commonjs': [
     'error',
     {
@@ -126,6 +113,18 @@ const importRules_browser = {
   ],
 };
 
+const importRules_webBundle_jest = {
+  'import/no-extraneous-dependencies': [
+    'error',
+    {
+      bundledDependencies: false,
+      devDependencies: true,
+      optionalDependencies: false,
+      peerDependencies: false,
+    },
+  ],
+};
+
 const importSettings_BASE = {
   'import/extensions': [
     '.js',
@@ -133,9 +132,17 @@ const importSettings_BASE = {
   'import/ignore': [
     'node_modules',
   ],
+  'import/resolver': 'node',
 };
 
-const importSettings_ts = {
+const importSettings_webBundle_react = {
+  'import/extensions': [
+    '.js',
+    '.jsx',
+  ],
+};
+
+const importSettings_webBundle_ts = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -151,20 +158,13 @@ const importSettings_ts = {
   },
 };
 
-const importSettings_browser = {
-  'import/extensions': [
-    '.js',
-    '.jsx',
-  ],
-};
-
 module.exports = {
   importRules_BASE,
-  importRules_browser,
-  importRules_jest,
   importRules_next,
   importRules_node,
+  importRules_webBundle,
+  importRules_webBundle_jest,
   importSettings_BASE,
-  importSettings_browser,
-  importSettings_ts,
+  importSettings_webBundle_react,
+  importSettings_webBundle_ts,
 };

@@ -19,7 +19,7 @@ const tsRules_extension_regular = {
   '@typescript-eslint/func-call-spacing': coreRules_extensibleWithTs['func-call-spacing'],
   /**
    * NOTE: rule may produce issues in some cases
-   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md}
+   * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
    */
   '@typescript-eslint/indent': coreRules_extensibleWithTs.indent,
   '@typescript-eslint/init-declarations': coreRules_extensibleWithTs['init-declarations'],
@@ -58,7 +58,7 @@ const tsRules_extension_regular = {
   '@typescript-eslint/no-unused-vars': coreRules_extensibleWithTs['no-unused-vars'],
   /**
    * NOTE: rule may produce issues in some cases
-   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md}
+   * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
    */
   '@typescript-eslint/no-use-before-define': coreRules_extensibleWithTs['no-use-before-define'],
   '@typescript-eslint/no-useless-constructor': coreRules_extensibleWithTs['no-useless-constructor'],

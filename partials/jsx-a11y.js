@@ -1,5 +1,7 @@
 'use strict';
 
+const { getDisabledRuleSet } = require('./utils');
+
 const jsxA11yRules = {
   'jsx-a11y/alt-text': [
     'error',
@@ -116,6 +118,9 @@ const jsxA11yRules = {
   'jsx-a11y/tabindex-no-positive': 'error',
 };
 
+const jsxA11yRules_RESET = getDisabledRuleSet(jsxA11yRules);
+
 module.exports = {
   jsxA11yRules,
+  jsxA11yRules_RESET,
 };

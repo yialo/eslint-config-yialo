@@ -64,7 +64,7 @@ const tsRules_own_regular = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-const tsRules_own_typeCheck = {
+const tsRules_own_typeCheck_nonExtensible = {
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
@@ -107,10 +107,19 @@ const tsRules_own_typeCheck = {
   '@typescript-eslint/sort-type-union-intersection-members': 'off',
   '@typescript-eslint/strict-boolean-expressions': 'off',
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
+};
+
+const tsRules_own_typeCheck_extensibleWithJest = {
   '@typescript-eslint/unbound-method': 'error',
+};
+
+const tsRules_own_typeCheck = {
+  ...tsRules_own_typeCheck_nonExtensible,
+  ...tsRules_own_typeCheck_extensibleWithJest,
 };
 
 module.exports = {
   tsRules_own_regular,
   tsRules_own_typeCheck,
+  tsRules_own_typeCheck_extensibleWithJest,
 };

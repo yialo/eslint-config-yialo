@@ -2,7 +2,7 @@
 
 const { importRules_next } = require('../partials/import');
 const { nextRules } = require('../partials/next');
-const { reactRules_BASE, reactSettings_react, reactRules_next } = require('../partials/react');
+const { reactRules_BASE, reactSettings, reactRules_next } = require('../partials/react');
 const { reactHooksRules } = require('../partials/react-hooks');
 
 module.exports = {
@@ -23,6 +23,6 @@ module.exports = {
     ...reactHooksRules,
   },
   settings: {
-    ...reactSettings_react,
+    ...reactSettings,
   },
 };
