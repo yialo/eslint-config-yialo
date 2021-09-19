@@ -47,7 +47,6 @@ module.exports = {
   },
   plugins: [
     '@babel',
-    '@next/next',
     '@typescript-eslint',
     'import',
     'jest',

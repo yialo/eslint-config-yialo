@@ -66,10 +66,6 @@ const importRules_BASE = {
   'import/unambiguous': 'off',
 };
 
-const importRules_next = {
-  'import/no-anonymous-default-export': 'warn',
-};
-
 const importRules_node = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
@@ -160,7 +156,6 @@ const importSettings_webBundle_ts = {
 
 module.exports = {
   importRules_BASE,
-  importRules_next,
   importRules_node,
   importRules_webBundle,
   importRules_webBundle_jest,

@@ -2,7 +2,7 @@
 
 const { getDisabledRuleSet } = require('./utils');
 
-const reactRules_BASE = {
+const reactRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
   'react/default-props-match-prop-types': 'off',
@@ -253,21 +253,16 @@ const reactRules_BASE = {
   'react/void-dom-elements-no-children': 'error',
 };
 
-const reactRules_next = {
-  'react/react-in-jsx-scope': 'off',
-};
-
 const reactSettings = {
   react: {
     version: 'detect',
   },
 };
 
-const reactRules_OFF = getDisabledRuleSet(reactRules_BASE);
+const reactRules_OFF = getDisabledRuleSet(reactRules);
 
 module.exports = {
-  reactRules_BASE,
-  reactRules_next,
+  reactRules,
   reactRules_OFF,
   reactSettings,
 };
