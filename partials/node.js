@@ -1,5 +1,7 @@
 'use strict';
 
+const { getDisabledRuleSet } = require('./utils');
+
 const nodeRules = {
   'node/handle-callback-err': 'off',
   'node/no-callback-literal': 'off',
@@ -40,6 +42,9 @@ const nodeRules = {
   'node/prefer-promises/fs': 'off',
 };
 
+const nodeRules_OFF = getDisabledRuleSet(nodeRules);
+
 module.exports = {
   nodeRules,
+  nodeRules_OFF,
 };

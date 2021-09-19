@@ -1,6 +1,8 @@
 'use strict';
 
-const webReactRules = {
+const { getDisabledRuleSet } = require('./utils');
+
+const reactRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
   'react/default-props-match-prop-types': 'off',
@@ -98,6 +100,8 @@ const webReactRules = {
     {
       allowReferrer: false,
       enforceDynamicLinks: 'always',
+      forms: false,
+      links: true,
       warnOnSpreadAttributes: true,
     },
   ],
@@ -113,6 +117,8 @@ const webReactRules = {
     'error',
     {
       allowAllCaps: true,
+      allowLeadingUnderscore: false,
+      allowNamespace: false,
     },
   ],
   'react/jsx-props-no-multi-spaces': 'error',
@@ -145,7 +151,12 @@ const webReactRules = {
   'react/no-access-state-in-setstate': 'error',
   'react/no-adjacent-inline-elements': 'off',
   'react/no-array-index-key': 'off',
-  'react/no-children-prop': 'error',
+  'react/no-children-prop': [
+    'error',
+    {
+      allowFunctions: false,
+    },
+  ],
   'react/no-danger': 'warn',
   'react/no-danger-with-children': 'error',
   'react/no-deprecated': 'error',
@@ -168,6 +179,7 @@ const webReactRules = {
   'react/no-unused-state': 'error',
   'react/no-will-update-set-state': 'error',
   'react/prefer-es6-class': ['error', 'always'],
+  'react/prefer-exact-props': 'off',
   'react/prefer-read-only-props': 'off',
   'react/prefer-stateless-function': [
     'error',
@@ -181,6 +193,7 @@ const webReactRules = {
     'error',
     {
       forbidDefaultForRequired: true,
+      ignoreFunctionalComponents: true,
     },
   ],
   'react/require-optimization': 'off',
@@ -241,13 +254,16 @@ const webReactRules = {
   'react/void-dom-elements-no-children': 'error',
 };
 
-const webReactSettings = {
+const reactSettings = {
   react: {
     version: 'detect',
   },
 };
 
+const reactRules_OFF = getDisabledRuleSet(reactRules);
+
 module.exports = {
-  webReactRules,
-  webReactSettings,
+  reactRules,
+  reactRules_OFF,
+  reactSettings,
 };

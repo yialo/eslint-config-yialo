@@ -1,18 +1,18 @@
 'use strict';
 
-const { babelExtensibleCoreRules, babelExtensibleCoreRulesReset } = require('./extensible-babel');
+const { coreRules_extensibleWithBabel, coreRules_extensibleWithBabel_OFF } = require('./extensible-babel');
 const {
-  tsExtensibleCoreRules,
-  nonTypeCheckTsExtensibleCoreRulesReset,
-  typeCheckOnlyTsExtensibleCoreRulesReset,
-} = require('./extensible-typescript');
-const { nonExtensibleCoreRules } = require('./non-extensible');
+  coreRules_extensibleWithTs,
+  coreRules_extensibleWithTs_nonTypeCheck_OFF,
+  coreRules_extensibleWithTs_typeCheckOnly_OFF,
+} = require('./extensible-ts');
+const { coreRules_nonExtensible } = require('./non-extensible');
 
 module.exports = {
-  nonExtensibleCoreRules,
-  babelExtensibleCoreRules,
-  babelExtensibleCoreRulesReset,
-  tsExtensibleCoreRules,
-  nonTypeCheckTsExtensibleCoreRulesReset,
-  typeCheckOnlyTsExtensibleCoreRulesReset,
+  coreRules_nonExtensible,
+  coreRules_extensibleWithBabel,
+  coreRules_extensibleWithBabel_OFF,
+  coreRules_extensibleWithTs,
+  coreRules_extensibleWithTs_nonTypeCheck_OFF,
+  coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };

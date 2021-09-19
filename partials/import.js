@@ -1,6 +1,6 @@
 'use strict';
 
-const baseImportRules = {
+const importRules_BASE = {
   'import/default': 'error',
   'import/dynamic-import-chunkname': 'off',
   'import/export': 'error',
@@ -20,6 +20,7 @@ const baseImportRules = {
   'import/no-absolute-path': 'error',
   'import/no-amd': 'error',
   'import/no-anonymous-default-export': 'off',
+  'import/no-commonjs': 'off',
   'import/no-cycle': 'error',
   'import/no-default-export': 'off',
   'import/no-deprecated': 'error',
@@ -30,6 +31,7 @@ const baseImportRules = {
     },
   ],
   'import/no-dynamic-require': 'off',
+  'import/no-extraneous-dependencies': 'off',
   'import/no-internal-modules': 'off',
   'import/no-mutable-exports': 'error',
   'import/no-named-as-default': 'error',
@@ -37,10 +39,19 @@ const baseImportRules = {
   'import/no-named-default': 'error',
   'import/no-named-export': 'off',
   'import/no-namespace': 'off',
+  'import/no-nodejs-modules': 'off',
   'import/no-relative-parent-imports': 'off',
   'import/no-restricted-paths': 'off',
   'import/no-self-import': 'error',
   'import/no-unassigned-import': 'off',
+  'import/no-unresolved': [
+    'error',
+    {
+      amd: false,
+      caseSensitive: true,
+      commonjs: false,
+    },
+  ],
   'import/no-unused-modules': 'off',
   'import/no-useless-path-segments': [
     'error',
@@ -55,7 +66,7 @@ const baseImportRules = {
   'import/unambiguous': 'off',
 };
 
-const nodeImportRules = {
+const importRules_node = {
   'import/no-commonjs': 'off',
   'import/no-extraneous-dependencies': 'off',
   'import/no-nodejs-modules': 'off',
@@ -69,7 +80,7 @@ const nodeImportRules = {
   ],
 };
 
-const webImportRules = {
+const importRules_webBundle = {
   'import/no-commonjs': [
     'error',
     {
@@ -98,25 +109,36 @@ const webImportRules = {
   ],
 };
 
-const jestImportRules = {
+const importRules_webBundle_jest = {
   'import/no-extraneous-dependencies': [
     'error',
     {
+      bundledDependencies: false,
       devDependencies: true,
+      optionalDependencies: false,
+      peerDependencies: false,
     },
   ],
 };
 
-const baseImportSettings = {
+const importSettings_BASE = {
   'import/extensions': [
     '.js',
   ],
   'import/ignore': [
     'node_modules',
   ],
+  'import/resolver': 'node',
 };
 
-const tsImportSettings = {
+const importSettings_webBundle_react = {
+  'import/extensions': [
+    '.js',
+    '.jsx',
+  ],
+};
+
+const importSettings_webBundle_ts = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -132,19 +154,12 @@ const tsImportSettings = {
   },
 };
 
-const webImportSettings = {
-  'import/extensions': [
-    '.js',
-    '.jsx',
-  ],
-};
-
 module.exports = {
-  baseImportRules,
-  baseImportSettings,
-  jestImportRules,
-  nodeImportRules,
-  tsImportSettings,
-  webImportRules,
-  webImportSettings,
+  importRules_BASE,
+  importRules_node,
+  importRules_webBundle,
+  importRules_webBundle_jest,
+  importSettings_BASE,
+  importSettings_webBundle_react,
+  importSettings_webBundle_ts,
 };

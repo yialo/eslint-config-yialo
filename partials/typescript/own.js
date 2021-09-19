@@ -1,6 +1,6 @@
 'use strict';
 
-const regularOwnTsRules = {
+const tsRules_own_regular = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': 'off',
   '@typescript-eslint/ban-ts-comment': 'error',
@@ -64,7 +64,7 @@ const regularOwnTsRules = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-const typeCheckOwnTsRules = {
+const tsRules_own_typeCheck_nonExtensible = {
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
@@ -77,6 +77,7 @@ const typeCheckOwnTsRules = {
     },
   ],
   '@typescript-eslint/no-for-in-array': 'error',
+  '@typescript-eslint/no-meaningless-void-operator': 'off',
   '@typescript-eslint/no-misused-promises': 'error',
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
   '@typescript-eslint/no-unnecessary-condition': 'error',
@@ -107,10 +108,19 @@ const typeCheckOwnTsRules = {
   '@typescript-eslint/sort-type-union-intersection-members': 'off',
   '@typescript-eslint/strict-boolean-expressions': 'off',
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
+};
+
+const tsRules_own_typeCheck_extensibleWithJest = {
   '@typescript-eslint/unbound-method': 'error',
 };
 
+const tsRules_own_typeCheck = {
+  ...tsRules_own_typeCheck_nonExtensible,
+  ...tsRules_own_typeCheck_extensibleWithJest,
+};
+
 module.exports = {
-  regularOwnTsRules,
-  typeCheckOwnTsRules,
+  tsRules_own_regular,
+  tsRules_own_typeCheck,
+  tsRules_own_typeCheck_extensibleWithJest,
 };
