@@ -1,12 +1,12 @@
 'use strict';
 
 const { babelRules } = require('../partials/babel');
-const { babelExtensibleCoreRulesReset } = require('../partials/core');
+const { coreRules_extensibleWithBabel_OFF } = require('../partials/core');
 
 module.exports = {
   parser: '@babel/eslint-parser',
   rules: {
-    ...babelExtensibleCoreRulesReset,
+    ...coreRules_extensibleWithBabel_OFF,
     ...babelRules,
   },
 };

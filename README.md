@@ -55,14 +55,13 @@ This package contains several configuration presets for [ESLint](https://github.
 
 Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
 
-* `preset-base`
-* `preset-node`
-* `preset-web-babel`
-* `preset-web-babel-jest`
-* `preset-web-ts-check`
-* `preset-web-ts-check-jest`
-* `preset-web-ts-nocheck`
-* `preset-web-ts-nocheck-jest`
+* `presets/node`
+* `presets/web-react-babel`
+* `presets/web-react-babel-jest`
+* `presets/web-react-ts-check`
+* `presets/web-react-ts-check-jest`
+* `presets/web-react-ts-nocheck`
+* `presets/web-react-ts-nocheck-jest`
 
 ## Usage caveats
 
@@ -106,7 +105,7 @@ settings: {
 
 ### Babel config
 
-In case of `preset-web-babel` or `preset-web-babel-jest` usage when Babel config file is not located in the same directory as ESLint config or has non-standard name, you MUST define `babelOptions.configFile` parser option:
+In case of `presets/web-react-babel` or `presets/web-react-babel-jest` usage when Babel config file is not located in the same directory as ESLint config or has non-standard name, you MUST define `babelOptions.configFile` parser option:
 
 ```js
 parserOptions: {
@@ -132,7 +131,6 @@ parserOptions: {
 ```js
 // .eslintrc.js
 module.exports = {
-  extends: ['yialo/preset-webpack'],
   globals: {
     process: 'readonly',
   },
@@ -140,45 +138,73 @@ module.exports = {
     '*.html',
     '/dist/',
   ],
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'],
-  },
   overrides: [
     {
       files: [
-        './**/*.{spec,test}.ts?(x)',
-        './**/__tests__/**/*.ts?(x)',
-      ],
-      extends: ['yialo/preset-web-ts-check-jest'],
-    },
-    {
-      files: [
-        '.eslintrc.js',
-        './config/**/*.js',
+        './*.js',
         './scripts/**/*.js',
       ],
-      extends: ['yialo/preset-node'],
+      extends: ['yialo/presets/node'],
+      settings: {
+        'import/resolver': 'node',
+      },
+    },
+    {
+      files: ['./src/**/*.js?(x)'],
+      extends: ['yialo/presets/web-react-babel'],
+      parserOptions: {
+        babelOptions: {
+          configFile: './babel.config.js',
+        },
+      },
+      settings: {
+        'import/resolver': {
+          webpack: {
+            config: './config/webpack.config.js',
+          },
+        },
+      },
+    },
+    {
+      files: ['./src/**/*.{spec,test}.js?(x)'],
+      extends: ['yialo/presets/web-react-babel-jest'],
+      parserOptions: {
+        babelOptions: {
+          configFile: './babel.config.js',
+        },
+      },
+      settings: {
+        'import/resolver': {
+          webpack: {
+            config: './config/webpack.config.js',
+          },
+        },
+      },
     },
     {
       files: ['./src/**/*.ts?(x)'],
-      extends: ['yialo/preset-web-ts-check'],
+      extends: ['yialo/presets/web-react-ts-check'],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+      },
+      settings: {
+        tsconfigRootDir: __dirname,
+        project: './tsconfig.json',
+      },
+    },
+    {
+      files: ['./src/**/*.{spec,test}.ts?(x)'],
+      extends: ['yialo/presets/web-react-ts-check-jest'],
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'],
+      },
+      settings: {
+        tsconfigRootDir: __dirname,
+        project: './tsconfig.json',
+      },
     },
   ],
-  rules: {
-    'import/no-unassigned-import': [
-      'error',
-      {
-        allow: ['**/*.{?(s)css,jp?(e)g,png,svg}'],
-      },
-    ],
-  },
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: './config/webpack.config.js',
-      },
-    },
-  },
 };
 ```

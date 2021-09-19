@@ -41,14 +41,7 @@ module.exports = {
         allowSingleLine: true,
       },
     ],
-    'camelcase': [
-      'error',
-      {
-        ignoreDestructuring: false,
-        ignoreImports: false,
-        properties: 'never',
-      },
-    ],
+    'camelcase': 'off',
     'capitalized-comments': 'off',
     'class-methods-use-this': 'off',
     'comma-dangle': [
@@ -56,7 +49,7 @@ module.exports = {
       {
         arrays: 'always-multiline',
         exports: 'always-multiline',
-        functions: 'only-multiline',
+        functions: 'always-multiline',
         imports: 'always-multiline',
         objects: 'always-multiline',
       },

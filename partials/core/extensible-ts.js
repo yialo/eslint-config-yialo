@@ -2,15 +2,15 @@
 
 const { getDisabledRuleSet } = require('../utils');
 const {
-  sharedExtensibleCoreRules,
-  sharedExtensibleCoreRulesReset,
-} = require('./extensible-shared');
+  coreRules_extensibleWithBabelAndTs,
+  coreRules_extensibleWithBabelAndTs_OFF,
+} = require('./extensible-babel-ts');
 
 /**
  * NOTE: All diagnostic codes here:
- * @see {@link https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json}
+ * @see https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
  */
-const compilerCompatibilityTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_nonTypeCheck_compatibility = {
   // NOTE: ts(2335), ts(2377)
   'constructor-super': 'error',
   // NOTE: ts(2378)
@@ -53,11 +53,11 @@ const compilerCompatibilityTsExtensibleCoreRules = {
   ],
 };
 
-const compilerCompatibilityTsExtensibleCoreRulesReset = getDisabledRuleSet(
-  compilerCompatibilityTsExtensibleCoreRules,
+const coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_nonTypeCheck_compatibility,
 );
 
-const regularTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_nonTypeCheck_regular = {
   'brace-style': [
     'error',
     '1tbs',
@@ -175,6 +175,7 @@ const regularTsExtensibleCoreRules = {
     },
   ],
   'no-useless-constructor': 'error',
+  'padding-line-between-statements': 'off',
   'quotes': [
     'error',
     'single',
@@ -193,9 +194,23 @@ const regularTsExtensibleCoreRules = {
   'space-infix-ops': 'error',
 };
 
-const regularTsExtensibleCoreRulesReset = getDisabledRuleSet(regularTsExtensibleCoreRules);
+const coreRules_extensibleWithTs_nonTypeCheck_regular_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_nonTypeCheck_regular,
+);
 
-const typeCheckTsExtensibleCoreRules = {
+const coreRules_extensibleWithTs_typeCheck_compatibility = {
+  /**
+   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
+   * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
+   */
+  'no-constant-condition': 'error',
+};
+
+const coreRules_extensibleWithTs_typeCheck_compatibility_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck_compatibility,
+);
+
+const coreRules_extensibleWithTs_typeCheck_regular = {
   'dot-notation': [
     'error',
     {
@@ -208,41 +223,31 @@ const typeCheckTsExtensibleCoreRules = {
   'no-return-await': 'error',
 };
 
-const nonTypeCheckTsExtensibleCoreRulesReset = {
-  ...sharedExtensibleCoreRulesReset,
-  ...compilerCompatibilityTsExtensibleCoreRulesReset,
-  ...regularTsExtensibleCoreRulesReset,
-};
-
-const typeCheckTsExtensibleCoreRulesReset = getDisabledRuleSet(typeCheckTsExtensibleCoreRules);
-
-const typeCheckCompatibilityTsExtensibleCoreRules = {
-  /**
-   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
-   * @see {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md}
-   */
-  'no-constant-condition': 'error',
-};
-
-const typeCheckCompatibilityTsExtensibleCoreRulesReset = getDisabledRuleSet(
-  typeCheckCompatibilityTsExtensibleCoreRules,
+const coreRules_extensibleWithTs_typeCheck_regular_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck_regular,
 );
 
-const typeCheckOnlyTsExtensibleCoreRulesReset = {
-  ...typeCheckTsExtensibleCoreRulesReset,
-  ...typeCheckCompatibilityTsExtensibleCoreRulesReset,
+const coreRules_extensibleWithTs = {
+  ...coreRules_extensibleWithBabelAndTs,
+  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility,
+  ...coreRules_extensibleWithTs_nonTypeCheck_regular,
+  ...coreRules_extensibleWithTs_typeCheck_compatibility,
+  ...coreRules_extensibleWithTs_typeCheck_regular,
 };
 
-const tsExtensibleCoreRules = {
-  ...sharedExtensibleCoreRules,
-  ...compilerCompatibilityTsExtensibleCoreRules,
-  ...regularTsExtensibleCoreRules,
-  ...typeCheckTsExtensibleCoreRules,
-  ...typeCheckCompatibilityTsExtensibleCoreRules,
+const coreRules_extensibleWithTs_nonTypeCheck_OFF = {
+  ...coreRules_extensibleWithBabelAndTs_OFF,
+  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF,
+  ...coreRules_extensibleWithTs_nonTypeCheck_regular_OFF,
+};
+
+const coreRules_extensibleWithTs_typeCheckOnly_OFF = {
+  ...coreRules_extensibleWithTs_typeCheck_compatibility_OFF,
+  ...coreRules_extensibleWithTs_typeCheck_regular_OFF,
 };
 
 module.exports = {
-  tsExtensibleCoreRules,
-  nonTypeCheckTsExtensibleCoreRulesReset,
-  typeCheckOnlyTsExtensibleCoreRulesReset,
+  coreRules_extensibleWithTs,
+  coreRules_extensibleWithTs_nonTypeCheck_OFF,
+  coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };
