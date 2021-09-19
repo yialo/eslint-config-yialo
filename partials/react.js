@@ -193,6 +193,7 @@ const reactRules = {
     'error',
     {
       forbidDefaultForRequired: true,
+      ignoreFunctionalComponents: true,
     },
   ],
   'react/require-optimization': 'off',
