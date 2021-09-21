@@ -9,12 +9,7 @@ const importRules_BASE = {
   'import/first': 'error',
   'import/group-exports': 'off',
   'import/max-dependencies': 'off',
-  'import/named': [
-    'error',
-    {
-      commonjs: true,
-    },
-  ],
+  'import/named': 'error',
   'import/namespace': 'error',
   'import/newline-after-import': 'error',
   'import/no-absolute-path': 'error',
