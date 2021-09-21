@@ -157,7 +157,7 @@ const reactRules = {
       allowFunctions: false,
     },
   ],
-  'react/no-danger': 'warn',
+  'react/no-danger': 'off',
   'react/no-danger-with-children': 'error',
   'react/no-deprecated': 'error',
   'react/no-did-mount-set-state': 'off',
