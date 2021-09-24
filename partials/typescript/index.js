@@ -9,9 +9,10 @@ const {
   tsRules_own_typeCheckOnly_extensibleWithJest,
 } = require('./own');
 
-const tsRules_extension_regular_OFF = getDisabledRuleSet(tsRules_extension_nonTypeCheck);
+
+const tsRules_extension_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_extension_nonTypeCheck);
 const tsRules_extension_typeCheckOnly_OFF = getDisabledRuleSet(tsRules_extension_typeCheckOnly);
-const tsRules_own_regular_OFF = getDisabledRuleSet(tsRules_own_nonTypeCheck);
+const tsRules_own_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_own_nonTypeCheck);
 const tsRules_own_typeCheckOnly_OFF = getDisabledRuleSet(tsRules_own_typeCheckOnly);
 const tsRules_own_typeCheckOnly_extensibleWithJest_OFF = getDisabledRuleSet(
   tsRules_own_typeCheckOnly_extensibleWithJest,
@@ -28,9 +29,9 @@ module.exports = {
     ...tsRules_own_typeCheckOnly,
   },
   tsRules_OFF: {
-    ...tsRules_extension_regular_OFF,
+    ...tsRules_extension_nonTypeCheck_OFF,
     ...tsRules_extension_typeCheckOnly_OFF,
-    ...tsRules_own_regular_OFF,
+    ...tsRules_own_nonTypeCheck_OFF,
     ...tsRules_own_typeCheckOnly_OFF,
   },
   tsRules_typeCheckOnly_extensibleWithJest: {
