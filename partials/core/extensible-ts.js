@@ -234,7 +234,7 @@ const coreRules_extensibleWithTs_only = {
   ...coreRules_extensibleWithTs_typeCheck_regular,
 };
 
-const coreRules_extensibleWithTs = {
+const coreRules_extensibleWithTs_full = {
   ...coreRules_extensibleShared,
   ...coreRules_extensibleWithTs_only,
 };
@@ -252,7 +252,7 @@ const coreRules_extensibleWithTs_typeCheckOnly_OFF = {
 };
 
 module.exports = {
-  coreRules_extensibleWithTs,
+  coreRules_extensibleWithTs_full,
   coreRules_extensibleWithTs_only,
   coreRules_extensibleWithTs_nonTypeCheck_OFF,
   coreRules_extensibleWithTs_typeCheckOnly_OFF,
