@@ -144,7 +144,7 @@ const reactRules = {
       condition: 'parens-new-line',
       declaration: 'parens-new-line',
       logical: 'parens-new-line',
-      prop: 'parens-new-line',
+      prop: 'ignore',
       return: 'parens-new-line',
     },
   ],
