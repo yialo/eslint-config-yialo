@@ -25,7 +25,7 @@ const coreRules_extensibleShared_OFF = getDisabledRuleSet(
 module.exports = {
   /**
    * Usage:
-   * - For full core ruleset composition in abstract config mixin
+   * - For full core ruleset composition in abstract mixin
    * - For full Babel-extensible core ruleset composition in Babel-extensible core partial
    * - For full TS-extensible core ruleset composition in TS-related core partial
    */
@@ -33,7 +33,7 @@ module.exports = {
 
   /**
    * Usage:
-   * - For disabled full Babel-extensible core ruleset composition in Babel config mixin
+   * - For disabled full Babel-extensible core ruleset composition in Babel mixin
    * - For disabled non-typecheck TS-extensible core ruleset composition in TS-related core partial
    */
   coreRules_extensibleShared_OFF,

@@ -246,19 +246,20 @@ const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
 module.exports = {
   /**
    * Usage:
-   * - For full core ruleset composition in abstract config mixin
+   * - For full core ruleset composition in abstract mixin
+   * - For full TS-extensible core ruleset composition in TS mixin
    */
   coreRules_extensibleWithTs_only,
 
   /**
    * Usage:
-   * - Disables all non-typecheck TS-extensible core rules in non-typecheck TS config mixin
+   * - Disables all non-typecheck TS-extensible core rules in non-typecheck TS mixin
    */
   coreRules_extensibleWithTs_nonTypeCheck_full_OFF,
 
   /**
    * Usage:
-   * - Disables all typecheck-only TS-extensible core rules in typecheck-only TS config mixin
+   * - Disables all typecheck-only TS-extensible core rules in typecheck-only TS mixin
    */
   coreRules_extensibleWithTs_typeCheckOnly_full_OFF,
 };

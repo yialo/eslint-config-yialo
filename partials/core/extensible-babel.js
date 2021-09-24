@@ -19,14 +19,14 @@ const coreRules_extensibleWithBabel_only_OFF = getDisabledRuleSet(
 module.exports = {
   /**
    * Usage:
-   * - For full core ruleset composition in abstract config mixin
+   * - For full core ruleset composition in abstract mixin
    * - For full Babel-extensible core ruleset composition in Babel partial
    */
   coreRules_extensibleWithBabel_only,
 
   /**
    * Usage:
-   * - Disables Babel-only extensible core rules in Babel config mixin
+   * - For disabled full Babel-extensible core ruleset composition in Babel mixin
    */
   coreRules_extensibleWithBabel_only_OFF,
 };
