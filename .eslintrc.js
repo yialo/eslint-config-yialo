@@ -95,12 +95,7 @@ module.exports = {
     'default-case-last': 'error',
     'default-param-last': 'error',
     'dot-location': ['error', 'property'],
-    'dot-notation': [
-      'error',
-      {
-        allowKeywords: true,
-      },
-    ],
+    'dot-notation': 'off',
     'eol-last': ['error', 'always'],
     'eqeqeq': [
       'error',
