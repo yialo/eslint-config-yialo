@@ -87,15 +87,7 @@ const tsRules_extension_nonTypeCheck = {
 const tsRules_extension_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_extension_nonTypeCheck);
 
 const tsRules_extension_typeCheckOnly = {
-  '@typescript-eslint/dot-notation': [
-    coreRules_extensibleWithTs_typeCheckOnly['dot-notation'][0],
-    {
-      ...coreRules_extensibleWithTs_typeCheckOnly['dot-notation'][1],
-      allowIndexSignaturePropertyAccess: false,
-      allowPrivateClassPropertyAccess: false,
-      allowProtectedClassPropertyAccess: false,
-    },
-  ],
+  '@typescript-eslint/dot-notation': coreRules_extensibleWithTs_typeCheckOnly['dot-notation'],
   '@typescript-eslint/no-implied-eval': coreRules_extensibleWithTs_typeCheckOnly['no-implied-eval'],
   '@typescript-eslint/no-throw-literal': coreRules_extensibleWithTs_typeCheckOnly['no-throw-literal'],
   '@typescript-eslint/require-await': coreRules_extensibleWithTs_typeCheckOnly['require-await'],
