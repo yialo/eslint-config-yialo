@@ -15,20 +15,16 @@ const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
   ...coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };
 
-const tsRules_own_typeCheckOnly_full = {
+const tsRules_typeCheckOnly_full = {
+  ...tsRules_extension_typeCheckOnly,
   ...tsRules_own_typeCheckOnly_nonExtensible,
   ...tsRules_own_typeCheckOnly_extensibleWithJest,
-};
-
-const tsRules_typeCheckOnly_BASE = {
-  ...tsRules_extension_typeCheckOnly,
-  ...tsRules_own_typeCheckOnly_full,
 };
 
 
 module.exports = {
   rules: {
     ...coreRules_extensibleWithTs_typeCheckOnly_full_OFF,
-    ...tsRules_typeCheckOnly_BASE,
+    ...tsRules_typeCheckOnly_full,
   },
 };
