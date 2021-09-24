@@ -1,6 +1,6 @@
 'use strict';
 
-const tsRules_own_regular = {
+const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': 'off',
   '@typescript-eslint/ban-ts-comment': 'error',
@@ -120,7 +120,7 @@ const tsRules_own_typeCheck = {
 };
 
 module.exports = {
-  tsRules_own_regular,
+  tsRules_own_nonTypeCheck,
   tsRules_own_typeCheck,
   tsRules_own_typeCheck_extensibleWithJest,
 };

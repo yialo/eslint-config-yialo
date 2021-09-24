@@ -3,7 +3,7 @@
 const { coreRules_extensibleShared } = require('../core/extensible-shared');
 const { coreRules_extensibleWithTs_only } = require('../core/extensible-ts');
 
-const tsRules_extension_regular = {
+const tsRules_extension_nonTypeCheck = {
   // Shared extension rules
   '@typescript-eslint/no-invalid-this': coreRules_extensibleShared['no-invalid-this'],
   '@typescript-eslint/no-unused-expressions': coreRules_extensibleShared['no-unused-expressions'],
@@ -96,6 +96,6 @@ const tsRules_extension_typeCheck = {
 };
 
 module.exports = {
-  tsRules_extension_regular,
+  tsRules_extension_nonTypeCheck,
   tsRules_extension_typeCheck,
 };
