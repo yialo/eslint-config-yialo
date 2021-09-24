@@ -247,7 +247,7 @@ module.exports = {
   /**
    * Usage:
    * - For full core ruleset composition in abstract mixin
-   * - For full TS-extensible core ruleset composition in TS mixin
+   * - For full TS-extensible core ruleset composition in extension TS partial
    */
   coreRules_extensibleWithTs_only,
 
