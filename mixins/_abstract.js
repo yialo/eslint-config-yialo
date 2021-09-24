@@ -19,7 +19,7 @@ const { reactRules_OFF } = require('../partials/react');
 const { reactHooksRules_OFF } = require('../partials/react-hooks');
 const { tsRules_OFF } = require('../partials/typescript');
 
-const coreRules = {
+const coreRules_full = {
   ...coreRules_nonExtensible,
   ...coreRules_extensibleShared,
   ...coreRules_extensibleWithBabel_only,
@@ -71,7 +71,7 @@ module.exports = {
   rules: {
     ...compilerRelatedPluginRules_OFF,
     ...envOrFrameworkRelatedPluginRules_OFF,
-    ...coreRules,
+    ...coreRules_full,
     ...importRules_BASE,
     ...promiseRules,
   },
