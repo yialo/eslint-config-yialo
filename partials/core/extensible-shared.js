@@ -26,6 +26,5 @@ const coreRules_extensibleShared_OFF = getDisabledRuleSet(
 
 module.exports = {
   coreRules_extensibleShared,
-
   coreRules_extensibleShared_OFF,
 };

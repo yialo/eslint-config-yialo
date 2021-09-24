@@ -68,6 +68,7 @@ const coreRules_tsCompat_typeCheckOnly_OFF = getDisabledRuleSet(
 module.exports = {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_nonTypeCheck_OFF,
+
   coreRules_tsCompat_typeCheckOnly,
   coreRules_tsCompat_typeCheckOnly_OFF,
 };

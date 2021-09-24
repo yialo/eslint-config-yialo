@@ -20,6 +20,5 @@ const coreRules_extensibleWithBabel_only_OFF = getDisabledRuleSet(
 
 module.exports = {
   coreRules_extensibleWithBabel_only,
-
   coreRules_extensibleWithBabel_only_OFF,
 };

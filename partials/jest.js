@@ -67,6 +67,7 @@ const jestRules_own_OFF = getDisabledRuleSet(jestRules_own);
 module.exports = {
   jestRules_own,
   jestRules_own_OFF,
+
   jestRules_extension_typeCheckOnly,
   jestRules_extension_typeCheckOnly_OFF,
 };
