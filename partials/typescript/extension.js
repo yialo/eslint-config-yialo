@@ -10,6 +10,7 @@ const tsRules_extension_regular = {
   '@typescript-eslint/object-curly-spacing': coreRules_extensibleShared['object-curly-spacing'],
   '@typescript-eslint/semi': coreRules_extensibleWithTs_only['semi'],
 
+  // TypeScript-only extension rules
   '@typescript-eslint/brace-style': coreRules_extensibleWithTs_only['brace-style'],
   '@typescript-eslint/comma-dangle': [
     coreRules_extensibleWithTs_only['comma-dangle'][0],
