@@ -227,12 +227,16 @@ const coreRules_extensibleWithTs_typeCheck_regular_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_typeCheck_regular,
 );
 
-const coreRules_extensibleWithTs = {
-  ...coreRules_extensibleShared,
+const coreRules_extensibleWithTs_only = {
   ...coreRules_extensibleWithTs_nonTypeCheck_compatibility,
   ...coreRules_extensibleWithTs_nonTypeCheck_regular,
   ...coreRules_extensibleWithTs_typeCheck_compatibility,
   ...coreRules_extensibleWithTs_typeCheck_regular,
+};
+
+const coreRules_extensibleWithTs = {
+  ...coreRules_extensibleShared,
+  ...coreRules_extensibleWithTs_only,
 };
 
 const coreRules_extensibleWithTs_nonTypeCheck_OFF = {
@@ -249,6 +253,7 @@ const coreRules_extensibleWithTs_typeCheckOnly_OFF = {
 
 module.exports = {
   coreRules_extensibleWithTs,
+  coreRules_extensibleWithTs_only,
   coreRules_extensibleWithTs_nonTypeCheck_OFF,
   coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };

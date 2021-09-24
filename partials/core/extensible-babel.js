@@ -33,4 +33,5 @@ const coreRules_extensibleWithBabel_OFF = {
 module.exports = {
   coreRules_extensibleWithBabel,
   coreRules_extensibleWithBabel_OFF,
+  coreRules_extensibleWithBabel_only,
 };

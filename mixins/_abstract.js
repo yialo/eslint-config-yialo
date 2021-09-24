@@ -3,8 +3,9 @@
 const { babelRules_OFF } = require('../partials/babel');
 const {
   coreRules_nonExtensible,
-  coreRules_extensibleWithBabel,
-  coreRules_extensibleWithTs,
+  coreRules_extensibleShared,
+  coreRules_extensibleWithBabel_only,
+  coreRules_extensibleWithTs_only,
 } = require('../partials/core');
 const { importRules_BASE, importSettings_BASE } = require('../partials/import');
 const {
@@ -20,8 +21,9 @@ const { tsRules_OFF } = require('../partials/typescript');
 
 const coreRules = {
   ...coreRules_nonExtensible,
-  ...coreRules_extensibleWithBabel,
-  ...coreRules_extensibleWithTs,
+  ...coreRules_extensibleShared,
+  ...coreRules_extensibleWithBabel_only,
+  ...coreRules_extensibleWithTs_only,
 };
 
 const compilerRelatedPluginRules_OFF = {
