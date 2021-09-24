@@ -33,7 +33,7 @@ const coreRules_extensibleWithBabel_full_OFF = {
 module.exports = {
   /**
    * Usage:
-   * - For Babel plugin rules
+   * - As reference to core rules for extension in Babel plugin partial
    */
   coreRules_extensibleWithBabel_full,
 
@@ -45,7 +45,7 @@ module.exports = {
 
   /**
    * Usage:
-   * - In full core ruleset definition in abstract config mixin
+   * - For full core ruleset composition in abstract config mixin
    */
   coreRules_extensibleWithBabel_only,
 };
