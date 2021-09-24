@@ -7,44 +7,44 @@ const {
 } = require('./extensible-babel-ts');
 
 /**
- * NOTE: All diagnostic codes here:
+ * All diagnostic codes here:
  * @see https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
  */
 const coreRules_extensibleWithTs_nonTypeCheck_compatibility = {
-  // NOTE: ts(2335), ts(2377)
+  // ts(2335), ts(2377)
   'constructor-super': 'error',
-  // NOTE: ts(2378)
+  // ts(2378)
   'getter-return': [
     'error',
     {
       allowImplicit: true,
     },
   ],
-  // NOTE: ts(2588)
+  // ts(2588)
   'no-const-assign': 'error',
-  // NOTE: ts(2300)
+  // ts(2300)
   'no-dupe-args': 'error',
-  // NOTE: ts(1117)
+  // ts(1117)
   'no-dupe-keys': 'error',
-  // NOTE: ts(2539)
+  // ts(2539)
   'no-func-assign': 'error',
-  // NOTE: ts(2539), ts(2540)
+  // ts(2539), ts(2540)
   'no-import-assign': 'error',
-  // NOTE: ts(2588)
+  // ts(2588)
   'no-new-symbol': 'error',
-  // NOTE: ts(2349)
+  // ts(2349)
   'no-obj-calls': 'error',
-  // NOTE: ts(2408)
+  // ts(2408)
   'no-setter-return': 'error',
-  // NOTE: ts(2376)
+  // ts(2376)
   'no-this-before-super': 'error',
-  // NOTE: ts(2304)
+  // ts(2304)
   'no-undef': 'error',
-  // NOTE: ts(7027)
+  // ts(7027)
   'no-unreachable': 'error',
-  // NOTE: ts(2358), ts(2360), ts(2365)
+  // ts(2358), ts(2360), ts(2365)
   'no-unsafe-negation': 'error',
-  // NOTE: ts(2367)
+  // ts(2367)
   'valid-typeof': [
     'error',
     {
@@ -82,7 +82,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular = {
       before: false,
     },
   ],
-  // NOTE: ts(1016)
+  // ts(1016)
   'default-param-last': 'error',
   'func-call-spacing': ['error', 'never'],
   'indent': [
@@ -137,7 +137,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular = {
     },
   ],
   'no-array-constructor': 'error',
-  // NOTE: ts(2300), ts(2393)
+  // ts(2300), ts(2393)
   'no-dupe-class-members': 'error',
   'no-duplicate-imports': 'off',
   'no-empty-function': [
@@ -155,7 +155,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular = {
   'no-loop-func': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
-  // NOTE: ts(2451)
+  // ts(2451)
   'no-redeclare': 'error',
   'no-shadow': 'error',
   'no-unused-vars': [
@@ -200,7 +200,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular_OFF = getDisabledRuleSet(
 
 const coreRules_extensibleWithTs_typeCheck_compatibility = {
   /**
-   * NOTE: Because of @typescript-eslint/no-unnecessary-condition own rule:
+   * Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
    */
   'no-constant-condition': 'error',

@@ -48,7 +48,7 @@ const jestRules_own = {
 };
 
 /**
- * NOTE: This rule is extension of @typescript-eslint and MUST NOT be used outside its scope
+ * This rule is extension of @typescript-eslint and MUST NOT be used outside its scope
  * @see https://github.com/jest-community/eslint-plugin-jest#typescript-rules
  */
 const jestRules_extension_typeCheckOnly = {

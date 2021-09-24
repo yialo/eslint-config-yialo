@@ -14,11 +14,11 @@ const tsRules_extension_regular = {
     },
   ],
   '@typescript-eslint/comma-spacing': coreRules_extensibleWithTs['comma-spacing'],
-  // NOTE: ts(1016)
+  // ts(1016)
   '@typescript-eslint/default-param-last': 'off',
   '@typescript-eslint/func-call-spacing': coreRules_extensibleWithTs['func-call-spacing'],
   /**
-   * NOTE: rule may produce issues in some cases
+   * rule may produce issues in some cases
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/indent.md
    */
   '@typescript-eslint/indent': coreRules_extensibleWithTs.indent,
@@ -33,7 +33,7 @@ const tsRules_extension_regular = {
     },
   ],
   '@typescript-eslint/no-array-constructor': coreRules_extensibleWithTs['no-array-constructor'],
-  // NOTE: ts(2300), ts(2393)
+  // ts(2300), ts(2393)
   '@typescript-eslint/no-dupe-class-members': 'off',
   '@typescript-eslint/no-duplicate-imports': coreRules_extensibleWithTs['no-duplicate-imports'],
   '@typescript-eslint/no-empty-function': [
@@ -51,13 +51,13 @@ const tsRules_extension_regular = {
   '@typescript-eslint/no-loop-func': coreRules_extensibleWithTs['no-loop-func'],
   '@typescript-eslint/no-loss-of-precision': coreRules_extensibleWithTs['no-loss-of-precision'],
   '@typescript-eslint/no-magic-numbers': coreRules_extensibleWithTs['no-magic-numbers'],
-  // NOTE: ts(2451)
+  // ts(2451)
   '@typescript-eslint/no-redeclare': 'off',
   '@typescript-eslint/no-shadow': coreRules_extensibleWithTs['no-shadow'],
   '@typescript-eslint/no-unused-expressions': coreRules_extensibleWithTs['no-unused-expressions'],
   '@typescript-eslint/no-unused-vars': coreRules_extensibleWithTs['no-unused-vars'],
   /**
-   * NOTE: rule may produce issues in some cases
+   * rule may produce issues in some cases
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
    */
   '@typescript-eslint/no-use-before-define': coreRules_extensibleWithTs['no-use-before-define'],
@@ -84,7 +84,7 @@ const tsRules_extension_typeCheck = {
   '@typescript-eslint/no-throw-literal': coreRules_extensibleWithTs['no-throw-literal'],
   '@typescript-eslint/object-curly-spacing': coreRules_extensibleWithTs['object-curly-spacing'],
   '@typescript-eslint/require-await': coreRules_extensibleWithTs['require-await'],
-  // NOTE: different name: 'no-return-await' -> 'return-await'
+  // different name: 'no-return-await' -> 'return-await'
   '@typescript-eslint/return-await': [
     coreRules_extensibleWithTs['no-return-await'],
     'in-try-catch',
