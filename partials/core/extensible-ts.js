@@ -4,7 +4,7 @@ const { getDisabledRuleSet } = require('../utils');
 const {
   coreRules_extensibleWithBabelAndTs,
   coreRules_extensibleWithBabelAndTs_OFF,
-} = require('./extensible-babel-ts');
+} = require('./extensible-shared');
 
 /**
  * All diagnostic codes here:
