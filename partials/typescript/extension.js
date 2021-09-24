@@ -6,6 +6,8 @@ const {
   coreRules_extensibleWithTs_typeCheckOnly,
 } = require('../core/extensible-ts');
 
+const { getDisabledRuleSet } = require('../utils');
+
 
 const tsRules_extension_nonTypeCheck = {
   /* Shared extension rules
@@ -82,6 +84,8 @@ const tsRules_extension_nonTypeCheck = {
   '@typescript-eslint/space-infix-ops': coreRules_extensibleWithTs_nonTypeCheck['space-infix-ops'],
 };
 
+const tsRules_extension_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_extension_nonTypeCheck);
+
 const tsRules_extension_typeCheckOnly = {
   '@typescript-eslint/dot-notation': [
     coreRules_extensibleWithTs_typeCheckOnly['dot-notation'][0],
@@ -102,9 +106,13 @@ const tsRules_extension_typeCheckOnly = {
   ],
 };
 
+const tsRules_extension_typeCheckOnly_OFF = getDisabledRuleSet(tsRules_extension_typeCheckOnly);
+
 
 module.exports = {
   tsRules_extension_nonTypeCheck,
+  tsRules_extension_nonTypeCheck_OFF,
 
   tsRules_extension_typeCheckOnly,
+  tsRules_extension_typeCheckOnly_OFF,
 };
