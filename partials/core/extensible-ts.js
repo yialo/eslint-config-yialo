@@ -2,8 +2,6 @@
 
 const { getDisabledRuleSet } = require('../utils');
 
-const { coreRules_tsCompat_typeCheckOnly_OFF } = require('./ts-compat');
-
 
 const coreRules_extensibleWithTs_nonTypeCheck = {
   'brace-style': [
@@ -158,18 +156,11 @@ const coreRules_extensibleWithTs_typeCheckOnly_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_typeCheckOnly,
 );
 
-const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
-  ...coreRules_tsCompat_typeCheckOnly_OFF,
-  ...coreRules_extensibleWithTs_typeCheckOnly_OFF,
-};
-
 
 module.exports = {
   coreRules_extensibleWithTs_nonTypeCheck,
-
   coreRules_extensibleWithTs_nonTypeCheck_OFF,
 
   coreRules_extensibleWithTs_typeCheckOnly,
-
-  coreRules_extensibleWithTs_typeCheckOnly_full_OFF,
+  coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };
