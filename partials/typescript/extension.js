@@ -1,6 +1,12 @@
 'use strict';
 
-const { coreRules_extensibleWithTs_full } = require('../core/extensible-ts');
+const { coreRules_extensibleShared } = require('../core/extensible-shared');
+const { coreRules_extensibleWithTs_only } = require('../core/extensible-ts');
+
+const coreRules_extensibleWithTs_full = {
+  ...coreRules_extensibleShared,
+  ...coreRules_extensibleWithTs_only,
+};
 
 const tsRules_extension_regular = {
   '@typescript-eslint/brace-style': coreRules_extensibleWithTs_full['brace-style'],
