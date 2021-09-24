@@ -6,13 +6,16 @@ const { coreRules_extensibleShared } = require('./core/extensible-shared');
 const { getDisabledRuleSet } = require('./utils');
 
 const babelRules = {
-  // Shared extension rules
+  /* Shared extension rules
+   * ====================== */
   '@babel/no-invalid-this': coreRules_extensibleShared['no-invalid-this'],
   '@babel/no-unused-expressions': coreRules_extensibleShared['no-unused-expressions'],
   '@babel/object-curly-spacing': coreRules_extensibleShared['object-curly-spacing'],
   '@babel/semi': coreRules_extensibleShared['semi'],
 
-  // Babel-only extension rules
+
+  /* Babel-only extension rules
+   * ========================== */
   '@babel/new-cap': coreRules_extensibleWithBabel_only['new-cap'],
 };
 

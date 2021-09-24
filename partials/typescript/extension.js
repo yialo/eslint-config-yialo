@@ -4,13 +4,16 @@ const { coreRules_extensibleShared } = require('../core/extensible-shared');
 const { coreRules_extensibleWithTs_only } = require('../core/extensible-ts');
 
 const tsRules_extension_nonTypeCheck = {
-  // Shared extension rules
+  /* Shared extension rules
+   * ====================== */
   '@typescript-eslint/no-invalid-this': coreRules_extensibleShared['no-invalid-this'],
   '@typescript-eslint/no-unused-expressions': coreRules_extensibleShared['no-unused-expressions'],
   '@typescript-eslint/object-curly-spacing': coreRules_extensibleShared['object-curly-spacing'],
   '@typescript-eslint/semi': coreRules_extensibleWithTs_only['semi'],
 
-  // TypeScript-only extension rules
+
+  /* TypeScript-only extension rules
+   * =============================== */
   '@typescript-eslint/brace-style': coreRules_extensibleWithTs_only['brace-style'],
   '@typescript-eslint/comma-dangle': [
     coreRules_extensibleWithTs_only['comma-dangle'][0],
