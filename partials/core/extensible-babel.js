@@ -2,8 +2,8 @@
 
 const { getDisabledRuleSet } = require('../utils');
 const {
-  coreRules_extensibleWithBabelAndTs,
-  coreRules_extensibleWithBabelAndTs_OFF,
+  coreRules_extensibleShared,
+  coreRules_extensibleShared_OFF,
 } = require('./extensible-shared');
 
 const coreRules_extensibleWithBabel_only = {
@@ -21,12 +21,12 @@ const coreRules_extensibleWithBabel_only_OFF = getDisabledRuleSet(
 );
 
 const coreRules_extensibleWithBabel = {
-  ...coreRules_extensibleWithBabelAndTs,
+  ...coreRules_extensibleShared,
   ...coreRules_extensibleWithBabel_only,
 };
 
 const coreRules_extensibleWithBabel_OFF = {
-  ...coreRules_extensibleWithBabelAndTs_OFF,
+  ...coreRules_extensibleShared_OFF,
   ...coreRules_extensibleWithBabel_only_OFF,
 };
 

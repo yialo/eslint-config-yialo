@@ -2,8 +2,8 @@
 
 const { getDisabledRuleSet } = require('../utils');
 const {
-  coreRules_extensibleWithBabelAndTs,
-  coreRules_extensibleWithBabelAndTs_OFF,
+  coreRules_extensibleShared,
+  coreRules_extensibleShared_OFF,
 } = require('./extensible-shared');
 
 /**
@@ -228,7 +228,7 @@ const coreRules_extensibleWithTs_typeCheck_regular_OFF = getDisabledRuleSet(
 );
 
 const coreRules_extensibleWithTs = {
-  ...coreRules_extensibleWithBabelAndTs,
+  ...coreRules_extensibleShared,
   ...coreRules_extensibleWithTs_nonTypeCheck_compatibility,
   ...coreRules_extensibleWithTs_nonTypeCheck_regular,
   ...coreRules_extensibleWithTs_typeCheck_compatibility,
@@ -237,7 +237,7 @@ const coreRules_extensibleWithTs = {
 
 const coreRules_extensibleWithTs_nonTypeCheck_OFF = {
   // All Babel/TS-shared extensible rules belong to nonTypeCheck group
-  ...coreRules_extensibleWithBabelAndTs_OFF,
+  ...coreRules_extensibleShared_OFF,
   ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF,
   ...coreRules_extensibleWithTs_nonTypeCheck_regular_OFF,
 };
