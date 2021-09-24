@@ -2,59 +2,14 @@
 
 const { getDisabledRuleSet } = require('../utils');
 const { coreRules_extensibleShared_OFF } = require('./extensible-shared');
+const {
+  coreRules_tsCompat_nonTypeCheck,
+  coreRules_tsCompat_nonTypeCheck_OFF,
+  coreRules_tsCompat_typeCheck,
+  coreRules_tsCompat_typeCheck_OFF,
+} = require('./ts-compat');
 
-/**
- * All diagnostic codes here:
- * @see https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
- */
-const coreRules_extensibleWithTs_nonTypeCheck_compatibility = {
-  // ts(2335), ts(2377)
-  'constructor-super': 'error',
-  // ts(2378)
-  'getter-return': [
-    'error',
-    {
-      allowImplicit: true,
-    },
-  ],
-  // ts(2588)
-  'no-const-assign': 'error',
-  // ts(2300)
-  'no-dupe-args': 'error',
-  // ts(1117)
-  'no-dupe-keys': 'error',
-  // ts(2539)
-  'no-func-assign': 'error',
-  // ts(2539), ts(2540)
-  'no-import-assign': 'error',
-  // ts(2588)
-  'no-new-symbol': 'error',
-  // ts(2349)
-  'no-obj-calls': 'error',
-  // ts(2408)
-  'no-setter-return': 'error',
-  // ts(2376)
-  'no-this-before-super': 'error',
-  // ts(2304)
-  'no-undef': 'error',
-  // ts(7027)
-  'no-unreachable': 'error',
-  // ts(2358), ts(2360), ts(2365)
-  'no-unsafe-negation': 'error',
-  // ts(2367)
-  'valid-typeof': [
-    'error',
-    {
-      requireStringLiterals: true,
-    },
-  ],
-};
-
-const coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF = getDisabledRuleSet(
-  coreRules_extensibleWithTs_nonTypeCheck_compatibility,
-);
-
-const coreRules_extensibleWithTs_nonTypeCheck_regular = {
+const coreRules_extensibleWithTs_nonTypeCheck = {
   'brace-style': [
     'error',
     '1tbs',
@@ -191,23 +146,11 @@ const coreRules_extensibleWithTs_nonTypeCheck_regular = {
   'space-infix-ops': 'error',
 };
 
-const coreRules_extensibleWithTs_nonTypeCheck_regular_OFF = getDisabledRuleSet(
-  coreRules_extensibleWithTs_nonTypeCheck_regular,
+const coreRules_extensibleWithTs_nonTypeCheck_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_nonTypeCheck,
 );
 
-const coreRules_extensibleWithTs_typeCheck_compatibility = {
-  /**
-   * Because of @typescript-eslint/no-unnecessary-condition own rule:
-   * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
-   */
-  'no-constant-condition': 'error',
-};
-
-const coreRules_extensibleWithTs_typeCheck_compatibility_OFF = getDisabledRuleSet(
-  coreRules_extensibleWithTs_typeCheck_compatibility,
-);
-
-const coreRules_extensibleWithTs_typeCheck_regular = {
+const coreRules_extensibleWithTs_typeCheck = {
   'dot-notation': 'off',
   'no-implied-eval': 'error',
   'no-throw-literal': 'error',
@@ -215,27 +158,27 @@ const coreRules_extensibleWithTs_typeCheck_regular = {
   'no-return-await': 'error',
 };
 
-const coreRules_extensibleWithTs_typeCheck_regular_OFF = getDisabledRuleSet(
-  coreRules_extensibleWithTs_typeCheck_regular,
+const coreRules_extensibleWithTs_typeCheck_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheck,
 );
 
 const coreRules_extensibleWithTs_only = {
-  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility,
-  ...coreRules_extensibleWithTs_nonTypeCheck_regular,
-  ...coreRules_extensibleWithTs_typeCheck_compatibility,
-  ...coreRules_extensibleWithTs_typeCheck_regular,
+  ...coreRules_tsCompat_nonTypeCheck,
+  ...coreRules_extensibleWithTs_nonTypeCheck,
+  ...coreRules_tsCompat_typeCheck,
+  ...coreRules_extensibleWithTs_typeCheck,
 };
 
 const coreRules_extensibleWithTs_nonTypeCheck_full_OFF = {
   // All Babel/TS-shared extensible rules belong to nonTypeCheck group
   ...coreRules_extensibleShared_OFF,
-  ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF,
-  ...coreRules_extensibleWithTs_nonTypeCheck_regular_OFF,
+  ...coreRules_tsCompat_nonTypeCheck_OFF,
+  ...coreRules_extensibleWithTs_nonTypeCheck_OFF,
 };
 
 const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
-  ...coreRules_extensibleWithTs_typeCheck_compatibility_OFF,
-  ...coreRules_extensibleWithTs_typeCheck_regular_OFF,
+  ...coreRules_tsCompat_typeCheck_OFF,
+  ...coreRules_extensibleWithTs_typeCheck_OFF,
 };
 
 module.exports = {
