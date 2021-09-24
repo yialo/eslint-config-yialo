@@ -21,7 +21,7 @@ const { importRules_BASE, importSettings_BASE } = require('../partials/import');
 
 const {
   jestRules_own_OFF,
-  jestRules_extension_typeCheckOnly_OFF,
+  jestRules_tsExtension_typeCheckOnly_OFF,
 } = require('../partials/jest');
 
 const { jsxA11yRules_OFF } = require('../partials/jsx-a11y');
@@ -62,22 +62,18 @@ const coreRules_full = {
   ...coreRules_extensibleWithTs_only,
 };
 
-const tsRules_own_typeCheckOnly_full_OFF = {
+const tsRules_OFF = {
+  ...tsRules_own_nonTypeCheck_OFF,
+  ...tsRules_extension_nonTypeCheck_OFF,
   ...tsRules_own_typeCheckOnly_nonExtensible_OFF,
   ...tsRules_own_typeCheckOnly_extensibleWithJest_OFF,
-};
-
-const tsRules_OFF = {
-  ...tsRules_extension_nonTypeCheck_OFF,
   ...tsRules_extension_typeCheckOnly_OFF,
-  ...tsRules_own_nonTypeCheck_OFF,
-  ...tsRules_own_typeCheckOnly_full_OFF,
 };
 
 const compilerRelatedPluginRules_OFF = {
   ...babelRules_OFF,
   ...tsRules_OFF,
-  ...jestRules_extension_typeCheckOnly_OFF,
+  ...jestRules_tsExtension_typeCheckOnly_OFF,
 };
 
 const envOrFrameworkRelatedPluginRules_OFF = {
