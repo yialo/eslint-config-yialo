@@ -20,18 +20,18 @@ const coreRules_extensibleWithBabel_only_OFF = getDisabledRuleSet(
   coreRules_extensibleWithBabel_only,
 );
 
-const coreRules_extensibleWithBabel = {
+const coreRules_extensibleWithBabel_full = {
   ...coreRules_extensibleShared,
   ...coreRules_extensibleWithBabel_only,
 };
 
-const coreRules_extensibleWithBabel_OFF = {
+const coreRules_extensibleWithBabel_full_OFF = {
   ...coreRules_extensibleShared_OFF,
   ...coreRules_extensibleWithBabel_only_OFF,
 };
 
 module.exports = {
-  coreRules_extensibleWithBabel,
-  coreRules_extensibleWithBabel_OFF,
+  coreRules_extensibleWithBabel_full,
+  coreRules_extensibleWithBabel_full_OFF,
   coreRules_extensibleWithBabel_only,
 };
