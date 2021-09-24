@@ -39,7 +39,7 @@ module.exports = {
 
   /**
    * Usage:
-   * - Disables extensible core rules in Babel config mixin
+   * - Disables all Babel-extensible core rules in Babel config mixin
    */
   coreRules_extensibleWithBabel_full_OFF,
 
