@@ -208,12 +208,7 @@ const coreRules_extensibleWithTs_typeCheck_compatibility_OFF = getDisabledRuleSe
 );
 
 const coreRules_extensibleWithTs_typeCheck_regular = {
-  'dot-notation': [
-    'error',
-    {
-      allowKeywords: true,
-    },
-  ],
+  'dot-notation': 'off',
   'no-implied-eval': 'error',
   'no-throw-literal': 'error',
   'require-await': 'error',
