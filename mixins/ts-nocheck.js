@@ -1,7 +1,7 @@
 'use strict';
 
 const { coreRules_extensibleWithTs_nonTypeCheck_OFF } = require('../partials/core');
-const { importSettings_webBundle_ts } = require('../partials/import');
+const { importSettings_webBundle_react_ts } = require('../partials/import');
 const { tsRules_nonTypeCheck } = require('../partials/typescript');
 
 module.exports = {
@@ -14,6 +14,6 @@ module.exports = {
     ...tsRules_nonTypeCheck,
   },
   settings: {
-    ...importSettings_webBundle_ts,
+    ...importSettings_webBundle_react_ts,
   },
 };

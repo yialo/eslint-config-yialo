@@ -126,14 +126,14 @@ const importSettings_BASE = {
   'import/resolver': 'node',
 };
 
-const importSettings_webBundle_react = {
+const importSettings_webBundle_react_babel = {
   'import/extensions': [
     '.js',
     '.jsx',
   ],
 };
 
-const importSettings_webBundle_ts = {
+const importSettings_webBundle_react_ts = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -155,6 +155,6 @@ module.exports = {
   importRules_webBundle,
   importRules_webBundle_jest,
   importSettings_BASE,
-  importSettings_webBundle_react,
-  importSettings_webBundle_ts,
+  importSettings_webBundle_react_babel,
+  importSettings_webBundle_react_ts,
 };
