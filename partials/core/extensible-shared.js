@@ -26,15 +26,15 @@ module.exports = {
   /**
    * Usage:
    * - For full core ruleset composition in abstract mixin
-   * - For full Babel-extensible core ruleset composition in Babel-extensible core partial
-   * - For full TS-extensible core ruleset composition in TS-related core partial
+   * - For full Babel-extensible core ruleset composition in Babel partial
+   * - For full TS-extensible core ruleset composition in extension TS partial
    */
   coreRules_extensibleShared,
 
   /**
    * Usage:
    * - For disabled full Babel-extensible core ruleset composition in Babel mixin
-   * - For disabled non-typecheck TS-extensible core ruleset composition in TS-related core partial
+   * - For disabled full non-typecheck TS-extensible core ruleset composition in TS-related core partial
    */
   coreRules_extensibleShared_OFF,
 };
