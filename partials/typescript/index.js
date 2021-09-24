@@ -22,7 +22,7 @@ module.exports = {
     ...tsRules_extension_nonTypeCheck,
     ...tsRules_own_nonTypeCheck,
   },
-  tsRules_typeCheckOnly: {
+  tsRules_typeCheckOnly_BASE: {
     ...tsRules_extension_typeCheck,
     ...tsRules_own_typeCheck,
   },
