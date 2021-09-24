@@ -31,7 +31,21 @@ const coreRules_extensibleWithBabel_full_OFF = {
 };
 
 module.exports = {
+  /**
+   * Usage:
+   * - For Babel plugin rules
+   */
   coreRules_extensibleWithBabel_full,
+
+  /**
+   * Usage:
+   * - Disables extensible core rules in Babel config mixin
+   */
   coreRules_extensibleWithBabel_full_OFF,
+
+  /**
+   * Usage:
+   * - In full core ruleset definition in abstract config mixin
+   */
   coreRules_extensibleWithBabel_only,
 };
