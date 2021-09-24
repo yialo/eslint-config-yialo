@@ -5,7 +5,7 @@ const { tsRules_own_typeCheckOnly_extensibleWithJest } = require('./typescript/o
 const { getDisabledRuleSet } = require('./utils');
 
 
-const jestRules_own = {
+const jestRules = {
   'jest/consistent-test-it': 'off',
   'jest/expect-expect': 'error',
   'jest/lowercase-name': 'off',
@@ -49,25 +49,25 @@ const jestRules_own = {
   'jest/valid-title': 'error',
 };
 
-const jestRules_own_OFF = getDisabledRuleSet(jestRules_own);
+const jestRules_OFF = getDisabledRuleSet(jestRules);
 
 /**
  * This rule is extension of @typescript-eslint and MUST NOT be used outside its scope
  * @see https://github.com/jest-community/eslint-plugin-jest#typescript-rules
  */
-const jestRules_tsExtension_typeCheckOnly = {
+const jestTsRules_typeCheckOnly = {
   'jest/unbound-method': tsRules_own_typeCheckOnly_extensibleWithJest['@typescript-eslint/unbound-method'],
 };
 
-const jestRules_tsExtension_typeCheckOnly_OFF = getDisabledRuleSet(
-  jestRules_tsExtension_typeCheckOnly,
+const jestTsRules_typeCheckOnly_OFF = getDisabledRuleSet(
+  jestTsRules_typeCheckOnly,
 );
 
 
 module.exports = {
-  jestRules_own,
-  jestRules_own_OFF,
+  jestRules,
+  jestRules_OFF,
 
-  jestRules_tsExtension_typeCheckOnly,
-  jestRules_tsExtension_typeCheckOnly_OFF,
+  jestTsRules_typeCheckOnly,
+  jestTsRules_typeCheckOnly_OFF,
 };
