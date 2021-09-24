@@ -20,6 +20,7 @@ module.exports = {
   /**
    * Usage:
    * - For full core ruleset composition in abstract config mixin
+   * - For full Babel-extensible core ruleset composition in Babel config mixin
    */
   coreRules_extensibleWithBabel_only,
 
