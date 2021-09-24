@@ -1,6 +1,6 @@
 'use strict';
 
-const { coreRules_extensibleWithTs_nonTypeCheck_OFF } = require('../partials/core');
+const { coreRules_extensibleWithTs_nonTypeCheck_OFF } = require('../partials/core/extensible-ts');
 const { importSettings_webBundle_react_ts } = require('../partials/import');
 const { tsRules_nonTypeCheck } = require('../partials/typescript');
 

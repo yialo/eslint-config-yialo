@@ -1,23 +1,37 @@
 'use strict';
 
+/* ========
+ * Importing
+ * ========= */
+
 const { babelRules_OFF } = require('../partials/babel');
-const {
-  coreRules_nonExtensible,
-  coreRules_extensibleShared,
-  coreRules_extensibleWithBabel_only,
-  coreRules_extensibleWithTs_only,
-} = require('../partials/core');
+
+const { coreRules_extensibleWithBabel_only } = require('../partials/core/extensible-babel');
+const { coreRules_extensibleShared } = require('../partials/core/extensible-shared');
+const { coreRules_extensibleWithTs_only } = require('../partials/core/extensible-ts');
+const { coreRules_nonExtensible } = require('../partials/core/non-extensible');
+
 const { importRules_BASE, importSettings_BASE } = require('../partials/import');
+
 const {
   jestRules_own_OFF,
   jestRules_extension_typeCheckOnly_OFF,
 } = require('../partials/jest');
+
 const { jsxA11yRules_OFF } = require('../partials/jsx-a11y');
+
 const { nodeRules_OFF } = require('../partials/node');
+
 const { promiseRules } = require('../partials/promise');
+
 const { reactRules_OFF } = require('../partials/react');
+
 const { reactHooksRules_OFF } = require('../partials/react-hooks');
+
 const { tsRules_OFF } = require('../partials/typescript');
+
+/* Composing
+ * ========= */
 
 const coreRules_full = {
   ...coreRules_nonExtensible,
@@ -39,6 +53,9 @@ const envOrFrameworkRelatedPluginRules_OFF = {
   ...reactRules_OFF,
   ...reactHooksRules_OFF,
 };
+
+/* Create config mixin
+ * =================== */
 
 module.exports = {
   env: {
