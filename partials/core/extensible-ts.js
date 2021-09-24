@@ -236,6 +236,7 @@ const coreRules_extensibleWithTs = {
 };
 
 const coreRules_extensibleWithTs_nonTypeCheck_OFF = {
+  // All Babel/TS-shared extensible rules belong to nonTypeCheck group
   ...coreRules_extensibleWithBabelAndTs_OFF,
   ...coreRules_extensibleWithTs_nonTypeCheck_compatibility_OFF,
   ...coreRules_extensibleWithTs_nonTypeCheck_regular_OFF,
