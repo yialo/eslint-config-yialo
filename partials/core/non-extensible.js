@@ -608,6 +608,7 @@ const coreRules_nonExtensible = {
   'yoda': 'error',
 };
 
+
 module.exports = {
   coreRules_nonExtensible,
 };

@@ -2,6 +2,7 @@
 
 const { getDisabledRuleSet } = require('./utils');
 
+
 const reactRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
@@ -144,7 +145,7 @@ const reactRules = {
       condition: 'parens-new-line',
       declaration: 'parens-new-line',
       logical: 'parens-new-line',
-      prop: 'parens-new-line',
+      prop: 'ignore',
       return: 'parens-new-line',
     },
   ],
@@ -263,8 +264,10 @@ const reactSettings = {
 
 const reactRules_OFF = getDisabledRuleSet(reactRules);
 
+
 module.exports = {
   reactRules,
   reactRules_OFF,
+
   reactSettings,
 };

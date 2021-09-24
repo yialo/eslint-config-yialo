@@ -17,6 +17,7 @@ const promiseRules = {
   'promise/valid-params': 'error',
 };
 
+
 module.exports = {
   promiseRules,
 };

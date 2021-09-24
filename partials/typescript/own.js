@@ -1,6 +1,9 @@
 'use strict';
 
-const tsRules_own_regular = {
+const { getDisabledRuleSet } = require('../utils');
+
+
+const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': 'off',
   '@typescript-eslint/ban-ts-comment': 'error',
@@ -64,7 +67,9 @@ const tsRules_own_regular = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-const tsRules_own_typeCheck_nonExtensible = {
+const tsRules_own_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_own_nonTypeCheck);
+
+const tsRules_own_typeCheckOnly_nonExtensible = {
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
@@ -110,17 +115,26 @@ const tsRules_own_typeCheck_nonExtensible = {
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
 };
 
-const tsRules_own_typeCheck_extensibleWithJest = {
+const tsRules_own_typeCheckOnly_nonExtensible_OFF = getDisabledRuleSet(
+  tsRules_own_typeCheckOnly_nonExtensible,
+);
+
+const tsRules_own_typeCheckOnly_extensibleWithJest = {
   '@typescript-eslint/unbound-method': 'error',
 };
 
-const tsRules_own_typeCheck = {
-  ...tsRules_own_typeCheck_nonExtensible,
-  ...tsRules_own_typeCheck_extensibleWithJest,
-};
+const tsRules_own_typeCheckOnly_extensibleWithJest_OFF = getDisabledRuleSet(
+  tsRules_own_typeCheckOnly_extensibleWithJest,
+);
+
 
 module.exports = {
-  tsRules_own_regular,
-  tsRules_own_typeCheck,
-  tsRules_own_typeCheck_extensibleWithJest,
+  tsRules_own_nonTypeCheck,
+  tsRules_own_nonTypeCheck_OFF,
+
+  tsRules_own_typeCheckOnly_nonExtensible,
+  tsRules_own_typeCheckOnly_nonExtensible_OFF,
+
+  tsRules_own_typeCheckOnly_extensibleWithJest,
+  tsRules_own_typeCheckOnly_extensibleWithJest_OFF,
 };

@@ -38,5 +38,8 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
+  },
+  "devDependencies": {
+    "husky": "7.0.2"
   }
 }

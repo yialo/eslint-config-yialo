@@ -75,7 +75,7 @@ const importRules_node = {
   ],
 };
 
-const importRules_webBundle = {
+const importRules_webBundle_BASE = {
   'import/no-commonjs': [
     'error',
     {
@@ -126,14 +126,14 @@ const importSettings_BASE = {
   'import/resolver': 'node',
 };
 
-const importSettings_webBundle_react = {
+const importSettings_webBundle_react_BASE = {
   'import/extensions': [
     '.js',
     '.jsx',
   ],
 };
 
-const importSettings_webBundle_ts = {
+const importSettings_webBundle_react_ts = {
   'import/extensions': [
     '.js',
     '.jsx',
@@ -149,12 +149,14 @@ const importSettings_webBundle_ts = {
   },
 };
 
+
 module.exports = {
   importRules_BASE,
   importRules_node,
-  importRules_webBundle,
+  importRules_webBundle_BASE,
   importRules_webBundle_jest,
+
   importSettings_BASE,
-  importSettings_webBundle_react,
-  importSettings_webBundle_ts,
+  importSettings_webBundle_react_BASE,
+  importSettings_webBundle_react_ts,
 };

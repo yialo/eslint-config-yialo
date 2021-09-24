@@ -6,6 +6,7 @@ npm-debug.*
 .env.local
 .env.*.local
 
-# Service files
+# Miscellaneous
 *.log*
+.eslintcache
 bash.exe.stackdump

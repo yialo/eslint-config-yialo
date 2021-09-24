@@ -1,6 +1,7 @@
 'use strict';
 
-const { importRules_webBundle } = require('../partials/import');
+const { importRules_webBundle_BASE } = require('../partials/import');
+
 
 module.exports = {
   env: {
@@ -10,6 +11,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    ...importRules_webBundle,
+    ...importRules_webBundle_BASE,
   },
 };

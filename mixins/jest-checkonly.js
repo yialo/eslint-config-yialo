@@ -1,11 +1,13 @@
 'use strict';
 
-const { jestRules_extension_typeCheckOnly } = require('../partials/jest');
-const { tsRules_typeCheckOnly_extensibleWithJest_OFF } = require('../partials/typescript');
+const { jestTsRules_typeCheckOnly } = require('../partials/jest');
+
+const { tsRules_own_typeCheckOnly_extensibleWithJest_OFF } = require('../partials/typescript/own');
+
 
 module.exports = {
   rules: {
-    ...tsRules_typeCheckOnly_extensibleWithJest_OFF,
-    ...jestRules_extension_typeCheckOnly,
+    ...tsRules_own_typeCheckOnly_extensibleWithJest_OFF,
+    ...jestTsRules_typeCheckOnly,
   },
 };

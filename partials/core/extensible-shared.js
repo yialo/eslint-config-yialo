@@ -2,7 +2,9 @@
 
 const { getDisabledRuleSet } = require('../utils');
 
-const coreRules_extensibleWithBabelAndTs = {
+
+// All these rules extends nonTypeCheck TS group only
+const coreRules_extensibleShared = {
   'no-invalid-this': 'off',
   'no-unused-expressions': [
     'error',
@@ -17,11 +19,12 @@ const coreRules_extensibleWithBabelAndTs = {
   'semi': ['error', 'always'],
 };
 
-const coreRules_extensibleWithBabelAndTs_OFF = getDisabledRuleSet(
-  coreRules_extensibleWithBabelAndTs,
+const coreRules_extensibleShared_OFF = getDisabledRuleSet(
+  coreRules_extensibleShared,
 );
 
+
 module.exports = {
-  coreRules_extensibleWithBabelAndTs,
-  coreRules_extensibleWithBabelAndTs_OFF,
+  coreRules_extensibleShared,
+  coreRules_extensibleShared_OFF,
 };
