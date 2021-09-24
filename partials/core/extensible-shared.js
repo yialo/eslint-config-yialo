@@ -34,8 +34,7 @@ module.exports = {
   /**
    * Usage:
    * - For disabled full Babel-extensible core ruleset composition in Babel config mixin
-   * - For disabled non-typecheck TS-extensible core ruleset composition
-   *   in non-typecheck TS config mixin
+   * - For disabled non-typecheck TS-extensible core ruleset composition in TS-related core partial
    */
   coreRules_extensibleShared_OFF,
 };
