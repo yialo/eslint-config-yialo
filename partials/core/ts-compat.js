@@ -51,7 +51,7 @@ const coreRules_tsCompat_nonTypeCheck = {
 
 const coreRules_tsCompat_nonTypeCheck_OFF = getDisabledRuleSet(coreRules_tsCompat_nonTypeCheck);
 
-const coreRules_tsCompat_typeCheck = {
+const coreRules_tsCompat_typeCheckOnly = {
   /**
    * Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
@@ -59,13 +59,13 @@ const coreRules_tsCompat_typeCheck = {
   'no-constant-condition': 'error',
 };
 
-const coreRules_tsCompat_typeCheck_OFF = getDisabledRuleSet(
-  coreRules_tsCompat_typeCheck,
+const coreRules_tsCompat_typeCheckOnly_OFF = getDisabledRuleSet(
+  coreRules_tsCompat_typeCheckOnly,
 );
 
 module.exports = {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_nonTypeCheck_OFF,
-  coreRules_tsCompat_typeCheck,
-  coreRules_tsCompat_typeCheck_OFF,
+  coreRules_tsCompat_typeCheckOnly,
+  coreRules_tsCompat_typeCheckOnly_OFF,
 };

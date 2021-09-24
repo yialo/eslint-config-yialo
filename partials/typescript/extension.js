@@ -78,7 +78,7 @@ const tsRules_extension_nonTypeCheck = {
   '@typescript-eslint/space-infix-ops': coreRules_extensibleWithTs_only['space-infix-ops'],
 };
 
-const tsRules_extension_typeCheck = {
+const tsRules_extension_typeCheckOnly = {
   '@typescript-eslint/dot-notation': [
     coreRules_extensibleWithTs_only['dot-notation'][0],
     {
@@ -109,5 +109,5 @@ module.exports = {
    * Usage:
    * - For composing of full typecheck-only TS ruleset in TS partial
    */
-  tsRules_extension_typeCheck,
+  tsRules_extension_typeCheckOnly,
 };

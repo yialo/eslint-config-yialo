@@ -64,7 +64,7 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-const tsRules_own_typeCheck_nonExtensible = {
+const tsRules_own_typeCheckOnly_nonExtensible = {
   '@typescript-eslint/await-thenable': 'error',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
@@ -110,13 +110,13 @@ const tsRules_own_typeCheck_nonExtensible = {
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
 };
 
-const tsRules_own_typeCheck_extensibleWithJest = {
+const tsRules_own_typeCheckOnly_extensibleWithJest = {
   '@typescript-eslint/unbound-method': 'error',
 };
 
-const tsRules_own_typeCheck = {
-  ...tsRules_own_typeCheck_nonExtensible,
-  ...tsRules_own_typeCheck_extensibleWithJest,
+const tsRules_own_typeCheckOnly = {
+  ...tsRules_own_typeCheckOnly_nonExtensible,
+  ...tsRules_own_typeCheckOnly_extensibleWithJest,
 };
 
 module.exports = {
@@ -130,11 +130,11 @@ module.exports = {
    * Usage:
    * - For composing of full typecheck-only TS ruleset in TS partial
    */
-  tsRules_own_typeCheck,
+  tsRules_own_typeCheckOnly,
 
   /**
    * Usage:
    * - For composing of Jest-related typecheck-only TS ruleset in TS partial
    */
-  tsRules_own_typeCheck_extensibleWithJest,
+  tsRules_own_typeCheckOnly_extensibleWithJest,
 };

@@ -5,8 +5,8 @@ const { coreRules_extensibleShared_OFF } = require('./extensible-shared');
 const {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_nonTypeCheck_OFF,
-  coreRules_tsCompat_typeCheck,
-  coreRules_tsCompat_typeCheck_OFF,
+  coreRules_tsCompat_typeCheckOnly,
+  coreRules_tsCompat_typeCheckOnly_OFF,
 } = require('./ts-compat');
 
 const coreRules_extensibleWithTs_nonTypeCheck = {
@@ -150,7 +150,7 @@ const coreRules_extensibleWithTs_nonTypeCheck_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_nonTypeCheck,
 );
 
-const coreRules_extensibleWithTs_typeCheck = {
+const coreRules_extensibleWithTs_typeCheckOnly = {
   'dot-notation': 'off',
   'no-implied-eval': 'error',
   'no-throw-literal': 'error',
@@ -158,15 +158,15 @@ const coreRules_extensibleWithTs_typeCheck = {
   'no-return-await': 'error',
 };
 
-const coreRules_extensibleWithTs_typeCheck_OFF = getDisabledRuleSet(
-  coreRules_extensibleWithTs_typeCheck,
+const coreRules_extensibleWithTs_typeCheckOnly_OFF = getDisabledRuleSet(
+  coreRules_extensibleWithTs_typeCheckOnly,
 );
 
 const coreRules_extensibleWithTs_only = {
   ...coreRules_tsCompat_nonTypeCheck,
   ...coreRules_extensibleWithTs_nonTypeCheck,
-  ...coreRules_tsCompat_typeCheck,
-  ...coreRules_extensibleWithTs_typeCheck,
+  ...coreRules_tsCompat_typeCheckOnly,
+  ...coreRules_extensibleWithTs_typeCheckOnly,
 };
 
 const coreRules_extensibleWithTs_nonTypeCheck_full_OFF = {
@@ -177,8 +177,8 @@ const coreRules_extensibleWithTs_nonTypeCheck_full_OFF = {
 };
 
 const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
-  ...coreRules_tsCompat_typeCheck_OFF,
-  ...coreRules_extensibleWithTs_typeCheck_OFF,
+  ...coreRules_tsCompat_typeCheckOnly_OFF,
+  ...coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };
 
 module.exports = {
@@ -188,6 +188,10 @@ module.exports = {
    * - As reference to TS-only extensible core ruleset in extension TS partial
    */
   coreRules_extensibleWithTs_only,
+
+  // TODO: add and describe these exports
+  // coreRules_extensibleWithTs_nonTypeCheck,
+  // coreRules_extensibleWithTs_typeCheckOnly,
 
   /**
    * Usage:
