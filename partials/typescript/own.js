@@ -121,21 +121,9 @@ const tsRules_own_typeCheckOnly = {
 
 
 module.exports = {
-  /**
-   * Usage:
-   * - For composing of full non-typecheck TS ruleset in TS partial
-   */
   tsRules_own_nonTypeCheck,
 
-  /**
-   * Usage:
-   * - For composing of full typecheck-only TS ruleset in TS partial
-   */
   tsRules_own_typeCheckOnly,
 
-  /**
-   * Usage:
-   * - For composing of Jest-related typecheck-only TS ruleset in TS partial
-   */
   tsRules_own_typeCheckOnly_extensibleWithJest,
 };

@@ -104,15 +104,7 @@ const tsRules_extension_typeCheckOnly = {
 
 
 module.exports = {
-  /**
-   * Usage:
-   * - For composing of full non-typecheck TS ruleset in TS partial
-   */
   tsRules_extension_nonTypeCheck,
 
-  /**
-   * Usage:
-   * - For composing of full typecheck-only TS ruleset in TS partial
-   */
   tsRules_extension_typeCheckOnly,
 };

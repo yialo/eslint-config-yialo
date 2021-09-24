@@ -2,11 +2,7 @@
 
 const { getDisabledRuleSet } = require('../utils');
 
-const { coreRules_extensibleShared_OFF } = require('./extensible-shared');
-const {
-  coreRules_tsCompat_nonTypeCheck_OFF,
-  coreRules_tsCompat_typeCheckOnly_OFF,
-} = require('./ts-compat');
+const { coreRules_tsCompat_typeCheckOnly_OFF } = require('./ts-compat');
 
 
 const coreRules_extensibleWithTs_nonTypeCheck = {
@@ -162,13 +158,6 @@ const coreRules_extensibleWithTs_typeCheckOnly_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_typeCheckOnly,
 );
 
-const coreRules_extensibleWithTs_nonTypeCheck_full_OFF = {
-  // All Babel/TS-shared extensible rules belong to nonTypeCheck group
-  ...coreRules_extensibleShared_OFF,
-  ...coreRules_tsCompat_nonTypeCheck_OFF,
-  ...coreRules_extensibleWithTs_nonTypeCheck_OFF,
-};
-
 const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
   ...coreRules_tsCompat_typeCheckOnly_OFF,
   ...coreRules_extensibleWithTs_typeCheckOnly_OFF,
@@ -176,27 +165,11 @@ const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
 
 
 module.exports = {
-  /* Usage:
-   * - For TS-only extensible core ruleset composition in abstract mixin
-   * - As reference to non-typecheck TS-only extensible core ruleset in extension TS partial
-   */
   coreRules_extensibleWithTs_nonTypeCheck,
 
-  /* Usage:
-   * - For TS-only extensible core ruleset composition in abstract mixin
-   * - As reference to typecheck-only TS-only extensible core ruleset in extension TS partial
-   */
+  coreRules_extensibleWithTs_nonTypeCheck_OFF,
+
   coreRules_extensibleWithTs_typeCheckOnly,
 
-  /**
-   * Usage:
-   * - Disables all non-typecheck TS-extensible core rules in non-typecheck TS mixin
-   */
-  coreRules_extensibleWithTs_nonTypeCheck_full_OFF,
-
-  /**
-   * Usage:
-   * - Disables all typecheck-only TS-extensible core rules in typecheck-only TS mixin
-   */
   coreRules_extensibleWithTs_typeCheckOnly_full_OFF,
 };

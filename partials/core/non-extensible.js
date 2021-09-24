@@ -610,9 +610,5 @@ const coreRules_nonExtensible = {
 
 
 module.exports = {
-  /**
-   * Usage:
-   * - For full core ruleset composition in abstract mixin
-   */
   coreRules_nonExtensible,
 };
