@@ -1,7 +1,9 @@
 'use strict';
 
 const { getDisabledRuleSet } = require('../utils');
+
 const { coreRules_extensibleShared_OFF } = require('./extensible-shared');
+
 
 const coreRules_extensibleWithBabel_only = {
   'new-cap': [
@@ -21,6 +23,7 @@ const coreRules_extensibleWithBabel_full_OFF = {
   ...coreRules_extensibleShared_OFF,
   ...coreRules_extensibleWithBabel_only_OFF,
 };
+
 
 module.exports = {
   /**

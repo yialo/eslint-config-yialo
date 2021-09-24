@@ -1,11 +1,13 @@
 'use strict';
 
 const { getDisabledRuleSet } = require('../utils');
+
 const { coreRules_extensibleShared_OFF } = require('./extensible-shared');
 const {
   coreRules_tsCompat_nonTypeCheck_OFF,
   coreRules_tsCompat_typeCheckOnly_OFF,
 } = require('./ts-compat');
+
 
 const coreRules_extensibleWithTs_nonTypeCheck = {
   'brace-style': [
@@ -171,6 +173,7 @@ const coreRules_extensibleWithTs_typeCheckOnly_full_OFF = {
   ...coreRules_tsCompat_typeCheckOnly_OFF,
   ...coreRules_extensibleWithTs_typeCheckOnly_OFF,
 };
+
 
 module.exports = {
   /* Usage:

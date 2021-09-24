@@ -1,7 +1,9 @@
 'use strict';
 
 const { importRules_node } = require('../partials/import');
+
 const { nodeRules } = require('../partials/node');
+
 
 module.exports = {
   env: {

@@ -2,6 +2,7 @@
 
 const { getDisabledRuleSet } = require('./utils');
 
+
 const jsxA11yRules = {
   'jsx-a11y/alt-text': [
     'error',
@@ -119,6 +120,7 @@ const jsxA11yRules = {
 };
 
 const jsxA11yRules_OFF = getDisabledRuleSet(jsxA11yRules);
+
 
 module.exports = {
   jsxA11yRules,

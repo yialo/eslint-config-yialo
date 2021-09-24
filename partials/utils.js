@@ -5,6 +5,7 @@ const getDisabledRuleSet = (ruleSet) => Object.keys(ruleSet).reduce((acc, ruleNa
   return acc;
 }, {});
 
+
 module.exports = {
   getDisabledRuleSet,
 };

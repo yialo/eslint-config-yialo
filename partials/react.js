@@ -2,6 +2,7 @@
 
 const { getDisabledRuleSet } = require('./utils');
 
+
 const reactRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
@@ -262,6 +263,7 @@ const reactSettings = {
 };
 
 const reactRules_OFF = getDisabledRuleSet(reactRules);
+
 
 module.exports = {
   reactRules,

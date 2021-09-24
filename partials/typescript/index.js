@@ -17,6 +17,7 @@ const tsRules_own_typeCheckOnly_extensibleWithJest_OFF = getDisabledRuleSet(
   tsRules_own_typeCheckOnly_extensibleWithJest,
 );
 
+
 module.exports = {
   tsRules_nonTypeCheck: {
     ...tsRules_extension_nonTypeCheck,

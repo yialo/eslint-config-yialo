@@ -119,6 +119,7 @@ const tsRules_own_typeCheckOnly = {
   ...tsRules_own_typeCheckOnly_extensibleWithJest,
 };
 
+
 module.exports = {
   /**
    * Usage:

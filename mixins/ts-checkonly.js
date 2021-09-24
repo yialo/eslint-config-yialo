@@ -1,7 +1,9 @@
 'use strict';
 
 const { coreRules_extensibleWithTs_typeCheckOnly_full_OFF } = require('../partials/core/extensible-ts');
+
 const { tsRules_typeCheckOnly_BASE } = require('../partials/typescript');
+
 
 module.exports = {
   rules: {

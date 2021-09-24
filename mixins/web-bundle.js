@@ -2,6 +2,7 @@
 
 const { importRules_webBundle_BASE } = require('../partials/import');
 
+
 module.exports = {
   env: {
     browser: true,

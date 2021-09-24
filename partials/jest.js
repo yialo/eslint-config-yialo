@@ -1,7 +1,9 @@
 'use strict';
 
 const { tsRules_typeCheckOnly_extensibleWithJest } = require('./typescript');
+
 const { getDisabledRuleSet } = require('./utils');
+
 
 const jestRules_own = {
   'jest/consistent-test-it': 'off',
@@ -60,6 +62,7 @@ const jestRules_extension_typeCheckOnly_OFF = getDisabledRuleSet(
 );
 
 const jestRules_own_OFF = getDisabledRuleSet(jestRules_own);
+
 
 module.exports = {
   jestRules_own,

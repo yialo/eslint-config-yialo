@@ -6,6 +6,7 @@ const {
   coreRules_extensibleWithTs_typeCheckOnly,
 } = require('../core/extensible-ts');
 
+
 const tsRules_extension_nonTypeCheck = {
   /* Shared extension rules
    * ====================== */
@@ -100,6 +101,7 @@ const tsRules_extension_typeCheckOnly = {
     'in-try-catch',
   ],
 };
+
 
 module.exports = {
   /**
