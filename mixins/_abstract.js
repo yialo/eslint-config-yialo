@@ -1,8 +1,7 @@
 'use strict';
 
-/* ========
- * Importing
- * ========= */
+/* Import
+ * ====== */
 
 const { babelRules_OFF } = require('../partials/babel');
 
@@ -30,8 +29,9 @@ const { reactHooksRules_OFF } = require('../partials/react-hooks');
 
 const { tsRules_OFF } = require('../partials/typescript');
 
-/* Composing
- * ========= */
+
+/* Compose
+ * ======= */
 
 const coreRules_full = {
   ...coreRules_nonExtensible,
@@ -53,6 +53,7 @@ const envOrFrameworkRelatedPluginRules_OFF = {
   ...reactRules_OFF,
   ...reactHooksRules_OFF,
 };
+
 
 /* Create config mixin
  * =================== */
