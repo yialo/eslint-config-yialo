@@ -6,7 +6,8 @@ const { coreRules_tsCompat_nonTypeCheck_OFF } = require('../partials/core/ts-com
 
 const { importSettings_webBundle_react_ts } = require('../partials/import');
 
-const { tsRules_nonTypeCheck } = require('../partials/typescript');
+const { tsRules_extension_nonTypeCheck } = require('../partials/typescript/extension');
+const { tsRules_own_nonTypeCheck } = require('../partials/typescript/own');
 
 
 const coreRules_extensibleWithTs_nonTypeCheck_full_OFF = {
@@ -14,6 +15,11 @@ const coreRules_extensibleWithTs_nonTypeCheck_full_OFF = {
   ...coreRules_extensibleShared_OFF,
   ...coreRules_tsCompat_nonTypeCheck_OFF,
   ...coreRules_extensibleWithTs_nonTypeCheck_OFF,
+};
+
+const tsRules_nonTypeCheck = {
+  ...tsRules_extension_nonTypeCheck,
+  ...tsRules_own_nonTypeCheck,
 };
 
 

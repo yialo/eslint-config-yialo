@@ -34,7 +34,15 @@ const { reactRules_OFF } = require('../partials/react');
 
 const { reactHooksRules_OFF } = require('../partials/react-hooks');
 
-const { tsRules_OFF } = require('../partials/typescript');
+const {
+  tsRules_extension_nonTypeCheck_OFF,
+  tsRules_extension_typeCheckOnly_OFF,
+} = require('../partials/typescript/extension');
+const {
+  tsRules_own_nonTypeCheck_OFF,
+  tsRules_own_typeCheckOnly_nonExtensible_OFF,
+  tsRules_own_typeCheckOnly_extensibleWithJest_OFF,
+} = require('../partials/typescript/own');
 
 
 /* Compose
@@ -52,6 +60,18 @@ const coreRules_full = {
   ...coreRules_extensibleShared,
   ...coreRules_extensibleWithBabel_only,
   ...coreRules_extensibleWithTs_only,
+};
+
+const tsRules_own_typeCheckOnly_full_OFF = {
+  ...tsRules_own_typeCheckOnly_nonExtensible_OFF,
+  ...tsRules_own_typeCheckOnly_extensibleWithJest_OFF,
+};
+
+const tsRules_OFF = {
+  ...tsRules_extension_nonTypeCheck_OFF,
+  ...tsRules_extension_typeCheckOnly_OFF,
+  ...tsRules_own_nonTypeCheck_OFF,
+  ...tsRules_own_typeCheckOnly_full_OFF,
 };
 
 const compilerRelatedPluginRules_OFF = {

@@ -1,6 +1,6 @@
 'use strict';
 
-const { tsRules_typeCheckOnly_extensibleWithJest } = require('./typescript');
+const { tsRules_own_typeCheckOnly_extensibleWithJest } = require('./typescript/own');
 
 const { getDisabledRuleSet } = require('./utils');
 
@@ -47,6 +47,10 @@ const jestRules_own = {
   'jest/valid-expect-in-promise': 'error',
   'jest/valid-expect': 'error',
   'jest/valid-title': 'error',
+};
+
+const tsRules_typeCheckOnly_extensibleWithJest = {
+  ...tsRules_own_typeCheckOnly_extensibleWithJest,
 };
 
 /**
