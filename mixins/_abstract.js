@@ -7,8 +7,15 @@ const { babelRules_OFF } = require('../partials/babel');
 
 const { coreRules_extensibleWithBabel_only } = require('../partials/core/extensible-babel');
 const { coreRules_extensibleShared } = require('../partials/core/extensible-shared');
-const { coreRules_extensibleWithTs_only } = require('../partials/core/extensible-ts');
+const {
+  coreRules_extensibleWithTs_nonTypeCheck,
+  coreRules_extensibleWithTs_typeCheckOnly,
+} = require('../partials/core/extensible-ts');
 const { coreRules_nonExtensible } = require('../partials/core/non-extensible');
+const {
+  coreRules_tsCompat_nonTypeCheck,
+  coreRules_tsCompat_typeCheckOnly,
+} = require('../partials/core/ts-compat');
 
 const { importRules_BASE, importSettings_BASE } = require('../partials/import');
 
@@ -32,6 +39,13 @@ const { tsRules_OFF } = require('../partials/typescript');
 
 /* Compose
  * ======= */
+
+const coreRules_extensibleWithTs_only = {
+  ...coreRules_tsCompat_nonTypeCheck,
+  ...coreRules_extensibleWithTs_nonTypeCheck,
+  ...coreRules_tsCompat_typeCheckOnly,
+  ...coreRules_extensibleWithTs_typeCheckOnly,
+};
 
 const coreRules_full = {
   ...coreRules_nonExtensible,
