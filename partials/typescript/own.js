@@ -43,6 +43,7 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/no-invalid-void-type': 'off',
   '@typescript-eslint/no-misused-new': 'error',
   '@typescript-eslint/no-namespace': 'error',
+  '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'off',
   '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
   '@typescript-eslint/no-non-null-assertion': 'off',
   '@typescript-eslint/no-parameter-properties': 'off',

@@ -323,7 +323,6 @@ const coreRules_nonExtensible = {
     'top',
   ],
   'no-restricted-exports': 'off',
-  'no-restricted-imports': 'off',
   'no-restricted-properties': [
     'error',
     {

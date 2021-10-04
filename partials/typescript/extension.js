@@ -69,6 +69,7 @@ const tsRules_extension_nonTypeCheck = {
   '@typescript-eslint/no-magic-numbers': coreRules_extensibleWithTs_nonTypeCheck['no-magic-numbers'],
   // ts(2451)
   '@typescript-eslint/no-redeclare': 'off',
+  '@typescript-eslint/no-restricted-imports': coreRules_extensibleWithTs_nonTypeCheck['no-restricted-imports'],
   '@typescript-eslint/no-shadow': coreRules_extensibleWithTs_nonTypeCheck['no-shadow'],
   '@typescript-eslint/no-unused-vars': coreRules_extensibleWithTs_nonTypeCheck['no-unused-vars'],
   /**
