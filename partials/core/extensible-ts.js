@@ -103,6 +103,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'no-magic-numbers': 'off',
   // ts(2451)
   'no-redeclare': 'error',
+  'no-restricted-imports': 'off',
   'no-shadow': 'error',
   'no-unused-vars': [
     'error',
