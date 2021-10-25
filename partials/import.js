@@ -44,6 +44,7 @@ const importRules_BASE = {
     {
       amd: false,
       caseSensitive: true,
+      caseSensitiveStrict: true,
       commonjs: false,
     },
   ],
@@ -70,6 +71,7 @@ const importRules_node = {
     {
       amd: false,
       caseSensitive: true,
+      caseSensitiveStrict: true,
       commonjs: true,
     },
   ],
@@ -99,6 +101,7 @@ const importRules_webBundle_BASE = {
     {
       amd: false,
       caseSensitive: true,
+      caseSensitiveStrict: true,
       commonjs: false,
     },
   ],

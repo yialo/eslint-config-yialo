@@ -11,12 +11,12 @@
   "dependencies": {
     "@babel/eslint-parser": "7.15.8",
     "@babel/eslint-plugin": "7.14.5",
-    "@typescript-eslint/eslint-plugin": "5.0.0",
-    "@typescript-eslint/parser": "5.0.0",
+    "@typescript-eslint/eslint-plugin": "5.1.0",
+    "@typescript-eslint/parser": "5.1.0",
     "eslint": "7.32.0",
     "eslint-import-resolver-typescript": "2.5.0",
-    "eslint-import-resolver-webpack": "0.13.1",
-    "eslint-plugin-import": "2.24.2",
+    "eslint-import-resolver-webpack": "0.13.2",
+    "eslint-plugin-import": "2.25.2",
     "eslint-plugin-jest": "25.2.2",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-node": "11.1.0",
@@ -40,6 +40,6 @@
     "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
   },
   "devDependencies": {
-    "husky": "7.0.2"
+    "husky": "7.0.4"
   }
 }

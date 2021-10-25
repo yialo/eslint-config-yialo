@@ -808,6 +808,7 @@ module.exports = {
       {
         amd: false,
         caseSensitive: true,
+        caseSensitiveStrict: true,
         commonjs: true,
       },
     ],
