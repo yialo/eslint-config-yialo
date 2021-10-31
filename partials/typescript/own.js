@@ -72,6 +72,7 @@ const tsRules_own_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_own_nonTypeCheck
 
 const tsRules_own_typeCheckOnly_nonExtensible = {
   '@typescript-eslint/await-thenable': 'error',
+  '@typescript-eslint/consistent-type-exports': 'off',
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
   '@typescript-eslint/no-confusing-void-expression': 'off',
