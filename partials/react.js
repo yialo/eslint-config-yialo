@@ -152,6 +152,7 @@ const reactRules = {
   'react/no-access-state-in-setstate': 'error',
   'react/no-adjacent-inline-elements': 'off',
   'react/no-array-index-key': 'off',
+  'react/no-arrow-function-lifecycle': 'error',
   'react/no-children-prop': [
     'error',
     {
@@ -165,6 +166,7 @@ const reactRules = {
   'react/no-did-update-set-state': 'off',
   'react/no-direct-mutation-state': 'error',
   'react/no-find-dom-node': 'error',
+  'react/no-invalid-html-attribute': 'warn',
   'react/no-is-mounted': 'error',
   'react/no-multi-comp': 'off',
   'react/no-namespace': 'off',
@@ -177,6 +179,7 @@ const reactRules = {
   'react/no-unescaped-entities': 'error',
   'react/no-unknown-property': 'error',
   'react/no-unsafe': 'error',
+  'react/no-unused-class-component-methods': 'warn',
   'react/no-unused-prop-types': 'off',
   'react/no-unused-state': 'error',
   'react/no-will-update-set-state': 'error',
