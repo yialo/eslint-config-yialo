@@ -434,6 +434,7 @@ const coreRules_nonExtensible = {
     },
   ],
   'no-unused-labels': 'error',
+  'no-unused-private-class-members': 'error',
   'no-useless-backreference': 'error',
   'no-useless-call': 'off',
   'no-useless-catch': 'error',
