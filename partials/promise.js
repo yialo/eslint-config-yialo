@@ -11,6 +11,7 @@ const promiseRules = {
   'promise/no-promise-in-callback': 'off',
   'promise/no-return-in-finally': 'error',
   'promise/no-return-wrap': 'error',
+  // TODO: maybe disable?
   'promise/param-names': 'error',
   'promise/prefer-await-to-callbacks': 'off',
   'promise/prefer-await-to-then': 'off',

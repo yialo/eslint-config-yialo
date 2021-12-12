@@ -240,7 +240,7 @@ const coreRules_nonExtensible = {
   'no-new-func': 'error',
   'no-new-object': 'error',
   'no-new-wrappers': 'error',
-  'no-nonoctal-decimal-escape': 'off',
+  'no-nonoctal-decimal-escape': 'error',
   'no-octal': 'error',
   'no-octal-escape': 'error',
   'no-param-reassign': [
@@ -434,6 +434,7 @@ const coreRules_nonExtensible = {
     },
   ],
   'no-unused-labels': 'error',
+  'no-unused-private-class-members': 'error',
   'no-useless-backreference': 'error',
   'no-useless-call': 'off',
   'no-useless-catch': 'error',
@@ -541,8 +542,10 @@ const coreRules_nonExtensible = {
   'prefer-template': 'error',
   'quote-props': 'off',
   'radix': 'error',
-
-  'require-atomic-updates': 'off',
+  'require-atomic-updates': [
+    'error',
+    { allowProperties: false },
+  ],
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
