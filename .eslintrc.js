@@ -688,8 +688,10 @@ module.exports = {
       },
     ],
     'radix': 'error',
-
-    'require-atomic-updates': 'off',
+    'require-atomic-updates': [
+      'error',
+      { allowProperties: false },
+    ],
     'require-await': 'error',
     'require-unicode-regexp': 'off',
     'require-yield': 'error',

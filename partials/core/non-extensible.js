@@ -542,8 +542,10 @@ const coreRules_nonExtensible = {
   'prefer-template': 'error',
   'quote-props': 'off',
   'radix': 'error',
-
-  'require-atomic-updates': 'off',
+  'require-atomic-updates': [
+    'error',
+    { allowProperties: false },
+  ],
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
