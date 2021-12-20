@@ -530,6 +530,7 @@ const coreRules_nonExtensible = {
   'prefer-exponentiation-operator': 'error',
   'prefer-named-capture-group': 'off',
   'prefer-numeric-literals': 'error',
+  'prefer-object-has-own': 'off',
   'prefer-object-spread': 'error',
   'prefer-promise-reject-errors': [
     'error',
@@ -537,6 +538,7 @@ const coreRules_nonExtensible = {
       allowEmptyReject: true,
     },
   ],
+  'prefer-regex-literals': 'off',
   'prefer-rest-params': 'error',
   'prefer-spread': 'error',
   'prefer-template': 'error',
