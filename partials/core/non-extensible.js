@@ -537,6 +537,7 @@ const coreRules_nonExtensible = {
       allowEmptyReject: true,
     },
   ],
+  'prefer-regex-literals': 'off',
   'prefer-rest-params': 'error',
   'prefer-spread': 'error',
   'prefer-template': 'error',
