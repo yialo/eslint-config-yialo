@@ -108,6 +108,7 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
   '@typescript-eslint/restrict-plus-operands': [
     'error',
     {
+      allowAny: false,
       checkCompoundAssignments: true,
     },
   ],
