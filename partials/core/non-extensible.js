@@ -392,7 +392,7 @@ const coreRules_nonExtensible = {
   'no-self-assign': [
     'error',
     {
-      props: false,
+      props: true,
     },
   ],
   'no-self-compare': 'error',
