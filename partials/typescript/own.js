@@ -13,7 +13,13 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/consistent-indexed-object-style': 'off',
   '@typescript-eslint/consistent-type-assertions': 'off',
   '@typescript-eslint/consistent-type-definitions': 'off',
-  '@typescript-eslint/consistent-type-imports': 'off',
+  '@typescript-eslint/consistent-type-imports': [
+    'error',
+    {
+      prefer: 'type-imports',
+      disallowTypeAnnotations: true,
+    },
+  ],
   '@typescript-eslint/explicit-function-return-type': 'off',
   '@typescript-eslint/explicit-member-accessibility': 'off',
   '@typescript-eslint/explicit-module-boundary-types': 'off',
