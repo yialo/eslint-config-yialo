@@ -22,15 +22,7 @@ const coreRules_nonExtensible = {
   ],
   'block-scoped-var': 'error',
   'block-spacing': ['error', 'always'],
-  'camelcase': [
-    'error',
-    {
-      ignoreDestructuring: true,
-      ignoreGlobals: true,
-      ignoreImports: false,
-      properties: 'never',
-    },
-  ],
+  'camelcase': 'off',
   'capitalized-comments': 'off',
   'class-methods-use-this': 'off',
   'comma-style': [
