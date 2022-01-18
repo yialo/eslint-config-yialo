@@ -249,7 +249,7 @@ module.exports = {
     ],
     'no-console': 'off',
     'no-const-assign': 'error',
-    'no-constant-condition': 'warn',
+    'no-constant-condition': 'error',
     'no-constructor-return': 'error',
     'no-continue': 'error',
     'no-control-regex': 'error',
