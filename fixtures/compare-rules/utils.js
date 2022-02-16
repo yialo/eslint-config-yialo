@@ -1,14 +1,17 @@
 'use strict';
 
-module.exports.compareRuleLists = ({
-  myRuleNames,
-  referenceRuleNames,
-  // deprecatedRuleNames = [],
-}, pluginName) => {
-  const missingRuleNames = referenceRuleNames.filter((ruleName) => !myRuleNames.includes(ruleName));
+module.exports.compareRuleLists = (
+  { myRuleNames, referenceRuleNames, deprecatedRuleNames = [] },
+  pluginName,
+) => {
+  const nonDeprecatedReferenceRuleNames = referenceRuleNames
+    .filter((ruleName) => !deprecatedRuleNames.includes(ruleName));
+
+  const missingRuleNames = nonDeprecatedReferenceRuleNames
+    .filter((ruleName) => !myRuleNames.includes(ruleName));
 
   const extraneousRuleNames = myRuleNames
-    .filter((ruleName) => !referenceRuleNames.includes(ruleName));
+    .filter((ruleName) => !nonDeprecatedReferenceRuleNames.includes(ruleName));
 
   console.group(pluginName);
   console.log('missingRuleNames', missingRuleNames.length, missingRuleNames);

@@ -3,7 +3,7 @@
   "version": "0.6.18",
   "scripts": {
     "test": "eslint ./**/*.js",
-    "compare-rules": "node ./fixtures/compare-rules/"
+    "compare-rules": "node ./fixtures/compare-rules"
   },
   "author": "Aleksei Arro <polsck@gmail.com>",
   "bugs": {
