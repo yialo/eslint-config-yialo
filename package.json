@@ -2,7 +2,8 @@
   "name": "eslint-config-yialo",
   "version": "0.6.18",
   "scripts": {
-    "test": "eslint ./**/*.js"
+    "test": "eslint ./**/*.js",
+    "compare-rules": "node ./fixtures/compare-rules/"
   },
   "author": "Aleksei Arro <polsck@gmail.com>",
   "bugs": {
