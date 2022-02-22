@@ -11,18 +11,16 @@ const {
   tsRules_own_typeCheckOnly_nonExtensible,
   tsRules_own_typeCheckOnly_extensibleWithJest,
 } = require('../../partials/typescript/own');
-const { compareRuleLists } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
 
 const referenceTsRuleNames = Object.keys(referenceTsRules).map(
   (ruleName) => `@typescript-eslint/${ruleName}`,
 );
 
-const deprecaredReferenceTsRuleNames = Object.entries(referenceTsRules)
-  .filter((ruleEntry) => {
-    const rule = ruleEntry[1];
-    return rule.meta.deprecated;
-  })
-  .map(([ruleName]) => `@typescript-eslint/${ruleName}`);
+const deprecaredReferenceTsRuleNames = getDeprecatedReferenceRuleNames(
+  Object.entries(referenceTsRules),
+  '@typescript-eslint',
+);
 
 const myTsRuleNames = Object.keys({
   ...tsRules_own_nonTypeCheck,

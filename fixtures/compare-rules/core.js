@@ -1,6 +1,6 @@
 'use strict';
 
-const referenceCoreRules = require('../../node_modules/eslint/lib/rules');
+const referenceCoreRulesIterator = require('../../node_modules/eslint/lib/rules');
 
 const { coreRules_extensibleWithBabel_only } = require('../../partials/core/extensible-babel');
 const { coreRules_extensibleShared } = require('../../partials/core/extensible-shared');
@@ -13,16 +13,13 @@ const {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_typeCheckOnly,
 } = require('../../partials/core/ts-compat');
-const { compareRuleLists } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
 
-const referenceCoreRuleNames = [...referenceCoreRules].map(([ruleName]) => ruleName);
+const referenceCoreRuleEntries = [...referenceCoreRulesIterator];
 
-const deprecatedReferenceCoreRuleNames = [...referenceCoreRules]
-  .filter((ruleEntry) => {
-    const rule = ruleEntry[1];
-    return rule.meta.deprecated;
-  })
-  .map(([ruleName]) => ruleName);
+const referenceCoreRuleNames = referenceCoreRuleEntries.map(([ruleName]) => ruleName);
+
+const deprecatedReferenceCoreRuleNames = getDeprecatedReferenceRuleNames(referenceCoreRuleEntries);
 
 const myCoreRuleNames = Object.keys({
   ...coreRules_extensibleWithBabel_only,
