@@ -2,7 +2,7 @@
 
 module.exports.compareRuleLists = (
   { myRuleNames, referenceRuleNames, deprecatedRuleNames = [] },
-  pluginName,
+  { pluginName },
 ) => {
   const nonDeprecatedReferenceRuleNames = referenceRuleNames
     .filter((ruleName) => !deprecatedRuleNames.includes(ruleName));

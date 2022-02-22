@@ -40,5 +40,5 @@ compareRuleLists(
     myRuleNames: myCoreRuleNames,
     referenceRuleNames: referenceCoreRuleNames,
   },
-  'core',
+  { pluginName: 'core' },
 );

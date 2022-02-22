@@ -27,5 +27,5 @@ compareRuleLists(
     myRuleNames: myJestRuleNames,
     referenceRuleNames: referenceJestRuleNames,
   },
-  'jest',
+  { pluginName: 'jest' },
 );
