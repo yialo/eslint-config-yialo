@@ -92,7 +92,7 @@ const envOrFrameworkRelatedPluginRules_OFF = {
 module.exports = {
   env: {
     browser: false,
-    es2021: true,
+    es2022: true,
     jest: false,
     node: false,
   },
