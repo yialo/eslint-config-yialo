@@ -63,22 +63,13 @@ Presets may be used at high-level of config as well as `extends` of `overrides` 
 * `presets/web-react-ts-nocheck`
 * `presets/web-react-ts-nocheck-jest`
 
-## Usage caveats
+## Possible caveats
 
 ### Custom resolver
 
 In case of any [webpack](https://webpack.js.org/)-based preset usage you MUST define `import/resolver` explicitly in `settings` section for correct applying of aliases and extensions from `webpack.resolve` config block.
 
-Basic example:
-
-```js
-// .eslintrc.js
-settings: {
-  'import/resolver': 'webpack',
-},
-```
-
-Example of custom usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
+Usage with [eslint-import-resolver-webpack](https://www.npmjs.com/package/eslint-import-resolver-webpack):
 
 ```js
 // .eslintrc.js
@@ -94,7 +85,21 @@ settings: {
 },
 ```
 
-Node.js resolver (default):
+Usage with [eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript):
+
+```js
+// .eslintrc.js
+settings: {
+  'import/resolver': {
+    typescript: {
+      alwaysTryTypes: true,
+      project: './tsconfig.json',
+    },
+  },
+},
+```
+
+Usage with Node resolver (default):
 
 ```js
 // .eslintrc.js
@@ -117,11 +122,10 @@ parserOptions: {
 
 ### TypeScript config
 
-In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)-based preset usage you MUST define `tsconfigRootDir` and `project` explicitly in `parserOptions` section for correct typechecking:
+In case of any [ts-check](https://github.com/typescript-eslint/typescript-eslint/blob/main/docs/linting/TYPED_LINTING.md)-based preset usage you MUST define `project` explicitly in `parserOptions` section for correct typechecking:
 
 ```js
 parserOptions: {
-  tsconfigRootDir: __dirname,
   project: ['./tsconfig.json'],
 },
 ```
@@ -130,6 +134,38 @@ parserOptions: {
 
 ```js
 // .eslintrc.js
+'use strict';
+
+const babelConfigMixin = {
+  parserOptions: {
+    babelOptions: {
+      configFile: './babel.config.js',
+    },
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: './config/webpack.config.js',
+      },
+    },
+  },
+};
+
+const tsConfigMixin = {
+  parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: './tsconfig.json',
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+      },
+    },
+  },
+};
+
 module.exports = {
   globals: {
     process: 'readonly',
@@ -152,58 +188,22 @@ module.exports = {
     {
       files: ['./src/**/*.js?(x)'],
       extends: ['yialo/presets/web-react-babel'],
-      parserOptions: {
-        babelOptions: {
-          configFile: './babel.config.js',
-        },
-      },
-      settings: {
-        'import/resolver': {
-          webpack: {
-            config: './config/webpack.config.js',
-          },
-        },
-      },
+      ...babelConfigMixin,
     },
     {
       files: ['./src/**/*.{spec,test}.js?(x)'],
       extends: ['yialo/presets/web-react-babel-jest'],
-      parserOptions: {
-        babelOptions: {
-          configFile: './babel.config.js',
-        },
-      },
-      settings: {
-        'import/resolver': {
-          webpack: {
-            config: './config/webpack.config.js',
-          },
-        },
-      },
+      ...babelConfigMixin,
     },
     {
       files: ['./src/**/*.ts?(x)'],
       extends: ['yialo/presets/web-react-ts-check'],
-      parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
-      },
-      settings: {
-        tsconfigRootDir: __dirname,
-        project: './tsconfig.json',
-      },
+      ...tsConfigMixin,
     },
     {
       files: ['./src/**/*.{spec,test}.ts?(x)'],
       extends: ['yialo/presets/web-react-ts-check-jest'],
-      parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
-      },
-      settings: {
-        tsconfigRootDir: __dirname,
-        project: './tsconfig.json',
-      },
+      ...tsConfigMixin,
     },
   ],
 };
