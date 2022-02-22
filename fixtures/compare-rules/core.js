@@ -21,7 +21,8 @@ const deprecatedReferenceCoreRuleNames = [...referenceCoreRules]
   .filter((ruleEntry) => {
     const rule = ruleEntry[1];
     return rule.meta.deprecated;
-  }).map(([ruleName]) => ruleName);
+  })
+  .map(([ruleName]) => ruleName);
 
 const myCoreRuleNames = Object.keys({
   ...coreRules_extensibleWithBabel_only,

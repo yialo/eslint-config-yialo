@@ -5,8 +5,9 @@ const { rules: referenceJestRules } = require('eslint-plugin-jest');
 const { jestRules, jestTsRules_typeCheckOnly } = require('../../partials/jest');
 const { compareRuleLists } = require('./utils');
 
-const referenceJestRuleNames = Object.keys(referenceJestRules)
-  .map((ruleName) => `jest/${ruleName}`);
+const referenceJestRuleNames = Object.keys(referenceJestRules).map(
+  (ruleName) => `jest/${ruleName}`,
+);
 
 const deprecaredReferenceJestRuleNames = Object.entries(referenceJestRules)
   .filter((ruleEntry) => {
@@ -20,8 +21,11 @@ const myJestRuleNames = Object.keys({
   ...jestTsRules_typeCheckOnly,
 });
 
-compareRuleLists({
-  deprecatedRuleNames: deprecaredReferenceJestRuleNames,
-  myRuleNames: myJestRuleNames,
-  referenceRuleNames: referenceJestRuleNames,
-}, 'jest');
+compareRuleLists(
+  {
+    deprecatedRuleNames: deprecaredReferenceJestRuleNames,
+    myRuleNames: myJestRuleNames,
+    referenceRuleNames: referenceJestRuleNames,
+  },
+  'jest',
+);
