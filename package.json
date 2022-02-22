@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-yialo",
-  "version": "0.6.18",
+  "version": "0.6.19",
   "scripts": {
     "test": "eslint ./**/*.js",
     "compare-rules": "node ./fixtures/compare-rules"
