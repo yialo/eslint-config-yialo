@@ -1,6 +1,6 @@
 'use strict';
 
-const { rules: referenceTsRules } = require('@typescript-eslint/eslint-plugin');
+const { rules: referenceRules } = require('@typescript-eslint/eslint-plugin');
 
 const {
   tsRules_extension_nonTypeCheck,
@@ -13,16 +13,16 @@ const {
 } = require('../../partials/typescript/own');
 const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
 
-const referenceTsRuleNames = Object.keys(referenceTsRules).map(
+const referenceRuleNames = Object.keys(referenceRules).map(
   (ruleName) => `@typescript-eslint/${ruleName}`,
 );
 
-const deprecaredReferenceTsRuleNames = getDeprecatedReferenceRuleNames(
-  Object.entries(referenceTsRules),
+const deprecatedRuleNames = getDeprecatedReferenceRuleNames(
+  Object.entries(referenceRules),
   '@typescript-eslint',
 );
 
-const myTsRuleNames = Object.keys({
+const myRuleNames = Object.keys({
   ...tsRules_own_nonTypeCheck,
   ...tsRules_own_typeCheckOnly_nonExtensible,
   ...tsRules_own_typeCheckOnly_extensibleWithJest,
@@ -32,9 +32,11 @@ const myTsRuleNames = Object.keys({
 
 compareRuleLists(
   {
-    deprecatedRuleNames: deprecaredReferenceTsRuleNames,
-    myRuleNames: myTsRuleNames,
-    referenceRuleNames: referenceTsRuleNames,
+    deprecatedRuleNames,
+    myRuleNames,
+    referenceRuleNames,
   },
-  { pluginName: 'typescript' },
+  {
+    pluginName: 'typescript',
+  },
 );

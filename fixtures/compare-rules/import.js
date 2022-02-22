@@ -1,26 +1,26 @@
 'use strict';
 
-const { rules: referenceImportRules } = require('eslint-plugin-import');
+const { rules: referenceRules } = require('eslint-plugin-import');
 
 const { importRules_BASE } = require('../../partials/import');
 const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
 
-const referenceImportRuleNames = Object.keys(referenceImportRules).map(
-  (ruleName) => `import/${ruleName}`,
-);
+const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `import/${ruleName}`);
 
-const deprecaredReferenceImportRuleNames = getDeprecatedReferenceRuleNames(
-  Object.entries(referenceImportRules),
+const deprecatedRuleNames = getDeprecatedReferenceRuleNames(
+  Object.entries(referenceRules),
   'import',
 );
 
-const myImportRuleNames = Object.keys(importRules_BASE);
+const myRuleNames = Object.keys(importRules_BASE);
 
 compareRuleLists(
   {
-    deprecatedRuleNames: deprecaredReferenceImportRuleNames,
-    myRuleNames: myImportRuleNames,
-    referenceRuleNames: referenceImportRuleNames,
+    deprecatedRuleNames,
+    myRuleNames,
+    referenceRuleNames,
   },
-  { pluginName: 'import' },
+  {
+    pluginName: 'import',
+  },
 );

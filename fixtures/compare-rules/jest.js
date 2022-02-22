@@ -1,29 +1,26 @@
 'use strict';
 
-const { rules: referenceJestRules } = require('eslint-plugin-jest');
+const { rules: referenceRules } = require('eslint-plugin-jest');
 
 const { jestRules, jestTsRules_typeCheckOnly } = require('../../partials/jest');
 const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
 
-const referenceJestRuleNames = Object.keys(referenceJestRules).map(
-  (ruleName) => `jest/${ruleName}`,
-);
+const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `jest/${ruleName}`);
 
-const deprecaredReferenceJestRuleNames = getDeprecatedReferenceRuleNames(
-  Object.entries(referenceJestRules),
-  'jest',
-);
+const deprecatedRuleNames = getDeprecatedReferenceRuleNames(Object.entries(referenceRules), 'jest');
 
-const myJestRuleNames = Object.keys({
+const myRuleNames = Object.keys({
   ...jestRules,
   ...jestTsRules_typeCheckOnly,
 });
 
 compareRuleLists(
   {
-    deprecatedRuleNames: deprecaredReferenceJestRuleNames,
-    myRuleNames: myJestRuleNames,
-    referenceRuleNames: referenceJestRuleNames,
+    deprecatedRuleNames,
+    myRuleNames,
+    referenceRuleNames,
   },
-  { pluginName: 'jest' },
+  {
+    pluginName: 'jest',
+  },
 );

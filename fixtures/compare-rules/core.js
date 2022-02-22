@@ -1,6 +1,6 @@
 'use strict';
 
-const referenceCoreRulesIterator = require('../../node_modules/eslint/lib/rules');
+const referenceRulesIterator = require('../../node_modules/eslint/lib/rules');
 
 const { coreRules_extensibleWithBabel_only } = require('../../partials/core/extensible-babel');
 const { coreRules_extensibleShared } = require('../../partials/core/extensible-shared');
@@ -15,13 +15,13 @@ const {
 } = require('../../partials/core/ts-compat');
 const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
 
-const referenceCoreRuleEntries = [...referenceCoreRulesIterator];
+const referenceRuleEntries = [...referenceRulesIterator];
 
-const referenceCoreRuleNames = referenceCoreRuleEntries.map(([ruleName]) => ruleName);
+const referenceRuleNames = referenceRuleEntries.map(([ruleName]) => ruleName);
 
-const deprecatedReferenceCoreRuleNames = getDeprecatedReferenceRuleNames(referenceCoreRuleEntries);
+const deprecatedRuleNames = getDeprecatedReferenceRuleNames(referenceRuleEntries);
 
-const myCoreRuleNames = Object.keys({
+const myRuleNames = Object.keys({
   ...coreRules_extensibleWithBabel_only,
   ...coreRules_extensibleShared,
   ...coreRules_extensibleWithTs_nonTypeCheck,
@@ -33,9 +33,11 @@ const myCoreRuleNames = Object.keys({
 
 compareRuleLists(
   {
-    deprecatedRuleNames: deprecatedReferenceCoreRuleNames,
-    myRuleNames: myCoreRuleNames,
-    referenceRuleNames: referenceCoreRuleNames,
+    deprecatedRuleNames,
+    myRuleNames,
+    referenceRuleNames,
   },
-  { pluginName: 'core' },
+  {
+    pluginName: 'core',
+  },
 );
