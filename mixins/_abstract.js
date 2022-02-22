@@ -28,8 +28,7 @@ const { jsxA11yRules_OFF } = require('../partials/jsx-a11y');
 
 const { nodeRules_OFF } = require('../partials/node');
 
-// Enable when eslint-plugin-promise would support ESLint 8
-// const { promiseRules } = require('../partials/promise');
+const { promiseRules } = require('../partials/promise');
 
 const { reactRules_OFF } = require('../partials/react');
 
@@ -103,7 +102,7 @@ module.exports = {
     'jest',
     'jsx-a11y',
     'node',
-    // 'promise',
+    'promise',
     'react',
     'react-hooks',
   ],
@@ -122,7 +121,7 @@ module.exports = {
     ...envOrFrameworkRelatedPluginRules_OFF,
     ...coreRules_full,
     ...importRules_BASE,
-    // ...promiseRules,
+    ...promiseRules,
   },
   settings: {
     ...importSettings_BASE,
