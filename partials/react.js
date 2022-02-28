@@ -15,6 +15,8 @@ const reactRules = {
   'react/forbid-foreign-prop-types': 'off',
   'react/forbid-prop-types': 'off',
   'react/function-component-definition': 'off',
+  'react/hook-use-state': 'off',
+  'react/iframe-missing-sandbox': 'off',
   'react/jsx-boolean-value': ['error', 'never'],
   'react/jsx-child-element-spacing': 'off',
   'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
@@ -65,6 +67,7 @@ const reactRules = {
     {
       checkFragmentShorthand: true,
       checkKeyMustBeforeSpread: true,
+      warnOnDuplicates: true,
     },
   ],
   'react/jsx-max-depth': 'off',
