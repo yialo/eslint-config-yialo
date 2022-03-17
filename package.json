@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@babel/eslint-parser": "7.17.0",
-    "@babel/eslint-plugin": "7.16.5",
+    "@babel/eslint-plugin": "7.17.7",
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
     "eslint": "8.10.0",
@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@babel/core": "^7.17.5",
+    "@babel/core": "^7.17.7",
     "typescript": "^4.5.5"
   },
   "repository": {
