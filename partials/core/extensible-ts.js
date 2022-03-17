@@ -130,6 +130,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
       allowTemplateLiterals: true,
     },
   ],
+  'space-before-blocks': 'error',
   'space-before-function-paren': [
     'error',
     {

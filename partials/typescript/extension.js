@@ -80,6 +80,7 @@ const tsRules_extension_nonTypeCheck = {
   '@typescript-eslint/no-useless-constructor': coreRules_extensibleWithTs_nonTypeCheck['no-useless-constructor'],
   '@typescript-eslint/padding-line-between-statements': coreRules_extensibleWithTs_nonTypeCheck['padding-line-between-statements'],
   '@typescript-eslint/quotes': coreRules_extensibleWithTs_nonTypeCheck['quotes'],
+  '@typescript-eslint/space-before-blocks': coreRules_extensibleWithTs_nonTypeCheck['space-before-blocks'],
   '@typescript-eslint/space-before-function-paren':
     coreRules_extensibleWithTs_nonTypeCheck['space-before-function-paren'],
   '@typescript-eslint/space-infix-ops': coreRules_extensibleWithTs_nonTypeCheck['space-infix-ops'],
