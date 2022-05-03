@@ -23,7 +23,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-react": "7.29.4",
-    "eslint-plugin-react-hooks": "4.3.0"
+    "eslint-plugin-react-hooks": "4.5.0"
   },
   "description": "Yialo's ESLint configuration",
   "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
