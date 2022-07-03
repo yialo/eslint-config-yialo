@@ -1,6 +1,6 @@
 'use strict';
 
-const { getDisabledRuleSet } = require('./utils');
+const { getDisabledRuleSet } = require('./_utils');
 
 
 const jsxA11yRules = {

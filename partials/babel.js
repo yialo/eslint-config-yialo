@@ -3,7 +3,7 @@
 const { coreRules_extensibleWithBabel_only } = require('./core/extensible-babel');
 const { coreRules_extensibleShared } = require('./core/extensible-shared');
 
-const { getDisabledRuleSet } = require('./utils');
+const { getDisabledRuleSet } = require('./_utils');
 
 
 const babelRules = {

@@ -2,7 +2,7 @@
 
 const { tsRules_own_typeCheckOnly_extensibleWithJest } = require('./typescript/own');
 
-const { getDisabledRuleSet } = require('./utils');
+const { getDisabledRuleSet } = require('./_utils');
 
 
 const jestRules = {

@@ -6,7 +6,7 @@ const {
   coreRules_extensibleWithTs_typeCheckOnly,
 } = require('../core/extensible-ts');
 
-const { getDisabledRuleSet } = require('../utils');
+const { getDisabledRuleSet } = require('../_utils');
 
 
 const tsRules_extension_nonTypeCheck = {

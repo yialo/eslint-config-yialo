@@ -1,7 +1,7 @@
 'use strict';
 
 const promiseRules = {
-  'promise/always-return': 'off',
+  'promise/always-return': 'error',
   'promise/avoid-new': 'off',
   'promise/catch-or-return': 'off',
   'promise/no-callback-in-promise': 'off',
