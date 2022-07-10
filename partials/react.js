@@ -97,6 +97,12 @@ const reactRules = {
       ignoreCase: true,
     },
   ],
+  'react/jsx-no-leaked-render': [
+    'error',
+    {
+      'validStrategies': ['coerce', 'ternary'],
+    },
+  ],
   'react/jsx-no-literals': 'off',
   'react/jsx-no-script-url': 'error',
   'react/jsx-no-target-blank': [
