@@ -60,7 +60,13 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/no-non-null-assertion': 'off',
   '@typescript-eslint/no-parameter-properties': 'off',
   '@typescript-eslint/no-require-imports': 'off',
-  '@typescript-eslint/no-this-alias': 'error',
+  '@typescript-eslint/no-this-alias': [
+    'error',
+    {
+      allowDestructuring: true,
+      allowedNames: [],
+    },
+  ],
   '@typescript-eslint/no-type-alias': 'off',
   '@typescript-eslint/no-unnecessary-type-constraint': 'error',
   '@typescript-eslint/no-useless-empty-export': 'off',
