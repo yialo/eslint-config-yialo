@@ -72,7 +72,7 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/prefer-function-type': 'off',
   '@typescript-eslint/prefer-literal-enum-member': 'off',
   '@typescript-eslint/prefer-namespace-keyword': 'error',
-  '@typescript-eslint/prefer-optional-chain': 'off',
+  '@typescript-eslint/prefer-optional-chain': 'warn',
   '@typescript-eslint/prefer-return-this-type': 'off',
   '@typescript-eslint/prefer-ts-expect-error': 'off',
   '@typescript-eslint/triple-slash-reference': 'error',
