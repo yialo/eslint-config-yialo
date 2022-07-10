@@ -144,7 +144,7 @@ const reactRules = {
       closingSlash: 'never',
     },
   ],
-  'react/jsx-uses-react': 'error',
+  'react/jsx-uses-react': 'off',
   'react/jsx-uses-vars': 'error',
   'react/jsx-wrap-multilines': [
     'error',
@@ -208,7 +208,7 @@ const reactRules = {
     },
   ],
   'react/prop-types': 'off',
-  'react/react-in-jsx-scope': 'error',
+  'react/react-in-jsx-scope': 'off',
   'react/require-default-props': [
     'error',
     {
