@@ -1,5 +1,10 @@
 'use strict';
 
+/*
+NOTE: it's no need to add disabled rules to internal ESLint config
+because of it has no extension configs
+*/
+
 const { rules: internalRules } = require('../../.eslintrc.js');
 
 const OFF = 'off';
