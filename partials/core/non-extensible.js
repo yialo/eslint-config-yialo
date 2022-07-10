@@ -149,6 +149,7 @@ const coreRules_nonExtensible = {
     },
   ],
   'no-console': 'off',
+  'no-constant-binary-expression': 'error',
   'no-constructor-return': 'error',
   'no-continue': 'error',
   'no-control-regex': 'error',
