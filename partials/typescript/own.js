@@ -11,7 +11,13 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/ban-types': 'error',
   '@typescript-eslint/class-literal-property-style': 'off',
   '@typescript-eslint/consistent-indexed-object-style': 'off',
-  '@typescript-eslint/consistent-type-assertions': 'off',
+  '@typescript-eslint/consistent-type-assertions': [
+    'error',
+    {
+      assertionStyle: 'as',
+      objectLiteralTypeAssertions: 'allow',
+    },
+  ],
   '@typescript-eslint/consistent-type-definitions': 'off',
   '@typescript-eslint/consistent-type-imports': [
     'error',
