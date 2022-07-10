@@ -6,7 +6,16 @@ const { getDisabledRuleSet } = require('../_utils');
 const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': 'off',
-  '@typescript-eslint/ban-ts-comment': 'error',
+  '@typescript-eslint/ban-ts-comment': [
+    'error',
+    {
+      'ts-expect-error': 'allow-with-description',
+      'ts-ignore': 'allow-with-description',
+      'ts-nocheck': 'allow-with-description',
+      'ts-check': false,
+      minimumDescriptionLength: 6,
+    },
+  ],
   '@typescript-eslint/ban-tslint-comment': 'off',
   '@typescript-eslint/ban-types': 'error',
   '@typescript-eslint/class-literal-property-style': 'off',
