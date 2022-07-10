@@ -46,6 +46,7 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/member-ordering': 'off',
   '@typescript-eslint/method-signature-style': 'off',
   '@typescript-eslint/no-confusing-non-null-assertion': 'off',
+  '@typescript-eslint/no-duplicate-enum-values': 'warn',
   '@typescript-eslint/no-dynamic-delete': 'off',
   '@typescript-eslint/no-empty-interface': 'error',
   '@typescript-eslint/no-explicit-any': 'off',
