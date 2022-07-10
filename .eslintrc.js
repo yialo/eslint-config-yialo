@@ -525,6 +525,7 @@ module.exports = {
         classes: true,
         functions: true,
         variables: false,
+        allowNamedExports: false,
       },
     ],
     'no-useless-backreference': 'error',

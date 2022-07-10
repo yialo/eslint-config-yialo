@@ -119,6 +119,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
       classes: true,
       functions: true,
       variables: false,
+      allowNamedExports: false,
     },
   ],
   'no-useless-constructor': 'error',
