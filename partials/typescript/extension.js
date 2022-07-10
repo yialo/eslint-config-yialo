@@ -52,7 +52,6 @@ const tsRules_extension_nonTypeCheck = {
   '@typescript-eslint/no-array-constructor': coreRules_extensibleWithTs_nonTypeCheck['no-array-constructor'],
   // ts(2300), ts(2393)
   '@typescript-eslint/no-dupe-class-members': 'off',
-  '@typescript-eslint/no-duplicate-imports': coreRules_extensibleWithTs_nonTypeCheck['no-duplicate-imports'],
   '@typescript-eslint/no-empty-function': [
     coreRules_extensibleWithTs_nonTypeCheck['no-empty-function'][0],
     {

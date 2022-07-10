@@ -158,6 +158,7 @@ const coreRules_nonExtensible = {
   'no-div-regex': 'off',
   'no-dupe-else-if': 'error',
   'no-duplicate-case': 'error',
+  'no-duplicate-imports': 'off',
   'no-else-return': [
     'error',
     {
