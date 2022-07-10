@@ -35,6 +35,7 @@ const jestRules = {
   'jest/prefer-equality-matcher': 'off',
   'jest/prefer-expect-assertions': 'off',
   'jest/prefer-expect-resolves': 'off',
+  'jest/prefer-hooks-in-order': 'warn',
   'jest/prefer-hooks-on-top': 'off',
   'jest/prefer-lowercase-title': 'off',
   'jest/prefer-snapshot-hint': 'off',
