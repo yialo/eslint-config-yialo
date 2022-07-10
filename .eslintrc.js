@@ -512,7 +512,7 @@ module.exports = {
     ],
     'no-unused-labels': 'error',
     'no-unused-vars': [
-      'error',
+      'warn',
       {
         args: 'after-used',
         ignoreRestSiblings: true,

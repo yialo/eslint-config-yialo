@@ -106,7 +106,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'no-restricted-imports': 'off',
   'no-shadow': 'error',
   'no-unused-vars': [
-    'error',
+    'warn',
     {
       args: 'after-used',
       ignoreRestSiblings: true,
