@@ -222,6 +222,7 @@ module.exports = {
       },
     ],
     'no-const-assign': 'error',
+    'no-constant-binary-expression': 'error',
     'no-constant-condition': 'error',
     'no-constructor-return': 'error',
     'no-continue': 'error',
