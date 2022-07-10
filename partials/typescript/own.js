@@ -58,7 +58,6 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'off',
   '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
   '@typescript-eslint/no-non-null-assertion': 'off',
-  '@typescript-eslint/no-parameter-properties': 'off',
   '@typescript-eslint/no-require-imports': 'off',
   '@typescript-eslint/no-this-alias': [
     'error',
@@ -72,6 +71,7 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/no-useless-empty-export': 'off',
   '@typescript-eslint/no-var-requires': 'error',
   '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+  '@typescript-eslint/parameter-properties': 'off',
   '@typescript-eslint/prefer-as-const': 'error',
   '@typescript-eslint/prefer-enum-initializers': 'off',
   '@typescript-eslint/prefer-for-of': 'off',
