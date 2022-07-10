@@ -3,7 +3,7 @@
 const { rules: referenceRules } = require('eslint-plugin-node');
 
 const { nodeRules } = require('../../partials/node');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
 
 const referenceRuleNames = Object.keys(referenceRules).map((ruleNames) => `node/${ruleNames}`);
 

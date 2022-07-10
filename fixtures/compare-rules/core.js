@@ -13,7 +13,7 @@ const {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_typeCheckOnly,
 } = require('../../partials/core/ts-compat');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
 
 const referenceRuleEntries = [...referenceRulesIterator];
 

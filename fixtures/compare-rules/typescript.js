@@ -11,7 +11,7 @@ const {
   tsRules_own_typeCheckOnly_nonExtensible,
   tsRules_own_typeCheckOnly_extensibleWithJest,
 } = require('../../partials/typescript/own');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
 
 const referenceRuleNames = Object.keys(referenceRules).map(
   (ruleName) => `@typescript-eslint/${ruleName}`,
@@ -40,3 +40,52 @@ compareRuleLists(
     pluginName: 'typescript',
   },
 );
+
+
+/* TODO: add fine-grained group checks
+const createReferenceRuleGroups = () => {
+  const reference_ownRuleNames = [];
+  const reference_extensionRuleNames = [];
+  const reference_nonTypeCheckRuleNames = [];
+  const reference_typeCheckRuleNames = [];
+
+  const referenceRuleEntries = Object.entries(referenceRules);
+
+  referenceRuleEntries.forEach(([ruleName, rule]) => {
+    const fullRuleName = `@typescript-eslint/${ruleName}`;
+
+    const isExtensionRule = rule.meta.docs.extendsBaseRule;
+    if (isExtensionRule) {
+      reference_extensionRuleNames.push(fullRuleName);
+    } else {
+      reference_ownRuleNames.push(fullRuleName);
+    }
+
+    const isTypeCheckRule = rule.meta.docs.requiresTypeChecking;
+    if (isTypeCheckRule) {
+      reference_typeCheckRuleNames.push(fullRuleName);
+    } else {
+      reference_nonTypeCheckRuleNames.push(fullRuleName);
+    }
+  });
+
+  return {
+    reference_ownRuleNames,
+    reference_extensionRuleNames,
+    reference_nonTypeCheckRuleNames,
+    reference_typeCheckRuleNames,
+  };
+};
+
+const {
+  reference_ownRuleNames,
+  reference_extensionRuleNames,
+  reference_nonTypeCheckRuleNames,
+  reference_typeCheckRuleNames,
+} = createReferenceRuleGroups();
+
+console.log('reference_ownRuleNames', reference_ownRuleNames.length, reference_ownRuleNames);
+console.log('reference_extensionRuleNames', reference_extensionRuleNames.length, reference_extensionRuleNames);
+console.log('reference_nonTypeCheckRuleNames', reference_nonTypeCheckRuleNames.length, reference_nonTypeCheckRuleNames);
+console.log('reference_typeCheckRuleNames', reference_typeCheckRuleNames.length, reference_typeCheckRuleNames);
+ */

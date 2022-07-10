@@ -3,7 +3,7 @@
 const { rules: referenceRules } = require('eslint-plugin-react');
 
 const { reactRules } = require('../../partials/react');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
 
 const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `react/${ruleName}`);
 

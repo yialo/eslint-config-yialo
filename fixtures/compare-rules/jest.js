@@ -3,7 +3,7 @@
 const { rules: referenceRules } = require('eslint-plugin-jest');
 
 const { jestRules, jestTsRules_typeCheckOnly } = require('../../partials/jest');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./utils');
+const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
 
 const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `jest/${ruleName}`);
 
