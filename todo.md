@@ -2,6 +2,7 @@
 
 ## Tasks
 
+- Maybe `no-trailing-spaces`: `ignoreComments: true`?
 - Move some dependencies to peerDependencies
 - Add Prettier and apply to utility files (_util.js)
 - Check [TS strict config](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict.ts)
