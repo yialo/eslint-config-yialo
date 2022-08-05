@@ -11,6 +11,8 @@ const {
   tsRules_own_typeCheckOnly_nonExtensible,
   tsRules_own_typeCheckOnly_extensibleWithJest,
 } = require('../../partials/typescript/own');
+
+// TODO: add own implementations for utils, becaule of specificity
 const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
 
 const referenceRuleNames = Object.keys(referenceRules).map(
