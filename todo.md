@@ -2,6 +2,7 @@
 
 ## Tasks
 
+- Try to configure rule about variable use before define for use inside functions
 - Maybe `no-trailing-spaces`: `ignoreComments: true`?
 - Move some dependencies to peerDependencies
 - Add Prettier and apply to utility files (_util.js)
