@@ -2,7 +2,7 @@
 
 const referenceRulesIterator = require('../../node_modules/eslint/lib/rules');
 
-const { groupLog } = require('./_utils_new');
+const { groupLog, isObject } = require('./_utils_new');
 
 const {
   coreRules_extensibleWithBabel_only,
@@ -85,4 +85,68 @@ const extraneousRuleNames = myRuleNames.filter(
 
 groupLog('Extraneous core rules', () => {
   console.log(extraneousRuleNames);
+});
+
+const myRulesNeedClarification = myRuleConfigs.reduce(
+  (output, [myRuleName, myRuleConfig]) => {
+    const getNextOutput = () => {
+      const metaEntry = nonDeprecatedReferenceRuleMetas.find(
+        ([refRuleName]) => refRuleName === myRuleName,
+      );
+
+      if (!metaEntry) {
+        return;
+      }
+
+      const { schema } = metaEntry[1];
+
+      if (Array.isArray(schema)) {
+        const refOptionNames = schema.reduce(
+          (optNamesCollected, schemaElement) => {
+            if (!isObject(schemaElement)) {
+              return optNamesCollected;
+            }
+
+            if (schemaElement.type !== 'object') {
+              return optNamesCollected;
+            }
+
+            return optNamesCollected.concat(
+              Object.keys(schemaElement.properties),
+            );
+          },
+          [],
+        );
+
+        const myOptionNames = Object.keys(
+          Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
+        );
+
+        const absentOptions = refOptionNames.filter(
+          (refOptName) => !myOptionNames.includes(refOptName),
+        );
+
+        if (!absentOptions.length) {
+          return;
+        }
+
+        return { [myRuleName]: absentOptions };
+      }
+
+      if (Array.isArray(schema.anyOf)) {
+        console.log(`${myRuleName} anyOf:`, schema.anyOf);
+        return;
+      }
+
+      console.log(`Check rule: ${myRuleName} with schema:`, schema);
+    };
+
+    const nextOutput = getNextOutput();
+    return nextOutput ? { ...output, ...nextOutput } : output;
+  },
+  {},
+);
+
+groupLog('Core rules that need clarificaiton', () => {
+  console.log(myRulesNeedClarification);
 });
