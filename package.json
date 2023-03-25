@@ -3,7 +3,10 @@
   "version": "0.6.20",
   "scripts": {
     "test": "eslint ./**/*.js",
-    "compare-rules": "node ./fixtures/compare-rules"
+    "compare-rules": "node ./fixtures/compare-rules",
+    "prettier:base": "prettier",
+    "prettier:check": "npm run prettier:base -- --list-different \"./fixtures/**/*.js\"",
+    "prettier:write": "npm run prettier:base -- --write \"./fixtures/**/*.js\""
   },
   "author": "Aleksei Arro <polsck@gmail.com>",
   "bugs": {
@@ -41,6 +44,7 @@
     "url": "git+ssh://git@github.com/yialo/eslint-config-yialo.git"
   },
   "devDependencies": {
-    "husky": "8.0.3"
+    "husky": "8.0.3",
+    "prettier": "2.8.7"
   }
 }
