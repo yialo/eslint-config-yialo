@@ -3,7 +3,15 @@
 const coreRules_nonExtensible = {
   'accessor-pairs': 'off',
   'array-bracket-newline': ['error', 'consistent'],
-  'array-bracket-spacing': ['error', 'never'],
+  'array-bracket-spacing': [
+    'error',
+    'never',
+    {
+      singleValue: false,
+      objectsInArrays: false,
+      arraysInArrays: false,
+    },
+  ],
   'array-callback-return': [
     'error',
     {

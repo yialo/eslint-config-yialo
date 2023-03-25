@@ -12,7 +12,15 @@ module.exports = {
   plugins: ['import'],
   rules: {
     'array-bracket-newline': ['error', 'consistent'],
-    'array-bracket-spacing': ['error', 'never'],
+    'array-bracket-spacing': [
+      'error',
+      'never',
+      {
+        singleValue: false,
+        objectsInArrays: false,
+        arraysInArrays: false,
+      },
+    ],
     'array-callback-return': [
       'error',
       {
