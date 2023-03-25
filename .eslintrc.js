@@ -29,7 +29,13 @@ module.exports = {
       },
     ],
     'array-element-newline': ['error', 'consistent'],
-    'arrow-parens': ['error', 'always'],
+    'arrow-parens': [
+      'error',
+      'always',
+      {
+        requireForBlockBody: undefined,
+      },
+    ],
     'arrow-spacing': [
       'error',
       {

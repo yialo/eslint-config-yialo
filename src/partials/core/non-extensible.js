@@ -21,7 +21,13 @@ const coreRules_nonExtensible = {
   ],
   'array-element-newline': ['error', 'consistent'],
   'arrow-body-style': 'off',
-  'arrow-parens': ['error', 'always'],
+  'arrow-parens': [
+    'error',
+    'always',
+    {
+      requireForBlockBody: undefined,
+    },
+  ],
   'arrow-spacing': [
     'error',
     {
