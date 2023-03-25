@@ -90,6 +90,10 @@ groupLog('Extraneous core rules', () => {
 const myRulesNeedClarification = myRuleConfigs.reduce(
   (output, [myRuleName, myRuleConfig]) => {
     const getNextOutput = () => {
+      if (myRuleConfig === 'off') {
+        return;
+      }
+
       const metaEntry = nonDeprecatedReferenceRuleMetas.find(
         ([refRuleName]) => refRuleName === myRuleName,
       );
@@ -153,5 +157,5 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
 );
 
 groupLog('Core rules that need clarificaiton', () => {
-  console.log(myRulesNeedClarification);
+  console.log(Object.entries(myRulesNeedClarification)[0]);
 });

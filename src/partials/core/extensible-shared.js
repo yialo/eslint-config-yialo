@@ -14,7 +14,14 @@ const coreRules_extensibleShared = {
       enforceForJSX: true,
     },
   ],
-  'object-curly-spacing': ['error', 'always'],
+  'object-curly-spacing': [
+    'error',
+    'always',
+    {
+      arraysInObjects: true,
+      objectsInObjects: true,
+    },
+  ],
   'semi': ['error', 'always'],
 };
 
