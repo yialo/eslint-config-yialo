@@ -111,7 +111,6 @@ module.exports = {
     ],
     'grouped-accessor-pairs': ['error', 'getBeforeSet'],
     'guard-for-in': 'error',
-    'implicit-arrow-linebreak': 'off',
     'indent': [
       'error',
       2,
@@ -571,7 +570,6 @@ module.exports = {
     'one-var': ['error', 'never'],
     'one-var-declaration-per-line': ['error', 'always'],
     'operator-assignment': ['error', 'always'],
-    'operator-linebreak': 'off',
     'padded-blocks': [
       'error',
       {
