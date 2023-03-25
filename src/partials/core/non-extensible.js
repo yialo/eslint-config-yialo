@@ -16,6 +16,7 @@ const coreRules_nonExtensible = {
     'error',
     {
       allowImplicit: true,
+      checkForEach: true,
     },
   ],
   'array-element-newline': ['error', 'consistent'],
