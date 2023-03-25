@@ -88,7 +88,13 @@ module.exports = {
         },
       },
     ],
-    'computed-property-spacing': ['error', 'never'],
+    'computed-property-spacing': [
+      'error',
+      'never',
+      {
+        enforceForClassMembers: true,
+      },
+    ],
     'constructor-super': 'error',
     'curly': ['error', 'multi-line'],
     'default-case': [

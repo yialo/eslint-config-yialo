@@ -60,7 +60,13 @@ const coreRules_nonExtensible = {
     },
   ],
   'complexity': 'off',
-  'computed-property-spacing': ['error', 'never'],
+  'computed-property-spacing': [
+    'error',
+    'never',
+    {
+      enforceForClassMembers: true,
+    },
+  ],
   'consistent-return': 'off',
   'consistent-this': 'off',
   'curly': ['error', 'multi-line'],
