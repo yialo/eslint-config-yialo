@@ -1,26 +1,26 @@
 'use strict';
 
-const referenceRulesIterator = require('../../node_modules/eslint/lib/rules');
+const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 
-const { groupLog, isObject } = require('./_utils_new');
+const { groupLog, isObject } = require('../_utils');
 
 const {
   coreRules_extensibleWithBabel_only,
-} = require('../../src/partials/core/extensible-babel');
+} = require('../../../src/partials/core/extensible-babel');
 const {
   coreRules_extensibleShared,
-} = require('../../src/partials/core/extensible-shared');
+} = require('../../../src/partials/core/extensible-shared');
 const {
   coreRules_extensibleWithTs_nonTypeCheck,
   coreRules_extensibleWithTs_typeCheckOnly,
-} = require('../../src/partials/core/extensible-ts');
+} = require('../../../src/partials/core/extensible-ts');
 const {
   coreRules_nonExtensible,
-} = require('../../src/partials/core/non-extensible');
+} = require('../../../src/partials/core/non-extensible');
 const {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_typeCheckOnly,
-} = require('../../src/partials/core/ts-compat');
+} = require('../../../src/partials/core/ts-compat');
 
 const referenceRuleMetas = [...referenceRulesIterator].map(([name, rule]) => [
   name,
@@ -100,45 +100,50 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
 
       const { schema } = metaEntry[1];
 
-      if (Array.isArray(schema)) {
-        const refOptionNames = schema.reduce(
-          (optNamesCollected, schemaElement) => {
-            if (!isObject(schemaElement)) {
-              return optNamesCollected;
-            }
+      // if (Array.isArray(schema)) {
+      //   const refOptionNames = schema.reduce(
+      //     (optNamesCollected, schemaElement) => {
+      //       if (!isObject(schemaElement)) {
+      //         return optNamesCollected;
+      //       }
 
-            if (schemaElement.type !== 'object') {
-              return optNamesCollected;
-            }
+      //       if (schemaElement.type !== 'object') {
+      //         return optNamesCollected;
+      //       }
 
-            return optNamesCollected.concat(
-              Object.keys(schemaElement.properties),
-            );
-          },
-          [],
-        );
+      //       return optNamesCollected.concat(
+      //         Object.keys(schemaElement.properties),
+      //       );
+      //     },
+      //     [],
+      //   );
 
-        const myOptionNames = Object.keys(
-          Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
-        );
+      //   const myOptionNames = Object.keys(
+      //     Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
+      //   );
 
-        const absentOptions = refOptionNames.filter(
-          (refOptName) => !myOptionNames.includes(refOptName),
-        );
+      //   const absentOptions = refOptionNames.filter(
+      //     (refOptName) => !myOptionNames.includes(refOptName),
+      //   );
 
-        if (!absentOptions.length) {
-          return;
-        }
+      //   if (!absentOptions.length) {
+      //     return;
+      //   }
 
-        return { [myRuleName]: absentOptions };
-      }
+      //   return { [myRuleName]: absentOptions };
+      // }
 
-      if (Array.isArray(schema.anyOf)) {
-        console.log(`${myRuleName} anyOf:`, schema.anyOf);
+      if (schema.anyOf) {
+        // console.log(`${myRuleName} anyOf:`, schema.anyOf);
         return;
       }
 
-      console.log(`Check rule: ${myRuleName} with schema:`, schema);
+      if (schema.items) {
+        // console.log(`${myRuleName} schema:`, schema.items);
+        return;
+      }
+
+      return { [`-STRANGE SCHEMA: rule ${myRuleName}`]: schema };
     };
 
     const nextOutput = getNextOutput();
@@ -147,6 +152,6 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
   {},
 );
 
-groupLog('Core rules that need clarificaiton', () => {
-  console.log(myRulesNeedClarification);
-});
+// groupLog('Core rules that need clarificaiton', () => {
+//   console.log(myRulesNeedClarification);
+// });
