@@ -103,6 +103,8 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
     'warn',
     {
       args: 'after-used',
+      argsIgnorePattern: '^_',
+      destructuredArrayIgnorePattern: '^_',
       ignoreRestSiblings: true,
       vars: 'all',
     },

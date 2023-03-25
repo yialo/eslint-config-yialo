@@ -2,7 +2,7 @@
 
 module.exports = {
   env: {
-    es2021: true,
+    es2022: true,
     node: true,
   },
   parser: 'espree',
@@ -513,6 +513,8 @@ module.exports = {
       'warn',
       {
         args: 'after-used',
+        argsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
         ignoreRestSiblings: true,
         vars: 'all',
       },

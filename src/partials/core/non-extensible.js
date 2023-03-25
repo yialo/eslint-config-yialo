@@ -405,7 +405,7 @@ const coreRules_nonExtensible = {
   'no-trailing-spaces': [
     'error',
     {
-      ignoreComments: false,
+      ignoreComments: true,
       skipBlankLines: false,
     },
   ],
