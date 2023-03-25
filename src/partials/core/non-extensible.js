@@ -172,6 +172,7 @@ const coreRules_nonExtensible = {
     'error',
     {
       allowParens: true,
+      onlyOneSimpleParam: false,
     },
   ],
   'no-console': 'off',

@@ -252,6 +252,7 @@ module.exports = {
       'error',
       {
         allowParens: true,
+        onlyOneSimpleParam: false,
       },
     ],
     'no-const-assign': 'error',
