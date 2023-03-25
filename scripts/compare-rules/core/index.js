@@ -100,38 +100,38 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
 
       const { schema } = metaEntry[1];
 
-      // if (Array.isArray(schema)) {
-      //   const refOptionNames = schema.reduce(
-      //     (optNamesCollected, schemaElement) => {
-      //       if (!isObject(schemaElement)) {
-      //         return optNamesCollected;
-      //       }
+      if (Array.isArray(schema)) {
+        const refOptionNames = schema.reduce(
+          (optNamesCollected, schemaElement) => {
+            if (!isObject(schemaElement)) {
+              return optNamesCollected;
+            }
 
-      //       if (schemaElement.type !== 'object') {
-      //         return optNamesCollected;
-      //       }
+            if (schemaElement.type !== 'object') {
+              return optNamesCollected;
+            }
 
-      //       return optNamesCollected.concat(
-      //         Object.keys(schemaElement.properties),
-      //       );
-      //     },
-      //     [],
-      //   );
+            return optNamesCollected.concat(
+              Object.keys(schemaElement.properties),
+            );
+          },
+          [],
+        );
 
-      //   const myOptionNames = Object.keys(
-      //     Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
-      //   );
+        const myOptionNames = Object.keys(
+          Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
+        );
 
-      //   const absentOptions = refOptionNames.filter(
-      //     (refOptName) => !myOptionNames.includes(refOptName),
-      //   );
+        const absentOptions = refOptionNames.filter(
+          (refOptName) => !myOptionNames.includes(refOptName),
+        );
 
-      //   if (!absentOptions.length) {
-      //     return;
-      //   }
+        if (!absentOptions.length) {
+          return;
+        }
 
-      //   return { [myRuleName]: absentOptions };
-      // }
+        return { [myRuleName]: absentOptions };
+      }
 
       if (schema.anyOf) {
         // console.log(`${myRuleName} anyOf:`, schema.anyOf);
@@ -143,7 +143,7 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
         return;
       }
 
-      return { [`-STRANGE SCHEMA: rule ${myRuleName}`]: schema };
+      return { [`- STRANGE SCHEMA: rule ${myRuleName}`]: schema };
     };
 
     const nextOutput = getNextOutput();
@@ -152,6 +152,6 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
   {},
 );
 
-// groupLog('Core rules that need clarificaiton', () => {
-//   console.log(myRulesNeedClarification);
-// });
+groupLog('Core rules that need clarificaiton', () => {
+  console.log(myRulesNeedClarification);
+});

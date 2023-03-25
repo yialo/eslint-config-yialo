@@ -7,7 +7,12 @@ const coreRules_extensibleWithBabel_only = {
     'error',
     {
       capIsNew: false,
+      capIsNewExceptionPattern: undefined,
+      capIsNewExceptions: [],
       newIsCap: true,
+      newIsCapExceptionPattern: undefined,
+      newIsCapExceptions: [],
+      properties: true,
     },
   ],
 };

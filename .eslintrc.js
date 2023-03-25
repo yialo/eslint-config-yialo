@@ -192,7 +192,12 @@ module.exports = {
       'error',
       {
         capIsNew: false,
+        capIsNewExceptionPattern: undefined,
+        capIsNewExceptions: [],
         newIsCap: true,
+        newIsCapExceptionPattern: undefined,
+        newIsCapExceptions: [],
+        properties: true,
       },
     ],
     'new-parens': 'error',
