@@ -1,0 +1,10 @@
+{
+  "settings": {
+    "editor.formatOnSave": true,
+    "explorer.fileNesting.patterns": {
+      "*.ts": "",
+      "*.jsx": "",
+      "*.tsx": ""
+    }
+  }
+}
