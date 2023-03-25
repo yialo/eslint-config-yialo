@@ -160,6 +160,7 @@ const coreRules_nonExtensible = {
     'error',
     {
       allow: ['~'],
+      int32Hint: false,
     },
   ],
   'no-caller': 'error',
