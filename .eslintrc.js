@@ -202,11 +202,15 @@ module.exports = {
       'error',
       {
         code: 100,
+        comments: 100,
         ignoreComments: true,
+        ignorePattern: undefined,
         ignoreRegExpLiterals: true,
         ignoreStrings: true,
         ignoreTemplateLiterals: true,
+        ignoreTrailingComments: false,
         ignoreUrls: true,
+        tabWidth: 4,
       },
     ],
     'max-statements-per-line': [
