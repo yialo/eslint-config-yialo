@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('./_utils');
 
-
 const nodeRules = {
   'node/handle-callback-err': 'off',
   'node/no-callback-literal': 'off',
@@ -44,7 +43,6 @@ const nodeRules = {
 };
 
 const nodeRules_OFF = getDisabledRuleSet(nodeRules);
-
 
 module.exports = {
   nodeRules,

@@ -8,7 +8,6 @@ const { reactRules, reactSettings } = require('../partials/react');
 
 const { reactHooksRules } = require('../partials/react-hooks');
 
-
 module.exports = {
   parserOptions: {
     ecmaFeatures: {

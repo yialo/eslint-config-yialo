@@ -2,7 +2,7 @@
 
 const { rules: referenceRules } = require('eslint-plugin-node');
 
-const { nodeRules } = require('../../partials/node');
+const { nodeRules } = require('../../src/partials/node');
 const {
   compareRuleLists,
   getDeprecatedReferenceRuleNames,

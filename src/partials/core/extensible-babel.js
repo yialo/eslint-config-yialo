@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('../_utils');
 
-
 const coreRules_extensibleWithBabel_only = {
   'new-cap': [
     'error',
@@ -16,7 +15,6 @@ const coreRules_extensibleWithBabel_only = {
 const coreRules_extensibleWithBabel_only_OFF = getDisabledRuleSet(
   coreRules_extensibleWithBabel_only,
 );
-
 
 module.exports = {
   coreRules_extensibleWithBabel_only,

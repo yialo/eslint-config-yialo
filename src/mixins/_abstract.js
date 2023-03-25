@@ -5,8 +5,12 @@
 
 const { babelRules_OFF } = require('../partials/babel');
 
-const { coreRules_extensibleWithBabel_only } = require('../partials/core/extensible-babel');
-const { coreRules_extensibleShared } = require('../partials/core/extensible-shared');
+const {
+  coreRules_extensibleWithBabel_only,
+} = require('../partials/core/extensible-babel');
+const {
+  coreRules_extensibleShared,
+} = require('../partials/core/extensible-shared');
 const {
   coreRules_extensibleWithTs_nonTypeCheck,
   coreRules_extensibleWithTs_typeCheckOnly,
@@ -43,7 +47,6 @@ const {
   tsRules_own_typeCheckOnly_nonExtensible_OFF,
   tsRules_own_typeCheckOnly_extensibleWithJest_OFF,
 } = require('../partials/typescript/own');
-
 
 /* Compose
  * ======= */
@@ -83,7 +86,6 @@ const envOrFrameworkRelatedPluginRules_OFF = {
   ...reactRules_OFF,
   ...reactHooksRules_OFF,
 };
-
 
 /* Create config mixin
  * =================== */

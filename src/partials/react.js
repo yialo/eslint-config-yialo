@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('./_utils');
 
-
 const reactRules = {
   'react/boolean-prop-naming': 'off',
   'react/button-has-type': 'off',
@@ -100,7 +99,7 @@ const reactRules = {
   'react/jsx-no-leaked-render': [
     'error',
     {
-      'validStrategies': ['coerce', 'ternary'],
+      validStrategies: ['coerce', 'ternary'],
     },
   ],
   'react/jsx-no-literals': 'off',
@@ -191,7 +190,7 @@ const reactRules = {
   'react/no-unstable-nested-components': [
     'error',
     {
-      'allowAsProps': true,
+      allowAsProps: true,
     },
   ],
   'react/no-unused-class-component-methods': 'warn',
@@ -281,7 +280,6 @@ const reactSettings = {
 };
 
 const reactRules_OFF = getDisabledRuleSet(reactRules);
-
 
 module.exports = {
   reactRules,

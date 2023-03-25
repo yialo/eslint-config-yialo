@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('./_utils');
 
-
 const jsxA11yRules = {
   'jsx-a11y/alt-text': [
     'error',
@@ -33,7 +32,15 @@ const jsxA11yRules = {
     'error',
     {
       depth: 5,
-      ignoreElements: ['audio', 'canvas', 'embed', 'input', 'textarea', 'tr', 'video'],
+      ignoreElements: [
+        'audio',
+        'canvas',
+        'embed',
+        'input',
+        'textarea',
+        'tr',
+        'video',
+      ],
       ignoreRoles: [
         'grid',
         'listbox',
@@ -86,17 +93,40 @@ const jsxA11yRules = {
   'jsx-a11y/no-noninteractive-element-interactions': [
     'error',
     {
-      handlers: ['onClick', 'onMouseDown', 'onMouseUp', 'onKeyPress', 'onKeyDown', 'onKeyUp'],
+      handlers: [
+        'onClick',
+        'onMouseDown',
+        'onMouseUp',
+        'onKeyPress',
+        'onKeyDown',
+        'onKeyUp',
+      ],
     },
   ],
   'jsx-a11y/no-noninteractive-element-to-interactive-role': [
     'error',
     {
       li: ['menuitem', 'option', 'row', 'tab', 'treeitem'],
-      ol: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+      ol: [
+        'listbox',
+        'menu',
+        'menubar',
+        'radiogroup',
+        'tablist',
+        'tree',
+        'treegrid',
+      ],
       table: ['grid'],
       td: ['gridcell'],
-      ul: ['listbox', 'menu', 'menubar', 'radiogroup', 'tablist', 'tree', 'treegrid'],
+      ul: [
+        'listbox',
+        'menu',
+        'menubar',
+        'radiogroup',
+        'tablist',
+        'tree',
+        'treegrid',
+      ],
     },
   ],
   'jsx-a11y/no-noninteractive-tabindex': [
@@ -109,7 +139,14 @@ const jsxA11yRules = {
   'jsx-a11y/no-static-element-interactions': [
     'error',
     {
-      handlers: ['onClick', 'onMouseDown', 'onMouseUp', 'onKeyPress', 'onKeyDown', 'onKeyUp'],
+      handlers: [
+        'onClick',
+        'onMouseDown',
+        'onMouseUp',
+        'onKeyPress',
+        'onKeyDown',
+        'onKeyUp',
+      ],
     },
   ],
   'jsx-a11y/role-has-required-aria-props': 'error',
@@ -119,7 +156,6 @@ const jsxA11yRules = {
 };
 
 const jsxA11yRules_OFF = getDisabledRuleSet(jsxA11yRules);
-
 
 module.exports = {
   jsxA11yRules,

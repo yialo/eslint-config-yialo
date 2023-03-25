@@ -539,10 +539,7 @@ const coreRules_nonExtensible = {
   'prefer-template': 'error',
   'quote-props': 'off',
   'radix': 'error',
-  'require-atomic-updates': [
-    'error',
-    { allowProperties: false },
-  ],
+  'require-atomic-updates': ['error', { allowProperties: false }],
   'require-unicode-regexp': 'off',
   'require-yield': 'error',
   'rest-spread-spacing': ['error', 'never'],
@@ -605,7 +602,6 @@ const coreRules_nonExtensible = {
   'yield-star-spacing': ['error', 'after'],
   'yoda': 'error',
 };
-
 
 module.exports = {
   coreRules_nonExtensible,

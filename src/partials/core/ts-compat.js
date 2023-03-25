@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('../_utils');
 
-
 /**
  * All diagnostic codes here:
  * @see https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
@@ -50,7 +49,9 @@ const coreRules_tsCompat_nonTypeCheck = {
   ],
 };
 
-const coreRules_tsCompat_nonTypeCheck_OFF = getDisabledRuleSet(coreRules_tsCompat_nonTypeCheck);
+const coreRules_tsCompat_nonTypeCheck_OFF = getDisabledRuleSet(
+  coreRules_tsCompat_nonTypeCheck,
+);
 
 const coreRules_tsCompat_typeCheckOnly = {
   /**
@@ -63,7 +64,6 @@ const coreRules_tsCompat_typeCheckOnly = {
 const coreRules_tsCompat_typeCheckOnly_OFF = getDisabledRuleSet(
   coreRules_tsCompat_typeCheckOnly,
 );
-
 
 module.exports = {
   coreRules_tsCompat_nonTypeCheck,

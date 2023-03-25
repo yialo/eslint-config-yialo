@@ -2,7 +2,7 @@
 
 const { rules: referenceRules } = require('@babel/eslint-plugin');
 
-const { babelRules } = require('../../partials/babel');
+const { babelRules } = require('../../src/partials/babel');
 const {
   compareRuleLists,
   getDeprecatedReferenceRuleNames,

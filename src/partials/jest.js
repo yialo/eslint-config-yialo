@@ -1,9 +1,10 @@
 'use strict';
 
-const { tsRules_own_typeCheckOnly_extensibleWithJest } = require('./typescript/own');
+const {
+  tsRules_own_typeCheckOnly_extensibleWithJest,
+} = require('./typescript/own');
 
 const { getDisabledRuleSet } = require('./_utils');
-
 
 const jestRules = {
   'jest/consistent-test-it': 'off',
@@ -61,13 +62,15 @@ const jestRules_OFF = getDisabledRuleSet(jestRules);
  * @see https://github.com/jest-community/eslint-plugin-jest#typescript-rules
  */
 const jestTsRules_typeCheckOnly = {
-  'jest/unbound-method': tsRules_own_typeCheckOnly_extensibleWithJest['@typescript-eslint/unbound-method'],
+  'jest/unbound-method':
+    tsRules_own_typeCheckOnly_extensibleWithJest[
+      '@typescript-eslint/unbound-method'
+    ],
 };
 
 const jestTsRules_typeCheckOnly_OFF = getDisabledRuleSet(
   jestTsRules_typeCheckOnly,
 );
-
 
 module.exports = {
   jestRules,

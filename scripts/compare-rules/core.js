@@ -4,21 +4,21 @@ const referenceRulesIterator = require('../../node_modules/eslint/lib/rules');
 
 const {
   coreRules_extensibleWithBabel_only,
-} = require('../../partials/core/extensible-babel');
+} = require('../../src/partials/core/extensible-babel');
 const {
   coreRules_extensibleShared,
-} = require('../../partials/core/extensible-shared');
+} = require('../../src/partials/core/extensible-shared');
 const {
   coreRules_extensibleWithTs_nonTypeCheck,
   coreRules_extensibleWithTs_typeCheckOnly,
-} = require('../../partials/core/extensible-ts');
+} = require('../../src/partials/core/extensible-ts');
 const {
   coreRules_nonExtensible,
-} = require('../../partials/core/non-extensible');
+} = require('../../src/partials/core/non-extensible');
 const {
   coreRules_tsCompat_nonTypeCheck,
   coreRules_tsCompat_typeCheckOnly,
-} = require('../../partials/core/ts-compat');
+} = require('../../src/partials/core/ts-compat');
 const {
   compareRuleLists,
   getDeprecatedReferenceRuleNames,

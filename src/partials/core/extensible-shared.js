@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('../_utils');
 
-
 // All these rules extends nonTypeCheck TS group only
 const coreRules_extensibleShared = {
   'no-invalid-this': 'off',
@@ -22,7 +21,6 @@ const coreRules_extensibleShared = {
 const coreRules_extensibleShared_OFF = getDisabledRuleSet(
   coreRules_extensibleShared,
 );
-
 
 module.exports = {
   coreRules_extensibleShared,

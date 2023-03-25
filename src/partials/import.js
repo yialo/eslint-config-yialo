@@ -122,38 +122,21 @@ const importRules_webBundle_jest = {
 };
 
 const importSettings_BASE = {
-  'import/extensions': [
-    '.js',
-  ],
-  'import/ignore': [
-    'node_modules',
-  ],
+  'import/extensions': ['.js'],
+  'import/ignore': ['node_modules'],
   'import/resolver': 'node',
 };
 
 const importSettings_webBundle_react_BASE = {
-  'import/extensions': [
-    '.js',
-    '.jsx',
-  ],
+  'import/extensions': ['.js', '.jsx'],
 };
 
 const importSettings_webBundle_react_ts = {
-  'import/extensions': [
-    '.js',
-    '.jsx',
-    '.ts',
-    '.tsx',
-  ],
+  'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
   'import/parsers': {
-    '@typescript-eslint/parser': [
-      '.d.ts',
-      '.ts',
-      '.tsx',
-    ],
+    '@typescript-eslint/parser': ['.d.ts', '.ts', '.tsx'],
   },
 };
-
 
 module.exports = {
   importRules_BASE,

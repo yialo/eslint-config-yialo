@@ -5,8 +5,8 @@
     "test": "eslint ./**/*.js",
     "compare-rules": "node ./scripts/compare-rules",
     "prettier:base": "prettier",
-    "prettier:check": "npm run prettier:base -- --list-different \"./scripts/**/*.js\"",
-    "prettier:write": "npm run prettier:base -- --write \"./scripts/**/*.js\""
+    "prettier:check": "npm run prettier:base -- --list-different \"./(scripts|src)/**/*.js\"",
+    "prettier:write": "npm run prettier:base -- --write \"./(scripts|src)/**/*.js\""
   },
   "dependencies": {
     "@babel/eslint-parser": "7.18.2",

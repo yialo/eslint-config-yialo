@@ -2,7 +2,10 @@
 
 const { rules: referenceRules } = require('eslint-plugin-jest');
 
-const { jestRules, jestTsRules_typeCheckOnly } = require('../../partials/jest');
+const {
+  jestRules,
+  jestTsRules_typeCheckOnly,
+} = require('../../src/partials/jest');
 const {
   compareRuleLists,
   getDeprecatedReferenceRuleNames,

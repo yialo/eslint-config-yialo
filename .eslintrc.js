@@ -9,9 +9,7 @@ module.exports = {
   parserOptions: {
     sourceType: 'script',
   },
-  plugins: [
-    'import',
-  ],
+  plugins: ['import'],
   rules: {
     'array-bracket-newline': ['error', 'consistent'],
     'array-bracket-spacing': ['error', 'never'],
@@ -113,7 +111,7 @@ module.exports = {
     ],
     'grouped-accessor-pairs': ['error', 'getBeforeSet'],
     'guard-for-in': 'error',
-    'implicit-arrow-linebreak': ['error', 'beside'],
+    'implicit-arrow-linebreak': 'off',
     'indent': [
       'error',
       2,
@@ -573,15 +571,7 @@ module.exports = {
     'one-var': ['error', 'never'],
     'one-var-declaration-per-line': ['error', 'always'],
     'operator-assignment': ['error', 'always'],
-    'operator-linebreak': [
-      'error',
-      'before',
-      {
-        overrides: {
-          '=': 'none',
-        },
-      },
-    ],
+    'operator-linebreak': 'off',
     'padded-blocks': [
       'error',
       {
@@ -640,10 +630,7 @@ module.exports = {
       },
     ],
     'radix': 'error',
-    'require-atomic-updates': [
-      'error',
-      { allowProperties: false },
-    ],
+    'require-atomic-updates': ['error', { allowProperties: false }],
     'require-await': 'error',
     'require-yield': 'error',
     'rest-spread-spacing': ['error', 'never'],
@@ -759,8 +746,6 @@ module.exports = {
     'import/no-unassigned-import': 'error',
   },
   settings: {
-    'import/ignore': [
-      'node_modules',
-    ],
+    'import/ignore': ['node_modules'],
   },
 };

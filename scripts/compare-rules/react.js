@@ -2,7 +2,7 @@
 
 const { rules: referenceRules } = require('eslint-plugin-react');
 
-const { reactRules } = require('../../partials/react');
+const { reactRules } = require('../../src/partials/react');
 const {
   compareRuleLists,
   getDeprecatedReferenceRuleNames,

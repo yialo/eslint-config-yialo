@@ -2,7 +2,7 @@
 
 const { rules: referenceRules } = require('eslint-plugin-promise');
 
-const { promiseRules } = require('../../partials/promise');
+const { promiseRules } = require('../../src/partials/promise');
 const {
   compareRuleLists,
   getDeprecatedReferenceRuleNames,

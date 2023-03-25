@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('../_utils');
 
-
 const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/adjacent-overload-signatures': 'error',
   '@typescript-eslint/array-type': 'off',
@@ -13,7 +12,7 @@ const tsRules_own_nonTypeCheck = {
       'ts-ignore': 'allow-with-description',
       'ts-nocheck': 'allow-with-description',
       'ts-check': false,
-      minimumDescriptionLength: 6,
+      'minimumDescriptionLength': 6,
     },
   ],
   '@typescript-eslint/ban-tslint-comment': 'off',
@@ -98,7 +97,9 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/unified-signatures': 'off',
 };
 
-const tsRules_own_nonTypeCheck_OFF = getDisabledRuleSet(tsRules_own_nonTypeCheck);
+const tsRules_own_nonTypeCheck_OFF = getDisabledRuleSet(
+  tsRules_own_nonTypeCheck,
+);
 
 const tsRules_own_typeCheckOnly_nonExtensible = {
   '@typescript-eslint/await-thenable': 'error',
@@ -160,7 +161,6 @@ const tsRules_own_typeCheckOnly_extensibleWithJest = {
 const tsRules_own_typeCheckOnly_extensibleWithJest_OFF = getDisabledRuleSet(
   tsRules_own_typeCheckOnly_extensibleWithJest,
 );
-
 
 module.exports = {
   tsRules_own_nonTypeCheck,

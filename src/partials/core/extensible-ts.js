@@ -2,7 +2,6 @@
 
 const { getDisabledRuleSet } = require('../_utils');
 
-
 const coreRules_extensibleWithTs_nonTypeCheck = {
   'brace-style': [
     'error',
@@ -88,11 +87,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'no-empty-function': [
     'error',
     {
-      allow: [
-        'arrowFunctions',
-        'functions',
-        'methods',
-      ],
+      allow: ['arrowFunctions', 'functions', 'methods'],
     },
   ],
   'no-extra-parens': 'off',
@@ -157,7 +152,6 @@ const coreRules_extensibleWithTs_typeCheckOnly = {
 const coreRules_extensibleWithTs_typeCheckOnly_OFF = getDisabledRuleSet(
   coreRules_extensibleWithTs_typeCheckOnly,
 );
-
 
 module.exports = {
   coreRules_extensibleWithTs_nonTypeCheck,
