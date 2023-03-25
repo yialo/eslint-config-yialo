@@ -102,7 +102,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
   // ts(2451)
-  'no-redeclare': 'error',
+  'no-redeclare': ['error', { builtinGlobals: true }],
   'no-restricted-imports': 'off',
   'no-shadow': 'error',
   'no-unused-vars': [

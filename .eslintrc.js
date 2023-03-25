@@ -344,7 +344,7 @@ module.exports = {
     'no-promise-executor-return': 'error',
     'no-proto': 'error',
     'no-prototype-builtins': 'error',
-    'no-redeclare': 'error',
+    'no-redeclare': ['error', { builtinGlobals: true }],
     'no-regex-spaces': 'error',
     'no-restricted-globals': [
       'error',
