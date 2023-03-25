@@ -19,4 +19,8 @@ const disabledInternalRules = Object.entries(internalRules).filter((rule) => {
   return ruleConfig === OFF;
 });
 
-console.log('disabledInternalRules', disabledInternalRules.length, disabledInternalRules);
+console.log(
+  'disabledInternalRules',
+  disabledInternalRules.length,
+  disabledInternalRules,
+);

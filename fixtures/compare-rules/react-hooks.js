@@ -3,9 +3,14 @@
 const { rules: referenceRules } = require('eslint-plugin-react-hooks');
 
 const { reactHooksRules } = require('../../partials/react-hooks');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
+const {
+  compareRuleLists,
+  getDeprecatedReferenceRuleNames,
+} = require('./_utils');
 
-const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `react-hooks/${ruleName}`);
+const referenceRuleNames = Object.keys(referenceRules).map(
+  (ruleName) => `react-hooks/${ruleName}`,
+);
 
 const deprecatedRuleNames = getDeprecatedReferenceRuleNames(
   Object.entries(referenceRules),

@@ -30,11 +30,18 @@ const compareRuleLists = (
 
   console.group(pluginName);
   console.log('missingRuleNames', missingRuleNames.length, missingRuleNames);
-  console.log('extraneousRuleNames', extraneousRuleNames.length, extraneousRuleNames);
+  console.log(
+    'extraneousRuleNames',
+    extraneousRuleNames.length,
+    extraneousRuleNames,
+  );
   console.groupEnd(pluginName);
 };
 
-const getDeprecatedReferenceRuleNames = (referenceRuleEntries, ruleNamePrefix = '') => {
+const getDeprecatedReferenceRuleNames = (
+  referenceRuleEntries,
+  ruleNamePrefix = '',
+) => {
   const normalizedPrefix = ruleNamePrefix && `${ruleNamePrefix}/`;
 
   return referenceRuleEntries
@@ -72,7 +79,6 @@ compareRuleLists(
     pluginName: 'typescript',
   },
 );
-
 
 /* TODO: add fine-grained group checks
 const createReferenceRuleGroups = () => {

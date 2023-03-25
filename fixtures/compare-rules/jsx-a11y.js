@@ -3,9 +3,14 @@
 const { rules: referenceRules } = require('eslint-plugin-jsx-a11y');
 
 const { jsxA11yRules } = require('../../partials/jsx-a11y');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
+const {
+  compareRuleLists,
+  getDeprecatedReferenceRuleNames,
+} = require('./_utils');
 
-const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `jsx-a11y/${ruleName}`);
+const referenceRuleNames = Object.keys(referenceRules).map(
+  (ruleName) => `jsx-a11y/${ruleName}`,
+);
 
 const deprecatedRuleNames = getDeprecatedReferenceRuleNames(
   Object.entries(referenceRules),

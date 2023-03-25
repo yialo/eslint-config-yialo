@@ -18,11 +18,18 @@ module.exports.compareRuleLists = (
 
   console.group(pluginName);
   console.log('missingRuleNames', missingRuleNames.length, missingRuleNames);
-  console.log('extraneousRuleNames', extraneousRuleNames.length, extraneousRuleNames);
+  console.log(
+    'extraneousRuleNames',
+    extraneousRuleNames.length,
+    extraneousRuleNames,
+  );
   console.groupEnd(pluginName);
 };
 
-module.exports.getDeprecatedReferenceRuleNames = (referenceRuleEntries, ruleNamePrefix = '') => {
+module.exports.getDeprecatedReferenceRuleNames = (
+  referenceRuleEntries,
+  ruleNamePrefix = '',
+) => {
   const normalizedPrefix = ruleNamePrefix && `${ruleNamePrefix}/`;
 
   return referenceRuleEntries

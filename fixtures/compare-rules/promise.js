@@ -3,9 +3,14 @@
 const { rules: referenceRules } = require('eslint-plugin-promise');
 
 const { promiseRules } = require('../../partials/promise');
-const { compareRuleLists, getDeprecatedReferenceRuleNames } = require('./_utils');
+const {
+  compareRuleLists,
+  getDeprecatedReferenceRuleNames,
+} = require('./_utils');
 
-const referenceRuleNames = Object.keys(referenceRules).map((ruleName) => `promise/${ruleName}`);
+const referenceRuleNames = Object.keys(referenceRules).map(
+  (ruleName) => `promise/${ruleName}`,
+);
 
 const deprecatedRuleNames = getDeprecatedReferenceRuleNames(
   Object.entries(referenceRules),
