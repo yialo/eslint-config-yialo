@@ -150,7 +150,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
       named: 'never',
     },
   ],
-  'space-infix-ops': 'error',
+  'space-infix-ops': ['error', { int32Hint: false }],
 };
 
 const coreRules_extensibleWithTs_nonTypeCheck_OFF = getDisabledRuleSet(
