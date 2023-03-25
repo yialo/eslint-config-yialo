@@ -26,8 +26,8 @@ yarn remove eslint-config-yialo -DE
 
 Notice that the package requires these peer dependencies:
 
-* [@babel/core](https://www.npmjs.com/package/@babel/core)
-* [typescript](https://www.npmjs.com/package/typescript)
+- [@babel/core](https://www.npmjs.com/package/@babel/core)
+- [typescript](https://www.npmjs.com/package/typescript)
 
 You may install them quickly with this command:
 
@@ -55,13 +55,13 @@ This package contains several configuration presets for [ESLint](https://github.
 
 Presets may be used at high-level of config as well as `extends` of `overrides` blocks:
 
-* `presets/node`
-* `presets/web-react-babel`
-* `presets/web-react-babel-jest`
-* `presets/web-react-ts-check`
-* `presets/web-react-ts-check-jest`
-* `presets/web-react-ts-nocheck`
-* `presets/web-react-ts-nocheck-jest`
+- `src/presets/node`
+- `src/presets/web-react-babel`
+- `src/presets/web-react-babel-jest`
+- `src/presets/web-react-ts-check`
+- `src/presets/web-react-ts-check-jest`
+- `src/presets/web-react-ts-nocheck`
+- `src/presets/web-react-ts-nocheck-jest`
 
 ## Possible caveats
 
@@ -170,39 +170,33 @@ module.exports = {
   globals: {
     process: 'readonly',
   },
-  ignorePatterns: [
-    '*.html',
-    '/dist/',
-  ],
+  ignorePatterns: ['*.html', '/dist/'],
   overrides: [
     {
-      files: [
-        './*.js',
-        './scripts/**/*.js',
-      ],
-      extends: ['yialo/presets/node'],
+      files: ['./*.js', './scripts/**/*.js'],
+      extends: ['yialo/src/presets/node'],
       settings: {
         'import/resolver': 'node',
       },
     },
     {
       files: ['./src/**/*.js?(x)'],
-      extends: ['yialo/presets/web-react-babel'],
+      extends: ['yialo/src/presets/web-react-babel'],
       ...babelConfigMixin,
     },
     {
       files: ['./src/**/*.{spec,test}.js?(x)'],
-      extends: ['yialo/presets/web-react-babel-jest'],
+      extends: ['yialo/src/presets/web-react-babel-jest'],
       ...babelConfigMixin,
     },
     {
       files: ['./src/**/*.ts?(x)'],
-      extends: ['yialo/presets/web-react-ts-check'],
+      extends: ['yialo/src/presets/web-react-ts-check'],
       ...tsConfigMixin,
     },
     {
       files: ['./src/**/*.{spec,test}.ts?(x)'],
-      extends: ['yialo/presets/web-react-ts-check-jest'],
+      extends: ['yialo/src/presets/web-react-ts-check-jest'],
       ...tsConfigMixin,
     },
   ],
