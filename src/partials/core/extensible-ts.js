@@ -104,7 +104,15 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   // ts(2451)
   'no-redeclare': ['error', { builtinGlobals: true }],
   'no-restricted-imports': 'off',
-  'no-shadow': 'error',
+  'no-shadow': [
+    'error',
+    {
+      builtinGlobals: false,
+      hoist: 'functions',
+      allow: [],
+      ignoreOnInitialization: false,
+    },
+  ],
   'no-unused-vars': [
     'warn',
     {

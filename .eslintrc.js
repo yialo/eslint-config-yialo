@@ -485,7 +485,15 @@ module.exports = {
     'no-self-compare': 'error',
     'no-sequences': 'error',
     'no-setter-return': 'error',
-    'no-shadow': 'error',
+    'no-shadow': [
+      'error',
+      {
+        builtinGlobals: false,
+        hoist: 'functions',
+        allow: [],
+        ignoreOnInitialization: false,
+      },
+    ],
     'no-shadow-restricted-names': 'error',
     'no-sparse-arrays': 'error',
     'no-tabs': 'error',
