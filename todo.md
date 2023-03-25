@@ -9,6 +9,9 @@
 - Check [TS strict config](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/strict.ts)
 - Test and maybe reconfigure rules: `react/jsx-multiline`, `react/jsx-tag-spacing`
 - Add of TS ruleset checker by `requiresTypeChecking` flag
+- [idea] Add utility to create internal ESLint config from actual current
+- [idea] Add [Unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn) plugin
+- [idea] Migrate to TypeScript
 
 ## Practices
 
