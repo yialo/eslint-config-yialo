@@ -2,6 +2,8 @@
 
 const referenceRulesIterator = require('../../node_modules/eslint/lib/rules');
 
+const { groupLog } = require('./_utils_new');
+
 const {
   coreRules_extensibleWithBabel_only,
 } = require('../../src/partials/core/extensible-babel');
@@ -25,8 +27,14 @@ const referenceRuleMetas = [...referenceRulesIterator].map(([name, rule]) => [
   rule.meta,
 ]);
 
-const deprecatedRuleMetas = referenceRuleMetas.filter(
+const deprecatedReferenceRuleMetas = referenceRuleMetas.filter(
   ([_, meta]) => !!meta.deprecated,
+);
+const nonDeprecatedReferenceRuleMetas = referenceRuleMetas.filter(
+  ([_, meta]) => !meta.deprecated,
+);
+const nonDeprecatedReferenceRuleNames = nonDeprecatedReferenceRuleMetas.map(
+  ([name]) => name,
 );
 
 const myFullConfig = {
@@ -44,7 +52,7 @@ const myRuleNames = myRuleConfigs.map(([name]) => name);
 
 const myRulesNeedToRemove = myRuleNames
   .map((name) => {
-    const deprecatedMatch = deprecatedRuleMetas.find(
+    const deprecatedMatch = deprecatedReferenceRuleMetas.find(
       ([deprecatedName]) => name === deprecatedName,
     );
 
@@ -59,6 +67,22 @@ const myRulesNeedToRemove = myRuleNames
   })
   .filter(Boolean);
 
-console.group('Deprecated core rules');
-console.log(myRulesNeedToRemove);
-console.groupEnd();
+groupLog('Deprecated core rules', () => {
+  console.log(myRulesNeedToRemove);
+});
+
+const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
+  (name) => !myRuleNames.includes(name),
+);
+
+groupLog('Missing core rules', () => {
+  console.log(missingCoreRuleNames);
+});
+
+const extraneousRuleNames = myRuleNames.filter(
+  (name) => !nonDeprecatedReferenceRuleNames.includes(name),
+);
+
+groupLog('Extraneous core rules', () => {
+  console.log(extraneousRuleNames);
+});
