@@ -296,7 +296,7 @@ module.exports = {
     'no-implied-eval': 'error',
     'no-import-assign': 'error',
     'no-inner-declarations': 'error',
-    'no-invalid-regexp': 'error',
+    'no-invalid-regexp': ['error', { allowConstructorFlags: [] }],
     'no-irregular-whitespace': 'error',
     'no-iterator': 'error',
     'no-label-var': 'error',

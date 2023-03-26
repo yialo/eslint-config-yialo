@@ -209,7 +209,7 @@ const coreRules_nonExtensible = {
   'no-implicit-globals': 'off',
   'no-inline-comments': 'off',
   'no-inner-declarations': 'error',
-  'no-invalid-regexp': 'error',
+  'no-invalid-regexp': ['error', { allowConstructorFlags: [] }],
   'no-irregular-whitespace': 'error',
   'no-iterator': 'error',
   'no-label-var': 'error',
