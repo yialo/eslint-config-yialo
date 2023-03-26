@@ -649,7 +649,14 @@ const coreRules_nonExtensible = {
   ],
   'wrap-regex': 'off',
   'yield-star-spacing': ['error', 'after'],
-  'yoda': 'error',
+  'yoda': [
+    'error',
+    'never',
+    {
+      exceptRange: false,
+      onlyEquality: false,
+    },
+  ],
 };
 
 module.exports = {

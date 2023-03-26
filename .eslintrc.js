@@ -778,7 +778,14 @@ module.exports = {
       },
     ],
     'yield-star-spacing': ['error', 'after'],
-    'yoda': 'error',
+    'yoda': [
+      'error',
+      'never',
+      {
+        exceptRange: false,
+        onlyEquality: false,
+      },
+    ],
     'import/default': 'error',
     'import/export': 'error',
     'import/first': 'error',
