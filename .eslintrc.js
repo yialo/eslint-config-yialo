@@ -584,7 +584,7 @@ module.exports = {
     ],
     'no-useless-backreference': 'error',
     'no-useless-catch': 'error',
-    'no-useless-computed-key': 'error',
+    'no-useless-computed-key': ['error', { enforceForClassMembers: true }],
     'no-useless-concat': 'error',
     'no-useless-constructor': 'error',
     'no-useless-escape': 'error',

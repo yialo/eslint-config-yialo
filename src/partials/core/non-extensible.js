@@ -469,7 +469,7 @@ const coreRules_nonExtensible = {
   'no-useless-backreference': 'error',
   'no-useless-call': 'off',
   'no-useless-catch': 'error',
-  'no-useless-computed-key': 'error',
+  'no-useless-computed-key': ['error', { enforceForClassMembers: true }],
   'no-useless-concat': 'error',
   'no-useless-escape': 'error',
   'no-useless-rename': [
