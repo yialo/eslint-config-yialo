@@ -24,11 +24,12 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
   const [_severity, firstPart, secondPart] = myRuleConfig;
 
   const firstPartIsObject = isObject(firstPart);
-  const firstPartIsString = typeof firstPart === 'string';
+  const firstPartIsStringOrNumber =
+    typeof firstPart === 'string' || typeof firstPart === 'number';
   const secondPartIsObject = isObject(secondPart);
   const secondPartIsAbsent = secondPart === undefined;
 
-  if (firstPartIsString) {
+  if (firstPartIsStringOrNumber) {
     result.mainOption = firstPart;
 
     if (secondPartIsObject) {
