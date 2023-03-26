@@ -204,7 +204,7 @@ const coreRules_nonExtensible = {
   'no-extra-label': 'error',
   'no-fallthrough': ['error', { commentPattern: undefined }],
   'no-floating-decimal': 'error',
-  'no-global-assign': 'error',
+  'no-global-assign': ['error', { exceptions: [] }],
   'no-implicit-coercion': 'off',
   'no-implicit-globals': 'off',
   'no-inline-comments': 'off',

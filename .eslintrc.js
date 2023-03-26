@@ -292,7 +292,7 @@ module.exports = {
     'no-fallthrough': ['error', { commentPattern: undefined }],
     'no-floating-decimal': 'error',
     'no-func-assign': 'error',
-    'no-global-assign': 'error',
+    'no-global-assign': ['error', { exceptions: [] }],
     'no-implied-eval': 'error',
     'no-import-assign': 'error',
     'no-inner-declarations': 'error',
