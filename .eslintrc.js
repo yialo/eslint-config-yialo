@@ -273,7 +273,7 @@ module.exports = {
         allowElseIf: false,
       },
     ],
-    'no-empty': 'error',
+    'no-empty': ['error', { allowEmptyCatch: false }],
     'no-empty-character-class': 'error',
     'no-empty-function': [
       'error',

@@ -192,7 +192,7 @@ const coreRules_nonExtensible = {
       allowElseIf: false,
     },
   ],
-  'no-empty': 'error',
+  'no-empty': ['error', { allowEmptyCatch: false }],
   'no-empty-character-class': 'error',
   'no-empty-pattern': 'error',
   'no-eq-null': 'off',
