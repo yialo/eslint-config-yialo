@@ -620,6 +620,7 @@ module.exports = {
       'error',
       {
         allowAllPropertiesOnSameLine: true,
+        allowMultiplePropertiesPerLine: false,
       },
     ],
     'object-shorthand': [

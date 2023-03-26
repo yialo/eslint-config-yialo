@@ -498,6 +498,7 @@ const coreRules_nonExtensible = {
     'error',
     {
       allowAllPropertiesOnSameLine: true,
+      allowMultiplePropertiesPerLine: false,
     },
   ],
   'object-shorthand': [
