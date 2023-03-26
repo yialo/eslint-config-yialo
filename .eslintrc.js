@@ -740,6 +740,8 @@ module.exports = {
           exceptions: ['-', '+'],
           markers: ['=', '!'],
         },
+        exceptions: [],
+        markers: [],
       },
     ],
     'strict': ['error', 'safe'],

@@ -616,6 +616,8 @@ const coreRules_nonExtensible = {
         exceptions: ['-', '+'],
         markers: ['=', '!'],
       },
+      exceptions: [],
+      markers: [],
     },
   ],
   'strict': ['error', 'safe'],

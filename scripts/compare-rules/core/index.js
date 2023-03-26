@@ -163,5 +163,5 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
 );
 
 groupLog('Core rules that need clarificaiton', () => {
-  console.log(Object.entries(myRulesNeedClarification)[0]);
+  console.log(Object.entries(myRulesNeedClarification));
 });
