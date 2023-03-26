@@ -435,7 +435,7 @@ const coreRules_nonExtensible = {
   ],
   'no-shadow-restricted-names': 'error',
   'no-sparse-arrays': 'error',
-  'no-tabs': 'error',
+  'no-tabs': ['error', { allowIndentationTabs: false }],
   'no-template-curly-in-string': 'off',
   'no-ternary': 'off',
   'no-trailing-spaces': [

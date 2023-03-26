@@ -531,7 +531,7 @@ module.exports = {
     ],
     'no-shadow-restricted-names': 'error',
     'no-sparse-arrays': 'error',
-    'no-tabs': 'error',
+    'no-tabs': ['error', { allowIndentationTabs: false }],
     'no-this-before-super': 'error',
     'no-throw-literal': 'error',
     'no-trailing-spaces': [
