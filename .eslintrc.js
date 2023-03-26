@@ -284,7 +284,7 @@ module.exports = {
     'no-empty-pattern': 'error',
     'no-eval': ['error', { allowIndirect: false }],
     'no-ex-assign': 'error',
-    'no-extend-native': 'error',
+    'no-extend-native': ['error', { exceptions: [] }],
     'no-extra-bind': 'error',
     'no-extra-boolean-cast': 'error',
     'no-extra-label': 'error',
