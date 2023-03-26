@@ -137,12 +137,18 @@ const myRulesNeedClarification = myRuleConfigs.reduce(
         return { [myRuleName]: absentOptions };
       }
 
+      if (!Object.keys(schema).length) {
+        return;
+      }
+
       if (schema.anyOf) {
+        // TODO: check
         // console.log(`${myRuleName} anyOf:`, schema.anyOf);
         return;
       }
 
       if (schema.items) {
+        // TODO: check
         // console.log(`${myRuleName} schema:`, schema.items);
         return;
       }
