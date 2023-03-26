@@ -337,7 +337,7 @@ module.exports = {
       },
     ],
     'no-mixed-spaces-and-tabs': 'error',
-    'no-multi-assign': 'error',
+    'no-multi-assign': ['error', { ignoreNonDeclaration: false }],
     'no-multi-spaces': [
       'error',
       {
