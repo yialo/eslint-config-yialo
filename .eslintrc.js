@@ -297,7 +297,15 @@ module.exports = {
     'no-import-assign': 'error',
     'no-inner-declarations': 'error',
     'no-invalid-regexp': ['error', { allowConstructorFlags: [] }],
-    'no-irregular-whitespace': 'error',
+    'no-irregular-whitespace': [
+      'error',
+      {
+        skipComments: false,
+        skipStrings: true,
+        skipTemplates: false,
+        skipRegExps: false,
+      },
+    ],
     'no-iterator': 'error',
     'no-label-var': 'error',
     'no-labels': [
