@@ -2,7 +2,8 @@
 
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 
-const { groupLog, isObject } = require('../_utils');
+const { groupLog } = require('../_utils');
+const { getAbsentPropsFromArraySchema } = require('./array-schema');
 
 const {
   coreRules_extensibleWithBabel_only,
@@ -87,80 +88,55 @@ groupLog('Extraneous core rules', () => {
   console.log(extraneousRuleNames);
 });
 
-const myRulesNeedClarification = myRuleConfigs.reduce(
-  (output, [myRuleName, myRuleConfig]) => {
-    const getNextOutput = () => {
-      if (myRuleConfig === 'off') {
-        return;
-      }
+const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
+  const [myRuleName, myRuleConfig] = myRuleEntry;
 
-      const metaEntry = nonDeprecatedReferenceRuleMetas.find(
-        ([refRuleName]) => refRuleName === myRuleName,
-      );
+  // FIXME: remove after debug
+  if (!['semi', 'no-constant-condition'].includes(myRuleName)) {
+    return output;
+  }
 
-      if (!metaEntry) {
-        return;
-      }
+  const getNextOutput = () => {
+    if (myRuleConfig === 'off') {
+      return;
+    }
 
-      const { schema } = metaEntry[1];
+    const metaEntry = nonDeprecatedReferenceRuleMetas.find(
+      ([refRuleName]) => refRuleName === myRuleName,
+    );
 
-      if (Array.isArray(schema)) {
-        const refOptionNames = schema.reduce(
-          (optNamesCollected, schemaElement) => {
-            if (!isObject(schemaElement)) {
-              return optNamesCollected;
-            }
+    if (!metaEntry) {
+      return;
+    }
 
-            if (schemaElement.type !== 'object') {
-              return optNamesCollected;
-            }
+    const { schema } = metaEntry[1];
 
-            return optNamesCollected.concat(
-              Object.keys(schemaElement.properties),
-            );
-          },
-          [],
-        );
+    if (Array.isArray(schema)) {
+      return getAbsentPropsFromArraySchema(schema, myRuleEntry);
+    }
 
-        const myOptionNames = Object.keys(
-          Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
-        );
+    if (!Object.keys(schema).length) {
+      return;
+    }
 
-        const absentOptions = refOptionNames.filter(
-          (refOptName) => !myOptionNames.includes(refOptName),
-        );
+    if (schema.anyOf) {
+      // TODO: check
+      console.log(`${myRuleName} anyOf:`, schema.anyOf);
+      return;
+    }
 
-        if (!absentOptions.length) {
-          return;
-        }
+    if (schema.items) {
+      // TODO: check
+      // console.log(`${myRuleName} schema:`, schema.items);
+      return;
+    }
 
-        return { [myRuleName]: absentOptions };
-      }
+    return { [`- STRANGE SCHEMA: rule ${myRuleName}`]: schema };
+  };
 
-      if (!Object.keys(schema).length) {
-        return;
-      }
-
-      if (schema.anyOf) {
-        // TODO: check
-        // console.log(`${myRuleName} anyOf:`, schema.anyOf);
-        return;
-      }
-
-      if (schema.items) {
-        // TODO: check
-        // console.log(`${myRuleName} schema:`, schema.items);
-        return;
-      }
-
-      return { [`- STRANGE SCHEMA: rule ${myRuleName}`]: schema };
-    };
-
-    const nextOutput = getNextOutput();
-    return nextOutput ? { ...output, ...nextOutput } : output;
-  },
-  {},
-);
+  const nextOutput = getNextOutput();
+  return nextOutput ? { ...output, ...nextOutput } : output;
+}, {});
 
 groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));
