@@ -717,7 +717,7 @@ module.exports = {
         named: 'never',
       },
     ],
-    'space-in-parens': ['error', 'never'],
+    'space-in-parens': ['error', 'never', { exceptions: [] }],
     'space-infix-ops': ['error', { int32Hint: false }],
     'space-unary-ops': [
       'error',

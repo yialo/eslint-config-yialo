@@ -594,7 +594,7 @@ const coreRules_nonExtensible = {
   'sort-imports': 'off',
   'sort-keys': 'off',
   'sort-vars': 'off',
-  'space-in-parens': ['error', 'never'],
+  'space-in-parens': ['error', 'never', { exceptions: [] }],
   'space-unary-ops': [
     'error',
     {
