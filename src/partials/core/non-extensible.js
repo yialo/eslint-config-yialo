@@ -528,6 +528,9 @@ const coreRules_nonExtensible = {
       classes: 'never',
       switches: 'never',
     },
+    {
+      allowSingleLineBlocks: undefined,
+    },
   ],
   'prefer-arrow-callback': [
     'error',

@@ -641,6 +641,9 @@ module.exports = {
         classes: 'never',
         switches: 'never',
       },
+      {
+        allowSingleLineBlocks: undefined,
+      },
     ],
     'prefer-arrow-callback': [
       'error',
