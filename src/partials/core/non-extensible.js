@@ -252,6 +252,7 @@ const coreRules_nonExtensible = {
   'no-multi-spaces': [
     'error',
     {
+      exceptions: {},
       ignoreEOLComments: false,
     },
   ],

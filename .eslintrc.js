@@ -341,6 +341,7 @@ module.exports = {
     'no-multi-spaces': [
       'error',
       {
+        exceptions: {},
         ignoreEOLComments: false,
       },
     ],
