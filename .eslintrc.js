@@ -724,6 +724,7 @@ module.exports = {
       {
         nonwords: false,
         words: true,
+        overrides: {},
       },
     ],
     'spaced-comment': [

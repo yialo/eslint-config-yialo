@@ -600,6 +600,7 @@ const coreRules_nonExtensible = {
     {
       nonwords: false,
       words: true,
+      overrides: {},
     },
   ],
   'spaced-comment': [
