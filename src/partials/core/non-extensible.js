@@ -456,7 +456,7 @@ const coreRules_nonExtensible = {
       defaultAssignment: false,
     },
   ],
-  'no-unreachable-loop': 'error',
+  'no-unreachable-loop': ['error', { ignore: [] }],
   'no-unsafe-finally': 'error',
   'no-unsafe-optional-chaining': [
     'error',

@@ -551,7 +551,7 @@ module.exports = {
       },
     ],
     'no-unreachable': 'error',
-    'no-unreachable-loop': 'error',
+    'no-unreachable-loop': ['error', { ignore: [] }],
     'no-unsafe-finally': 'error',
     'no-unsafe-negation': 'error',
     'no-unused-expressions': [
