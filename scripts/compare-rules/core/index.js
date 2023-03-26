@@ -69,25 +69,13 @@ const myRulesNeedToRemove = myRuleNames
   })
   .filter(Boolean);
 
-groupLog('Deprecated core rules', () => {
-  console.log(myRulesNeedToRemove);
-});
-
 const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
   (name) => !myRuleNames.includes(name),
 );
 
-groupLog('Missing core rules', () => {
-  console.log(missingCoreRuleNames);
-});
-
 const extraneousRuleNames = myRuleNames.filter(
   (name) => !nonDeprecatedReferenceRuleNames.includes(name),
 );
-
-groupLog('Extraneous core rules', () => {
-  console.log(extraneousRuleNames);
-});
 
 const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
@@ -132,12 +120,25 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
       return;
     }
 
-    return { [`- STRANGE SCHEMA: rule ${myRuleName}`]: schema };
+    throw new Error(`Rule ${myRuleName}, strange schema: ${schema}`);
   };
 
   const nextOutput = getNextOutput();
   return nextOutput ? { ...output, ...nextOutput } : output;
 }, {});
+
+// FIXME: enable after debug
+/* groupLog('Missing core rules', () => {
+  console.log(missingCoreRuleNames);
+});
+
+groupLog('Extraneous core rules', () => {
+  console.log(extraneousRuleNames);
+});
+
+groupLog('Deprecated core rules', () => {
+  console.log(myRulesNeedToRemove);
+}); */
 
 groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));

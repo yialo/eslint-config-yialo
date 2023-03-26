@@ -11,9 +11,9 @@ module.exports.groupLog = (groupName, log) => {
 const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
 
-module.exports.getMyOptions = (myRuleConfig) => {
+module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
   const result = {
-    stringOption: null,
+    mainOption: null,
     optionNames: [],
   };
 
@@ -23,14 +23,28 @@ module.exports.getMyOptions = (myRuleConfig) => {
 
   const [_severity, firstPart, secondPart] = myRuleConfig;
 
-  if (isObject(firstPart)) {
-    result.optionNames = Object.keys(firstPart);
-    return result;
-  }
-  if (isObject(secondPart)) {
-    result.stringOption = firstPart;
+  const firstPartIsObject = isObject(firstPart);
+  const firstPartIsString = typeof firstPart === 'string';
+  const secondPartIsObject = isObject(secondPart);
+  const secondPartIsAbsent = secondPart === undefined;
+
+  if (firstPartIsString) {
+    result.mainOption = firstPart;
+
+    if (secondPartIsObject) {
+      result.optionNames = Object.keys(secondPart);
+    }
+    if (!secondPartIsAbsent) {
+      throw new Error(`Rule ${myRuleName}, strange config: ${myRuleConfig}`);
+    }
+  } else if (firstPartIsObject && secondPartIsObject) {
+    result.mainOption = firstPart;
     result.optionNames = Object.keys(secondPart);
-    return result;
+  } else if (firstPartIsObject && secondPartIsAbsent) {
+    result.optionNames = Object.keys(firstPart);
+  } else if (firstPartIsObject && !secondPartIsAbsent) {
+    throw new Error(`Rule ${myRuleName}, strange config: ${myRuleConfig}`);
   }
+
   return result;
 };

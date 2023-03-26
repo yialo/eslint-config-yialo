@@ -2,10 +2,9 @@
 
 const { isObject, getMyOptions } = require('../_utils');
 
-module.exports.getAbsentPropsFromArraySchema = (
-  schema,
-  [myRuleName, myRuleConfig],
-) => {
+module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
+  const [myRuleName] = myRuleEntry;
+
   const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
     if (!isObject(schemaElement)) {
       return optNamesCollected;
@@ -18,7 +17,7 @@ module.exports.getAbsentPropsFromArraySchema = (
     return optNamesCollected.concat(Object.keys(schemaElement.properties));
   }, []);
 
-  const myOptions = getMyOptions(myRuleConfig);
+  const myOptions = getMyOptions(myRuleEntry);
 
   const absentOptions = refOptionNames.filter(
     (refOptName) => !myOptions.optionNames.includes(refOptName),
