@@ -196,7 +196,7 @@ const coreRules_nonExtensible = {
   'no-empty-character-class': 'error',
   'no-empty-pattern': 'error',
   'no-eq-null': 'off',
-  'no-eval': 'error',
+  'no-eval': ['error', { allowIndirect: false }],
   'no-ex-assign': 'error',
   'no-extend-native': 'error',
   'no-extra-bind': 'error',

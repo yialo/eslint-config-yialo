@@ -282,7 +282,7 @@ module.exports = {
       },
     ],
     'no-empty-pattern': 'error',
-    'no-eval': 'error',
+    'no-eval': ['error', { allowIndirect: false }],
     'no-ex-assign': 'error',
     'no-extend-native': 'error',
     'no-extra-bind': 'error',
