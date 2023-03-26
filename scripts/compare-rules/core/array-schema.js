@@ -1,20 +1,14 @@
 'use strict';
 
-const { isObject, getMyOptions } = require('../_utils');
+const { getMyOptions } = require('../_utils');
+const { getOptionNamesFromSchemaElement } = require('./utils');
 
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
 
   const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
-    if (!isObject(schemaElement)) {
-      return optNamesCollected;
-    }
-
-    if (schemaElement.type !== 'object') {
-      return optNamesCollected;
-    }
-
-    return optNamesCollected.concat(Object.keys(schemaElement.properties));
+    const optNames = getOptionNamesFromSchemaElement(schemaElement);
+    return optNamesCollected.concat(optNames);
   }, []);
 
   const myOptions = getMyOptions(myRuleEntry);

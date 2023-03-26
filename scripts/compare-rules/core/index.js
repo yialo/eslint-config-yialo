@@ -109,9 +109,7 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
     }
 
     if (Array.isArray(schema.anyOf)) {
-      // TODO: check
-      getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
-      return;
+      return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
     }
 
     if (schema.items) {
