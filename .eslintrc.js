@@ -289,7 +289,7 @@ module.exports = {
     'no-extra-boolean-cast': ['error', { enforceForLogicalOperands: false }],
     'no-extra-label': 'error',
     'no-extra-semi': 'error',
-    'no-fallthrough': 'error',
+    'no-fallthrough': ['error', { commentPattern: undefined }],
     'no-floating-decimal': 'error',
     'no-func-assign': 'error',
     'no-global-assign': 'error',

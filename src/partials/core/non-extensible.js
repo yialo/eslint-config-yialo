@@ -202,7 +202,7 @@ const coreRules_nonExtensible = {
   'no-extra-bind': 'error',
   'no-extra-boolean-cast': ['error', { enforceForLogicalOperands: false }],
   'no-extra-label': 'error',
-  'no-fallthrough': 'error',
+  'no-fallthrough': ['error', { commentPattern: undefined }],
   'no-floating-decimal': 'error',
   'no-global-assign': 'error',
   'no-implicit-coercion': 'off',
