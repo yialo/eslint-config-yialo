@@ -286,7 +286,7 @@ module.exports = {
     'no-ex-assign': 'error',
     'no-extend-native': ['error', { exceptions: [] }],
     'no-extra-bind': 'error',
-    'no-extra-boolean-cast': 'error',
+    'no-extra-boolean-cast': ['error', { enforceForLogicalOperands: false }],
     'no-extra-label': 'error',
     'no-extra-semi': 'error',
     'no-fallthrough': 'error',
