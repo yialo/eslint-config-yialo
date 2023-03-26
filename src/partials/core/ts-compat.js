@@ -35,7 +35,12 @@ const coreRules_tsCompat_nonTypeCheck = {
   // ts(2376)
   'no-this-before-super': 'error',
   // ts(2304)
-  'no-undef': 'error',
+  'no-undef': [
+    'error',
+    {
+      typeof: false,
+    },
+  ],
   // ts(7027)
   'no-unreachable': 'error',
   // ts(2358), ts(2360), ts(2365)

@@ -541,7 +541,12 @@ module.exports = {
         skipBlankLines: false,
       },
     ],
-    'no-undef': 'error',
+    'no-undef': [
+      'error',
+      {
+        typeof: false,
+      },
+    ],
     'no-undef-init': 'error',
     'no-unexpected-multiline': 'error',
     'no-unneeded-ternary': [
