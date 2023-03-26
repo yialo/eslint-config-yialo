@@ -33,9 +33,8 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
 
     if (secondPartIsObject) {
       result.optionNames = Object.keys(secondPart);
-    }
-    if (!secondPartIsAbsent) {
-      throw new Error(`Rule ${myRuleName}, strange config: ${myRuleConfig}`);
+    } else if (!secondPartIsAbsent) {
+      throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
     }
   } else if (firstPartIsObject && secondPartIsObject) {
     result.mainOption = firstPart;
@@ -43,7 +42,7 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
   } else if (firstPartIsObject && secondPartIsAbsent) {
     result.optionNames = Object.keys(firstPart);
   } else if (firstPartIsObject && !secondPartIsAbsent) {
-    throw new Error(`Rule ${myRuleName}, strange config: ${myRuleConfig}`);
+    throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
   }
 
   return result;
