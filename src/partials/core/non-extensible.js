@@ -632,7 +632,13 @@ const coreRules_nonExtensible = {
   'template-curly-spacing': ['error', 'never'],
   'template-tag-spacing': ['error', 'never'],
   'unicode-bom': ['error', 'never'],
-  'use-isnan': 'error',
+  'use-isnan': [
+    'error',
+    {
+      enforceForSwitchCase: true,
+      enforceForIndexOf: true,
+    },
+  ],
   'vars-on-top': 'error',
   'wrap-iife': [
     'error',
