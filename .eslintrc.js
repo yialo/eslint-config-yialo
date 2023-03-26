@@ -257,7 +257,7 @@ module.exports = {
     ],
     'no-const-assign': 'error',
     'no-constant-binary-expression': 'error',
-    'no-constant-condition': 'error',
+    'no-constant-condition': ['error', { checkLoops: true }],
     'no-constructor-return': 'error',
     'no-continue': 'error',
     'no-control-regex': 'error',
@@ -558,7 +558,7 @@ module.exports = {
     'no-unreachable': 'error',
     'no-unreachable-loop': ['error', { ignore: [] }],
     'no-unsafe-finally': 'error',
-    'no-unsafe-negation': 'error',
+    'no-unsafe-negation': ['error', { enforceForOrderingRelations: false }],
     'no-unused-expressions': [
       'error',
       {

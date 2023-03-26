@@ -44,7 +44,7 @@ const coreRules_tsCompat_nonTypeCheck = {
   // ts(7027)
   'no-unreachable': 'error',
   // ts(2358), ts(2360), ts(2365)
-  'no-unsafe-negation': 'error',
+  'no-unsafe-negation': ['error', { enforceForOrderingRelations: false }],
   // ts(2367)
   'valid-typeof': [
     'error',
@@ -63,7 +63,7 @@ const coreRules_tsCompat_typeCheckOnly = {
    * Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
    */
-  'no-constant-condition': 'error',
+  'no-constant-condition': ['error', { checkLoops: true }],
 };
 
 const coreRules_tsCompat_typeCheckOnly_OFF = getDisabledRuleSet(
