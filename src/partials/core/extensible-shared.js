@@ -22,7 +22,13 @@ const coreRules_extensibleShared = {
       objectsInObjects: true,
     },
   ],
-  'semi': ['error', 'always'],
+  'semi': [
+    'error',
+    'always',
+    {
+      omitLastInOneLineBlock: false,
+    },
+  ],
 };
 
 const coreRules_extensibleShared_OFF = getDisabledRuleSet(

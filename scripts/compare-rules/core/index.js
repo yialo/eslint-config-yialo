@@ -81,9 +81,9 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
 
   // FIXME: remove after debug
-  if (!['semi', 'no-constant-condition'].includes(myRuleName)) {
-    return output;
-  }
+  // if (!['semi', 'no-constant-condition'].includes(myRuleName)) {
+  //   return output;
+  // }
 
   const getNextOutput = () => {
     if (myRuleConfig === 'off') {
@@ -118,7 +118,7 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
       return;
     }
 
-    throw new Error(`Rule ${myRuleName}, strange schema: ${schema}`);
+    throw new Error(`Rule: ${myRuleName}, strange schema: ${schema}`);
   };
 
   const nextOutput = getNextOutput();

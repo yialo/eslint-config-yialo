@@ -16,7 +16,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
     if (Array.isArray(possibleStringOptions)) {
       return possibleStringOptions.includes(myOptions.mainOption);
     }
-    throw new Error(`Rule ${myRuleName}, strange schema: ${anyOfItem}`);
+    throw new Error(`Rule: ${myRuleName}, strange schema: ${anyOfItem}`);
   });
 
   if (!matchedSchema || !matchedSchema[1]) {

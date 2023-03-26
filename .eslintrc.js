@@ -704,7 +704,13 @@ module.exports = {
     'require-await': 'error',
     'require-yield': 'error',
     'rest-spread-spacing': ['error', 'never'],
-    'semi': ['error', 'always'],
+    'semi': [
+      'error',
+      'always',
+      {
+        omitLastInOneLineBlock: false,
+      },
+    ],
     'semi-spacing': [
       'error',
       {
