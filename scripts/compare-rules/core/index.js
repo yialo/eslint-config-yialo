@@ -3,6 +3,7 @@
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 
 const { groupLog } = require('../_utils');
+const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
 const { getAbsentPropsFromArraySchema } = require('./array-schema');
 
 const {
@@ -111,17 +112,17 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
 
     const { schema } = metaEntry[1];
 
-    if (Array.isArray(schema)) {
-      return getAbsentPropsFromArraySchema(schema, myRuleEntry);
-    }
-
     if (!Object.keys(schema).length) {
       return;
     }
 
-    if (schema.anyOf) {
+    if (Array.isArray(schema)) {
+      return getAbsentPropsFromArraySchema(schema, myRuleEntry);
+    }
+
+    if (Array.isArray(schema.anyOf)) {
       // TODO: check
-      console.log(`${myRuleName} anyOf:`, schema.anyOf);
+      getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
       return;
     }
 

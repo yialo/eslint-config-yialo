@@ -1,6 +1,6 @@
 'use strict';
 
-const { isObject } = require('../_utils');
+const { isObject, getMyOptions } = require('../_utils');
 
 module.exports.getAbsentPropsFromArraySchema = (
   schema,
@@ -18,12 +18,10 @@ module.exports.getAbsentPropsFromArraySchema = (
     return optNamesCollected.concat(Object.keys(schemaElement.properties));
   }, []);
 
-  const myOptionNames = Object.keys(
-    Array.isArray(myRuleConfig) ? myRuleConfig.at(-1) : {},
-  );
+  const myOptions = getMyOptions(myRuleConfig);
 
   const absentOptions = refOptionNames.filter(
-    (refOptName) => !myOptionNames.includes(refOptName),
+    (refOptName) => !myOptions.optionNames.includes(refOptName),
   );
 
   if (!absentOptions.length) {
