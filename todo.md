@@ -2,6 +2,7 @@
 
 ## Tasks
 
+- Add schema check with package-related internal validator (AJV)
 - Try to configure rule about variable use before define for use inside functions
 - Add [standard-version](https://basarat.gitbook.io/typescript/intro-2/changelog)
 - Move some dependencies to peerDependencies
