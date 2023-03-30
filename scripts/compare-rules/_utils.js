@@ -1,12 +1,15 @@
 'use strict';
 
-module.exports.RULE_SEVERITIES = ['error', 'warn', 'off'];
-
 module.exports.groupLog = (groupName, log) => {
   console.group(groupName);
   log();
   console.groupEnd();
 };
+
+const throwRuleConfigError = ([myRuleName, myRuleConfig]) => {
+  throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
+};
+module.exports.throwRuleConfigError = throwRuleConfigError;
 
 const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
@@ -21,7 +24,7 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
     return result;
   }
 
-  const [_severity, firstPart, secondPart] = myRuleConfig;
+  const [_severity, firstPart, secondPart, ...partsRest] = myRuleConfig;
 
   const firstPartIsObject = isObject(firstPart);
   const firstPartIsStringOrNumber =
@@ -35,7 +38,16 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
     if (secondPartIsObject) {
       result.optionNames = Object.keys(secondPart);
     } else if (!secondPartIsAbsent) {
-      throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
+      const firstPartType = typeof firstPart;
+      const allPartsHasTheSameType =
+        typeof secondPart === firstPartType &&
+        (partsRest.length === 0 ||
+          partsRest.every((part) => typeof part === firstPartType));
+      if (allPartsHasTheSameType) {
+        result.mainOption = [firstPart, secondPart, ...partsRest];
+      } else {
+        throwRuleConfigError(myRuleName);
+      }
     }
   } else if (firstPartIsObject && secondPartIsObject) {
     result.mainOption = firstPart;
@@ -43,7 +55,7 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
   } else if (firstPartIsObject && secondPartIsAbsent) {
     result.optionNames = Object.keys(firstPart);
   } else if (firstPartIsObject && !secondPartIsAbsent) {
-    throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
+    throwRuleConfigError(myRuleName);
   }
 
   return result;

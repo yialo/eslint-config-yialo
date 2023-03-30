@@ -49,7 +49,7 @@ const coreRules_tsCompat_nonTypeCheck = {
   'valid-typeof': [
     'error',
     {
-      requireStringLiterals: true,
+      requireStringLiterals: false,
     },
   ],
 };
@@ -63,7 +63,9 @@ const coreRules_tsCompat_typeCheckOnly = {
    * Because of @typescript-eslint/no-unnecessary-condition own rule:
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-condition.md
    */
-  'no-constant-condition': ['error', { checkLoops: true }],
+  // FIXME: after debug
+  // 'no-constant-condition': ['error', { checkLoops: true }],
+  'no-constant-condition': 'error',
 };
 
 const coreRules_tsCompat_typeCheckOnly_OFF = getDisabledRuleSet(
