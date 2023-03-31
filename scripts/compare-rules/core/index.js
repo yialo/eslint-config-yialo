@@ -5,7 +5,8 @@ const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules')
 const { groupLog } = require('../_utils');
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
 const { getAbsentPropsFromArraySchema } = require('./array-schema');
-const { checkAbsentPropsFromOneOfSchema } = require('./one-of-schema');
+const { getAbsentPropsFromItemArraySchema } = require('./items-array-schema');
+const { validateAbsentPropsFromOneOfSchema } = require('./one-of-schema');
 
 const {
   coreRules_extensibleWithBabel_only,
@@ -82,9 +83,7 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
 
   // FIXME: remove after debug
-  // if (
-  //   !['no-restricted-globals', 'no-constant-condition'].includes(myRuleName)
-  // ) {
+  // if (!['comma-dangle', 'no-constant-condition'].includes(myRuleName)) {
   //   return output;
   // }
 
@@ -116,8 +115,12 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
     }
 
     if (Array.isArray(schema.items?.oneOf)) {
-      checkAbsentPropsFromOneOfSchema(schema.items.oneOf, myRuleEntry);
+      validateAbsentPropsFromOneOfSchema(schema.items.oneOf, myRuleEntry);
       return;
+    }
+
+    if (Array.isArray(schema.items)) {
+      return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
     }
 
     throw new Error(`Rule: ${myRuleName}, unexpected schema: ${schema}`);

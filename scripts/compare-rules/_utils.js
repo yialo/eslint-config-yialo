@@ -9,19 +9,13 @@ module.exports.groupLog = (groupName, log) => {
 const throwRuleConfigError = ([myRuleName, myRuleConfig]) => {
   throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
 };
-module.exports.throwRuleConfigError = throwRuleConfigError;
 
 const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
 
-module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
-  const result = {
-    mainOption: null,
-    optionNames: [],
-  };
-
+const validateMyOptions = ([myRuleName, myRuleConfig], result = {}) => {
   if (!Array.isArray(myRuleConfig)) {
-    return result;
+    return;
   }
 
   const [_severity, firstPart, secondPart, ...partsRest] = myRuleConfig;
@@ -57,6 +51,16 @@ module.exports.getMyOptions = ([myRuleName, myRuleConfig]) => {
   } else if (firstPartIsObject && !secondPartIsAbsent) {
     throwRuleConfigError(myRuleName);
   }
+};
+module.exports.validateMyOptions = validateMyOptions;
+
+module.exports.getMyOptions = (myRuleEntry) => {
+  const result = {
+    mainOption: null,
+    optionNames: [],
+  };
+
+  validateMyOptions(myRuleEntry, result);
 
   return result;
 };

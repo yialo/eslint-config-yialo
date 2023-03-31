@@ -1,15 +1,13 @@
 'use strict';
 
-const { getMyOptions } = require('../_utils');
+const { validateMyOptions } = require('../_utils');
 
-module.exports.checkAbsentPropsFromOneOfSchema = (oneOf, myRuleEntry) => {
+module.exports.validateAbsentPropsFromOneOfSchema = (oneOf, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
 
-  const myOptions = getMyOptions(myRuleEntry);
+  validateMyOptions(myRuleEntry);
 
   if (!Array.isArray(myRuleConfig)) {
-    throw new Error(
-      `Rule: ${myRuleName} with options ${myOptions}, unexpected oneOf schema: ${oneOf}`,
-    );
+    throw new Error(`Rule: ${myRuleName}, unexpected oneOf schema: ${oneOf}`);
   }
 };
