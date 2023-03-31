@@ -1,6 +1,9 @@
 'use strict';
 
+const colors = require('colors');
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
+
+console.log(colors.yellow.bgBlue('=== START ==='));
 
 const { groupLog, throwUnhandledSchemaError } = require('../_utils');
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
@@ -109,9 +112,9 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
       return;
     }
 
-    // if (Array.isArray(schema)) {
-    // return getAbsentPropsFromArraySchema(schema, myRuleEntry);
-    // }
+    if (Array.isArray(schema)) {
+      return getAbsentPropsFromArraySchema(schema, myRuleEntry);
+    }
 
     // if (Array.isArray(schema.anyOf)) {
     //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
@@ -155,3 +158,5 @@ groupLog('Deprecated core rules', () => {
 groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));
 });
+
+console.log(colors.yellow.bgBlue('=== END ==='));
