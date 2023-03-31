@@ -28,7 +28,7 @@ module.exports = {
         checkForEach: true,
       },
     ],
-    'array-element-newline': ['error', 'consistent'],
+    'array-element-newline': 'off',
     'arrow-parens': [
       'error',
       'always',

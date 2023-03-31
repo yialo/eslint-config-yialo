@@ -19,7 +19,7 @@ const coreRules_nonExtensible = {
       checkForEach: true,
     },
   ],
-  'array-element-newline': ['error', 'consistent'],
+  'array-element-newline': 'off',
   'arrow-body-style': 'off',
   'arrow-parens': [
     'error',
