@@ -4,6 +4,7 @@
   "scripts": {
     "test": "eslint ./**/*.js",
     "compare": "node ./scripts/compare-rules",
+    "debug:compare": "nodemon -- compare",
     "find-disabled-internal": "node ./scripts/find-disabled-internal-rules",
     "prettier:base": "prettier",
     "prettier:check": "npm run prettier:base -- --list-different \"./(scripts|src)/**/*.js\"",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "husky": "8.0.3",
+    "nodemon": "2.0.22",
     "prettier": "2.8.7"
   },
   "peerDependencies": {

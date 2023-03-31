@@ -1,0 +1,7 @@
+{
+  "exec": "npm run",
+  "ext": "js,json",
+  "ignore": ["nodemon.json"],
+  "verbose": true,
+  "watch": ["./.eslintrc.js", "./scripts/", "./src"]
+}
