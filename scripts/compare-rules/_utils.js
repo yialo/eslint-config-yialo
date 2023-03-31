@@ -24,9 +24,12 @@ const validateMyOptions = ([myRuleName, myRuleConfig], result = {}) => {
 
   const [_severity, firstPart, secondPart, ...partsRest] = myRuleConfig;
 
+  // FIXME: add case for long properties list
+
   const firstPartIsObject = isObject(firstPart);
   const firstPartIsStringOrNumber =
     typeof firstPart === 'string' || typeof firstPart === 'number';
+
   const secondPartIsObject = isObject(secondPart);
   const secondPartIsAbsent = secondPart === undefined;
 
@@ -37,10 +40,12 @@ const validateMyOptions = ([myRuleName, myRuleConfig], result = {}) => {
       result.optionNames = Object.keys(secondPart);
     } else if (!secondPartIsAbsent) {
       const firstPartType = typeof firstPart;
+
       const allPartsHasTheSameType =
         typeof secondPart === firstPartType &&
         (partsRest.length === 0 ||
           partsRest.every((part) => typeof part === firstPartType));
+
       if (allPartsHasTheSameType) {
         result.mainOption = [firstPart, secondPart, ...partsRest];
       } else {
