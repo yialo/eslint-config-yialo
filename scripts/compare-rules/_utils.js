@@ -6,8 +6,12 @@ module.exports.groupLog = (groupName, log) => {
   console.groupEnd();
 };
 
-const throwRuleConfigError = ([myRuleName, myRuleConfig]) => {
-  throw new Error(`Rule: ${myRuleName}, strange config: ${myRuleConfig}`);
+const throwRuleConfigError = (myRuleName) => {
+  throw new Error(`Unexpectedly configured rule: ${myRuleName}`);
+};
+
+module.exports.throwUnhandledSchemaError = (myRuleName) => {
+  throw new Error(`Unhandled schema for rule: ${myRuleName}`);
 };
 
 const isObject = (value) => value !== null && typeof value === 'object';

@@ -1,6 +1,6 @@
 'use strict';
 
-const { getMyOptions } = require('../_utils');
+const { getMyOptions, throwUnhandledSchemaError } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
 
 module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
@@ -13,12 +13,10 @@ module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
   const matchedSchema = anyOfItems.find((anyOfItem) => {
     const possibleStringOptions = anyOfItem[0]?.enum;
 
-    if (Array.isArray(possibleStringOptions)) {
-      return possibleStringOptions.includes(myOptions.mainOption);
+    if (!Array.isArray(possibleStringOptions)) {
+      throwUnhandledSchemaError(myRuleName);
     }
-    throw new Error(
-      `Rule: ${myRuleName}, unexpected schema.anyOf item: ${anyOfItem}`,
-    );
+    return possibleStringOptions.includes(myOptions.mainOption);
   });
 
   if (!matchedSchema || !matchedSchema[1]) {

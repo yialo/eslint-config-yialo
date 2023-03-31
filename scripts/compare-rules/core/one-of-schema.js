@@ -1,13 +1,13 @@
 'use strict';
 
-const { validateMyOptions } = require('../_utils');
+const { validateMyOptions, throwUnhandledSchemaError } = require('../_utils');
 
-module.exports.validateAbsentPropsFromOneOfSchema = (oneOf, myRuleEntry) => {
+module.exports.validatePropsFromOneOfSchema = (oneOf, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
 
   validateMyOptions(myRuleEntry);
 
   if (!Array.isArray(myRuleConfig)) {
-    throw new Error(`Rule: ${myRuleName}, unexpected oneOf schema: ${oneOf}`);
+    throwUnhandledSchemaError(myRuleName);
   }
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const { getMyOptions } = require('../_utils');
+const { getMyOptions, throwUnhandledSchemaError } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
 
 module.exports.getAbsentPropsFromItemArraySchema = (items, myRuleEntry) => {
@@ -9,7 +9,7 @@ module.exports.getAbsentPropsFromItemArraySchema = (items, myRuleEntry) => {
   const itemsWithOneOf = items.filter((item) => Array.isArray(item.oneOf));
 
   if (itemsWithOneOf.length !== 1) {
-    throw new Error(`Rule: ${myRuleName}, unexpected schema.items: ${items}`);
+    throwUnhandledSchemaError(myRuleName);
   }
 
   const { oneOf } = itemsWithOneOf[0];
@@ -19,9 +19,7 @@ module.exports.getAbsentPropsFromItemArraySchema = (items, myRuleEntry) => {
   );
 
   if (!objectRefConfig) {
-    throw new Error(
-      `Rule: ${myRuleName}, unexpected schema.items item oneOf: ${oneOf}`,
-    );
+    throwUnhandledSchemaError(myRuleName);
   }
 
   const refOptionNames = getOptionNamesFromSchemaElement(objectRefConfig);

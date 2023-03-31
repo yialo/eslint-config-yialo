@@ -2,7 +2,7 @@
 
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 
-const { groupLog } = require('../_utils');
+const { groupLog, throwUnhandledSchemaError } = require('../_utils');
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
 const { getAbsentPropsFromArraySchema } = require('./array-schema');
 const { getAbsentPropsFromItemArraySchema } = require('./items-array-schema');
@@ -119,11 +119,19 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
       return;
     }
 
+    if (Array.isArray(schema.items?.anyOf)) {
+      // TODO: check
+      console.log({
+        'rule': myRuleName,
+        'schema.items.anyOf': schema.items.anyOf,
+      });
+    }
+
     if (Array.isArray(schema.items)) {
       return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
     }
 
-    throw new Error(`Rule: ${myRuleName}, unexpected schema: ${schema}`);
+    throwUnhandledSchemaError(myRuleName);
   };
 
   const nextOutput = getNextOutput();
