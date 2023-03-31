@@ -50,6 +50,8 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     return optNamesCollected.concat(optNames);
   }, []);
 
+  console.log({ myRuleName, refOptionNames });
+
   const myOptions = getMyOptionsForArraySchema(myRuleEntry);
 
   const absentOptions = refOptionNames.filter(
