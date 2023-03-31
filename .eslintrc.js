@@ -230,7 +230,7 @@ module.exports = {
         properties: true,
       },
     ],
-    'new-parens': 'error',
+    'new-parens': ['error', 'always'],
     'newline-per-chained-call': [
       'error',
       {

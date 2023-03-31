@@ -1,11 +1,10 @@
 'use strict';
 
-const { validateMyOptions, throwUnhandledSchemaError } = require('../_utils');
+const { throwUnhandledSchemaError } = require('../_utils');
 
+// FIXME: rework
 module.exports.validateMyPropsForRuleWithItemsAnyOfSchema = (myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
-
-  validateMyOptions(myRuleEntry);
 
   if (!Array.isArray(myRuleConfig)) {
     throwUnhandledSchemaError(myRuleName);

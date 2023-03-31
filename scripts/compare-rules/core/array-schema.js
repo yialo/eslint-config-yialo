@@ -1,7 +1,46 @@
 'use strict';
 
-const { getMyOptions } = require('../_utils');
+const { isObject, throwRuleConfigError } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
+
+const getMyOptionsForArraySchema = ([myRuleName, myRuleConfig]) => {
+  const result = {
+    mainOption: null,
+    optionNames: [],
+  };
+
+  if (!Array.isArray(myRuleConfig)) {
+    return;
+  }
+
+  const [_severity, firstPart, secondPart] = myRuleConfig;
+
+  const firstPartIsObject = isObject(firstPart);
+  const firstPartIsStringOrNumber =
+    typeof firstPart === 'string' || typeof firstPart === 'number';
+
+  const secondPartIsObject = isObject(secondPart);
+  const secondPartIsAbsent = secondPart === undefined;
+
+  if (firstPartIsStringOrNumber) {
+    result.mainOption = firstPart;
+
+    if (secondPartIsObject) {
+      result.optionNames = Object.keys(secondPart);
+    } else if (!secondPartIsAbsent) {
+      throwRuleConfigError(myRuleName);
+    }
+  } else if (firstPartIsObject && secondPartIsObject) {
+    result.mainOption = firstPart;
+    result.optionNames = Object.keys(secondPart);
+  } else if (firstPartIsObject && secondPartIsAbsent) {
+    result.optionNames = Object.keys(firstPart);
+  } else if (firstPartIsObject && !secondPartIsAbsent) {
+    throwRuleConfigError(myRuleName);
+  }
+
+  return result;
+};
 
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
@@ -11,7 +50,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     return optNamesCollected.concat(optNames);
   }, []);
 
-  const myOptions = getMyOptions(myRuleEntry);
+  const myOptions = getMyOptionsForArraySchema(myRuleEntry);
 
   const absentOptions = refOptionNames.filter(
     (refOptName) => !myOptions.optionNames.includes(refOptName),

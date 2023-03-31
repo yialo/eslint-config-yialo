@@ -86,9 +86,9 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
 
   // FIXME: remove after debug
-  if (!['no-restricted-globals'].includes(myRuleName)) {
-    return output;
-  }
+  // if (!['no-restricted-globals'].includes(myRuleName)) {
+  //   return output;
+  // }
 
   const getNextOutput = () => {
     if (myRuleConfig === 'off') {
@@ -109,27 +109,28 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
       return;
     }
 
-    if (Array.isArray(schema)) {
-      return getAbsentPropsFromArraySchema(schema, myRuleEntry);
-    }
+    // if (Array.isArray(schema)) {
+    //   return getAbsentPropsFromArraySchema(schema, myRuleEntry);
+    // }
 
-    if (Array.isArray(schema.anyOf)) {
-      return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
-    }
+    // if (Array.isArray(schema.anyOf)) {
+    //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
+    // }
 
-    if (Array.isArray(schema.items?.oneOf)) {
-      validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
-      return;
-    }
+    // if (Array.isArray(schema.items)) {
+    //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
+    // }
 
-    if (Array.isArray(schema.items?.anyOf)) {
-      validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
-      return;
-    }
+    // if (Array.isArray(schema.items?.anyOf)) {
+    //   console.log({ rule: myRuleName, schema });
+    //   validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
+    //   return;
+    // }
 
-    if (Array.isArray(schema.items)) {
-      return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
-    }
+    // if (Array.isArray(schema.items?.oneOf)) {
+    //   validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
+    //   return;
+    // }
 
     throwUnhandledSchemaError(myRuleName);
   };

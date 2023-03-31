@@ -146,7 +146,7 @@ const coreRules_nonExtensible = {
   ],
   'multiline-comment-style': 'off',
   'multiline-ternary': 'off',
-  'new-parens': 'error',
+  'new-parens': ['error', 'always'],
   'newline-per-chained-call': [
     'error',
     {

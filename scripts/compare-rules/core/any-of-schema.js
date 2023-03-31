@@ -1,14 +1,57 @@
 'use strict';
 
-const { getMyOptions, throwUnhandledSchemaError } = require('../_utils');
+const {
+  throwUnhandledSchemaError,
+  isObject,
+  throwRuleConfigError,
+} = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
+
+const getMyOptionsForAnyOfSchema = ([myRuleName, myRuleConfig]) => {
+  const result = {
+    mainOption: null,
+    optionNames: [],
+  };
+
+  if (!Array.isArray(myRuleConfig)) {
+    return;
+  }
+
+  const [_severity, firstPart, secondPart] = myRuleConfig;
+
+  const firstPartIsObject = isObject(firstPart);
+  const firstPartIsStringOrNumber =
+    typeof firstPart === 'string' || typeof firstPart === 'number';
+
+  const secondPartIsObject = isObject(secondPart);
+  const secondPartIsAbsent = secondPart === undefined;
+
+  if (firstPartIsStringOrNumber) {
+    result.mainOption = firstPart;
+
+    if (secondPartIsObject) {
+      result.optionNames = Object.keys(secondPart);
+    } else if (!secondPartIsAbsent) {
+      throwRuleConfigError(myRuleName);
+    }
+  } else if (firstPartIsObject && secondPartIsObject) {
+    result.mainOption = firstPart;
+    result.optionNames = Object.keys(secondPart);
+  } else if (firstPartIsObject && secondPartIsAbsent) {
+    result.optionNames = Object.keys(firstPart);
+  } else if (firstPartIsObject && !secondPartIsAbsent) {
+    throwRuleConfigError(myRuleName);
+  }
+
+  return result;
+};
 
 module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
 
   const anyOfItems = anyOf.map(({ items }) => items);
 
-  const myOptions = getMyOptions(myRuleEntry);
+  const myOptions = getMyOptionsForAnyOfSchema(myRuleEntry);
 
   const matchedSchema = anyOfItems.find((anyOfItem) => {
     const possibleStringOptions = anyOfItem[0]?.enum;
