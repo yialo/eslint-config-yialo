@@ -116,7 +116,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'no-unused-vars': [
     'warn',
     {
-      args: 'after-used',
+      args: 'all',
       argsIgnorePattern: '^_',
       destructuredArrayIgnorePattern: '^_',
       ignoreRestSiblings: true,
