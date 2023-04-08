@@ -39,7 +39,10 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   ];
 
   if (schemaTypes.some((type) => type === SCHEMA_TYPE.UNKNOWN)) {
-    console.log('Unknows array element schema type:', myRuleName, schemaTypes);
+    throw new Error(
+      `Unknows array element schema type for: ${myRuleName} -`,
+      schemaTypes,
+    );
   }
 
   // console.log({
