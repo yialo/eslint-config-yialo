@@ -1,10 +1,6 @@
 'use strict';
 
-const {
-  throwUnhandledSchemaError,
-  isObject,
-  throwRuleConfigError,
-} = require('../_utils');
+const { loggerUtil, isObject } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
 
 const getMyOptionsForAnyOfSchema = ([myRuleName, myRuleConfig]) => {
@@ -32,7 +28,7 @@ const getMyOptionsForAnyOfSchema = ([myRuleName, myRuleConfig]) => {
     if (secondPartIsObject) {
       result.optionNames = Object.keys(secondPart);
     } else if (!secondPartIsAbsent) {
-      throwRuleConfigError(myRuleName);
+      loggerUtil.throwRuleConfigError(myRuleName);
     }
   } else if (firstPartIsObject && secondPartIsObject) {
     result.mainOption = firstPart;
@@ -40,7 +36,7 @@ const getMyOptionsForAnyOfSchema = ([myRuleName, myRuleConfig]) => {
   } else if (firstPartIsObject && secondPartIsAbsent) {
     result.optionNames = Object.keys(firstPart);
   } else if (firstPartIsObject && !secondPartIsAbsent) {
-    throwRuleConfigError(myRuleName);
+    loggerUtil.throwRuleConfigError(myRuleName);
   }
 
   return result;
@@ -57,7 +53,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
     const possibleStringOptions = anyOfItem[0]?.enum;
 
     if (!Array.isArray(possibleStringOptions)) {
-      throwUnhandledSchemaError(myRuleName);
+      loggerUtil.throwUnhandledSchemaError(myRuleName);
     }
     return possibleStringOptions.includes(myOptions.mainOption);
   });

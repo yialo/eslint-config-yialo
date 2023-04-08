@@ -42,7 +42,13 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     );
   }
 
-  console.log({ schemaTypes });
+  const firstSchemaElementIsEnum = firstSchemaElementType === SCHEMA_TYPE.ENUM;
+  const secondSchemaElementIsEnum =
+    secondSchemaElementType === SCHEMA_TYPE.ENUM;
+
+  if (firstSchemaElementIsEnum && secondSchemaElementIsEnum) {
+    console.log('Two first elements are enums for:', myRuleName);
+  }
 
   const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
     const optNames = getOptionNamesFromSchemaElement(schemaElement);

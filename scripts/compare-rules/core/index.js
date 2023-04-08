@@ -1,16 +1,11 @@
 'use strict';
 
-const colors = require('colors');
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
+const { loggerUtil } = require('../_utils');
 
-console.log(colors.yellow.bgBlue('=== START ==='));
+console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 
-const {
-  groupLog,
-  throwUnhandledSchemaError,
-  getRuleSchemaType,
-  RULE_SCHEMA_TYPE,
-} = require('../_utils');
+const { getRuleSchemaType, RULE_SCHEMA_TYPE } = require('../_utils');
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
 const { getAbsentPropsFromArraySchema } = require('./array-schema');
 const {
@@ -140,7 +135,7 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
       // }
     }
 
-    throwUnhandledSchemaError(myRuleName);
+    loggerUtil.throwUnhandledSchemaError(myRuleName);
   };
 
   const nextOutput = getNextOutput();
@@ -160,8 +155,8 @@ groupLog('Deprecated core rules', () => {
   console.log(myRulesNeedToRemove);
 }); */
 
-groupLog('Core rules that need clarificaiton', () => {
+loggerUtil.groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));
 });
 
-console.log(colors.yellow.bgBlue('=== END ==='));
+console.log(loggerUtil.colorize.yellow.bgBlue('=== END ==='));
