@@ -1,12 +1,17 @@
 'use strict';
 
-const { TypedSchema, SCHEMA_TYPE, loggerUtil } = require('../_utils');
-const { getOptionNamesFromSchemaElement } = require('./utils');
+const {
+  isObject,
+  loggerUtil,
+  SchemaTyped,
+  SCHEMA_TYPE,
+  MyRuleEntryNormalized,
+} = require('../_utils');
 
 const MAX_SCHEMA_LENGTH = 3;
 
-module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
-  const [myRuleName] = myRuleEntry;
+module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
+  const [myRuleName] = myRuleEntryRaw;
 
   if (schema.length === 0) {
     return {};
@@ -19,7 +24,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
     Array.from({ length: MAX_SCHEMA_LENGTH }).map((_, i) => {
       const schemaEl = schema[i];
-      return new TypedSchema(schemaEl);
+      return new SchemaTyped(schemaEl);
     });
 
   const schemaTypes = [
@@ -36,26 +41,24 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     );
   }
 
-  const firstSchemaElementIsEnum = firstSchemaElement.type === SCHEMA_TYPE.ENUM;
-  const secondSchemaElementIsEnum =
-    secondSchemaElement.type === SCHEMA_TYPE.ENUM;
+  const myRuleEntry = new MyRuleEntryNormalized(myRuleEntryRaw);
 
-  if (firstSchemaElementIsEnum) {
+  if (firstSchemaElement.type === SCHEMA_TYPE.ENUM) {
     console.log(
       loggerUtil.colorize.cyan('First element is enum for:', myRuleName),
     );
 
-    if (secondSchemaElementIsEnum) {
+    if (!Object.hasOwn(myRuleEntry.config, 0)) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleName} should be configured as array with non-empty second element`,
+        loggerUtil.colorize.brightGreen,
+      );
+    }
+
+    if (secondSchemaElement.type === SCHEMA_TYPE.ENUM) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
     }
   }
-
-  const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
-    const optNames = getOptionNamesFromSchemaElement(schemaElement);
-    return optNamesCollected.concat(optNames);
-  }, []);
-
-  // console.log({ myRuleName, myOptions, refOptionNames });
 
   // const absentOptions = refOptionNames.filter(
   //   (refOptName) => !myOptions.optionNames.includes(refOptName),

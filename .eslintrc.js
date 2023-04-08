@@ -196,7 +196,6 @@ module.exports = {
         exceptAfterSingleLine: true,
       },
     ],
-    'max-classes-per-file': ['error', 1],
     'max-len': [
       'error',
       {
@@ -287,7 +286,7 @@ module.exports = {
     'no-global-assign': ['error', { exceptions: [] }],
     'no-implied-eval': 'error',
     'no-import-assign': 'error',
-    'no-inner-declarations': 'error',
+    'no-inner-declarations': ['error', 'both'],
     'no-invalid-regexp': ['error', { allowConstructorFlags: [] }],
     'no-irregular-whitespace': [
       'error',
@@ -328,7 +327,7 @@ module.exports = {
         ],
       },
     ],
-    'no-mixed-spaces-and-tabs': 'error',
+    'no-mixed-spaces-and-tabs': ['error', false],
     'no-multi-assign': ['error', { ignoreNonDeclaration: false }],
     'no-multi-spaces': [
       'error',
@@ -689,7 +688,7 @@ module.exports = {
         allowTemplateLiterals: true,
       },
     ],
-    'radix': 'error',
+    'radix': ['error', 'always'],
     'require-atomic-updates': ['error', { allowProperties: false }],
     'require-await': 'error',
     'require-yield': 'error',

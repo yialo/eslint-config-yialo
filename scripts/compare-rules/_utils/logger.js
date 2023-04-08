@@ -13,8 +13,8 @@ module.exports.groupLog = (groupName, log) => {
   console.groupEnd();
 };
 
-const logAndThrow = (message) => {
-  console.log(colorize.red(message));
+const logAndThrow = (message, colorizer = colorize.red) => {
+  console.log(colorizer(message));
   if (THROW_ON_UNEXPECTED) {
     throw new Error(message);
   }

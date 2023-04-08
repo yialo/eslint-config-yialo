@@ -202,7 +202,7 @@ const coreRules_nonExtensible = {
   'no-implicit-coercion': 'off',
   'no-implicit-globals': 'off',
   'no-inline-comments': 'off',
-  'no-inner-declarations': 'error',
+  'no-inner-declarations': ['error', 'both'],
   'no-invalid-regexp': ['error', { allowConstructorFlags: [] }],
   'no-irregular-whitespace': [
     'error',
@@ -241,7 +241,7 @@ const coreRules_nonExtensible = {
       ],
     },
   ],
-  'no-mixed-spaces-and-tabs': 'error',
+  'no-mixed-spaces-and-tabs': ['error', false],
   'no-multi-assign': ['error', { ignoreNonDeclaration: false }],
   'no-multi-spaces': [
     'error',
@@ -570,7 +570,7 @@ const coreRules_nonExtensible = {
   'prefer-spread': 'error',
   'prefer-template': 'error',
   'quote-props': 'off',
-  'radix': 'error',
+  'radix': ['error', 'always'],
   'require-atomic-updates': ['error', { allowProperties: false }],
   'require-unicode-regexp': 'off',
   'require-yield': 'error',

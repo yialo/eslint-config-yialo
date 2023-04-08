@@ -1,7 +1,6 @@
 'use strict';
 
 const { loggerUtil, isObject } = require('../_utils');
-const { getOptionNamesFromSchemaElement } = require('./utils');
 
 const getMyOptionsForAnyOfSchema = ([myRuleName, myRuleConfig]) => {
   const result = {
@@ -62,15 +61,15 @@ module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
     return {};
   }
 
-  const refOptionNames = getOptionNamesFromSchemaElement(matchedSchema[1]);
+  // const refOptionNames = getOptionNamesFromSchemaElement(matchedSchema[1]);
 
-  const absentOptions = refOptionNames.filter(
-    (refOptName) => !myOptions.optionNames.includes(refOptName),
-  );
+  // const absentOptions = refOptionNames.filter(
+  //   (refOptName) => !myOptions.optionNames.includes(refOptName),
+  // );
 
-  if (!absentOptions.length) {
-    return {};
-  }
+  // if (!absentOptions.length) {
+  //   return {};
+  // }
 
-  return { [myRuleName]: absentOptions };
+  // return { [myRuleName]: absentOptions };
 };

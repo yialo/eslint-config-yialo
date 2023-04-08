@@ -53,9 +53,20 @@ const getSchemaType = (schema) => {
   return SCHEMA_TYPE.UNKNOWN;
 };
 
-module.exports.TypedSchema = class {
+module.exports.SchemaTyped = class {
   constructor(schema) {
     this.type = getSchemaType(schema);
     this.value = schema;
+  }
+};
+
+module.exports.MyRuleEntryNormalized = class {
+  constructor([myRuleName, myRuleConfigRaw]) {
+    const configIsArray = Array.isArray(myRuleConfigRaw);
+
+    this.name = myRuleName;
+    this.severity = configIsArray ? myRuleConfigRaw[0] : myRuleConfigRaw;
+    this.config = configIsArray ? myRuleConfigRaw.slice(1) : [];
+    this.configuredAsArray = configIsArray;
   }
 };

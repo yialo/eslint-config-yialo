@@ -5,7 +5,6 @@ const {
   throwRuleConfigError,
   throwUnhandledSchemaError,
 } = require('../_utils');
-const { getOptionNamesFromSchemaElement } = require('./utils');
 
 const getMyOptionsForItemsArraySchema = ([myRuleName, myRuleConfig]) => {
   const result = {
@@ -76,16 +75,16 @@ module.exports.getAbsentPropsFromItemArraySchema = (items, myRuleEntry) => {
     throwUnhandledSchemaError(myRuleName);
   }
 
-  const refOptionNames = getOptionNamesFromSchemaElement(objectRefConfig);
-  const myOptions = getMyOptionsForItemsArraySchema(myRuleEntry);
+  // const refOptionNames = getOptionNamesFromSchemaElement(objectRefConfig);
+  // const myOptions = getMyOptionsForItemsArraySchema(myRuleEntry);
 
-  const absentOptions = refOptionNames.filter(
-    (refOptName) => !myOptions.optionNames.includes(refOptName),
-  );
+  // const absentOptions = refOptionNames.filter(
+  //   (refOptName) => !myOptions.optionNames.includes(refOptName),
+  // );
 
-  if (!absentOptions.length) {
-    return {};
-  }
+  // if (!absentOptions.length) {
+  //   return {};
+  // }
 
-  return { [myRuleName]: absentOptions };
+  // return { [myRuleName]: absentOptions };
 };
