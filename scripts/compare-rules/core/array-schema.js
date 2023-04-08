@@ -10,6 +10,24 @@ const {
 
 const MAX_SCHEMA_LENGTH = 3;
 
+const getObjectSchemaAbsentOptionsNames = ({
+  ruleName,
+  myOptions,
+  refOptions,
+}) => {
+  const myOptionNames = Object.keys(myOptions);
+  const schemaOptionNames = Object.keys(refOptions);
+  const absentOptions = schemaOptionNames.filter(
+    (refOptName) => !myOptionNames.includes(refOptName),
+  );
+
+  if (!absentOptions.length) {
+    return {};
+  }
+
+  return { [ruleName]: absentOptions };
+};
+
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
   const [myRuleName] = myRuleEntryRaw;
 
@@ -75,19 +93,11 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
         );
       }
 
-      const myOptionNames = Object.keys(myRuleOptions);
-      const schemaOptionNames = Object.keys(
-        secondSchemaElement.value.properties,
-      );
-      const absentOptions = schemaOptionNames.filter(
-        (refOptName) => !myOptionNames.includes(refOptName),
-      );
-
-      if (!absentOptions.length) {
-        return {};
-      }
-
-      return { [myRuleName]: absentOptions };
+      return getObjectSchemaAbsentOptionsNames({
+        ruleName: myRuleName,
+        myOptions: myRuleOptions,
+        refOptions: secondSchemaElement.value.properties,
+      });
     }
   }
 
@@ -108,36 +118,65 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
       );
     }
 
-    const myOptionNames = Object.keys(myRuleOptions);
-    const schemaOptionNames = Object.keys(firstSchemaElement.value.properties);
-    const absentOptions = schemaOptionNames.filter(
-      (refOptName) => !myOptionNames.includes(refOptName),
-    );
-
-    if (!absentOptions.length) {
-      return {};
-    }
-
-    return { [myRuleName]: absentOptions };
+    return getObjectSchemaAbsentOptionsNames({
+      ruleName: myRuleName,
+      myOptions: myRuleOptions,
+      refOptions: firstSchemaElement.value.properties,
+    });
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ANY_OF) {
+    const anyOfSchemas = firstSchemaElement.value.anyOf.map(
+      (anyOfRaw) => new SchemaTyped(anyOfRaw),
+    );
+
+    for (const anyOfSchema of anyOfSchemas) {
+      if (anyOfSchema.type === SCHEMA_TYPE.UNKNOWN) {
+        loggerUtil.logAndThrow(
+          `rule: ${myRuleName}, unknown type detected in anyOf element ${JSON.stringify(
+            anyOfSchema.value,
+            null,
+            2,
+          )}`,
+          loggerUtil.colorize.brightYellow,
+        );
+      }
+    }
+
+    const objectAnyOfSchemas = anyOfSchemas.filter(
+      (anyOf) => anyOf.type === SCHEMA_TYPE.OBJECT,
+    );
+
+    if (objectAnyOfSchemas.length === 0) {
+      loggerUtil.throwUnhandledSchemaError(myRuleName);
+    }
+
+    const myFirstConfigElement = myRuleEntry.config[0];
+
+    if (!isObject(myFirstConfigElement)) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
+      );
+    }
+
+    const hasTheOnlyObjectAnyOfSchema = objectAnyOfSchemas.length === 1;
+    if (hasTheOnlyObjectAnyOfSchema) {
+      return getObjectSchemaAbsentOptionsNames({
+        ruleName: myRuleName,
+        myOptions: myFirstConfigElement,
+        refOptions: objectAnyOfSchemas[0].value.properties,
+      });
+    }
+  }
+
+  if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
     console.log(
-      loggerUtil.colorize.brightBlue('ANY_OF:', {
+      loggerUtil.colorize.brightYellow('ONE_OF:', {
         firstSchemaElement,
         myRuleEntry,
       }),
     );
   }
-
-  // if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
-  //   console.log(
-  //     loggerUtil.colorize.brightYellow('ONE_OF:', {
-  //       firstSchemaElement,
-  //       myRuleEntry,
-  //     }),
-  //   );
-  // }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);
 };

@@ -30,6 +30,7 @@ const SCHEMA_TYPE = {
   NOT: 'not',
   IF_THEN_ELSE: 'if/then/else',
 
+  NUMBER: 'number',
   ARRAY: 'array',
   OBJECT: 'object',
 
@@ -49,6 +50,7 @@ const getSchemaType = (schema) => {
   if (schema.not) return SCHEMA_TYPE.NOT;
   if (schema.if) return SCHEMA_TYPE.IF_THEN_ELSE;
   if (schema.type === 'object' || schema.properties) return SCHEMA_TYPE.OBJECT;
+  if (schema.type === 'integer') return SCHEMA_TYPE.NUMBER;
   if (schema.type === 'array') return SCHEMA_TYPE.ARRAY;
   return SCHEMA_TYPE.UNKNOWN;
 };

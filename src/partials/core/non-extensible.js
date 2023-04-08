@@ -106,13 +106,7 @@ const coreRules_nonExtensible = {
   'id-match': 'off',
   'implicit-arrow-linebreak': ['error', 'beside'],
   'jsx-quotes': ['error', 'prefer-double'],
-  'key-spacing': [
-    'error',
-    {
-      afterColon: true,
-      beforeColon: false,
-    },
-  ],
+  'key-spacing': 'off',
   'line-comment-position': 'off',
   'linebreak-style': ['error', 'unix'],
   'lines-around-comment': 'off',

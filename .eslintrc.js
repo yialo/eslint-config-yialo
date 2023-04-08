@@ -163,13 +163,7 @@ module.exports = {
       },
     ],
     'jsx-quotes': ['error', 'prefer-double'],
-    'key-spacing': [
-      'error',
-      {
-        afterColon: true,
-        beforeColon: false,
-      },
-    ],
+    'key-spacing': 'off',
     'keyword-spacing': [
       'error',
       {
