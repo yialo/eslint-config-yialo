@@ -1,7 +1,6 @@
 'use strict';
 
 const {
-  isObject,
   loggerUtil,
   SchemaTyped,
   SCHEMA_TYPE,
@@ -58,17 +57,28 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
     if (secondSchemaElement.type === SCHEMA_TYPE.ENUM) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
     }
+
+    if (secondSchemaElement.type === SCHEMA_TYPE.EMPTY) {
+      return {};
+    }
+
+    if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+      const schemaOptionNames = Object.keys(
+        secondSchemaElement.value.properties,
+      );
+      const myOptionNames = Object.keys(myRuleEntry.config[1] ?? {});
+
+      const absentOptions = schemaOptionNames.filter(
+        (refOptName) => !myOptionNames.includes(refOptName),
+      );
+
+      if (!absentOptions.length) {
+        return {};
+      }
+
+      return { [myRuleName]: absentOptions };
+    }
   }
 
-  // const absentOptions = refOptionNames.filter(
-  //   (refOptName) => !myOptions.optionNames.includes(refOptName),
-  // );
-
-  // if (!absentOptions.length) {
-  //   return {};
-  // }
-
-  // return { [myRuleName]: absentOptions };
-
-  return {};
+  loggerUtil.throwUnhandledSchemaError(myRuleName);
 };

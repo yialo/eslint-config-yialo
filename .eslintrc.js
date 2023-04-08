@@ -594,7 +594,7 @@ module.exports = {
     'no-var': 'error',
     'no-whitespace-before-property': 'error',
     'no-with': 'error',
-    'nonblock-statement-body-position': ['error', 'beside'],
+    'nonblock-statement-body-position': ['error', 'beside', { overrides: {} }],
     'object-curly-newline': [
       'error',
       {

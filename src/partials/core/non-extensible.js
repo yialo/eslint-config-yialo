@@ -478,7 +478,7 @@ const coreRules_nonExtensible = {
   'no-warning-comments': 'off',
   'no-whitespace-before-property': 'error',
   'no-with': 'error',
-  'nonblock-statement-body-position': ['error', 'beside'],
+  'nonblock-statement-body-position': ['error', 'beside', { overrides: {} }],
   'object-curly-newline': [
     'error',
     {
