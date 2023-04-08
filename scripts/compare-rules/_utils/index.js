@@ -34,11 +34,13 @@ const SCHEMA_TYPE = {
   OBJECT: 'object',
 
   UNKNOWN: 'unknown',
+  EMPTY: 'empty',
 };
 module.exports.SCHEMA_TYPE = SCHEMA_TYPE;
 module.exports.SCHEMA_TYPES = Object.values(SCHEMA_TYPE);
 
-module.exports.getSchemaType = (schema) => {
+const getSchemaType = (schema) => {
+  if (!schema) return SCHEMA_TYPE.EMPTY;
   if (schema.const) return SCHEMA_TYPE.CONST;
   if (schema.enum) return SCHEMA_TYPE.ENUM;
   if (schema.allOf) return SCHEMA_TYPE.ALL_OF;
@@ -49,4 +51,11 @@ module.exports.getSchemaType = (schema) => {
   if (schema.type === 'object' || schema.properties) return SCHEMA_TYPE.OBJECT;
   if (schema.type === 'array') return SCHEMA_TYPE.ARRAY;
   return SCHEMA_TYPE.UNKNOWN;
+};
+
+module.exports.TypedSchema = class {
+  constructor(schema) {
+    this.type = getSchemaType(schema);
+    this.value = schema;
+  }
 };

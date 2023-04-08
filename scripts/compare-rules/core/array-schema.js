@@ -1,16 +1,9 @@
 'use strict';
 
-const {
-  isObject,
-  throwRuleConfigError,
-  getSchemaType,
-  SCHEMA_TYPE,
-  SCHEMA_TYPES,
-} = require('../_utils');
+const { TypedSchema, SCHEMA_TYPE, loggerUtil } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
 
-const getSchemaElementType = (schemaElement) =>
-  schemaElement ? getSchemaType(schemaElement) : null;
+const MAX_SCHEMA_LENGTH = 3;
 
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
@@ -19,35 +12,42 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     return {};
   }
 
-  if (schema.length > 3) {
-    throw new Error('Unexpectedly long array schema for:', myRuleName);
+  if (schema.length > MAX_SCHEMA_LENGTH) {
+    loggerUtil.logAndThrow(`Unexpectedly long array schema for: ${myRuleName}`);
   }
 
-  const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] = schema;
-
-  const firstSchemaElementType = getSchemaElementType(firstSchemaElement);
-  const secondSchemaElementType = getSchemaElementType(secondSchemaElement);
-  const thirdSchemaElementType = getSchemaElementType(thirdSchemaElement);
+  const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
+    Array.from({ length: MAX_SCHEMA_LENGTH }).map((_, i) => {
+      const schemaEl = schema[i];
+      return new TypedSchema(schemaEl);
+    });
 
   const schemaTypes = [
-    firstSchemaElementType,
-    secondSchemaElementType,
-    thirdSchemaElementType,
+    firstSchemaElement.type,
+    secondSchemaElement.type,
+    thirdSchemaElement.type,
   ];
 
   if (schemaTypes.some((type) => type === SCHEMA_TYPE.UNKNOWN)) {
-    throw new Error(
-      `Unknows array element schema type for: ${myRuleName} -`,
-      schemaTypes,
+    loggerUtil.logAndThrow(
+      `Unknows array element schema type for: ${myRuleName} - ${JSON.stringify(
+        schemaTypes,
+      )}`,
     );
   }
 
-  const firstSchemaElementIsEnum = firstSchemaElementType === SCHEMA_TYPE.ENUM;
+  const firstSchemaElementIsEnum = firstSchemaElement.type === SCHEMA_TYPE.ENUM;
   const secondSchemaElementIsEnum =
-    secondSchemaElementType === SCHEMA_TYPE.ENUM;
+    secondSchemaElement.type === SCHEMA_TYPE.ENUM;
 
-  if (firstSchemaElementIsEnum && secondSchemaElementIsEnum) {
-    console.log('Two first elements are enums for:', myRuleName);
+  if (firstSchemaElementIsEnum) {
+    console.log(
+      loggerUtil.colorize.cyan('First element is enum for:', myRuleName),
+    );
+
+    if (secondSchemaElementIsEnum) {
+      loggerUtil.throwUnhandledSchemaError(myRuleName);
+    }
   }
 
   const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
