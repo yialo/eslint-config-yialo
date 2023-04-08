@@ -114,5 +114,23 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
     return { [myRuleName]: absentOptions };
   }
 
+  if (firstSchemaElement.type === SCHEMA_TYPE.ANY_OF) {
+    console.log(
+      loggerUtil.colorize.brightBlue('ANY_OF:', {
+        firstSchemaElement,
+        myRuleEntry,
+      }),
+    );
+  }
+
+  if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
+    console.log(
+      loggerUtil.colorize.brightYellow('ONE_OF:', {
+        firstSchemaElement,
+        myRuleEntry,
+      }),
+    );
+  }
+
   loggerUtil.throwUnhandledSchemaError(myRuleName);
 };
