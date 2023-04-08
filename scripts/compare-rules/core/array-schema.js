@@ -1,66 +1,58 @@
 'use strict';
 
-const { isObject, throwRuleConfigError } = require('../_utils');
+const { isObject, throwRuleConfigError, getSchemaType } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
 
-const getMyOptionsForArraySchema = ([myRuleName, myRuleConfig]) => {
-  const result = {
-    mainOption: null,
-    optionNames: [],
-  };
-
-  if (!Array.isArray(myRuleConfig)) {
-    return;
-  }
-
-  const [_severity, firstPart, secondPart] = myRuleConfig;
-
-  const firstPartIsObject = isObject(firstPart);
-  const firstPartIsStringOrNumber =
-    typeof firstPart === 'string' || typeof firstPart === 'number';
-
-  const secondPartIsObject = isObject(secondPart);
-  const secondPartIsAbsent = secondPart === undefined;
-
-  if (firstPartIsStringOrNumber) {
-    result.mainOption = firstPart;
-
-    if (secondPartIsObject) {
-      result.optionNames = Object.keys(secondPart);
-    } else if (!secondPartIsAbsent) {
-      throwRuleConfigError(myRuleName);
-    }
-  } else if (firstPartIsObject && secondPartIsObject) {
-    result.mainOption = firstPart;
-    result.optionNames = Object.keys(secondPart);
-  } else if (firstPartIsObject && secondPartIsAbsent) {
-    result.optionNames = Object.keys(firstPart);
-  } else if (firstPartIsObject && !secondPartIsAbsent) {
-    throwRuleConfigError(myRuleName);
-  }
-
-  return result;
-};
+/**
+  TODO:
+  - check what types have elements
+ */
 
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
+
+  if (schema.length === 0) {
+    return {};
+  }
+
+  if (schema.length > 3) {
+    throw new Error('Unexpectedly long array schema for:', myRuleName);
+  }
+
+  const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] = schema;
+
+  const firstSchemaElementType = firstSchemaElement
+    ? getSchemaType(firstSchemaElement)
+    : undefined;
+  const secondSchemaElementType = secondSchemaElement
+    ? getSchemaType(secondSchemaElement)
+    : undefined;
+  const thirdSchemaElementType = thirdSchemaElement
+    ? getSchemaType(thirdSchemaElement)
+    : undefined;
+
+  // console.log({
+  //   firstSchemaElementType,
+  //   secondSchemaElementType,
+  //   thirdSchemaElementType,
+  // });
 
   const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
     const optNames = getOptionNamesFromSchemaElement(schemaElement);
     return optNamesCollected.concat(optNames);
   }, []);
 
-  const myOptions = getMyOptionsForArraySchema(myRuleEntry);
+  // console.log({ myRuleName, myOptions, refOptionNames });
 
-  console.log({ myRuleName, myOptions, refOptionNames });
+  // const absentOptions = refOptionNames.filter(
+  //   (refOptName) => !myOptions.optionNames.includes(refOptName),
+  // );
 
-  const absentOptions = refOptionNames.filter(
-    (refOptName) => !myOptions.optionNames.includes(refOptName),
-  );
+  // if (!absentOptions.length) {
+  //   return {};
+  // }
 
-  if (!absentOptions.length) {
-    return {};
-  }
+  // return { [myRuleName]: absentOptions };
 
-  return { [myRuleName]: absentOptions };
+  return {};
 };

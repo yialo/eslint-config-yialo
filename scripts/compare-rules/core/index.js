@@ -5,7 +5,12 @@ const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules')
 
 console.log(colors.yellow.bgBlue('=== START ==='));
 
-const { groupLog, throwUnhandledSchemaError } = require('../_utils');
+const {
+  groupLog,
+  throwUnhandledSchemaError,
+  getRuleSchemaType,
+  RULE_SCHEMA_TYPE,
+} = require('../_utils');
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
 const { getAbsentPropsFromArraySchema } = require('./array-schema');
 const {
@@ -89,7 +94,7 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
   const [myRuleName, myRuleConfig] = myRuleEntry;
 
   // FIXME: remove after debug
-  // if (!['no-restricted-globals'].includes(myRuleName)) {
+  // if (!['no-constant-condition', 'unicode-bom'].includes(myRuleName)) {
   //   return output;
   // }
 
@@ -107,33 +112,33 @@ const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
     }
 
     const { schema } = metaEntry[1];
+    const schemaType = getRuleSchemaType(schema);
 
-    if (!Object.keys(schema).length) {
-      return;
+    if (schemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
+      throw new Error('Unknown rule schema type for:', myRuleName);
     }
 
-    if (Array.isArray(schema)) {
+    if (schemaType === RULE_SCHEMA_TYPE.ARRAY) {
       return getAbsentPropsFromArraySchema(schema, myRuleEntry);
     }
 
-    // if (Array.isArray(schema.anyOf)) {
-    //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
-    // }
-
-    // if (Array.isArray(schema.items)) {
-    //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
-    // }
-
-    // if (Array.isArray(schema.items?.anyOf)) {
-    //   console.log({ rule: myRuleName, schema });
-    //   validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
-    //   return;
-    // }
-
-    // if (Array.isArray(schema.items?.oneOf)) {
-    //   validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
-    //   return;
-    // }
+    if (schemaType === RULE_SCHEMA_TYPE.OBJECT) {
+      // if (Array.isArray(schema.anyOf)) {
+      //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
+      // }
+      // if (Array.isArray(schema.items)) {
+      //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
+      // }
+      // if (Array.isArray(schema.items?.anyOf)) {
+      //   console.log({ rule: myRuleName, schema });
+      //   validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
+      //   return;
+      // }
+      // if (Array.isArray(schema.items?.oneOf)) {
+      //   validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
+      //   return;
+      // }
+    }
 
     throwUnhandledSchemaError(myRuleName);
   };

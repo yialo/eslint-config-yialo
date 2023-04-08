@@ -28,3 +28,36 @@ module.exports.throwUnhandledSchemaError = (myRuleName) => {
     throw new Error(message);
   }
 };
+
+const RULE_SCHEMA_TYPE = {
+  ARRAY: 'array',
+  OBJECT: 'object',
+  UNKNOWN: 'unknown',
+};
+module.exports.RULE_SCHEMA_TYPE = RULE_SCHEMA_TYPE;
+
+module.exports.getRuleSchemaType = (ruleSchema) => {
+  if (Array.isArray(ruleSchema)) return RULE_SCHEMA_TYPE.ARRAY;
+  if (isObject(ruleSchema)) return RULE_SCHEMA_TYPE.OBJECT;
+  return RULE_SCHEMA_TYPE.UNKNOWN;
+};
+
+const SCHEMA_TYPE = {
+  ARRAY: 'array',
+  ENUM: 'enum',
+  OBJECT: 'object',
+  UNKNOWN: 'unknown',
+};
+module.exports.SCHEMA_TYPE = SCHEMA_TYPE;
+
+module.exports.getSchemaType = (schema) => {
+  if (schema.enum) {
+    return SCHEMA_TYPE.ENUM;
+  }
+
+  if (schema.type) {
+    return schema.type;
+  }
+
+  return SCHEMA_TYPE.UNKNOWN;
+};
