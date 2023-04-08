@@ -1,12 +1,13 @@
 'use strict';
 
-const { isObject, throwRuleConfigError, getSchemaType } = require('../_utils');
+const {
+  isObject,
+  throwRuleConfigError,
+  getSchemaType,
+  SCHEMA_TYPE,
+  SCHEMA_TYPES,
+} = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
-
-/**
-  TODO:
-  - check what types have elements
- */
 
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
@@ -30,6 +31,16 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const thirdSchemaElementType = thirdSchemaElement
     ? getSchemaType(thirdSchemaElement)
     : undefined;
+
+  const schemaTypes = [
+    firstSchemaElementType,
+    secondSchemaElementType,
+    thirdSchemaElementType,
+  ];
+
+  if (schemaTypes.some((type) => type === SCHEMA_TYPE.UNKNOWN)) {
+    console.log('Unknows array element schema type:', myRuleName, schemaTypes);
+  }
 
   // console.log({
   //   firstSchemaElementType,
