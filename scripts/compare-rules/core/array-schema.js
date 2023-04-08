@@ -1,6 +1,7 @@
 'use strict';
 
 const {
+  isObject,
   loggerUtil,
   SchemaTyped,
   SCHEMA_TYPE,
@@ -12,7 +13,15 @@ const MAX_SCHEMA_LENGTH = 3;
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
   const [myRuleName] = myRuleEntryRaw;
 
+  const myRuleEntry = new MyRuleEntryNormalized(myRuleEntryRaw);
+
   if (schema.length === 0) {
+    if (myRuleEntry.configuredAsArray) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleName} should be configured as severity string`,
+      );
+    }
+
     return {};
   }
 
@@ -40,13 +49,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
     );
   }
 
-  const myRuleEntry = new MyRuleEntryNormalized(myRuleEntryRaw);
-
   if (firstSchemaElement.type === SCHEMA_TYPE.ENUM) {
-    console.log(
-      loggerUtil.colorize.cyan('First element is enum for:', myRuleName),
-    );
-
     if (!Object.hasOwn(myRuleEntry.config, 0)) {
       loggerUtil.logAndThrow(
         `Rule ${myRuleName} should be configured as array with non-empty second element`,
@@ -63,11 +66,19 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
     }
 
     if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+      const myRuleOptions = myRuleEntry.config[1];
+
+      if (!isObject(myRuleOptions)) {
+        loggerUtil.logAndThrow(
+          `Options config of rule ${myRuleName} should be object`,
+          loggerUtil.colorize.brightMagenta,
+        );
+      }
+
+      const myOptionNames = Object.keys(myRuleOptions);
       const schemaOptionNames = Object.keys(
         secondSchemaElement.value.properties,
       );
-      const myOptionNames = Object.keys(myRuleEntry.config[1] ?? {});
-
       const absentOptions = schemaOptionNames.filter(
         (refOptName) => !myOptionNames.includes(refOptName),
       );
@@ -78,6 +89,29 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
 
       return { [myRuleName]: absentOptions };
     }
+  }
+
+  if (firstSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+    const myRuleOptions = myRuleEntry.config[0];
+
+    if (!isObject(myRuleOptions)) {
+      loggerUtil.logAndThrow(
+        `Options config of rule ${myRuleName} should be object`,
+        loggerUtil.colorize.brightMagenta,
+      );
+    }
+
+    const myOptionNames = Object.keys(myRuleOptions);
+    const schemaOptionNames = Object.keys(firstSchemaElement.value.properties);
+    const absentOptions = schemaOptionNames.filter(
+      (refOptName) => !myOptionNames.includes(refOptName),
+    );
+
+    if (!absentOptions.length) {
+      return {};
+    }
+
+    return { [myRuleName]: absentOptions };
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);
