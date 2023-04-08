@@ -92,6 +92,13 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+    if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+      loggerUtil.logAndThrow(
+        `Strange config of rule: ${myRuleName}`,
+        loggerUtil.bgMagenta,
+      );
+    }
+
     const myRuleOptions = myRuleEntry.config[0];
 
     if (!isObject(myRuleOptions)) {
@@ -123,14 +130,14 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
     );
   }
 
-  if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
-    console.log(
-      loggerUtil.colorize.brightYellow('ONE_OF:', {
-        firstSchemaElement,
-        myRuleEntry,
-      }),
-    );
-  }
+  // if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
+  //   console.log(
+  //     loggerUtil.colorize.brightYellow('ONE_OF:', {
+  //       firstSchemaElement,
+  //       myRuleEntry,
+  //     }),
+  //   );
+  // }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);
 };
