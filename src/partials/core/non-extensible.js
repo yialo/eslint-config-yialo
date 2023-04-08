@@ -168,13 +168,7 @@ const coreRules_nonExtensible = {
   'no-class-assign': 'error',
   'no-compare-neg-zero': 'error',
   'no-cond-assign': ['error', 'always'],
-  'no-confusing-arrow': [
-    'error',
-    {
-      allowParens: true,
-      onlyOneSimpleParam: false,
-    },
-  ],
+  'no-confusing-arrow': 'off',
   'no-console': 'off',
   'no-constant-binary-expression': 'error',
   'no-constructor-return': 'error',

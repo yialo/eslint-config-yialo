@@ -9,6 +9,9 @@ const {
 } = require('../_utils');
 const { getOptionNamesFromSchemaElement } = require('./utils');
 
+const getSchemaElementType = (schemaElement) =>
+  schemaElement ? getSchemaType(schemaElement) : null;
+
 module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   const [myRuleName] = myRuleEntry;
 
@@ -22,15 +25,9 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
 
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] = schema;
 
-  const firstSchemaElementType = firstSchemaElement
-    ? getSchemaType(firstSchemaElement)
-    : undefined;
-  const secondSchemaElementType = secondSchemaElement
-    ? getSchemaType(secondSchemaElement)
-    : undefined;
-  const thirdSchemaElementType = thirdSchemaElement
-    ? getSchemaType(thirdSchemaElement)
-    : undefined;
+  const firstSchemaElementType = getSchemaElementType(firstSchemaElement);
+  const secondSchemaElementType = getSchemaElementType(secondSchemaElement);
+  const thirdSchemaElementType = getSchemaElementType(thirdSchemaElement);
 
   const schemaTypes = [
     firstSchemaElementType,
@@ -45,11 +42,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     );
   }
 
-  // console.log({
-  //   firstSchemaElementType,
-  //   secondSchemaElementType,
-  //   thirdSchemaElementType,
-  // });
+  console.log({ schemaTypes });
 
   const refOptionNames = schema.reduce((optNamesCollected, schemaElement) => {
     const optNames = getOptionNamesFromSchemaElement(schemaElement);
