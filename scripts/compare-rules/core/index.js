@@ -147,9 +147,10 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       if (schemaType === RULE_SCHEMA_TYPE.RECORD) {
-        // if (Array.isArray(schema.anyOf)) {
-        //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
-        // }
+        if (schema.anyOf) {
+          return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
+        }
+
         // if (Array.isArray(schema.items)) {
         //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
         // }

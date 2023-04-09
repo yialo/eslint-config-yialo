@@ -377,6 +377,7 @@ const coreRules_nonExtensible = {
     'always',
     {
       avoidQuotes: true,
+      avoidExplicitReturnArrows: false,
       ignoreConstructors: false,
     },
   ],

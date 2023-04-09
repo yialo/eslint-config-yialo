@@ -1,75 +1,89 @@
 'use strict';
 
-const { loggerUtil, isObject } = require('../_utils');
+const {
+  isObject,
+  getObjectSchemaAbsentOptionsNames,
+  loggerUtil,
+  SchemaTyped,
+  SCHEMA_TYPE,
+} = require('../_utils');
 
-const getMyOptionsForAnyOfSchema = ([myRuleName, myRuleConfig]) => {
-  const result = {
-    mainOption: null,
-    optionNames: [],
-  };
+module.exports.getAbsentPropsFromAnyOfSchema = (
+  anyOfSchemasRaw,
+  myRuleEntry,
+) => {
+  const myRuleName = myRuleEntry.name;
 
-  if (!Array.isArray(myRuleConfig)) {
-    return;
-  }
+  const anyOfSchemas = anyOfSchemasRaw.map(
+    (schemaRaw) => new SchemaTyped(schemaRaw),
+  );
 
-  const [_severity, firstPart, secondPart] = myRuleConfig;
+  const allAnyOfSchemasHasArrayType = anyOfSchemas.every(
+    (schema) => schema.type === SCHEMA_TYPE.ARRAY,
+  );
 
-  const firstPartIsObject = isObject(firstPart);
-  const firstPartIsStringOrNumber =
-    typeof firstPart === 'string' || typeof firstPart === 'number';
+  if (allAnyOfSchemasHasArrayType) {
+    const allFirstElementsAreEnums = anyOfSchemas.every(
+      (schema) => schema.value.items[0].enum,
+    );
 
-  const secondPartIsObject = isObject(secondPart);
-  const secondPartIsAbsent = secondPart === undefined;
+    if (allFirstElementsAreEnums) {
+      const anyOfSchemasMatchedByEnum = anyOfSchemas.filter((schema) => {
+        const enumVariants = schema.value.items[0].enum;
+        return enumVariants.includes(myRuleEntry.config[0]);
+      });
 
-  if (firstPartIsStringOrNumber) {
-    result.mainOption = firstPart;
+      const matchedAnyOfSchemasWithTheOnlyParam =
+        anyOfSchemasMatchedByEnum.filter(
+          (schema) => schema.value.items.length === 1,
+        );
 
-    if (secondPartIsObject) {
-      result.optionNames = Object.keys(secondPart);
-    } else if (!secondPartIsAbsent) {
-      loggerUtil.throwRuleConfigError(myRuleName);
+      if (
+        matchedAnyOfSchemasWithTheOnlyParam.length ===
+        anyOfSchemasMatchedByEnum.length
+      ) {
+        return {};
+      }
+
+      const matchedAnyOfSchemasWithObjectAsSecondParam =
+        anyOfSchemasMatchedByEnum.filter(
+          (schema) => schema.value.items[1]?.type === 'object',
+        );
+
+      if (matchedAnyOfSchemasWithObjectAsSecondParam.length > 0) {
+        if (!isObject(myRuleEntry.config[1])) {
+          loggerUtil.logAndThrow(
+            `Rule ${myRuleName} should be configured as array with object as third element`,
+          );
+          return {};
+        }
+
+        const optionNamesOfMyConfigSecondElement = Object.keys(
+          myRuleEntry.config[1],
+        );
+
+        const matchedAnyOfSchemasByOptionNames =
+          matchedAnyOfSchemasWithObjectAsSecondParam.filter((schema) => {
+            const schemaOptionNames = Object.keys(
+              schema.value.items[1].properties,
+            );
+            return optionNamesOfMyConfigSecondElement.every((myOptionName) =>
+              schemaOptionNames.includes(myOptionName),
+            );
+          });
+
+        if (matchedAnyOfSchemasByOptionNames.length === 1) {
+          const propertiesOfBestMatchedSchema =
+            matchedAnyOfSchemasByOptionNames[0].value.items[1].properties;
+          return getObjectSchemaAbsentOptionsNames({
+            ruleName: myRuleName,
+            myOptions: myRuleEntry.config[1],
+            refOptions: propertiesOfBestMatchedSchema,
+          });
+        }
+      }
     }
-  } else if (firstPartIsObject && secondPartIsObject) {
-    result.mainOption = firstPart;
-    result.optionNames = Object.keys(secondPart);
-  } else if (firstPartIsObject && secondPartIsAbsent) {
-    result.optionNames = Object.keys(firstPart);
-  } else if (firstPartIsObject && !secondPartIsAbsent) {
-    loggerUtil.throwRuleConfigError(myRuleName);
   }
 
-  return result;
-};
-
-module.exports.getAbsentPropsFromAnyOfSchema = (anyOf, myRuleEntry) => {
-  const [myRuleName] = myRuleEntry;
-
-  const anyOfItems = anyOf.map(({ items }) => items);
-
-  const myOptions = getMyOptionsForAnyOfSchema(myRuleEntry);
-
-  const matchedSchema = anyOfItems.find((anyOfItem) => {
-    const possibleStringOptions = anyOfItem[0]?.enum;
-
-    if (!Array.isArray(possibleStringOptions)) {
-      loggerUtil.throwUnhandledSchemaError(myRuleName);
-    }
-    return possibleStringOptions.includes(myOptions.mainOption);
-  });
-
-  if (!matchedSchema || !matchedSchema[1]) {
-    return {};
-  }
-
-  // const refOptionNames = getOptionNamesFromSchemaElement(matchedSchema[1]);
-
-  // const absentOptions = refOptionNames.filter(
-  //   (refOptName) => !myOptions.optionNames.includes(refOptName),
-  // );
-
-  // if (!absentOptions.length) {
-  //   return {};
-  // }
-
-  // return { [myRuleName]: absentOptions };
+  loggerUtil.throwUnhandledSchemaError(myRuleName);
 };

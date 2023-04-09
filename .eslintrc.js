@@ -388,6 +388,7 @@ module.exports = {
       'always',
       {
         avoidQuotes: true,
+        avoidExplicitReturnArrows: false,
         ignoreConstructors: false,
       },
     ],
