@@ -1,12 +1,6 @@
 'use strict';
 
-const {
-  isObject,
-  loggerUtil,
-  SchemaTyped,
-  SCHEMA_TYPE,
-  MyRuleEntryNormalized,
-} = require('../_utils');
+const { isObject, loggerUtil, SchemaTyped, SCHEMA_TYPE } = require('../_utils');
 
 const MAX_SCHEMA_LENGTH = 3;
 
@@ -28,10 +22,8 @@ const getObjectSchemaAbsentOptionsNames = ({
   return { [ruleName]: absentOptions };
 };
 
-module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
-  const [myRuleName] = myRuleEntryRaw;
-
-  const myRuleEntry = new MyRuleEntryNormalized(myRuleEntryRaw);
+module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
+  const myRuleName = myRuleEntry.name;
 
   if (schema.length === 0) {
     if (myRuleEntry.configuredAsArray) {
@@ -170,12 +162,44 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntryRaw) => {
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
-    console.log(
-      loggerUtil.colorize.brightYellow('ONE_OF:', {
-        firstSchemaElement,
-        myRuleEntry,
-      }),
+    const oneOfSchemas = firstSchemaElement.value.oneOf.map(
+      (onyOfRaw) => new SchemaTyped(onyOfRaw),
     );
+
+    const objectOneOfSchemas = oneOfSchemas.filter(
+      (oneOf) => oneOf.type === SCHEMA_TYPE.OBJECT,
+    );
+
+    const myFirstConfigElement = myRuleEntry.config[0];
+
+    if (objectOneOfSchemas.length === 1) {
+      if (!isObject(myFirstConfigElement)) {
+        loggerUtil.logAndThrow(
+          `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
+          loggerUtil.colorize.bgCyan,
+        );
+      }
+
+      // return getObjectSchemaAbsentOptionsNames({
+      //   ruleName: myRuleName,
+      //   myOptions: myFirstConfigElement,
+      //   refOptions: objectOneOfSchemas[0].value.properties,
+      // });
+    }
+
+    // console.log(
+    //   loggerUtil.colorize.brightYellow(
+    //     'ONE_OF:',
+    //     JSON.stringify(
+    //       {
+    //         firstSchemaElement,
+    //         myFirstConfigElement,
+    //       },
+    //       null,
+    //       2,
+    //     ),
+    //   ),
+    // );
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);

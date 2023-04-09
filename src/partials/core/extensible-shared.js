@@ -14,21 +14,8 @@ const coreRules_extensibleShared = {
       enforceForJSX: true,
     },
   ],
-  'object-curly-spacing': [
-    'error',
-    'always',
-    {
-      arraysInObjects: true,
-      objectsInObjects: true,
-    },
-  ],
-  'semi': [
-    'error',
-    'always',
-    {
-      omitLastInOneLineBlock: false,
-    },
-  ],
+  'object-curly-spacing': 'off',
+  'semi': 'off',
 };
 
 const coreRules_extensibleShared_OFF = getDisabledRuleSet(

@@ -1,7 +1,14 @@
 'use strict';
 
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
-const { loggerUtil } = require('../_utils');
+const {
+  rules: rulesThatDisturbPrettierConfig,
+} = require('../../../node_modules/eslint-config-prettier');
+const {
+  loggerUtil,
+  RULE_SEVERITY,
+  MyRuleEntryNormalized,
+} = require('../_utils');
 
 console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 
@@ -46,8 +53,17 @@ const nonDeprecatedReferenceRuleMetas = referenceRuleMetas.filter(
 const nonDeprecatedReferenceRuleNames = nonDeprecatedReferenceRuleMetas.map(
   ([name]) => name,
 );
+const namesOfRulesThatDisturbPrettier = Object.entries(
+  rulesThatDisturbPrettierConfig,
+)
+  .filter(
+    ([_, severity]) =>
+      severity === RULE_SEVERITY.OFF.number ||
+      severity === RULE_SEVERITY.OFF.string,
+  )
+  .map(([ruleName]) => ruleName);
 
-const myFullConfig = {
+const myFullConfigRaw = {
   ...coreRules_extensibleWithBabel_only,
   ...coreRules_extensibleShared,
   ...coreRules_extensibleWithTs_nonTypeCheck,
@@ -57,10 +73,14 @@ const myFullConfig = {
   ...coreRules_tsCompat_typeCheckOnly,
 };
 
-const myRuleConfigs = Object.entries(myFullConfig);
-const myRuleNames = myRuleConfigs.map(([name]) => name);
+const myRuleEntryTuples = Object.entries(myFullConfigRaw).map((ruleEntry) => {
+  const ruleName = ruleEntry[0];
+  return [ruleName, new MyRuleEntryNormalized(ruleEntry)];
+});
 
-const myRulesNeedToRemove = myRuleNames
+const myRuleNames = myRuleEntryTuples.map(([name]) => name);
+
+const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
   .map((name) => {
     const deprecatedMatch = deprecatedReferenceRuleMetas.find(
       ([deprecatedName]) => name === deprecatedName,
@@ -85,75 +105,100 @@ const extraneousRuleNames = myRuleNames.filter(
   (name) => !nonDeprecatedReferenceRuleNames.includes(name),
 );
 
-const myRulesNeedClarification = myRuleConfigs.reduce((output, myRuleEntry) => {
-  const [myRuleName, myRuleConfig] = myRuleEntry;
+const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier = myRuleEntryTuples
+  .filter(([ruleName, ruleEntry]) => {
+    const ruleDisturbsPrettier =
+      namesOfRulesThatDisturbPrettier.includes(ruleName);
 
-  // FIXME: remove after debug
-  // if (!['no-constant-condition', 'unicode-bom'].includes(myRuleName)) {
-  //   return output;
-  // }
-
-  const getNextOutput = () => {
-    if (myRuleConfig === 'off') {
-      return;
+    if (!ruleDisturbsPrettier) {
+      return false;
     }
 
-    const metaEntry = nonDeprecatedReferenceRuleMetas.find(
-      ([refRuleName]) => refRuleName === myRuleName,
-    );
+    return ruleEntry.severity !== RULE_SEVERITY.OFF.string;
+  })
+  .map(([ruleName]) => ruleName);
 
-    if (!metaEntry) {
-      return;
-    }
+const myRulesNeedClarification = myRuleEntryTuples.reduce(
+  (output, myRuleEntryTuple) => {
+    const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 
-    const { schema } = metaEntry[1];
-    const schemaType = getRuleSchemaType(schema);
+    // FIXME: remove after debug
+    // if (!['no-constant-condition', 'unicode-bom'].includes(myRuleName)) {
+    //   return output;
+    // }
 
-    if (schemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
-      throw new Error('Unknown rule schema type for:', myRuleName);
-    }
+    const getNextOutput = () => {
+      if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
+        return;
+      }
 
-    if (schemaType === RULE_SCHEMA_TYPE.ARRAY) {
-      return getAbsentPropsFromArraySchema(schema, myRuleEntry);
-    }
+      const metaEntry = nonDeprecatedReferenceRuleMetas.find(
+        ([refRuleName]) => refRuleName === myRuleName,
+      );
 
-    if (schemaType === RULE_SCHEMA_TYPE.OBJECT) {
-      // if (Array.isArray(schema.anyOf)) {
-      //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
-      // }
-      // if (Array.isArray(schema.items)) {
-      //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
-      // }
-      // if (Array.isArray(schema.items?.anyOf)) {
-      //   console.log({ rule: myRuleName, schema });
-      //   validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
-      //   return;
-      // }
-      // if (Array.isArray(schema.items?.oneOf)) {
-      //   validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
-      //   return;
-      // }
-    }
+      if (!metaEntry) {
+        return;
+      }
 
-    loggerUtil.throwUnhandledSchemaError(myRuleName);
-  };
+      const { schema } = metaEntry[1];
+      const schemaType = getRuleSchemaType(schema);
 
-  const nextOutput = getNextOutput();
-  return nextOutput ? { ...output, ...nextOutput } : output;
-}, {});
+      if (schemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
+        throw new Error('Unknown rule schema type for:', myRuleName);
+      }
+
+      if (schemaType === RULE_SCHEMA_TYPE.LIST) {
+        return getAbsentPropsFromArraySchema(schema, myRuleEntry);
+      }
+
+      if (schemaType === RULE_SCHEMA_TYPE.RECORD) {
+        // if (Array.isArray(schema.anyOf)) {
+        //   return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
+        // }
+        // if (Array.isArray(schema.items)) {
+        //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
+        // }
+        // if (Array.isArray(schema.items?.anyOf)) {
+        //   console.log({ rule: myRuleName, schema });
+        //   validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
+        //   return;
+        // }
+        // if (Array.isArray(schema.items?.oneOf)) {
+        //   validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
+        //   return;
+        // }
+      }
+
+      loggerUtil.throwUnhandledSchemaError(myRuleName);
+    };
+
+    const nextOutput = getNextOutput();
+    return nextOutput ? { ...output, ...nextOutput } : output;
+  },
+  {},
+);
 
 // FIXME: enable after debug
-/* groupLog('Missing core rules', () => {
+/*
+loggerUtil.groupLog('Missing core rules', () => {
   console.log(missingCoreRuleNames);
 });
 
-groupLog('Extraneous core rules', () => {
+loggerUtil.groupLog('Extraneous core rules', () => {
   console.log(extraneousRuleNames);
 });
 
-groupLog('Deprecated core rules', () => {
-  console.log(myRulesNeedToRemove);
-}); */
+loggerUtil.groupLog('Deprecated core rules', () => {
+  console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
+});
+*/
+
+loggerUtil.groupLog(
+  'Core rules need to be disabled because of Prettier',
+  () => {
+    console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
+  },
+);
 
 loggerUtil.groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));

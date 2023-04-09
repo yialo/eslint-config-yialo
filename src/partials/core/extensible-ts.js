@@ -3,83 +3,15 @@
 const { getDisabledRuleSet } = require('../_utils');
 
 const coreRules_extensibleWithTs_nonTypeCheck = {
-  'brace-style': [
-    'error',
-    '1tbs',
-    {
-      allowSingleLine: false,
-    },
-  ],
-  'comma-dangle': [
-    'error',
-    {
-      arrays: 'always-multiline',
-      exports: 'always-multiline',
-      functions: 'always-multiline',
-      imports: 'always-multiline',
-      objects: 'always-multiline',
-    },
-  ],
-  'comma-spacing': [
-    'error',
-    {
-      after: true,
-      before: false,
-    },
-  ],
+  'brace-style': 'off',
+  'comma-dangle': 'off',
+  'comma-spacing': 'off',
   // ts(1016)
   'default-param-last': 'error',
-  'func-call-spacing': ['error', 'never'],
-  'indent': [
-    'error',
-    2,
-    {
-      ArrayExpression: 1,
-      CallExpression: {
-        arguments: 1,
-      },
-      flatTernaryExpressions: false,
-      FunctionDeclaration: {
-        body: 1,
-        parameters: 1,
-      },
-      FunctionExpression: {
-        body: 1,
-        parameters: 1,
-      },
-      ignoreComments: false,
-      ignoredNodes: [],
-      ImportDeclaration: 1,
-      MemberExpression: 1,
-      ObjectExpression: 1,
-      offsetTernaryExpressions: false,
-      outerIIFEBody: 1,
-      StaticBlock: {
-        body: 1,
-      },
-      SwitchCase: 1,
-      VariableDeclarator: 1,
-    },
-  ],
+  'func-call-spacing': 'off',
+  'indent': 'off',
   'init-declarations': 'off',
-  'keyword-spacing': [
-    'error',
-    {
-      after: true,
-      before: true,
-      overrides: {
-        case: {
-          after: true,
-        },
-        return: {
-          after: true,
-        },
-        throw: {
-          after: true,
-        },
-      },
-    },
-  ],
+  'keyword-spacing': 'off',
   'lines-between-class-members': [
     'error',
     'always',
@@ -97,7 +29,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
     },
   ],
   'no-extra-parens': 'off',
-  'no-extra-semi': 'error',
+  'no-extra-semi': 'off',
   'no-loop-func': 'error',
   'no-loss-of-precision': 'error',
   'no-magic-numbers': 'off',
@@ -134,23 +66,10 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   ],
   'no-useless-constructor': 'error',
   'padding-line-between-statements': 'off',
-  'quotes': [
-    'error',
-    'single',
-    {
-      allowTemplateLiterals: true,
-    },
-  ],
-  'space-before-blocks': 'error',
-  'space-before-function-paren': [
-    'error',
-    {
-      anonymous: 'always',
-      asyncArrow: 'always',
-      named: 'never',
-    },
-  ],
-  'space-infix-ops': ['error', { int32Hint: false }],
+  'quotes': 'off',
+  'space-before-blocks': 'off',
+  'space-before-function-paren': 'off',
+  'space-infix-ops': 'off',
 };
 
 const coreRules_extensibleWithTs_nonTypeCheck_OFF = getDisabledRuleSet(

@@ -4,7 +4,6 @@
 
 - Make package scoped with @yialo
 - Separate Jest config
-- Add checker of disabled rules for Prettier config
 - Try to configure rule about variable use before define for use inside functions
 - Add [standard-version](https://basarat.gitbook.io/typescript/intro-2/changelog)
 - Move some dependencies to peerDependencies
