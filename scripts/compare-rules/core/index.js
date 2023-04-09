@@ -137,7 +137,10 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       const ruleSchemaType = getRuleSchemaType(schema);
 
       if (ruleSchemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
-        throw new Error('Unknown rule schema type for:', myRuleName);
+        loggerUtil.logAndThrow(
+          `Unknown rule schema type for: ${myRuleName}`,
+          loggerUtil.colorize.bgRed,
+        );
       }
 
       if (ruleSchemaType === RULE_SCHEMA_TYPE.LIST) {
