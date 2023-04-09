@@ -29,10 +29,9 @@ module.exports.getAbsentPropsFromListRuleSchema = (schema, myRuleEntry) => {
   }
 
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
-    Array.from({ length: MAX_SCHEMA_LENGTH }).map((_, i) => {
-      const schemaEl = schema[i];
-      return new SchemaTyped(schemaEl);
-    });
+    Array.from({ length: MAX_SCHEMA_LENGTH }).map(
+      (_, i) => new SchemaTyped(schema[i]),
+    );
 
   const schemaTypes = [
     firstSchemaElement.type,

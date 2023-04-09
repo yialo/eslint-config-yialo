@@ -1,5 +1,9 @@
 'use strict';
 
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
+const { getAbsentPropsFromArraySchema } = require('./array-schema');
 
-module.exports.getAbsentPropsFromAnyOfSchema = getAbsentPropsFromAnyOfSchema;
+Object.assign(module.exports, {
+  getAbsentPropsFromAnyOfSchema,
+  getAbsentPropsFromArraySchema,
+});

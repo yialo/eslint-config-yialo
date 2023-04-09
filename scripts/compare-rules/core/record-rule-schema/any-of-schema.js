@@ -9,9 +9,10 @@ const {
 } = require('../../_utils');
 
 module.exports.getAbsentPropsFromAnyOfSchema = (
-  anyOfSchemasRaw,
+  anyOfSchemaTyped,
   myRuleEntry,
 ) => {
+  const anyOfSchemasRaw = anyOfSchemaTyped.value.anyOf;
   const myRuleName = myRuleEntry.name;
 
   const anyOfSchemas = anyOfSchemasRaw.map(

@@ -16,7 +16,10 @@ const {
 
 console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 
-const { getAbsentPropsFromAnyOfSchema } = require('./record-rule-schema');
+const {
+  getAbsentPropsFromAnyOfSchema,
+  getAbsentPropsFromArraySchema,
+} = require('./record-rule-schema');
 const { getAbsentPropsFromListRuleSchema } = require('./list-rule-schema');
 
 const {
@@ -155,11 +158,11 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         }
 
         if (schemaTyped.type === SCHEMA_TYPE.ANY_OF) {
-          return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
+          return getAbsentPropsFromAnyOfSchema(schemaTyped, myRuleEntry);
         }
 
         if (schemaTyped.type === SCHEMA_TYPE.ARRAY) {
-          console.log(loggerUtil.colorize.bgGreen(schema));
+          return getAbsentPropsFromArraySchema(schemaTyped, myRuleEntry);
         }
       }
 
