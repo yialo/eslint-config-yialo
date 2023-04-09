@@ -2,6 +2,7 @@
 
 ## Tasks
 
+- Test fully-prepared configs with Ajv
 - Make package scoped with @yialo
 - Separate Jest config
 - Try to configure rule about variable use before define for use inside functions

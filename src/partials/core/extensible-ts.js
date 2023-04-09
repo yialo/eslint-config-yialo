@@ -50,9 +50,12 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
     {
       args: 'all',
       argsIgnorePattern: '^_',
+      caughtErrors: 'all',
+      caughtErrorsIgnorePattern: undefined,
       destructuredArrayIgnorePattern: '^_',
       ignoreRestSiblings: true,
       vars: 'all',
+      varsIgnorePattern: undefined,
     },
   ],
   'no-use-before-define': [

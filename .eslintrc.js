@@ -391,7 +391,15 @@ module.exports = {
         ignoreConstructors: false,
       },
     ],
-    'one-var': ['error', 'never'],
+    'one-var': [
+      'error',
+      {
+        var: 'never',
+        let: 'never',
+        const: 'never',
+        separateRequires: true,
+      },
+    ],
     'operator-assignment': ['error', 'always'],
     'prefer-arrow-callback': [
       'error',

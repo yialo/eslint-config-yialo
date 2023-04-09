@@ -122,11 +122,6 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
   (output, myRuleEntryTuple) => {
     const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 
-    // FIXME: remove after debug
-    // if (!['no-constant-condition', 'unicode-bom'].includes(myRuleName)) {
-    //   return output;
-    // }
-
     const getNextOutput = () => {
       if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
         return;
@@ -191,7 +186,6 @@ loggerUtil.groupLog('Extraneous core rules', () => {
 loggerUtil.groupLog('Deprecated core rules', () => {
   console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
 });
-*/
 
 loggerUtil.groupLog(
   'Core rules need to be disabled because of Prettier',
@@ -199,6 +193,7 @@ loggerUtil.groupLog(
     console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
   },
 );
+ */
 
 loggerUtil.groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));

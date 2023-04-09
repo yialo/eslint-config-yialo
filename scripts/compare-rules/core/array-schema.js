@@ -37,6 +37,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
 
   if (schema.length > MAX_SCHEMA_LENGTH) {
     loggerUtil.logAndThrow(`Unexpectedly long array schema for: ${myRuleName}`);
+    return {};
   }
 
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
@@ -57,6 +58,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
         schemaTypes,
       )}`,
     );
+    return {};
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ENUM) {
@@ -65,10 +67,12 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
         `Rule ${myRuleName} should be configured as array with non-empty second element`,
         loggerUtil.colorize.brightGreen,
       );
+      return {};
     }
 
     if (secondSchemaElement.type === SCHEMA_TYPE.ENUM) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
+      return {};
     }
 
     if (secondSchemaElement.type === SCHEMA_TYPE.EMPTY) {
@@ -83,6 +87,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
           `Options config of rule ${myRuleName} should be object`,
           loggerUtil.colorize.brightMagenta,
         );
+        return {};
       }
 
       return getObjectSchemaAbsentOptionsNames({
@@ -99,6 +104,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
         `Strange config of rule: ${myRuleName}`,
         loggerUtil.bgMagenta,
       );
+      return {};
     }
 
     const myRuleOptions = myRuleEntry.config[0];
@@ -108,6 +114,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
         `Options config of rule ${myRuleName} should be object`,
         loggerUtil.colorize.brightMagenta,
       );
+      return {};
     }
 
     return getObjectSchemaAbsentOptionsNames({
@@ -132,6 +139,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
           )}`,
           loggerUtil.colorize.brightYellow,
         );
+        return {};
       }
     }
 
@@ -141,6 +149,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
 
     if (objectAnyOfSchemas.length === 0) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
+      return {};
     }
 
     const myFirstConfigElement = myRuleEntry.config[0];
@@ -149,10 +158,10 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
       loggerUtil.logAndThrow(
         `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
       );
+      return {};
     }
 
-    const hasTheOnlyObjectAnyOfSchema = objectAnyOfSchemas.length === 1;
-    if (hasTheOnlyObjectAnyOfSchema) {
+    if (objectAnyOfSchemas.length === 1) {
       return getObjectSchemaAbsentOptionsNames({
         ruleName: myRuleName,
         myOptions: myFirstConfigElement,
@@ -170,36 +179,54 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
       (oneOf) => oneOf.type === SCHEMA_TYPE.OBJECT,
     );
 
-    const myFirstConfigElement = myRuleEntry.config[0];
-
-    if (objectOneOfSchemas.length === 1) {
-      if (!isObject(myFirstConfigElement)) {
-        loggerUtil.logAndThrow(
-          `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
-          loggerUtil.colorize.bgCyan,
-        );
-      }
-
-      // return getObjectSchemaAbsentOptionsNames({
-      //   ruleName: myRuleName,
-      //   myOptions: myFirstConfigElement,
-      //   refOptions: objectOneOfSchemas[0].value.properties,
-      // });
+    if (objectOneOfSchemas.length === 0) {
+      loggerUtil.throwUnhandledSchemaError(myRuleName);
+      return {};
     }
 
-    // console.log(
-    //   loggerUtil.colorize.brightYellow(
-    //     'ONE_OF:',
-    //     JSON.stringify(
-    //       {
-    //         firstSchemaElement,
-    //         myFirstConfigElement,
-    //       },
-    //       null,
-    //       2,
-    //     ),
-    //   ),
-    // );
+    const myFirstConfigElement = myRuleEntry.config[0];
+
+    if (!isObject(myFirstConfigElement)) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
+        loggerUtil.colorize.bgCyan,
+      );
+      return {};
+    }
+
+    if (objectOneOfSchemas.length === 1) {
+      return getObjectSchemaAbsentOptionsNames({
+        ruleName: myRuleName,
+        myOptions: myFirstConfigElement,
+        refOptions: objectOneOfSchemas[0].value.properties,
+      });
+    }
+
+    const myOptionNames = Object.keys(myFirstConfigElement);
+    const matchedOneSchema = objectOneOfSchemas.find((oneOfSchema) => {
+      const schemaOptionNames = Object.keys(oneOfSchema.value.properties);
+
+      const allRefIncluded = schemaOptionNames.every((schemaOptionName) =>
+        myOptionNames.includes(schemaOptionName),
+      );
+
+      return allRefIncluded;
+    });
+
+    if (!matchedOneSchema) {
+      loggerUtil.throwRuleConfigError(myRuleName);
+      return {};
+    }
+
+    // TODO: handle more than one object config element
+    if (myRuleName === 'prefer-destructuring') {
+      console.log(
+        loggerUtil.colorize.bgRed({
+          myRuleName,
+          matchedOneSchema,
+        }),
+      );
+    }
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);

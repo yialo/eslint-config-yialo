@@ -380,7 +380,15 @@ const coreRules_nonExtensible = {
       ignoreConstructors: false,
     },
   ],
-  'one-var': ['error', 'never'],
+  'one-var': [
+    'error',
+    {
+      var: 'never',
+      let: 'never',
+      const: 'never',
+      separateRequires: true,
+    },
+  ],
   'one-var-declaration-per-line': 'off',
   'operator-assignment': ['error', 'always'],
   'operator-linebreak': 'off',
