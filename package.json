@@ -4,7 +4,7 @@
   "scripts": {
     "test": "eslint ./**/*.js",
     "compare": "node ./scripts/compare-rules",
-    "debug:compare": "nodemon -- compare",
+    "compare:debug": "nodemon -- compare",
     "find-disabled-internal": "node ./scripts/find-disabled-internal-rules",
     "prettier:base": "prettier",
     "prettier:check": "npm run prettier:base -- --list-different \"./(scripts|src)/**/*.js\"",

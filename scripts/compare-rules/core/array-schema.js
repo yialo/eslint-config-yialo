@@ -8,6 +8,7 @@ const getObjectSchemaAbsentOptionsNames = ({
   ruleName,
   myOptions,
   refOptions,
+  forSecondOptionObject = false,
 }) => {
   const myOptionNames = Object.keys(myOptions);
   const schemaOptionNames = Object.keys(refOptions);
@@ -17,6 +18,12 @@ const getObjectSchemaAbsentOptionsNames = ({
 
   if (!absentOptions.length) {
     return {};
+  }
+
+  if (forSecondOptionObject) {
+    return {
+      [`${ruleName}, second option object`]: absentOptions,
+    };
   }
 
   return { [ruleName]: absentOptions };
@@ -171,6 +178,27 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
+    if (secondSchemaElement.type !== SCHEMA_TYPE.EMPTY) {
+      const mySecondConfigElement = myRuleEntry.config[1];
+
+      if (!mySecondConfigElement) {
+        loggerUtil.logAndThrow(
+          `Rule ${myRuleName}: second config element should be present`,
+          loggerUtil.colorize.bgBlue,
+        );
+        return {};
+      }
+
+      if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+        return getObjectSchemaAbsentOptionsNames({
+          ruleName: myRuleName,
+          myOptions: mySecondConfigElement,
+          refOptions: secondSchemaElement.value.properties,
+          forSecondOptionObject: true,
+        });
+      }
+    }
+
     const oneOfSchemas = firstSchemaElement.value.oneOf.map(
       (onyOfRaw) => new SchemaTyped(onyOfRaw),
     );
@@ -203,7 +231,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
     }
 
     const myOptionNames = Object.keys(myFirstConfigElement);
-    const matchedOneSchema = objectOneOfSchemas.find((oneOfSchema) => {
+    const matchedOneOfSchema = objectOneOfSchemas.find((oneOfSchema) => {
       const schemaOptionNames = Object.keys(oneOfSchema.value.properties);
 
       const allRefIncluded = schemaOptionNames.every((schemaOptionName) =>
@@ -213,20 +241,12 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
       return allRefIncluded;
     });
 
-    if (!matchedOneSchema) {
+    if (!matchedOneOfSchema) {
       loggerUtil.throwRuleConfigError(myRuleName);
       return {};
     }
 
-    // TODO: handle more than one object config element
-    if (myRuleName === 'prefer-destructuring') {
-      console.log(
-        loggerUtil.colorize.bgRed({
-          myRuleName,
-          matchedOneSchema,
-        }),
-      );
-    }
+    return {};
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);
