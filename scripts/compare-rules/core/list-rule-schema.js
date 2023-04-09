@@ -10,7 +10,7 @@ const {
 
 const MAX_SCHEMA_LENGTH = 3;
 
-module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
+module.exports.getAbsentPropsFromListRuleSchema = (schema, myRuleEntry) => {
   const myRuleName = myRuleEntry.name;
 
   if (schema.length === 0) {
@@ -63,7 +63,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
       return {};
     }
 
-    if (secondSchemaElement.type === SCHEMA_TYPE.EMPTY) {
+    if (secondSchemaElement.type === SCHEMA_TYPE.ABSENT) {
       return {};
     }
 
@@ -159,7 +159,7 @@ module.exports.getAbsentPropsFromArraySchema = (schema, myRuleEntry) => {
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
-    if (secondSchemaElement.type !== SCHEMA_TYPE.EMPTY) {
+    if (secondSchemaElement.type !== SCHEMA_TYPE.ABSENT) {
       const mySecondConfigElement = myRuleEntry.config[1];
 
       if (!mySecondConfigElement) {

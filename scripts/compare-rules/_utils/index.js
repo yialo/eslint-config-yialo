@@ -34,14 +34,16 @@ const SCHEMA_TYPE = {
   ARRAY: 'array',
   OBJECT: 'object',
 
-  UNKNOWN: 'unknown',
+  ABSENT: 'absent',
   EMPTY: 'empty',
+  UNKNOWN: 'unknown',
 };
 module.exports.SCHEMA_TYPE = SCHEMA_TYPE;
 module.exports.SCHEMA_TYPES = Object.values(SCHEMA_TYPE);
 
 const getSchemaType = (schema) => {
-  if (!schema) return SCHEMA_TYPE.EMPTY;
+  if (!schema) return SCHEMA_TYPE.ABSENT;
+  if (Object.keys(schema).length === 0) return SCHEMA_TYPE.EMPTY;
   if (schema.const) return SCHEMA_TYPE.CONST;
   if (schema.enum) return SCHEMA_TYPE.ENUM;
   if (schema.allOf) return SCHEMA_TYPE.ALL_OF;

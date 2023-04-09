@@ -5,21 +5,19 @@ const {
   rules: rulesThatDisturbPrettierConfig,
 } = require('../../../node_modules/eslint-config-prettier');
 const {
+  getRuleSchemaType,
   loggerUtil,
-  RULE_SEVERITY,
   MyRuleEntryNormalized,
+  RULE_SCHEMA_TYPE,
+  RULE_SEVERITY,
+  SCHEMA_TYPE,
+  SchemaTyped,
 } = require('../_utils');
 
 console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 
-const { getRuleSchemaType, RULE_SCHEMA_TYPE } = require('../_utils');
-const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
-const { getAbsentPropsFromArraySchema } = require('./array-schema');
-const {
-  validateMyPropsForRuleWithItemsAnyOfSchema,
-} = require('./items-any-of-schema');
-const { getAbsentPropsFromItemArraySchema } = require('./items-array-schema');
-const { validateMyPropsForRuleWithOneOfSchema } = require('./one-of-schema');
+const { getAbsentPropsFromAnyOfSchema } = require('./record-rule-schema');
+const { getAbsentPropsFromListRuleSchema } = require('./list-rule-schema');
 
 const {
   coreRules_extensibleWithBabel_only,
@@ -136,33 +134,30 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       const { schema } = metaEntry[1];
-      const schemaType = getRuleSchemaType(schema);
+      const ruleSchemaType = getRuleSchemaType(schema);
 
-      if (schemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
+      if (ruleSchemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
         throw new Error('Unknown rule schema type for:', myRuleName);
       }
 
-      if (schemaType === RULE_SCHEMA_TYPE.LIST) {
-        return getAbsentPropsFromArraySchema(schema, myRuleEntry);
+      if (ruleSchemaType === RULE_SCHEMA_TYPE.LIST) {
+        return getAbsentPropsFromListRuleSchema(schema, myRuleEntry);
       }
 
-      if (schemaType === RULE_SCHEMA_TYPE.RECORD) {
-        if (schema.anyOf) {
+      if (ruleSchemaType === RULE_SCHEMA_TYPE.RECORD) {
+        const schemaTyped = new SchemaTyped(schema);
+
+        if (schemaTyped.type === SCHEMA_TYPE.EMPTY) {
+          return;
+        }
+
+        if (schemaTyped.type === SCHEMA_TYPE.ANY_OF) {
           return getAbsentPropsFromAnyOfSchema(schema.anyOf, myRuleEntry);
         }
 
-        // if (Array.isArray(schema.items)) {
-        //   return getAbsentPropsFromItemArraySchema(schema.items, myRuleEntry);
-        // }
-        // if (Array.isArray(schema.items?.anyOf)) {
-        //   console.log({ rule: myRuleName, schema });
-        //   validateMyPropsForRuleWithItemsAnyOfSchema(myRuleEntry);
-        //   return;
-        // }
-        // if (Array.isArray(schema.items?.oneOf)) {
-        //   validateMyPropsForRuleWithOneOfSchema(myRuleEntry, schema.items.oneOf);
-        //   return;
-        // }
+        if (schemaTyped.type === SCHEMA_TYPE.ARRAY) {
+          console.log(loggerUtil.colorize.bgGreen(schema));
+        }
       }
 
       loggerUtil.throwUnhandledSchemaError(myRuleName);

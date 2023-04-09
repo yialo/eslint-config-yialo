@@ -6,7 +6,7 @@ const {
   loggerUtil,
   SchemaTyped,
   SCHEMA_TYPE,
-} = require('../_utils');
+} = require('../../_utils');
 
 module.exports.getAbsentPropsFromAnyOfSchema = (
   anyOfSchemasRaw,
