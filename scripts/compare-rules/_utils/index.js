@@ -72,3 +72,18 @@ module.exports.MyRuleEntryNormalized = class {
     this.configuredAsArray = configIsArray;
   }
 };
+
+module.exports.RULE_SEVERITY = {
+  OFF: {
+    number: 0,
+    string: 'off',
+  },
+  WARN: {
+    number: 1,
+    string: 'warn',
+  },
+  ERROR: {
+    number: 2,
+    string: 'error',
+  },
+};
