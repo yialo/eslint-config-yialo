@@ -175,8 +175,6 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
   {},
 );
 
-// FIXME: enable after debug
-/*
 loggerUtil.groupLog('Missing core rules', () => {
   console.log(missingCoreRuleNames);
 });
@@ -195,7 +193,6 @@ loggerUtil.groupLog(
     console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
   },
 );
- */
 
 loggerUtil.groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));
