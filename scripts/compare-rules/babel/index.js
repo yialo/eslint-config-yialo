@@ -5,9 +5,9 @@ const { rules: referenceRules } = require('@babel/eslint-plugin');
 const { babelRules: myRules } = require('../../../src/partials/babel');
 const {
   loggerUtil,
-  MyRuleEntryNormalized,
   getNamesOfMyRulesDisturbPrettier,
   getReferenceRuleGroups,
+  getMyRuleGroups,
 } = require('../_utils');
 
 const referenceRuleMetaEntries = Object.entries(referenceRules).map(
@@ -17,11 +17,7 @@ const referenceRuleMetaEntries = Object.entries(referenceRules).map(
 const { deprecatedReferenceRuleMetaEntries, nonDeprecatedReferenceRuleNames } =
   getReferenceRuleGroups(referenceRuleMetaEntries);
 
-const myRuleEntryTuples = Object.entries(myRules).map((ruleEntry) => {
-  const ruleName = ruleEntry[0];
-  return [ruleName, new MyRuleEntryNormalized(ruleEntry)];
-});
-const myRuleNames = myRuleEntryTuples.map(([name]) => name);
+const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
   .map((name) => {

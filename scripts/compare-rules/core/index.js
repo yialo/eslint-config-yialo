@@ -4,13 +4,13 @@ const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules')
 const {
   getTopLevelSchemaType,
   loggerUtil,
-  MyRuleEntryNormalized,
   TOP_LEVEL_SCHEMA_TYPE,
   RULE_SEVERITY,
   SCHEMA_TYPE,
   TypedSchema,
   getNamesOfMyRulesDisturbPrettier,
   getReferenceRuleGroups,
+  getMyRuleGroups,
 } = require('../_utils');
 
 const {
@@ -57,11 +57,7 @@ const myFullConfigRaw = {
   ...coreRules_tsCompat_typeCheckOnly,
 };
 
-const myRuleEntryTuples = Object.entries(myFullConfigRaw).map((ruleEntry) => {
-  const ruleName = ruleEntry[0];
-  return [ruleName, new MyRuleEntryNormalized(ruleEntry)];
-});
-const myRuleNames = myRuleEntryTuples.map(([name]) => name);
+const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myFullConfigRaw);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
   .map((name) => {

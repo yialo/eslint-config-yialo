@@ -6,16 +6,22 @@ const {
   SCHEMA_TYPE,
 } = require('./dicts');
 const loggerUtil = require('./logger');
+const { MyRuleEntryNormalized } = require('./my-rule-entry-normalized');
+const { getMyRuleGroups } = require('./my-rule-groups');
 const { getNamesOfMyRulesDisturbPrettier } = require('./prettier');
 const { getReferenceRuleGroups } = require('./reference-rule-groups');
+const { TypedSchema } = require('./typed-schema');
 
 Object.assign(module.exports, {
-  loggerUtil,
-  getReferenceRuleGroups,
+  getMyRuleGroups,
   getNamesOfMyRulesDisturbPrettier,
+  getReferenceRuleGroups,
+  loggerUtil,
   RULE_SEVERITY,
-  TOP_LEVEL_SCHEMA_TYPE,
   SCHEMA_TYPE,
+  TOP_LEVEL_SCHEMA_TYPE,
+  TypedSchema,
+  MyRuleEntryNormalized,
 });
 
 const isObject = (value) => value !== null && typeof value === 'object';
@@ -26,44 +32,6 @@ module.exports.getTopLevelSchemaType = (ruleSchema) => {
   if (isObject(ruleSchema)) return TOP_LEVEL_SCHEMA_TYPE.RECORD;
   return TOP_LEVEL_SCHEMA_TYPE.UNKNOWN;
 };
-
-const getSchemaType = (schema) => {
-  if (!schema) return SCHEMA_TYPE.ABSENT;
-  if (Object.keys(schema).length === 0) return SCHEMA_TYPE.EMPTY;
-  if (schema.const) return SCHEMA_TYPE.CONST;
-  if (schema.enum) return SCHEMA_TYPE.ENUM;
-  if (schema.allOf) return SCHEMA_TYPE.ALL_OF;
-  if (schema.anyOf) return SCHEMA_TYPE.ANY_OF;
-  if (schema.oneOf) return SCHEMA_TYPE.ONE_OF;
-  if (schema.not) return SCHEMA_TYPE.NOT;
-  if (schema.if) return SCHEMA_TYPE.IF_THEN_ELSE;
-  if (schema.type === 'object' || schema.properties) return SCHEMA_TYPE.OBJECT;
-  if (schema.type === 'string') return SCHEMA_TYPE.STRING;
-  if (schema.type === 'integer') return SCHEMA_TYPE.NUMBER;
-  if (schema.type === 'array') return SCHEMA_TYPE.ARRAY;
-  return SCHEMA_TYPE.UNKNOWN;
-};
-
-class TypedSchema {
-  constructor(schema) {
-    this.type = getSchemaType(schema);
-    this.value = schema;
-  }
-}
-module.exports.TypedSchema = TypedSchema;
-
-class MyRuleEntryNormalized {
-  constructor(myRuleEntryRaw) {
-    const [myRuleName, myRuleConfigRaw] = myRuleEntryRaw;
-    const configIsArray = Array.isArray(myRuleConfigRaw);
-
-    this.name = myRuleName;
-    this.severity = configIsArray ? myRuleConfigRaw[0] : myRuleConfigRaw;
-    this.config = configIsArray ? myRuleConfigRaw.slice(1) : [];
-    this.configuredAsArray = configIsArray;
-  }
-}
-module.exports.MyRuleEntryNormalized = MyRuleEntryNormalized;
 
 module.exports.getObjectSchemaAbsentOptionsNames = ({
   ruleName,
