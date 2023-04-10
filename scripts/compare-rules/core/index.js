@@ -11,7 +11,7 @@ const {
   RULE_SCHEMA_TYPE,
   RULE_SEVERITY,
   SCHEMA_TYPE,
-  SchemaTyped,
+  TypedSchema,
 } = require('../_utils');
 
 console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
@@ -151,18 +151,18 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       if (ruleSchemaType === RULE_SCHEMA_TYPE.RECORD) {
-        const schemaTyped = new SchemaTyped(schema);
+        const typedSchema = new TypedSchema(schema);
 
-        if (schemaTyped.type === SCHEMA_TYPE.EMPTY) {
+        if (typedSchema.type === SCHEMA_TYPE.EMPTY) {
           return;
         }
 
-        if (schemaTyped.type === SCHEMA_TYPE.ANY_OF) {
-          return getAbsentPropsFromAnyOfSchema(schemaTyped, myRuleEntry);
+        if (typedSchema.type === SCHEMA_TYPE.ANY_OF) {
+          return getAbsentPropsFromAnyOfSchema(typedSchema, myRuleEntry);
         }
 
-        if (schemaTyped.type === SCHEMA_TYPE.ARRAY) {
-          return getAbsentPropsFromArraySchema(schemaTyped, myRuleEntry);
+        if (typedSchema.type === SCHEMA_TYPE.ARRAY) {
+          return getAbsentPropsFromArraySchema(typedSchema, myRuleEntry);
         }
       }
 

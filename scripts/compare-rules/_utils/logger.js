@@ -31,4 +31,5 @@ module.exports.throwUnhandledSchemaError = (myRuleName) => {
   logAndThrow(message);
 };
 
-module.exports.stringifyMultiline = (value) => JSON.stringify(value, null, 2);
+const stringifyMultiline = (value) => JSON.stringify(value, null, 2);
+module.exports.stringifyMultiline = stringifyMultiline;

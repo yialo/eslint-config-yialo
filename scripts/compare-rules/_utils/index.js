@@ -2,7 +2,7 @@
 
 const loggerUtil = require('./logger');
 
-module.exports.loggerUtil = loggerUtil;
+Object.assign(module.exports, { loggerUtil });
 
 const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
@@ -31,6 +31,7 @@ const SCHEMA_TYPE = {
   IF_THEN_ELSE: 'if/then/else',
 
   NUMBER: 'number',
+  STRING: 'string',
   ARRAY: 'array',
   OBJECT: 'object',
 
@@ -52,19 +53,21 @@ const getSchemaType = (schema) => {
   if (schema.not) return SCHEMA_TYPE.NOT;
   if (schema.if) return SCHEMA_TYPE.IF_THEN_ELSE;
   if (schema.type === 'object' || schema.properties) return SCHEMA_TYPE.OBJECT;
+  if (schema.type === 'string') return SCHEMA_TYPE.STRING;
   if (schema.type === 'integer') return SCHEMA_TYPE.NUMBER;
   if (schema.type === 'array') return SCHEMA_TYPE.ARRAY;
   return SCHEMA_TYPE.UNKNOWN;
 };
 
-module.exports.SchemaTyped = class {
+class TypedSchema {
   constructor(schema) {
     this.type = getSchemaType(schema);
     this.value = schema;
   }
-};
+}
+module.exports.TypedSchema = TypedSchema;
 
-module.exports.MyRuleEntryNormalized = class {
+class MyRuleEntryNormalized {
   constructor([myRuleName, myRuleConfigRaw]) {
     const configIsArray = Array.isArray(myRuleConfigRaw);
 
@@ -73,7 +76,8 @@ module.exports.MyRuleEntryNormalized = class {
     this.config = configIsArray ? myRuleConfigRaw.slice(1) : [];
     this.configuredAsArray = configIsArray;
   }
-};
+}
+module.exports.MyRuleEntryNormalized = MyRuleEntryNormalized;
 
 module.exports.RULE_SEVERITY = {
   OFF: {

@@ -1,11 +1,13 @@
 'use strict';
 
 const {
-  isObject,
+  detectUnknownSchemaInArray,
   getObjectSchemaAbsentOptionsNames,
+  isObject,
   loggerUtil,
-  SchemaTyped,
+  logUnknownSchema,
   SCHEMA_TYPE,
+  TypedSchema,
 } = require('../_utils');
 
 const MAX_SCHEMA_LENGTH = 3;
@@ -33,7 +35,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
 
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
     Array.from({ length: MAX_SCHEMA_LENGTH }).map(
-      (_, i) => new SchemaTyped(tupleSchema[i]),
+      (_, i) => new TypedSchema(tupleSchema[i]),
     );
 
   const schemaTypes = [
@@ -116,7 +118,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ANY_OF) {
     const anyOfSchemas = firstSchemaElement.value.anyOf.map(
-      (anyOfRaw) => new SchemaTyped(anyOfRaw),
+      (anyOfRaw) => new TypedSchema(anyOfRaw),
     );
 
     for (const anyOfSchema of anyOfSchemas) {
@@ -125,7 +127,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
           `rule: ${myRuleName}, unknown type detected in anyOf element ${loggerUtil.stringifyMultiline(
             anyOfSchema.value,
           )}`,
-          loggerUtil.colorize.brightYellow,
+          loggerUtil.colorize.brightRed,
         );
         return {};
       }
@@ -181,7 +183,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
     }
 
     const oneOfSchemas = firstSchemaElement.value.oneOf.map(
-      (onyOfRaw) => new SchemaTyped(onyOfRaw),
+      (onyOfRaw) => new TypedSchema(onyOfRaw),
     );
 
     const objectOneOfSchemas = oneOfSchemas.filter(

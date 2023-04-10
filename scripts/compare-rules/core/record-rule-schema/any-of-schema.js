@@ -4,8 +4,8 @@ const {
   isObject,
   getObjectSchemaAbsentOptionsNames,
   loggerUtil,
-  SchemaTyped,
   SCHEMA_TYPE,
+  TypedSchema,
 } = require('../../_utils');
 
 module.exports.getAbsentPropsFromAnyOfSchema = (
@@ -16,7 +16,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
   const myRuleName = myRuleEntry.name;
 
   const anyOfSchemas = anyOfSchemasRaw.map(
-    (schemaRaw) => new SchemaTyped(schemaRaw),
+    (schemaRaw) => new TypedSchema(schemaRaw),
   );
 
   const allAnyOfSchemasHasArrayType = anyOfSchemas.every(
