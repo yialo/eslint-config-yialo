@@ -85,16 +85,35 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
   })
   .filter(Boolean);
 
+loggerUtil.groupLog('Deprecated core rules', () => {
+  console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
+});
+
 const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
   (name) => !myRuleNames.includes(name),
 );
+
+loggerUtil.groupLog('Missing core rules', () => {
+  console.log(missingCoreRuleNames);
+});
 
 const extraneousRuleNames = myRuleNames.filter(
   (name) => !nonDeprecatedReferenceRuleNames.includes(name),
 );
 
+loggerUtil.groupLog('Extraneous core rules', () => {
+  console.log(extraneousRuleNames);
+});
+
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
   getNamesOfMyRulesDisturbPrettier(myRuleEntryTuples);
+
+loggerUtil.groupLog(
+  'Core rules need to be disabled because of Prettier',
+  () => {
+    console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
+  },
+);
 
 const myRulesNeedClarification = myRuleEntryTuples.reduce(
   (output, myRuleEntryTuple) => {
@@ -150,25 +169,6 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
     return nextOutput ? { ...output, ...nextOutput } : output;
   },
   {},
-);
-
-loggerUtil.groupLog('Missing core rules', () => {
-  console.log(missingCoreRuleNames);
-});
-
-loggerUtil.groupLog('Extraneous core rules', () => {
-  console.log(extraneousRuleNames);
-});
-
-loggerUtil.groupLog('Deprecated core rules', () => {
-  console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
-});
-
-loggerUtil.groupLog(
-  'Core rules need to be disabled because of Prettier',
-  () => {
-    console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
-  },
 );
 
 loggerUtil.groupLog('Core rules that need clarificaiton', () => {
