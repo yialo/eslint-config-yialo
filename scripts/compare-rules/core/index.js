@@ -2,10 +2,10 @@
 
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 const {
-  getRuleSchemaType,
+  getTopLevelSchemaType,
   loggerUtil,
   MyRuleEntryNormalized,
-  RULE_SCHEMA_TYPE,
+  TOP_LEVEL_SCHEMA_TYPE,
   RULE_SEVERITY,
   SCHEMA_TYPE,
   TypedSchema,
@@ -129,22 +129,22 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         return;
       }
 
-      const { schema } = metaEntry[1];
-      const ruleSchemaType = getRuleSchemaType(schema);
+      const { schema: topLevelSchema } = metaEntry[1];
+      const topLevelSchemaType = getTopLevelSchemaType(topLevelSchema);
 
-      if (ruleSchemaType === RULE_SCHEMA_TYPE.UNKNOWN) {
+      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.UNKNOWN) {
         loggerUtil.logAndThrow(
           `Unknown rule schema type for: ${myRuleName}`,
           loggerUtil.colorize.bgRed,
         );
       }
 
-      if (ruleSchemaType === RULE_SCHEMA_TYPE.TUPLE) {
-        return getAbsentPropsFromTupleRuleSchema(schema, myRuleEntry);
+      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
+        return getAbsentPropsFromTupleRuleSchema(topLevelSchema, myRuleEntry);
       }
 
-      if (ruleSchemaType === RULE_SCHEMA_TYPE.RECORD) {
-        const typedSchema = new TypedSchema(schema);
+      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
+        const typedSchema = new TypedSchema(topLevelSchema);
 
         if (typedSchema.type === SCHEMA_TYPE.EMPTY) {
           return;

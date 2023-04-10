@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.RULE_SCHEMA_TYPE = {
+module.exports.TOP_LEVEL_SCHEMA_TYPE = {
   TUPLE: 'tuple',
   RECORD: 'record',
   UNKNOWN: 'unknown',

@@ -5,8 +5,8 @@ const { loggerUtil } = require('./_utils');
 console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 
 // FIXME: enable all after debug
+void require('./core');
 void require('./babel');
-// void require('./core');
 // void require('./import');
 // void require('./jest');
 // void require('./jsx-a11y');

@@ -1,6 +1,10 @@
 'use strict';
 
-const { RULE_SEVERITY, RULE_SCHEMA_TYPE, SCHEMA_TYPE } = require('./dicts');
+const {
+  RULE_SEVERITY,
+  TOP_LEVEL_SCHEMA_TYPE,
+  SCHEMA_TYPE,
+} = require('./dicts');
 const loggerUtil = require('./logger');
 const { getNamesOfMyRulesDisturbPrettier } = require('./prettier');
 
@@ -8,17 +12,17 @@ Object.assign(module.exports, {
   loggerUtil,
   getNamesOfMyRulesDisturbPrettier,
   RULE_SEVERITY,
-  RULE_SCHEMA_TYPE,
+  TOP_LEVEL_SCHEMA_TYPE,
   SCHEMA_TYPE,
 });
 
 const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
 
-module.exports.getRuleSchemaType = (ruleSchema) => {
-  if (Array.isArray(ruleSchema)) return RULE_SCHEMA_TYPE.TUPLE;
-  if (isObject(ruleSchema)) return RULE_SCHEMA_TYPE.RECORD;
-  return RULE_SCHEMA_TYPE.UNKNOWN;
+module.exports.getTopLevelSchemaType = (ruleSchema) => {
+  if (Array.isArray(ruleSchema)) return TOP_LEVEL_SCHEMA_TYPE.TUPLE;
+  if (isObject(ruleSchema)) return TOP_LEVEL_SCHEMA_TYPE.RECORD;
+  return TOP_LEVEL_SCHEMA_TYPE.UNKNOWN;
 };
 
 const getSchemaType = (schema) => {
