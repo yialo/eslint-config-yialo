@@ -2,11 +2,14 @@
 
 const colorize = require('colors');
 
-module.exports.colorize = colorize;
+const loggerUtil = {};
+module.exports.loggerUtil = loggerUtil;
+
+loggerUtil.colorize = colorize;
 
 const THROW_ON_UNEXPECTED = true;
 
-module.exports.groupLog = (groupName, log) => {
+loggerUtil.groupLog = (groupName, log) => {
   console.group(groupName);
   log();
   console.groupEnd();
@@ -18,17 +21,17 @@ const logAndThrow = (message, colorizer = colorize.red) => {
     throw new Error(message);
   }
 };
-module.exports.logAndThrow = logAndThrow;
+loggerUtil.logAndThrow = logAndThrow;
 
-module.exports.throwRuleConfigError = (myRuleName) => {
+loggerUtil.throwRuleConfigError = (myRuleName) => {
   const message = `Unexpectedly configured rule: ${myRuleName}`;
   logAndThrow(message);
 };
 
-module.exports.throwUnhandledSchemaError = (myRuleName) => {
+loggerUtil.throwUnhandledSchemaError = (myRuleName) => {
   const message = `Unhandled schema for rule: ${myRuleName}`;
   logAndThrow(message);
 };
 
 const stringifyMultiline = (value) => JSON.stringify(value, null, 2);
-module.exports.stringifyMultiline = stringifyMultiline;
+loggerUtil.stringifyMultiline = stringifyMultiline;

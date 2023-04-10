@@ -9,7 +9,7 @@ const {
   TOP_LEVEL_SCHEMA_TYPE,
   SCHEMA_TYPE,
 } = require('./dicts');
-const loggerUtil = require('./logger');
+const { loggerUtil } = require('./logger');
 const { MyRuleEntryNormalized } = require('./my-rule-entry-normalized');
 const { getMyRuleGroups } = require('./my-rule-groups');
 const { getNamesOfMyRulesDisturbPrettier } = require('./prettier');

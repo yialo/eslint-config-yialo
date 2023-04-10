@@ -5,6 +5,7 @@ const {
 } = require('../../../node_modules/eslint-config-prettier');
 
 const { RULE_SEVERITY } = require('./dicts');
+const { loggerUtil } = require('./logger');
 
 const namesOfRulesThatDisturbPrettier = Object.entries(
   rulesThatDisturbPrettierConfig,
@@ -29,4 +30,10 @@ module.exports.getNamesOfMyRulesDisturbPrettier = (myRuleEntryTuples) => {
       return ruleEntry.severity !== RULE_SEVERITY.OFF.string;
     })
     .map(([ruleName]) => ruleName);
+};
+
+module.exports.logDeprecared = (deprecatedRuleNames, pluginName) => {
+  loggerUtil.groupLog(`[${pluginName}] Deprecated rules`, () => {
+    console.log(deprecatedRuleNames);
+  });
 };
