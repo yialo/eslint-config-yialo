@@ -2,11 +2,11 @@
 
 const { RULE_SEVERITY, RULE_SCHEMA_TYPE, SCHEMA_TYPE } = require('./dicts');
 const loggerUtil = require('./logger');
-const { namesOfRulesThatDisturbPrettier } = require('./prettier');
+const { getNamesOfMyRulesDisturbPrettier } = require('./prettier');
 
 Object.assign(module.exports, {
   loggerUtil,
-  namesOfRulesThatDisturbPrettier,
+  getNamesOfMyRulesDisturbPrettier,
   RULE_SEVERITY,
   RULE_SCHEMA_TYPE,
   SCHEMA_TYPE,

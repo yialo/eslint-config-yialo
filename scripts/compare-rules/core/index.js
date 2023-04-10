@@ -9,7 +9,7 @@ const {
   RULE_SEVERITY,
   SCHEMA_TYPE,
   TypedSchema,
-  namesOfRulesThatDisturbPrettier,
+  getNamesOfMyRulesDisturbPrettier,
 } = require('../_utils');
 
 const {
@@ -93,18 +93,8 @@ const extraneousRuleNames = myRuleNames.filter(
   (name) => !nonDeprecatedReferenceRuleNames.includes(name),
 );
 
-const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier = myRuleEntryTuples
-  .filter(([ruleName, ruleEntry]) => {
-    const ruleDisturbsPrettier =
-      namesOfRulesThatDisturbPrettier.includes(ruleName);
-
-    if (!ruleDisturbsPrettier) {
-      return false;
-    }
-
-    return ruleEntry.severity !== RULE_SEVERITY.OFF.string;
-  })
-  .map(([ruleName]) => ruleName);
+const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
+  getNamesOfMyRulesDisturbPrettier(myRuleEntryTuples);
 
 const myRulesNeedClarification = myRuleEntryTuples.reduce(
   (output, myRuleEntryTuple) => {

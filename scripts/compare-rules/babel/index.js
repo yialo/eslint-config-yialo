@@ -3,7 +3,11 @@
 const { rules: referenceRules } = require('@babel/eslint-plugin');
 
 const { babelRules: myRules } = require('../../../src/partials/babel');
-const { loggerUtil, MyRuleEntryNormalized } = require('../_utils');
+const {
+  loggerUtil,
+  MyRuleEntryNormalized,
+  getNamesOfMyRulesDisturbPrettier,
+} = require('../_utils');
 
 const referenceRuleNames = Object.keys(referenceRules).map(
   (ruleName) => `@babel/${ruleName}`,
@@ -18,3 +22,13 @@ console.log({
   referenceRuleNames,
   myRuleEntryTuples,
 });
+
+const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
+  getNamesOfMyRulesDisturbPrettier(myRuleEntryTuples);
+
+loggerUtil.groupLog(
+  'Babel rules need to be disabled because of Prettier',
+  () => {
+    console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
+  },
+);

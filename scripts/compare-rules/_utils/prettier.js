@@ -6,7 +6,7 @@ const {
 
 const { RULE_SEVERITY } = require('./dicts');
 
-module.exports.namesOfRulesThatDisturbPrettier = Object.entries(
+const namesOfRulesThatDisturbPrettier = Object.entries(
   rulesThatDisturbPrettierConfig,
 )
   .filter(
@@ -15,3 +15,18 @@ module.exports.namesOfRulesThatDisturbPrettier = Object.entries(
       severity === RULE_SEVERITY.OFF.string,
   )
   .map(([ruleName]) => ruleName);
+
+module.exports.getNamesOfMyRulesDisturbPrettier = (myRuleEntryTuples) => {
+  return myRuleEntryTuples
+    .filter(([ruleName, ruleEntry]) => {
+      const ruleDisturbsPrettier =
+        namesOfRulesThatDisturbPrettier.includes(ruleName);
+
+      if (!ruleDisturbsPrettier) {
+        return false;
+      }
+
+      return ruleEntry.severity !== RULE_SEVERITY.OFF.string;
+    })
+    .map(([ruleName]) => ruleName);
+};
