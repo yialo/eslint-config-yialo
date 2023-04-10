@@ -93,6 +93,7 @@ const coreRules_nonExtensible = {
   'line-comment-position': 'off',
   'linebreak-style': 'off',
   'lines-around-comment': 'off',
+  'logical-assignment-operators': 'off',
   'max-classes-per-file': 'off',
   'max-depth': 'off',
   'max-len': 'off',
