@@ -32,6 +32,8 @@ const { jsxA11yRules_OFF } = require('../partials/jsx-a11y');
 
 const { nodeRules_OFF } = require('../partials/node');
 
+const { prettierRules } = require('../partials/prettier');
+
 const { promiseRules } = require('../partials/promise');
 
 const { reactRules_OFF } = require('../partials/react');
@@ -104,6 +106,7 @@ module.exports = {
     'jest',
     'jsx-a11y',
     'node',
+    'prettier',
     'promise',
     'react',
     'react-hooks',
@@ -123,6 +126,7 @@ module.exports = {
     ...envOrFrameworkRelatedPluginRules_OFF,
     ...coreRules_full,
     ...importRules_BASE,
+    ...prettierRules,
     ...promiseRules,
   },
   settings: {
