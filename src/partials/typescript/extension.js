@@ -23,15 +23,8 @@ const tsRules_extension_nonTypeCheck = {
    * =============================== */
   '@typescript-eslint/brace-style':
     coreRules_extensibleWithTs_nonTypeCheck['brace-style'],
-  '@typescript-eslint/comma-dangle': [
-    coreRules_extensibleWithTs_nonTypeCheck['comma-dangle'][0],
-    {
-      ...coreRules_extensibleWithTs_nonTypeCheck['comma-dangle'][1],
-      enums: 'always-multiline',
-      generics: 'always-multiline',
-      tuples: 'always-multiline',
-    },
-  ],
+  '@typescript-eslint/comma-dangle':
+    coreRules_extensibleWithTs_nonTypeCheck['comma-dangle'],
   '@typescript-eslint/comma-spacing':
     coreRules_extensibleWithTs_nonTypeCheck['comma-spacing'],
   // ts(1016)

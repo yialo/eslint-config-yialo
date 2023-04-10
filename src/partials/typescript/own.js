@@ -38,20 +38,7 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/explicit-function-return-type': 'off',
   '@typescript-eslint/explicit-member-accessibility': 'off',
   '@typescript-eslint/explicit-module-boundary-types': 'off',
-  '@typescript-eslint/member-delimiter-style': [
-    'error',
-    {
-      multiline: {
-        delimiter: 'semi',
-        requireLast: true,
-      },
-      multilineDetection: 'brackets',
-      singleline: {
-        delimiter: 'semi',
-        requireLast: false,
-      },
-    },
-  ],
+  '@typescript-eslint/member-delimiter-style': 'off',
   '@typescript-eslint/member-ordering': 'off',
   '@typescript-eslint/method-signature-style': 'off',
   '@typescript-eslint/no-confusing-non-null-assertion': 'off',
