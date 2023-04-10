@@ -11,8 +11,8 @@
     "prettier:write": "npm run prettier:base -- --write \"./(scripts|src)/**/*.js\""
   },
   "dependencies": {
-    "@babel/eslint-parser": "7.18.2",
-    "@babel/eslint-plugin": "7.17.7",
+    "@babel/eslint-parser": "7.21.3",
+    "@babel/eslint-plugin": "7.19.1",
     "@typescript-eslint/eslint-plugin": "5.30.5",
     "@typescript-eslint/parser": "5.30.5",
     "eslint": "8.38.0",
@@ -35,7 +35,7 @@
     "prettier": "2.8.7"
   },
   "peerDependencies": {
-    "@babel/core": "^7.18.6",
+    "@babel/core": "^7.21.4",
     "typescript": "^4.7.4"
   },
   "description": "Yialo's ESLint configuration",
