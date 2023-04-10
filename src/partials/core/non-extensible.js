@@ -1,8 +1,36 @@
 'use strict';
 
-const RESTRICTED_GLOBAL_TO_MESSAGE = {
-  isFinite: 'Please use Number.isFinite instead',
-  isNaN: 'Please use Number.isNaN instead',
+const confusingBrowserGlobals = require('confusing-browser-globals');
+
+const confusingBrowserGlobalsRestrictions = confusingBrowserGlobals.map(
+  (browserGlobal) => ({
+    name: browserGlobal,
+    message: `Use window.${browserGlobal} instead.`,
+  }),
+);
+
+const GLOBALS_MOVED_TO_NUMBER = [
+  'isFinite',
+  'isNaN',
+  'NaN',
+  'parseInt',
+  'parseFloat',
+];
+
+const getNumberPropsRestriction = (numberRelatedGlobal) =>
+  `Please use Number.${numberRelatedGlobal} instead.`;
+
+const numberRelatedGlobalsRestrictions = GLOBALS_MOVED_TO_NUMBER.map(
+  (numberRelatedGlobal) => ({
+    name: numberRelatedGlobal,
+    message: getNumberPropsRestriction(numberRelatedGlobal),
+  }),
+);
+
+const RESTRICTED_PROPERTY_TO_MESSAGE = {
+  IS_FINITE: getNumberPropsRestriction('isFinite'),
+  IS_NAN: getNumberPropsRestriction('isNaN'),
+  DEFINE_GETTER_SETTER: 'Please use Object.defineProperty instead.',
 };
 
 const coreRules_nonExtensible = {
@@ -188,64 +216,8 @@ const coreRules_nonExtensible = {
   'no-regex-spaces': 'error',
   'no-restricted-globals': [
     'error',
-    { name: 'isFinite', message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite },
-    { name: 'isNaN', message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN },
-    { name: 'addEventListener' },
-    { name: 'blur' },
-    { name: 'close' },
-    { name: 'closed' },
-    { name: 'confirm' },
-    { name: 'event' },
-    { name: 'external' },
-    { name: 'find' },
-    { name: 'focus' },
-    { name: 'frameElement' },
-    { name: 'frames' },
-    { name: 'history' },
-    { name: 'innerHeight' },
-    { name: 'innerWidth' },
-    { name: 'length' },
-    { name: 'location' },
-    { name: 'locationbar' },
-    { name: 'menubar' },
-    { name: 'moveBy' },
-    { name: 'moveTo' },
-    { name: 'name' },
-    { name: 'onblur' },
-    { name: 'onerror' },
-    { name: 'onfocus' },
-    { name: 'onload' },
-    { name: 'onresize' },
-    { name: 'onunload' },
-    { name: 'open' },
-    { name: 'opener' },
-    { name: 'opera' },
-    { name: 'outerHeight' },
-    { name: 'outerWidth' },
-    { name: 'pageXOffset' },
-    { name: 'pageYOffset' },
-    { name: 'parent' },
-    { name: 'print' },
-    { name: 'removeEventListener' },
-    { name: 'resizeBy' },
-    { name: 'resizeTo' },
-    { name: 'screen' },
-    { name: 'screenLeft' },
-    { name: 'screenTop' },
-    { name: 'screenX' },
-    { name: 'screenY' },
-    { name: 'scroll' },
-    { name: 'scrollbars' },
-    { name: 'scrollBy' },
-    { name: 'scrollTo' },
-    { name: 'scrollX' },
-    { name: 'scrollY' },
-    { name: 'self' },
-    { name: 'status' },
-    { name: 'statusbar' },
-    { name: 'stop' },
-    { name: 'toolbar' },
-    { name: 'top' },
+    ...confusingBrowserGlobalsRestrictions,
+    ...numberRelatedGlobalsRestrictions,
   ],
   'no-restricted-exports': 'off',
   'no-restricted-properties': [
@@ -256,41 +228,41 @@ const coreRules_nonExtensible = {
       property: 'callee',
     },
     {
-      message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite,
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.IS_FINITE,
       object: 'global',
       property: 'isFinite',
     },
     {
-      message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite,
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.IS_FINITE,
       object: 'self',
       property: 'isFinite',
     },
     {
-      message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite,
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.IS_FINITE,
       object: 'window',
       property: 'isFinite',
     },
     {
-      message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN,
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.IS_NAN,
       object: 'global',
       property: 'isNaN',
     },
     {
-      message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN,
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.IS_NAN,
       object: 'self',
       property: 'isNaN',
     },
     {
-      message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN,
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.IS_NAN,
       object: 'window',
       property: 'isNaN',
     },
     {
-      message: 'Please use Object.defineProperty instead.',
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.DEFINE_GETTER_SETTER,
       property: '__defineGetter__',
     },
     {
-      message: 'Please use Object.defineProperty instead.',
+      message: RESTRICTED_PROPERTY_TO_MESSAGE.DEFINE_GETTER_SETTER,
       property: '__defineSetter__',
     },
     {
