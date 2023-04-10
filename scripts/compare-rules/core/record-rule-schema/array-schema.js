@@ -19,14 +19,154 @@ module.exports.getAbsentPropsFromArraySchema = (
   const { items } = arrayTypedSchema.value;
 
   if (items.anyOf) {
-    console.log(
-      loggerUtil.colorize.yellow(
-        myRuleEntry.name,
-        ': anyOf :',
-        loggerUtil.stringifyMultiline(items.anyOf),
-      ),
+    const anyOfSchemas = items.anyOf.map(
+      (anyOfRaw) => new TypedSchema(anyOfRaw),
     );
-    return {};
+
+    for (const anyOfSchema of anyOfSchemas) {
+      if (anyOfSchema.type === SCHEMA_TYPE.UNKNOWN) {
+        loggerUtil.logAndThrow(
+          `rule: ${
+            myRuleEntry.name
+          }, unknown type detected in anyOf element ${loggerUtil.stringifyMultiline(
+            anyOfSchema.value,
+          )}`,
+          loggerUtil.colorize.brightRed,
+        );
+        return {};
+      }
+    }
+
+    const objectAnyOfSchemas = anyOfSchemas.filter(
+      (anyOf) => anyOf.type === SCHEMA_TYPE.OBJECT,
+    );
+
+    if (objectAnyOfSchemas.length === 0) {
+      loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+      return {};
+    }
+
+    const hasNonObjectConfigElements = myRuleEntry.config.some(
+      (configElement) => !isObject(configElement),
+    );
+
+    if (hasNonObjectConfigElements) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleEntry.name}: all config elements should be objects`,
+      );
+      return {};
+    }
+
+    if (objectAnyOfSchemas.length === 1) {
+      for (const myConfigElement of myRuleEntry.config) {
+        const absentOptionNames = getObjectSchemaAbsentOptionsNames({
+          ruleName: myRuleEntry.name,
+          myOptions: myConfigElement,
+          refOptions: objectAnyOfSchemas[0].value.properties,
+        });
+
+        if (Object.keys(absentOptionNames).length > 0) {
+          loggerUtil.logAndThrow(
+            `Rule ${myRuleEntry.name}: config element ${JSON.stringify(
+              myConfigElement,
+            )} has missing option names: ${
+              absentOptionNames[myRuleEntry.name]
+            }`,
+          );
+          return {};
+        }
+      }
+
+      return {};
+    }
+
+    if (objectAnyOfSchemas.length === 2) {
+      // TODO: find best-matched object schema
+      const firstSchemaOptions = Object.entries(
+        objectAnyOfSchemas[0].value.properties,
+      );
+
+      const everyFirstSchemaOptionIsString = firstSchemaOptions.every(
+        ([_, option]) => option.type === 'string',
+      );
+
+      if (!everyFirstSchemaOptionIsString) {
+        loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+        return {};
+      }
+
+      const secondSchemaOptions = Object.entries(
+        objectAnyOfSchemas[1].value.properties,
+      );
+
+      const everySecondSchemaOptionIsString = secondSchemaOptions.every(
+        ([_, option]) => option.type === 'string',
+      );
+
+      if (!everySecondSchemaOptionIsString) {
+        loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+        return {};
+      }
+
+      const propertiesAreTheSame = (() => {
+        for (let i = 0; i < firstSchemaOptions.length; i++) {
+          const firstOptionsElement = firstSchemaOptions[i];
+          const secondOptionsContainTheSameElement = !!secondSchemaOptions.find(
+            (option) => {
+              return option[0] === firstOptionsElement[0];
+            },
+          );
+          if (!secondOptionsContainTheSameElement) {
+            return false;
+          }
+        }
+        return true;
+      })();
+
+      if (!propertiesAreTheSame) {
+        loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+        return {};
+      }
+
+      const commonOptions = (() => {
+        const requiredInFirstSchema = objectAnyOfSchemas[0].value.required;
+
+        const requiredInSecondSchema = objectAnyOfSchemas[1].value.required;
+
+        if (!requiredInFirstSchema && !requiredInSecondSchema) {
+          return objectAnyOfSchemas[0].value.properties;
+        }
+
+        return Object.fromEntries(
+          Object.entries(objectAnyOfSchemas[0].value.properties).filter(
+            ([optionName]) =>
+              !requiredInFirstSchema.includes(optionName) &&
+              !requiredInSecondSchema.includes(optionName),
+          ),
+        );
+      })();
+
+      for (const myConfigElement of myRuleEntry.config) {
+        const absentOptionNames = getObjectSchemaAbsentOptionsNames({
+          ruleName: myRuleEntry.name,
+          myOptions: myConfigElement,
+          refOptions: commonOptions,
+        });
+
+        if (Object.keys(absentOptionNames).length > 0) {
+          loggerUtil.logAndThrow(
+            `Rule ${myRuleEntry.name}: config element ${JSON.stringify(
+              myConfigElement,
+            )} has missing option names: ${
+              absentOptionNames[myRuleEntry.name]
+            }`,
+          );
+          return {};
+        }
+      }
+
+      return {};
+    }
   }
 
   if (items.oneOf) {
