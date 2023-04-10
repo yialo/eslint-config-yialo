@@ -10,10 +10,13 @@ const {
 
 const MAX_SCHEMA_LENGTH = 3;
 
-module.exports.getAbsentPropsFromListRuleSchema = (schema, myRuleEntry) => {
+module.exports.getAbsentPropsFromTupleRuleSchema = (
+  tupleSchema,
+  myRuleEntry,
+) => {
   const myRuleName = myRuleEntry.name;
 
-  if (schema.length === 0) {
+  if (tupleSchema.length === 0) {
     if (myRuleEntry.configuredAsArray) {
       loggerUtil.logAndThrow(
         `Rule ${myRuleName} should be configured as severity string`,
@@ -23,14 +26,14 @@ module.exports.getAbsentPropsFromListRuleSchema = (schema, myRuleEntry) => {
     return {};
   }
 
-  if (schema.length > MAX_SCHEMA_LENGTH) {
-    loggerUtil.logAndThrow(`Unexpectedly long array schema for: ${myRuleName}`);
+  if (tupleSchema.length > MAX_SCHEMA_LENGTH) {
+    loggerUtil.logAndThrow(`Unexpectedly long tuple schema for: ${myRuleName}`);
     return {};
   }
 
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
     Array.from({ length: MAX_SCHEMA_LENGTH }).map(
-      (_, i) => new SchemaTyped(schema[i]),
+      (_, i) => new SchemaTyped(tupleSchema[i]),
     );
 
   const schemaTypes = [

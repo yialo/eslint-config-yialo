@@ -20,7 +20,7 @@ const {
   getAbsentPropsFromAnyOfSchema,
   getAbsentPropsFromArraySchema,
 } = require('./record-rule-schema');
-const { getAbsentPropsFromListRuleSchema } = require('./list-rule-schema');
+const { getAbsentPropsFromTupleRuleSchema } = require('./tuple-rule-schema');
 
 const {
   coreRules_extensibleWithBabel_only,
@@ -146,8 +146,8 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         );
       }
 
-      if (ruleSchemaType === RULE_SCHEMA_TYPE.LIST) {
-        return getAbsentPropsFromListRuleSchema(schema, myRuleEntry);
+      if (ruleSchemaType === RULE_SCHEMA_TYPE.TUPLE) {
+        return getAbsentPropsFromTupleRuleSchema(schema, myRuleEntry);
       }
 
       if (ruleSchemaType === RULE_SCHEMA_TYPE.RECORD) {

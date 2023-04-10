@@ -8,14 +8,14 @@ const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
 
 const RULE_SCHEMA_TYPE = {
-  LIST: 'list',
+  TUPLE: 'tuple',
   RECORD: 'record',
   UNKNOWN: 'unknown',
 };
 module.exports.RULE_SCHEMA_TYPE = RULE_SCHEMA_TYPE;
 
 module.exports.getRuleSchemaType = (ruleSchema) => {
-  if (Array.isArray(ruleSchema)) return RULE_SCHEMA_TYPE.LIST;
+  if (Array.isArray(ruleSchema)) return RULE_SCHEMA_TYPE.TUPLE;
   if (isObject(ruleSchema)) return RULE_SCHEMA_TYPE.RECORD;
   return RULE_SCHEMA_TYPE.UNKNOWN;
 };
