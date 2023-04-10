@@ -4,10 +4,11 @@ const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules')
 const {
   detectDeprecatedRulesInMyOnes,
   getMyRuleGroups,
-  getNamesOfMyRulesDisturbPrettier,
+  getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   getTopLevelSchemaType,
   logDeprecared,
+  logPrettierInterferences,
   loggerUtil,
   RULE_SEVERITY,
   SCHEMA_TYPE,
@@ -88,13 +89,11 @@ loggerUtil.groupLog('[eslint core] Extraneous rules', () => {
 });
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
-  getNamesOfMyRulesDisturbPrettier(myRuleEntryTuples);
+  getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);
 
-loggerUtil.groupLog(
-  '[eslint core] Rules need to be disabled because of Prettier',
-  () => {
-    console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
-  },
+logPrettierInterferences(
+  namesOfMyRulesNeedToBeDisabledBecauseOfPrettier,
+  PLUGIN_NAME,
 );
 
 const myRulesNeedClarification = myRuleEntryTuples.reduce(

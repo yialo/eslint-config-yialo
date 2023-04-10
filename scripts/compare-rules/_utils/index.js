@@ -5,6 +5,10 @@ const {
   logDeprecared,
 } = require('./detect-deprecated');
 const {
+  getNamesOfMyRulesInterfereWithPrettier,
+  logPrettierInterferences,
+} = require('./detect-prettier-interference');
+const {
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
   SCHEMA_TYPE,
@@ -12,16 +16,16 @@ const {
 const { loggerUtil } = require('./logger');
 const { MyRuleEntryNormalized } = require('./my-rule-entry-normalized');
 const { getMyRuleGroups } = require('./my-rule-groups');
-const { getNamesOfMyRulesDisturbPrettier } = require('./prettier');
 const { getReferenceRuleGroups } = require('./reference-rule-groups');
 const { TypedSchema } = require('./typed-schema');
 
 Object.assign(module.exports, {
   detectDeprecatedRulesInMyOnes,
   getMyRuleGroups,
-  getNamesOfMyRulesDisturbPrettier,
+  getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   logDeprecared,
+  logPrettierInterferences,
   loggerUtil,
   RULE_SEVERITY,
   SCHEMA_TYPE,

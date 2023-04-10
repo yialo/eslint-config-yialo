@@ -14,10 +14,10 @@ const {
 const {
   detectDeprecatedRulesInMyOnes,
   getMyRuleGroups,
-  getNamesOfMyRulesDisturbPrettier,
+  getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   logDeprecared,
-  loggerUtil,
+  logPrettierInterferences,
 } = require('../_utils');
 
 const PLUGIN_NAME = '@typescript-eslint/eslint-plugin';
@@ -50,8 +50,13 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation =
 
 logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
-console.log({
-  myRuleEntryTuples,
-  nonDeprecatedReferenceRuleMetaEntries,
-  nonDeprecatedReferenceRuleNames,
-});
+const myRulesInterfereWithPrettier =
+  getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);
+
+logPrettierInterferences(myRulesInterfereWithPrettier, PLUGIN_NAME);
+
+// console.log({
+//   myRuleEntryTuples,
+//   nonDeprecatedReferenceRuleMetaEntries,
+//   nonDeprecatedReferenceRuleNames,
+// });

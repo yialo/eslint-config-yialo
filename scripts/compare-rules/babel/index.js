@@ -6,9 +6,10 @@ const { babelRules: myRules } = require('../../../src/partials/babel');
 const {
   detectDeprecatedRulesInMyOnes,
   getMyRuleGroups,
-  getNamesOfMyRulesDisturbPrettier,
+  getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   logDeprecared,
+  logPrettierInterferences,
   loggerUtil,
 } = require('../_utils');
 
@@ -48,11 +49,9 @@ loggerUtil.groupLog('[@babel/eslint-plugin] Extraneous rules', () => {
 });
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
-  getNamesOfMyRulesDisturbPrettier(myRuleEntryTuples);
+  getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);
 
-loggerUtil.groupLog(
-  '[@babel/eslint-plugin] Rules need to be disabled because of Prettier',
-  () => {
-    console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
-  },
+logPrettierInterferences(
+  namesOfMyRulesNeedToBeDisabledBecauseOfPrettier,
+  PLUGIN_NAME,
 );
