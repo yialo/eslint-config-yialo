@@ -3,7 +3,12 @@
 const {
   detectDeprecatedRulesInMyOnes,
   logDeprecared,
-} = require('./detect-deprecated');
+} = require('./detect-deprecated-rules');
+const {
+  detectExtraneousRulesInMyOnes,
+  logExtraneous,
+} = require('./detect-extraneous-rules');
+const { detectMissingRules, logMissing } = require('./detect-missing-rules');
 const {
   getNamesOfMyRulesInterfereWithPrettier,
   logPrettierInterferences,
@@ -19,31 +24,15 @@ const { getMyRuleGroups } = require('./my-rule-groups');
 const { getReferenceRuleGroups } = require('./reference-rule-groups');
 const { TypedSchema } = require('./typed-schema');
 
-Object.assign(module.exports, {
-  detectDeprecatedRulesInMyOnes,
-  getMyRuleGroups,
-  getNamesOfMyRulesInterfereWithPrettier,
-  getReferenceRuleGroups,
-  logDeprecared,
-  logPrettierInterferences,
-  loggerUtil,
-  RULE_SEVERITY,
-  SCHEMA_TYPE,
-  TOP_LEVEL_SCHEMA_TYPE,
-  TypedSchema,
-  MyRuleEntryNormalized,
-});
-
 const isObject = (value) => value !== null && typeof value === 'object';
-module.exports.isObject = isObject;
 
-module.exports.getTopLevelSchemaType = (ruleSchema) => {
-  if (Array.isArray(ruleSchema)) return TOP_LEVEL_SCHEMA_TYPE.TUPLE;
-  if (isObject(ruleSchema)) return TOP_LEVEL_SCHEMA_TYPE.RECORD;
+const getTopLevelSchemaType = (topLevelSchema) => {
+  if (Array.isArray(topLevelSchema)) return TOP_LEVEL_SCHEMA_TYPE.TUPLE;
+  if (isObject(topLevelSchema)) return TOP_LEVEL_SCHEMA_TYPE.RECORD;
   return TOP_LEVEL_SCHEMA_TYPE.UNKNOWN;
 };
 
-module.exports.getObjectSchemaAbsentOptionsNames = ({
+const getObjectSchemaAbsentOptionsNames = ({
   ruleName,
   myOptions,
   refOptions,
@@ -67,3 +56,25 @@ module.exports.getObjectSchemaAbsentOptionsNames = ({
 
   return { [ruleName]: absentOptions };
 };
+
+Object.assign(module.exports, {
+  detectDeprecatedRulesInMyOnes,
+  detectExtraneousRulesInMyOnes,
+  detectMissingRules,
+  getMyRuleGroups,
+  getNamesOfMyRulesInterfereWithPrettier,
+  getObjectSchemaAbsentOptionsNames,
+  getReferenceRuleGroups,
+  getTopLevelSchemaType,
+  isObject,
+  logDeprecared,
+  logExtraneous,
+  loggerUtil,
+  logMissing,
+  logPrettierInterferences,
+  MyRuleEntryNormalized,
+  RULE_SEVERITY,
+  SCHEMA_TYPE,
+  TOP_LEVEL_SCHEMA_TYPE,
+  TypedSchema,
+});

@@ -3,13 +3,17 @@
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 const {
   detectDeprecatedRulesInMyOnes,
+  detectExtraneousRulesInMyOnes,
+  detectMissingRules,
   getMyRuleGroups,
   getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   getTopLevelSchemaType,
   logDeprecared,
-  logPrettierInterferences,
+  logExtraneous,
   loggerUtil,
+  logMissing,
+  logPrettierInterferences,
   RULE_SEVERITY,
   SCHEMA_TYPE,
   TOP_LEVEL_SCHEMA_TYPE,
@@ -72,21 +76,19 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation =
 
 logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
-const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
-  (name) => !myRuleNames.includes(name),
+const missingRuleNames = detectMissingRules(
+  myRuleNames,
+  nonDeprecatedReferenceRuleNames,
 );
 
-loggerUtil.groupLog('[eslint core] Missing rules', () => {
-  console.log(missingCoreRuleNames);
-});
+logMissing(missingRuleNames, PLUGIN_NAME);
 
-const extraneousRuleNames = myRuleNames.filter(
-  (name) => !nonDeprecatedReferenceRuleNames.includes(name),
+const extraneousRuleNames = detectExtraneousRulesInMyOnes(
+  myRuleNames,
+  nonDeprecatedReferenceRuleNames,
 );
 
-loggerUtil.groupLog('[eslint core] Extraneous rules', () => {
-  console.log(extraneousRuleNames);
-});
+logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
   getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);
@@ -152,6 +154,6 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
   {},
 );
 
-loggerUtil.groupLog('[eslint core] Rules that need clarificaiton', () => {
+loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
   console.log(Object.entries(myRulesNeedClarification));
 });

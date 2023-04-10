@@ -5,12 +5,15 @@ const { rules: referenceRules } = require('@babel/eslint-plugin');
 const { babelRules: myRules } = require('../../../src/partials/babel');
 const {
   detectDeprecatedRulesInMyOnes,
+  detectExtraneousRulesInMyOnes,
+  detectMissingRules,
   getMyRuleGroups,
   getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   logDeprecared,
+  logExtraneous,
+  logMissing,
   logPrettierInterferences,
-  loggerUtil,
 } = require('../_utils');
 
 const PLUGIN_NAME = '@babel/eslint-plugin';
@@ -32,21 +35,19 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation =
 
 logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
-const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
-  (name) => !myRuleNames.includes(name),
+const missingRuleNames = detectMissingRules(
+  myRuleNames,
+  nonDeprecatedReferenceRuleNames,
 );
 
-loggerUtil.groupLog('[@babel/eslint-plugin] Missing rules', () => {
-  console.log(missingCoreRuleNames);
-});
+logMissing(missingRuleNames, PLUGIN_NAME);
 
-const extraneousRuleNames = myRuleNames.filter(
-  (name) => !nonDeprecatedReferenceRuleNames.includes(name),
+const extraneousRuleNames = detectExtraneousRulesInMyOnes(
+  myRuleNames,
+  nonDeprecatedReferenceRuleNames,
 );
 
-loggerUtil.groupLog('[@babel/eslint-plugin] Extraneous rules', () => {
-  console.log(extraneousRuleNames);
-});
+logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
   getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);

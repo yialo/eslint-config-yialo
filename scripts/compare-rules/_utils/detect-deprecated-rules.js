@@ -4,11 +4,11 @@ const { loggerUtil } = require('./logger');
 
 module.exports.detectDeprecatedRulesInMyOnes = (
   myRuleNames,
-  deprecatedReferenceRuleMetaEntries,
+  deprecatedRefRuleMetaEntries,
 ) => {
   return myRuleNames
     .map((name) => {
-      const deprecatedMatch = deprecatedReferenceRuleMetaEntries.find(
+      const deprecatedMatch = deprecatedRefRuleMetaEntries.find(
         ([deprecatedName]) => name === deprecatedName,
       );
 
