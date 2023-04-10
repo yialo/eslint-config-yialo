@@ -17,13 +17,28 @@ module.exports.getAbsentPropsFromArraySchema = (
 
   if (items.anyOf) {
     console.log(
-      loggerUtil.colorize.yellow(myRuleName, ': anyOf :', items.anyOf),
+      loggerUtil.colorize.yellow(
+        myRuleName,
+        ': anyOf :',
+        loggerUtil.stringifyMultiline(items.anyOf),
+      ),
     );
     return {};
   }
 
   if (items.oneOf) {
-    console.log(loggerUtil.colorize.cyan(myRuleName, ': oneOf :', items.oneOf));
+    console.log(
+      loggerUtil.colorize.cyan(
+        myRuleName,
+        ': oneOf :',
+        loggerUtil.stringifyMultiline(items.oneOf),
+      ),
+    );
+
+    /* TODO:
+    - detect if there are object variants
+     */
+
     return {};
   }
 

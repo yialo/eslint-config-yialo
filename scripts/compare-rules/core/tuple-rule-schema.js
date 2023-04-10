@@ -122,10 +122,8 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
     for (const anyOfSchema of anyOfSchemas) {
       if (anyOfSchema.type === SCHEMA_TYPE.UNKNOWN) {
         loggerUtil.logAndThrow(
-          `rule: ${myRuleName}, unknown type detected in anyOf element ${JSON.stringify(
+          `rule: ${myRuleName}, unknown type detected in anyOf element ${loggerUtil.stringifyMultiline(
             anyOfSchema.value,
-            null,
-            2,
           )}`,
           loggerUtil.colorize.brightYellow,
         );

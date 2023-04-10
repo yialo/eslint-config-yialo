@@ -30,3 +30,5 @@ module.exports.throwUnhandledSchemaError = (myRuleName) => {
   const message = `Unhandled schema for rule: ${myRuleName}`;
   logAndThrow(message);
 };
+
+module.exports.stringifyMultiline = (value) => JSON.stringify(value, null, 2);
