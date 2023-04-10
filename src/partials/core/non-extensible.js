@@ -154,7 +154,10 @@ const coreRules_nonExtensible = {
   'no-extra-bind': 'error',
   'no-extra-boolean-cast': ['error', { enforceForLogicalOperands: false }],
   'no-extra-label': 'error',
-  'no-fallthrough': ['error', { commentPattern: undefined }],
+  'no-fallthrough': [
+    'error',
+    { allowEmptyCase: false, commentPattern: undefined },
+  ],
   'no-floating-decimal': 'off',
   'no-global-assign': ['error', { exceptions: [] }],
   'no-implicit-coercion': 'off',
