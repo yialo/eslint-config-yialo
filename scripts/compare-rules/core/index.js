@@ -36,20 +36,18 @@ const {
   coreRules_tsCompat_typeCheckOnly,
 } = require('../../../src/partials/core/ts-compat');
 
-const referenceRuleMetas = [...referenceRulesIterator].map(([name, rule]) => [
-  name,
-  rule.meta,
-]);
+const referenceRuleMetaEntries = [...referenceRulesIterator].map(
+  ([name, rule]) => [name, rule.meta],
+);
 
-const deprecatedReferenceRuleMetas = referenceRuleMetas.filter(
+const deprecatedReferenceRuleMetaEntries = referenceRuleMetaEntries.filter(
   ([_, meta]) => !!meta.deprecated,
 );
-const nonDeprecatedReferenceRuleMetas = referenceRuleMetas.filter(
+const nonDeprecatedReferenceRuleMetaEntries = referenceRuleMetaEntries.filter(
   ([_, meta]) => !meta.deprecated,
 );
-const nonDeprecatedReferenceRuleNames = nonDeprecatedReferenceRuleMetas.map(
-  ([name]) => name,
-);
+const nonDeprecatedReferenceRuleNames =
+  nonDeprecatedReferenceRuleMetaEntries.map(([name]) => name);
 
 const myFullConfigRaw = {
   ...coreRules_extensibleWithBabel_only,
@@ -65,12 +63,11 @@ const myRuleEntryTuples = Object.entries(myFullConfigRaw).map((ruleEntry) => {
   const ruleName = ruleEntry[0];
   return [ruleName, new MyRuleEntryNormalized(ruleEntry)];
 });
-
 const myRuleNames = myRuleEntryTuples.map(([name]) => name);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
   .map((name) => {
-    const deprecatedMatch = deprecatedReferenceRuleMetas.find(
+    const deprecatedMatch = deprecatedReferenceRuleMetaEntries.find(
       ([deprecatedName]) => name === deprecatedName,
     );
 
@@ -85,7 +82,7 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
   })
   .filter(Boolean);
 
-loggerUtil.groupLog('Deprecated core rules', () => {
+loggerUtil.groupLog('[eslint core] Deprecated rules', () => {
   console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
 });
 
@@ -93,7 +90,7 @@ const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
   (name) => !myRuleNames.includes(name),
 );
 
-loggerUtil.groupLog('Missing core rules', () => {
+loggerUtil.groupLog('[eslint core] Missing rules', () => {
   console.log(missingCoreRuleNames);
 });
 
@@ -101,7 +98,7 @@ const extraneousRuleNames = myRuleNames.filter(
   (name) => !nonDeprecatedReferenceRuleNames.includes(name),
 );
 
-loggerUtil.groupLog('Extraneous core rules', () => {
+loggerUtil.groupLog('[eslint core] Extraneous rules', () => {
   console.log(extraneousRuleNames);
 });
 
@@ -109,7 +106,7 @@ const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
   getNamesOfMyRulesDisturbPrettier(myRuleEntryTuples);
 
 loggerUtil.groupLog(
-  'Core rules need to be disabled because of Prettier',
+  '[eslint core] Rules need to be disabled because of Prettier',
   () => {
     console.log(namesOfMyRulesNeedToBeDisabledBecauseOfPrettier);
   },
@@ -124,7 +121,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         return;
       }
 
-      const metaEntry = nonDeprecatedReferenceRuleMetas.find(
+      const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
         ([refRuleName]) => refRuleName === myRuleName,
       );
 
@@ -171,6 +168,6 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
   {},
 );
 
-loggerUtil.groupLog('Core rules that need clarificaiton', () => {
+loggerUtil.groupLog('[eslint core] Rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));
 });
