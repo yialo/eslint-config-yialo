@@ -7,20 +7,15 @@ const {
   loggerUtil,
   MyRuleEntryNormalized,
   getNamesOfMyRulesDisturbPrettier,
+  getReferenceRuleGroups,
 } = require('../_utils');
 
 const referenceRuleMetaEntries = Object.entries(referenceRules).map(
   ([ruleName, rule]) => [`@babel/${ruleName}`, rule.meta],
 );
 
-const deprecatedReferenceRuleMetaEntries = referenceRuleMetaEntries.filter(
-  ([_, meta]) => !!meta.deprecated,
-);
-const nonDeprecatedReferenceRuleMetaEntries = referenceRuleMetaEntries.filter(
-  ([_, meta]) => !meta.deprecated,
-);
-const nonDeprecatedReferenceRuleNames =
-  nonDeprecatedReferenceRuleMetaEntries.map(([name]) => name);
+const { deprecatedReferenceRuleMetaEntries, nonDeprecatedReferenceRuleNames } =
+  getReferenceRuleGroups(referenceRuleMetaEntries);
 
 const myRuleEntryTuples = Object.entries(myRules).map((ruleEntry) => {
   const ruleName = ruleEntry[0];

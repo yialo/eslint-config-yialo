@@ -69,17 +69,6 @@ const myRuleNames = Object.keys({
   ...tsRules_extension_typeCheckOnly,
 });
 
-compareRuleLists(
-  {
-    deprecatedRuleNames,
-    myRuleNames,
-    referenceRuleNames,
-  },
-  {
-    pluginName: 'typescript',
-  },
-);
-
 /* TODO: add fine-grained group checks
 const createReferenceRuleGroups = () => {
   const reference_ownRuleNames = [];

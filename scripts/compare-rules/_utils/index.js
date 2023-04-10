@@ -7,9 +7,11 @@ const {
 } = require('./dicts');
 const loggerUtil = require('./logger');
 const { getNamesOfMyRulesDisturbPrettier } = require('./prettier');
+const { getReferenceRuleGroups } = require('./reference-rule-groups');
 
 Object.assign(module.exports, {
   loggerUtil,
+  getReferenceRuleGroups,
   getNamesOfMyRulesDisturbPrettier,
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,

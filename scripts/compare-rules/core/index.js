@@ -10,6 +10,7 @@ const {
   SCHEMA_TYPE,
   TypedSchema,
   getNamesOfMyRulesDisturbPrettier,
+  getReferenceRuleGroups,
 } = require('../_utils');
 
 const {
@@ -40,14 +41,11 @@ const referenceRuleMetaEntries = [...referenceRulesIterator].map(
   ([name, rule]) => [name, rule.meta],
 );
 
-const deprecatedReferenceRuleMetaEntries = referenceRuleMetaEntries.filter(
-  ([_, meta]) => !!meta.deprecated,
-);
-const nonDeprecatedReferenceRuleMetaEntries = referenceRuleMetaEntries.filter(
-  ([_, meta]) => !meta.deprecated,
-);
-const nonDeprecatedReferenceRuleNames =
-  nonDeprecatedReferenceRuleMetaEntries.map(([name]) => name);
+const {
+  deprecatedReferenceRuleMetaEntries,
+  nonDeprecatedReferenceRuleMetaEntries,
+  nonDeprecatedReferenceRuleNames,
+} = getReferenceRuleGroups(referenceRuleMetaEntries);
 
 const myFullConfigRaw = {
   ...coreRules_extensibleWithBabel_only,
