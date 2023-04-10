@@ -356,6 +356,7 @@ const coreRules_nonExtensible = {
       avoidQuotes: true,
       avoidExplicitReturnArrows: false,
       ignoreConstructors: false,
+      methodsIgnorePattern: undefined,
     },
   ],
   'one-var': [

@@ -367,6 +367,7 @@ module.exports = {
         avoidQuotes: true,
         avoidExplicitReturnArrows: false,
         ignoreConstructors: false,
+        methodsIgnorePattern: undefined,
       },
     ],
     'one-var': [
