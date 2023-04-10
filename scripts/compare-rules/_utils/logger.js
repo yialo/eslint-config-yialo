@@ -4,8 +4,7 @@ const colorize = require('colors');
 
 module.exports.colorize = colorize;
 
-// FIXME: change to true after debut
-const THROW_ON_UNEXPECTED = false;
+const THROW_ON_UNEXPECTED = true;
 
 module.exports.groupLog = (groupName, log) => {
   console.group(groupName);

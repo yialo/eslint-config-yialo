@@ -81,7 +81,6 @@ module.exports.getAbsentPropsFromArraySchema = (
     }
 
     if (objectAnyOfSchemas.length === 2) {
-      // TODO: find best-matched object schema
       const firstSchemaOptions = Object.entries(
         objectAnyOfSchemas[0].value.properties,
       );
