@@ -1,46 +1,25 @@
 'use strict';
 
+const { RULE_SEVERITY, RULE_SCHEMA_TYPE, SCHEMA_TYPE } = require('./dicts');
 const loggerUtil = require('./logger');
+const { namesOfRulesThatDisturbPrettier } = require('./prettier');
 
-Object.assign(module.exports, { loggerUtil });
+Object.assign(module.exports, {
+  loggerUtil,
+  namesOfRulesThatDisturbPrettier,
+  RULE_SEVERITY,
+  RULE_SCHEMA_TYPE,
+  SCHEMA_TYPE,
+});
 
 const isObject = (value) => value !== null && typeof value === 'object';
 module.exports.isObject = isObject;
-
-const RULE_SCHEMA_TYPE = {
-  TUPLE: 'tuple',
-  RECORD: 'record',
-  UNKNOWN: 'unknown',
-};
-module.exports.RULE_SCHEMA_TYPE = RULE_SCHEMA_TYPE;
 
 module.exports.getRuleSchemaType = (ruleSchema) => {
   if (Array.isArray(ruleSchema)) return RULE_SCHEMA_TYPE.TUPLE;
   if (isObject(ruleSchema)) return RULE_SCHEMA_TYPE.RECORD;
   return RULE_SCHEMA_TYPE.UNKNOWN;
 };
-
-const SCHEMA_TYPE = {
-  CONST: 'const',
-  ENUM: 'enum',
-
-  ALL_OF: 'allOf',
-  ANY_OF: 'anyOf',
-  ONE_OF: 'oneOf',
-  NOT: 'not',
-  IF_THEN_ELSE: 'if/then/else',
-
-  NUMBER: 'number',
-  STRING: 'string',
-  ARRAY: 'array',
-  OBJECT: 'object',
-
-  ABSENT: 'absent',
-  EMPTY: 'empty',
-  UNKNOWN: 'unknown',
-};
-module.exports.SCHEMA_TYPE = SCHEMA_TYPE;
-module.exports.SCHEMA_TYPES = Object.values(SCHEMA_TYPE);
 
 const getSchemaType = (schema) => {
   if (!schema) return SCHEMA_TYPE.ABSENT;
@@ -79,21 +58,6 @@ class MyRuleEntryNormalized {
   }
 }
 module.exports.MyRuleEntryNormalized = MyRuleEntryNormalized;
-
-module.exports.RULE_SEVERITY = {
-  OFF: {
-    number: 0,
-    string: 'off',
-  },
-  WARN: {
-    number: 1,
-    string: 'warn',
-  },
-  ERROR: {
-    number: 2,
-    string: 'error',
-  },
-};
 
 module.exports.getObjectSchemaAbsentOptionsNames = ({
   ruleName,

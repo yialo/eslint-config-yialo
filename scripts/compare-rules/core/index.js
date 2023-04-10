@@ -2,9 +2,6 @@
 
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 const {
-  rules: rulesThatDisturbPrettierConfig,
-} = require('../../../node_modules/eslint-config-prettier');
-const {
   getRuleSchemaType,
   loggerUtil,
   MyRuleEntryNormalized,
@@ -12,9 +9,8 @@ const {
   RULE_SEVERITY,
   SCHEMA_TYPE,
   TypedSchema,
+  namesOfRulesThatDisturbPrettier,
 } = require('../_utils');
-
-console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 
 const {
   getAbsentPropsFromAnyOfSchema,
@@ -54,15 +50,6 @@ const nonDeprecatedReferenceRuleMetas = referenceRuleMetas.filter(
 const nonDeprecatedReferenceRuleNames = nonDeprecatedReferenceRuleMetas.map(
   ([name]) => name,
 );
-const namesOfRulesThatDisturbPrettier = Object.entries(
-  rulesThatDisturbPrettierConfig,
-)
-  .filter(
-    ([_, severity]) =>
-      severity === RULE_SEVERITY.OFF.number ||
-      severity === RULE_SEVERITY.OFF.string,
-  )
-  .map(([ruleName]) => ruleName);
 
 const myFullConfigRaw = {
   ...coreRules_extensibleWithBabel_only,
@@ -197,5 +184,3 @@ loggerUtil.groupLog(
 loggerUtil.groupLog('Core rules that need clarificaiton', () => {
   console.log(Object.entries(myRulesNeedClarification));
 });
-
-console.log(loggerUtil.colorize.yellow.bgBlue('=== END ==='));
