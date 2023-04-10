@@ -1,5 +1,10 @@
 'use strict';
 
+const RESTRICTED_GLOBAL_TO_MESSAGE = {
+  isFinite: 'Please use Number.isFinite instead',
+  isNaN: 'Please use Number.isNaN instead',
+};
+
 const coreRules_nonExtensible = {
   'accessor-pairs': 'off',
   'array-bracket-newline': 'off',
@@ -183,8 +188,8 @@ const coreRules_nonExtensible = {
   'no-regex-spaces': 'error',
   'no-restricted-globals': [
     'error',
-    { name: 'isFinite' },
-    { name: 'isNaN' },
+    { name: 'isFinite', message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite },
+    { name: 'isNaN', message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN },
     { name: 'addEventListener' },
     { name: 'blur' },
     { name: 'close' },
@@ -251,32 +256,32 @@ const coreRules_nonExtensible = {
       property: 'callee',
     },
     {
-      message: 'Please use Number.isFinite instead',
+      message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite,
       object: 'global',
       property: 'isFinite',
     },
     {
-      message: 'Please use Number.isFinite instead',
+      message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite,
       object: 'self',
       property: 'isFinite',
     },
     {
-      message: 'Please use Number.isFinite instead',
+      message: RESTRICTED_GLOBAL_TO_MESSAGE.isFinite,
       object: 'window',
       property: 'isFinite',
     },
     {
-      message: 'Please use Number.isNaN instead',
+      message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN,
       object: 'global',
       property: 'isNaN',
     },
     {
-      message: 'Please use Number.isNaN instead',
+      message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN,
       object: 'self',
       property: 'isNaN',
     },
     {
-      message: 'Please use Number.isNaN instead',
+      message: RESTRICTED_GLOBAL_TO_MESSAGE.isNaN,
       object: 'window',
       property: 'isNaN',
     },

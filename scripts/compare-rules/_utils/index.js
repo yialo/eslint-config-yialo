@@ -68,7 +68,8 @@ class TypedSchema {
 module.exports.TypedSchema = TypedSchema;
 
 class MyRuleEntryNormalized {
-  constructor([myRuleName, myRuleConfigRaw]) {
+  constructor(myRuleEntryRaw) {
+    const [myRuleName, myRuleConfigRaw] = myRuleEntryRaw;
     const configIsArray = Array.isArray(myRuleConfigRaw);
 
     this.name = myRuleName;

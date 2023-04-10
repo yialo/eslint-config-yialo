@@ -16,13 +16,12 @@ module.exports.getAbsentPropsFromArraySchema = (
   arrayTypedSchema,
   myRuleEntry,
 ) => {
-  const myRuleName = myRuleEntry.name;
   const { items } = arrayTypedSchema.value;
 
   if (items.anyOf) {
     console.log(
       loggerUtil.colorize.yellow(
-        myRuleName,
+        myRuleEntry.name,
         ': anyOf :',
         loggerUtil.stringifyMultiline(items.anyOf),
       ),
@@ -31,10 +30,6 @@ module.exports.getAbsentPropsFromArraySchema = (
   }
 
   if (items.oneOf) {
-    /* TODO:
-    - detect if there are object variants
-     */
-
     const oneOfSchemas = items.oneOf.map(
       (oneOfRaw) => new TypedSchema(oneOfRaw),
     );
@@ -42,7 +37,9 @@ module.exports.getAbsentPropsFromArraySchema = (
     for (const oneOfSchema of oneOfSchemas) {
       if (oneOfSchema.type === SCHEMA_TYPE.UNKNOWN) {
         loggerUtil.logAndThrow(
-          `rule: ${myRuleName}, unknown type detected in oneOf element ${loggerUtil.stringifyMultiline(
+          `rule: ${
+            myRuleEntry.name
+          }, unknown type detected in oneOf element ${loggerUtil.stringifyMultiline(
             oneOfSchema.value,
           )}`,
           loggerUtil.colorize.brightRed,
@@ -55,10 +52,41 @@ module.exports.getAbsentPropsFromArraySchema = (
       (oneOf) => oneOf.type === SCHEMA_TYPE.OBJECT,
     );
 
-    console.log(loggerUtil.colorize.cyan(myRuleName, oneOfSchemas));
+    if (objectOneOfSchemas.length !== 1) {
+      loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+      return {};
+    }
+
+    const hasNonObjectConfigElements = myRuleEntry.config.some(
+      (configElement) => !isObject(configElement),
+    );
+
+    if (hasNonObjectConfigElements) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleEntry.name}: all config elements should be objects`,
+      );
+      return {};
+    }
+
+    for (const myConfigElement of myRuleEntry.config) {
+      const absentOptionNames = getObjectSchemaAbsentOptionsNames({
+        ruleName: myRuleEntry.name,
+        myOptions: myConfigElement,
+        refOptions: objectOneOfSchemas[0].value.properties,
+      });
+
+      if (Object.keys(absentOptionNames).length > 0) {
+        loggerUtil.logAndThrow(
+          `Rule ${myRuleEntry.name}: config element ${JSON.stringify(
+            myConfigElement,
+          )} has missing option names: ${absentOptionNames[myRuleEntry.name]}`,
+        );
+        return {};
+      }
+    }
 
     return {};
   }
 
-  loggerUtil.throwUnhandledSchemaError(myRuleName);
+  loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
 };

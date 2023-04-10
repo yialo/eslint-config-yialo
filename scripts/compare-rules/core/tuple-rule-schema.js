@@ -1,11 +1,9 @@
 'use strict';
 
 const {
-  detectUnknownSchemaInArray,
   getObjectSchemaAbsentOptionsNames,
   isObject,
   loggerUtil,
-  logUnknownSchema,
   SCHEMA_TYPE,
   TypedSchema,
 } = require('../_utils');
