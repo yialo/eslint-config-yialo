@@ -2,15 +2,17 @@
 
 const referenceRulesIterator = require('../../../node_modules/eslint/lib/rules');
 const {
-  getTopLevelSchemaType,
-  loggerUtil,
-  TOP_LEVEL_SCHEMA_TYPE,
-  RULE_SEVERITY,
-  SCHEMA_TYPE,
-  TypedSchema,
+  detectDeprecatedRulesInMyOnes,
+  getMyRuleGroups,
   getNamesOfMyRulesDisturbPrettier,
   getReferenceRuleGroups,
-  getMyRuleGroups,
+  getTopLevelSchemaType,
+  logDeprecared,
+  loggerUtil,
+  RULE_SEVERITY,
+  SCHEMA_TYPE,
+  TOP_LEVEL_SCHEMA_TYPE,
+  TypedSchema,
 } = require('../_utils');
 
 const {
@@ -37,6 +39,8 @@ const {
   coreRules_tsCompat_typeCheckOnly,
 } = require('../../../src/partials/core/ts-compat');
 
+const PLUGIN_NAME = 'eslint core';
+
 const referenceRuleMetaEntries = [...referenceRulesIterator].map(
   ([name, rule]) => [name, rule.meta],
 );
@@ -59,26 +63,13 @@ const myFullConfigRaw = {
 
 const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myFullConfigRaw);
 
-const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
-  .map((name) => {
-    const deprecatedMatch = deprecatedReferenceRuleMetaEntries.find(
-      ([deprecatedName]) => name === deprecatedName,
-    );
+const myRulesNeedToBeRemovedBecauseOfDeprecation =
+  detectDeprecatedRulesInMyOnes(
+    myRuleNames,
+    deprecatedReferenceRuleMetaEntries,
+  );
 
-    if (!deprecatedMatch) {
-      return null;
-    }
-
-    return {
-      rule: deprecatedMatch[0],
-      replacements: deprecatedMatch[1].replacedBy,
-    };
-  })
-  .filter(Boolean);
-
-loggerUtil.groupLog('[eslint core] Deprecated rules', () => {
-  console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
-});
+logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
 const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
   (name) => !myRuleNames.includes(name),

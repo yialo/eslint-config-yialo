@@ -4,11 +4,15 @@ const { rules: referenceRules } = require('@babel/eslint-plugin');
 
 const { babelRules: myRules } = require('../../../src/partials/babel');
 const {
-  loggerUtil,
+  detectDeprecatedRulesInMyOnes,
+  getMyRuleGroups,
   getNamesOfMyRulesDisturbPrettier,
   getReferenceRuleGroups,
-  getMyRuleGroups,
+  logDeprecared,
+  loggerUtil,
 } = require('../_utils');
+
+const PLUGIN_NAME = '@babel/eslint-plugin';
 
 const referenceRuleMetaEntries = Object.entries(referenceRules).map(
   ([ruleName, rule]) => [`@babel/${ruleName}`, rule.meta],
@@ -19,26 +23,13 @@ const { deprecatedReferenceRuleMetaEntries, nonDeprecatedReferenceRuleNames } =
 
 const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
 
-const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
-  .map((name) => {
-    const deprecatedMatch = deprecatedReferenceRuleMetaEntries.find(
-      ([deprecatedName]) => name === deprecatedName,
-    );
+const myRulesNeedToBeRemovedBecauseOfDeprecation =
+  detectDeprecatedRulesInMyOnes(
+    myRuleNames,
+    deprecatedReferenceRuleMetaEntries,
+  );
 
-    if (!deprecatedMatch) {
-      return null;
-    }
-
-    return {
-      rule: deprecatedMatch[0],
-      replacements: deprecatedMatch[1].replacedBy,
-    };
-  })
-  .filter(Boolean);
-
-loggerUtil.groupLog('[@babel/eslint-plugin] Deprecated rules', () => {
-  console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
-});
+logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
 const missingCoreRuleNames = nonDeprecatedReferenceRuleNames.filter(
   (name) => !myRuleNames.includes(name),

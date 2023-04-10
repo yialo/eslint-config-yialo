@@ -12,55 +12,6 @@ const {
   tsRules_own_typeCheckOnly_extensibleWithJest,
 } = require('../../../src/partials/typescript/own');
 
-const compareRuleLists = (
-  { deprecatedRuleNames = [], myRuleNames, referenceRuleNames },
-  { pluginName },
-) => {
-  const nonDeprecatedReferenceRuleNames = referenceRuleNames.filter(
-    (ruleName) => !deprecatedRuleNames.includes(ruleName),
-  );
-
-  const missingRuleNames = nonDeprecatedReferenceRuleNames.filter(
-    (ruleName) => !myRuleNames.includes(ruleName),
-  );
-
-  const extraneousRuleNames = myRuleNames.filter(
-    (ruleName) => !nonDeprecatedReferenceRuleNames.includes(ruleName),
-  );
-
-  console.group(pluginName);
-  console.log('missingRuleNames', missingRuleNames.length, missingRuleNames);
-  console.log(
-    'extraneousRuleNames',
-    extraneousRuleNames.length,
-    extraneousRuleNames,
-  );
-  console.groupEnd(pluginName);
-};
-
-const getDeprecatedReferenceRuleNames = (
-  referenceRuleEntries,
-  ruleNamePrefix = '',
-) => {
-  const normalizedPrefix = ruleNamePrefix && `${ruleNamePrefix}/`;
-
-  return referenceRuleEntries
-    .filter((ruleEntry) => {
-      const rule = ruleEntry[1];
-      return rule.meta.deprecated;
-    })
-    .map(([ruleName]) => `${normalizedPrefix}${ruleName}`);
-};
-
-const referenceRuleNames = Object.keys(referenceRules).map(
-  (ruleName) => `@typescript-eslint/${ruleName}`,
-);
-
-const deprecatedRuleNames = getDeprecatedReferenceRuleNames(
-  Object.entries(referenceRules),
-  '@typescript-eslint',
-);
-
 const myRuleNames = Object.keys({
   ...tsRules_own_nonTypeCheck,
   ...tsRules_own_typeCheckOnly_nonExtensible,

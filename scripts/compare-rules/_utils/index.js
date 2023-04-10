@@ -1,6 +1,10 @@
 'use strict';
 
 const {
+  detectDeprecatedRulesInMyOnes,
+  logDeprecared,
+} = require('./detect-deprecated');
+const {
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
   SCHEMA_TYPE,
@@ -13,9 +17,11 @@ const { getReferenceRuleGroups } = require('./reference-rule-groups');
 const { TypedSchema } = require('./typed-schema');
 
 Object.assign(module.exports, {
+  detectDeprecatedRulesInMyOnes,
   getMyRuleGroups,
   getNamesOfMyRulesDisturbPrettier,
   getReferenceRuleGroups,
+  logDeprecared,
   loggerUtil,
   RULE_SEVERITY,
   SCHEMA_TYPE,

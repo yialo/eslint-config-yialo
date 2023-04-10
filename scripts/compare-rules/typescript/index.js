@@ -12,11 +12,15 @@ const {
   tsRules_own_typeCheckOnly_extensibleWithJest,
 } = require('../../../src/partials/typescript/own');
 const {
-  loggerUtil,
+  detectDeprecatedRulesInMyOnes,
+  getMyRuleGroups,
   getNamesOfMyRulesDisturbPrettier,
   getReferenceRuleGroups,
-  getMyRuleGroups,
+  logDeprecared,
+  loggerUtil,
 } = require('../_utils');
+
+const PLUGIN_NAME = '@typescript-eslint/eslint-plugin';
 
 const referenceRuleMetaEntries = Object.entries(referenceRules).map(
   ([ruleName, rule]) => [`@typescript-eslint/${ruleName}`, rule.meta],
@@ -28,12 +32,6 @@ const {
   nonDeprecatedReferenceRuleNames,
 } = getReferenceRuleGroups(referenceRuleMetaEntries);
 
-console.log({
-  deprecatedReferenceRuleMetaEntries,
-  nonDeprecatedReferenceRuleMetaEntries,
-  nonDeprecatedReferenceRuleNames,
-});
-
 const myRules = {
   ...tsRules_own_nonTypeCheck,
   ...tsRules_own_typeCheckOnly_nonExtensible,
@@ -44,26 +42,16 @@ const myRules = {
 
 const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
 
-const myRulesNeedToBeRemovedBecauseOfDeprecation = myRuleNames
-  .map((name) => {
-    const deprecatedMatch = deprecatedReferenceRuleMetaEntries.find(
-      ([deprecatedName]) => name === deprecatedName,
-    );
+const myRulesNeedToBeRemovedBecauseOfDeprecation =
+  detectDeprecatedRulesInMyOnes(
+    myRuleNames,
+    deprecatedReferenceRuleMetaEntries,
+  );
 
-    if (!deprecatedMatch) {
-      return null;
-    }
+logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
-    return {
-      rule: deprecatedMatch[0],
-      replacements: deprecatedMatch[1].replacedBy,
-    };
-  })
-  .filter(Boolean);
-
-loggerUtil.groupLog(
-  '[@typescript-eslint/eslint-plugin] Deprecated rules',
-  () => {
-    console.log(myRulesNeedToBeRemovedBecauseOfDeprecation);
-  },
-);
+console.log({
+  myRuleEntryTuples,
+  nonDeprecatedReferenceRuleMetaEntries,
+  nonDeprecatedReferenceRuleNames,
+});
