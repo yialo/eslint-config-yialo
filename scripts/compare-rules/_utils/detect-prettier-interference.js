@@ -17,7 +17,9 @@ const namesOfRulesThatInterfereWithPrettier = Object.entries(
   )
   .map(([ruleName]) => ruleName);
 
-module.exports.getNamesOfMyRulesInterfereWithPrettier = (myRuleEntryTuples) => {
+module.exports.detectRulesInterfereWithPrettierInMyOnes = (
+  myRuleEntryTuples,
+) => {
   return myRuleEntryTuples
     .filter(([ruleName, ruleEntry]) => {
       const ruleInterfereWithPrettier =

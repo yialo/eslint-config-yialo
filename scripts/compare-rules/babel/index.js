@@ -7,8 +7,8 @@ const {
   detectDeprecatedRulesInMyOnes,
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
+  detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
-  getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   logDeprecared,
   logExtraneous,
@@ -32,26 +32,22 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation =
     myRuleNames,
     deprecatedReferenceRuleMetaEntries,
   );
-
 logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
 const missingRuleNames = detectMissingRules(
   myRuleNames,
   nonDeprecatedReferenceRuleNames,
 );
-
 logMissing(missingRuleNames, PLUGIN_NAME);
 
 const extraneousRuleNames = detectExtraneousRulesInMyOnes(
   myRuleNames,
   nonDeprecatedReferenceRuleNames,
 );
-
 logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
-  getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);
-
+  detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
 logPrettierInterferences(
   namesOfMyRulesNeedToBeDisabledBecauseOfPrettier,
   PLUGIN_NAME,

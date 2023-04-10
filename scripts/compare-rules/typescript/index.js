@@ -13,10 +13,14 @@ const {
 } = require('../../../src/partials/typescript/own');
 const {
   detectDeprecatedRulesInMyOnes,
+  detectExtraneousRulesInMyOnes,
+  detectMissingRules,
+  detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
-  getNamesOfMyRulesInterfereWithPrettier,
   getReferenceRuleGroups,
   logDeprecared,
+  logExtraneous,
+  logMissing,
   logPrettierInterferences,
 } = require('../_utils');
 
@@ -47,16 +51,25 @@ const myRulesNeedToBeRemovedBecauseOfDeprecation =
     myRuleNames,
     deprecatedReferenceRuleMetaEntries,
   );
-
 logDeprecared(myRulesNeedToBeRemovedBecauseOfDeprecation, PLUGIN_NAME);
 
-const myRulesInterfereWithPrettier =
-  getNamesOfMyRulesInterfereWithPrettier(myRuleEntryTuples);
+const missingRuleNames = detectMissingRules(
+  myRuleNames,
+  nonDeprecatedReferenceRuleNames,
+);
+logMissing(missingRuleNames, PLUGIN_NAME);
 
+const extraneousRuleNames = detectExtraneousRulesInMyOnes(
+  myRuleNames,
+  nonDeprecatedReferenceRuleNames,
+);
+logExtraneous(extraneousRuleNames, PLUGIN_NAME);
+
+const myRulesInterfereWithPrettier =
+  detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
 logPrettierInterferences(myRulesInterfereWithPrettier, PLUGIN_NAME);
 
-// console.log({
-//   myRuleEntryTuples,
-//   nonDeprecatedReferenceRuleMetaEntries,
-//   nonDeprecatedReferenceRuleNames,
-// });
+// FIXME: remove after debug
+console.log({
+  nonDeprecatedReferenceRuleMetaEntries,
+});

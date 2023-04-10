@@ -10,7 +10,7 @@ const {
 } = require('./detect-extraneous-rules');
 const { detectMissingRules, logMissing } = require('./detect-missing-rules');
 const {
-  getNamesOfMyRulesInterfereWithPrettier,
+  detectRulesInterfereWithPrettierInMyOnes,
   logPrettierInterferences,
 } = require('./detect-prettier-interference');
 const {
@@ -62,7 +62,7 @@ Object.assign(module.exports, {
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
   getMyRuleGroups,
-  getNamesOfMyRulesInterfereWithPrettier,
+  detectRulesInterfereWithPrettierInMyOnes,
   getObjectSchemaAbsentOptionsNames,
   getReferenceRuleGroups,
   getTopLevelSchemaType,
