@@ -15,16 +15,15 @@ const {
   logMissing,
   logPrettierInterferences,
   RULE_SEVERITY,
-  SCHEMA_TYPE,
   TOP_LEVEL_SCHEMA_TYPE,
-  TypedSchema,
 } = require('../_utils');
 
 const {
-  getAbsentPropsFromAnyOfSchema,
-  getAbsentPropsFromArraySchema,
-} = require('./record-rule-schema');
-const { getAbsentPropsFromTupleRuleSchema } = require('./tuple-rule-schema');
+  getAbsentPropsFromRecordTopLevelSchema,
+} = require('./record-top-level-schema');
+const {
+  getAbsentPropsFromTupleTopLevelSchema,
+} = require('./tuple-top-level-schema');
 
 const {
   coreRules_extensibleWithBabel_only,
@@ -142,23 +141,17 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
-        return getAbsentPropsFromTupleRuleSchema(topLevelSchema, myRuleEntry);
+        return getAbsentPropsFromTupleTopLevelSchema(
+          topLevelSchema,
+          myRuleEntry,
+        );
       }
 
       if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
-        const typedSchema = new TypedSchema(topLevelSchema);
-
-        if (typedSchema.type === SCHEMA_TYPE.EMPTY) {
-          return null;
-        }
-
-        if (typedSchema.type === SCHEMA_TYPE.ANY_OF) {
-          return getAbsentPropsFromAnyOfSchema(typedSchema, myRuleEntry);
-        }
-
-        if (typedSchema.type === SCHEMA_TYPE.ARRAY) {
-          return getAbsentPropsFromArraySchema(typedSchema, myRuleEntry);
-        }
+        return getAbsentPropsFromRecordTopLevelSchema(
+          topLevelSchema,
+          myRuleEntry,
+        );
       }
 
       loggerUtil.throwUnhandledSchemaError(myRuleName);

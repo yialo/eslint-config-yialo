@@ -10,7 +10,7 @@ const {
 
 const MAX_SCHEMA_LENGTH = 1;
 
-module.exports.getAbsentPropsFromTupleRuleSchema = (
+module.exports.getAbsentPropsFromTupleTopLevelSchema = (
   tupleSchema,
   myRuleEntry,
 ) => {

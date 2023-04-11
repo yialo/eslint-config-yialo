@@ -25,10 +25,14 @@ const {
   logMissing,
   logPrettierInterferences,
   RULE_SEVERITY,
-  SCHEMA_TYPE,
   TOP_LEVEL_SCHEMA_TYPE,
 } = require('../_utils');
-const { getAbsentPropsFromTupleRuleSchema } = require('./tuple-rule-schema');
+const {
+  getAbsentPropsFromRecordTopLevelSchema,
+} = require('./record-top-level-schema');
+const {
+  getAbsentPropsFromTupleTopLevelSchema,
+} = require('./tuple-top-level-schema');
 
 const PLUGIN_NAME = '@typescript-eslint/eslint-plugin';
 
@@ -103,7 +107,17 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
-        return getAbsentPropsFromTupleRuleSchema(topLevelSchema, myRuleEntry);
+        return getAbsentPropsFromTupleTopLevelSchema(
+          topLevelSchema,
+          myRuleEntry,
+        );
+      }
+
+      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
+        return getAbsentPropsFromRecordTopLevelSchema(
+          topLevelSchema,
+          myRuleEntry,
+        );
       }
 
       return null;

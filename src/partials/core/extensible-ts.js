@@ -39,9 +39,9 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'no-shadow': [
     'error',
     {
+      allow: [],
       builtinGlobals: false,
       hoist: 'functions',
-      allow: [],
       ignoreOnInitialization: false,
     },
   ],

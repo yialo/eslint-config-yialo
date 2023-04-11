@@ -79,8 +79,14 @@ const tsRules_extension_nonTypeCheck = {
   '@typescript-eslint/no-redeclare': 'off',
   '@typescript-eslint/no-restricted-imports':
     coreRules_extensibleWithTs_nonTypeCheck['no-restricted-imports'],
-  '@typescript-eslint/no-shadow':
-    coreRules_extensibleWithTs_nonTypeCheck['no-shadow'],
+  '@typescript-eslint/no-shadow': [
+    coreRules_extensibleWithTs_nonTypeCheck['no-shadow'][0],
+    {
+      ...coreRules_extensibleWithTs_nonTypeCheck['no-shadow'][1],
+      ignoreTypeValueShadow: true,
+      ignoreFunctionTypeParameterNameValueShadow: true,
+    },
+  ],
   '@typescript-eslint/no-unused-vars':
     coreRules_extensibleWithTs_nonTypeCheck['no-unused-vars'],
   /**

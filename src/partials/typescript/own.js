@@ -16,7 +16,10 @@ const tsRules_own_nonTypeCheck = {
     },
   ],
   '@typescript-eslint/ban-tslint-comment': 'off',
-  '@typescript-eslint/ban-types': ['error', {}],
+  '@typescript-eslint/ban-types': [
+    'error',
+    { extendDefaults: false, types: {} },
+  ],
   '@typescript-eslint/class-literal-property-style': 'off',
   '@typescript-eslint/consistent-generic-constructors': ['warn', 'constructor'],
   '@typescript-eslint/consistent-indexed-object-style': 'off',
@@ -44,14 +47,29 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/no-confusing-non-null-assertion': 'off',
   '@typescript-eslint/no-duplicate-enum-values': 'warn',
   '@typescript-eslint/no-dynamic-delete': 'off',
-  '@typescript-eslint/no-empty-interface': 'error',
+  '@typescript-eslint/no-empty-interface': [
+    'error',
+    { allowSingleExtends: true },
+  ],
   '@typescript-eslint/no-explicit-any': 'off',
   '@typescript-eslint/no-extra-non-null-assertion': 'error',
   '@typescript-eslint/no-extraneous-class': 'off',
-  '@typescript-eslint/no-inferrable-types': 'error',
+  '@typescript-eslint/no-inferrable-types': [
+    'error',
+    {
+      ignoreParameters: false,
+      ignoreProperties: false,
+    },
+  ],
   '@typescript-eslint/no-invalid-void-type': 'off',
   '@typescript-eslint/no-misused-new': 'error',
-  '@typescript-eslint/no-namespace': 'error',
+  '@typescript-eslint/no-namespace': [
+    'error',
+    {
+      allowDeclarations: false,
+      allowDefinitionFiles: true,
+    },
+  ],
   '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'off',
   '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
   '@typescript-eslint/no-non-null-assertion': 'off',
@@ -78,7 +96,14 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/prefer-optional-chain': 'warn',
   '@typescript-eslint/prefer-return-this-type': 'off',
   '@typescript-eslint/prefer-ts-expect-error': 'off',
-  '@typescript-eslint/triple-slash-reference': 'error',
+  '@typescript-eslint/triple-slash-reference': [
+    'error',
+    {
+      lib: 'always',
+      path: 'never',
+      types: 'prefer-import',
+    },
+  ],
   '@typescript-eslint/type-annotation-spacing': 'off',
   '@typescript-eslint/typedef': 'off',
   '@typescript-eslint/unified-signatures': 'off',
@@ -103,13 +128,29 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
   ],
   '@typescript-eslint/no-for-in-array': 'error',
   '@typescript-eslint/no-meaningless-void-operator': 'off',
-  '@typescript-eslint/no-misused-promises': 'error',
+  '@typescript-eslint/no-misused-promises': [
+    'error',
+    {
+      checksConditionals: true,
+      checksVoidReturn: true,
+      checksSpreads: true,
+    },
+  ],
   '@typescript-eslint/no-redundant-type-constituents': 'off',
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
-  '@typescript-eslint/no-unnecessary-condition': 'error',
+  '@typescript-eslint/no-unnecessary-condition': [
+    'error',
+    {
+      allowConstantLoopConditions: false,
+      allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing: false,
+    },
+  ],
   '@typescript-eslint/no-unnecessary-qualifier': 'off',
   '@typescript-eslint/no-unnecessary-type-arguments': 'off',
-  '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+  '@typescript-eslint/no-unnecessary-type-assertion': [
+    'error',
+    { typesToIgnore: [] },
+  ],
   '@typescript-eslint/no-unsafe-argument': 'error',
   '@typescript-eslint/no-unsafe-assignment': 'error',
   '@typescript-eslint/no-unsafe-call': 'error',
@@ -131,7 +172,16 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
       checkCompoundAssignments: true,
     },
   ],
-  '@typescript-eslint/restrict-template-expressions': 'error',
+  '@typescript-eslint/restrict-template-expressions': [
+    'error',
+    {
+      allowAny: false,
+      allowBoolean: false,
+      allowNullish: false,
+      allowNumber: true,
+      allowRegExp: false,
+    },
+  ],
   '@typescript-eslint/sort-type-union-intersection-members': 'off',
   '@typescript-eslint/strict-boolean-expressions': 'off',
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
@@ -142,7 +192,12 @@ const tsRules_own_typeCheckOnly_nonExtensible_OFF = getDisabledRuleSet(
 );
 
 const tsRules_own_typeCheckOnly_extensibleWithJest = {
-  '@typescript-eslint/unbound-method': 'error',
+  '@typescript-eslint/unbound-method': [
+    'error',
+    {
+      ignoreStatic: false,
+    },
+  ],
 };
 
 const tsRules_own_typeCheckOnly_extensibleWithJest_OFF = getDisabledRuleSet(
