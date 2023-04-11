@@ -22,7 +22,6 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
         `Rule ${myRuleName} should be configured as severity string`,
       );
     }
-
     return null;
   }
 
@@ -44,7 +43,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
 
   if (schemaTypes.some((type) => type === SCHEMA_TYPE.UNKNOWN)) {
     loggerUtil.logAndThrow(
-      `Unknows array element schema type for: ${myRuleName} - ${JSON.stringify(
+      `Unknows tuple element schema type for: ${myRuleName} - ${JSON.stringify(
         schemaTypes,
       )}`,
     );

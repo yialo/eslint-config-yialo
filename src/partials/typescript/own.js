@@ -16,9 +16,9 @@ const tsRules_own_nonTypeCheck = {
     },
   ],
   '@typescript-eslint/ban-tslint-comment': 'off',
-  '@typescript-eslint/ban-types': 'error',
+  '@typescript-eslint/ban-types': ['error', {}],
   '@typescript-eslint/class-literal-property-style': 'off',
-  '@typescript-eslint/consistent-generic-constructors': 'warn',
+  '@typescript-eslint/consistent-generic-constructors': ['warn', 'constructor'],
   '@typescript-eslint/consistent-indexed-object-style': 'off',
   '@typescript-eslint/consistent-type-assertions': [
     'error',
