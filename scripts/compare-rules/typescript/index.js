@@ -28,9 +28,6 @@ const {
   TOP_LEVEL_SCHEMA_TYPE,
 } = require('../_utils');
 const {
-  getAbsentPropsFromRecordTopLevelSchema,
-} = require('./record-top-level-schema');
-const {
   getAbsentPropsFromTupleTopLevelSchema,
 } = require('./tuple-top-level-schema');
 
@@ -114,10 +111,22 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
-        return getAbsentPropsFromRecordTopLevelSchema(
-          topLevelSchema,
-          myRuleEntry,
+        const recordIsPseudoTuple = Object.keys(topLevelSchema).every(
+          (propName) => Number.isInteger(Number(propName)),
         );
+
+        if (recordIsPseudoTuple) {
+          const preudoTupleAsTuple = Object.values(topLevelSchema).map(
+            (elementSchema) => elementSchema,
+          );
+
+          return getAbsentPropsFromTupleTopLevelSchema(
+            preudoTupleAsTuple,
+            myRuleEntry,
+          );
+        }
+
+        loggerUtil.throwUnhandledSchemaError(myRuleName);
       }
 
       return null;
