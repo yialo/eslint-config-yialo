@@ -54,6 +54,7 @@ const {
   deprecatedReferenceRuleMetaEntries,
   nonDeprecatedReferenceRuleMetaEntries,
   nonDeprecatedReferenceRuleNames,
+  referenceRuleNames,
 } = getReferenceRuleGroups(referenceRuleMetaEntries);
 
 const myFullConfigRaw = {
@@ -83,7 +84,7 @@ logMissing(missingRuleNames, PLUGIN_NAME);
 
 const extraneousRuleNames = detectExtraneousRulesInMyOnes(
   myRuleNames,
-  nonDeprecatedReferenceRuleNames,
+  referenceRuleNames,
 );
 logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
@@ -98,7 +99,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
   (output, myRuleEntryTuple) => {
     const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 
-    const getNextOutput = () => {
+    const nextOutput = (() => {
       if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
         return;
       }
@@ -142,9 +143,8 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       }
 
       loggerUtil.throwUnhandledSchemaError(myRuleName);
-    };
+    })();
 
-    const nextOutput = getNextOutput();
     return nextOutput ? { ...output, ...nextOutput } : output;
   },
   {},

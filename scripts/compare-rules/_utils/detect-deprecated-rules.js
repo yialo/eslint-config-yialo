@@ -16,9 +16,11 @@ module.exports.detectDeprecatedRulesInMyOnes = (
         return null;
       }
 
+      const hasReplacement = deprecatedMatch[1].replacedBy.length > 0;
+
       return {
         rule: deprecatedMatch[0],
-        replacements: deprecatedMatch[1].replacedBy,
+        replacements: hasReplacement ? deprecatedMatch[1].replacedBy : null,
       };
     })
     .filter(Boolean);

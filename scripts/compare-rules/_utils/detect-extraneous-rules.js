@@ -4,11 +4,9 @@ const { loggerUtil } = require('./logger');
 
 module.exports.detectExtraneousRulesInMyOnes = (
   myRuleNames,
-  nonDeprecatedRefRuleNames,
+  allRefRuleNames,
 ) => {
-  return myRuleNames.filter(
-    (name) => !nonDeprecatedRefRuleNames.includes(name),
-  );
+  return myRuleNames.filter((name) => !allRefRuleNames.includes(name));
 };
 
 module.exports.logExtraneous = (extraneousRuleNames, pluginName) => {

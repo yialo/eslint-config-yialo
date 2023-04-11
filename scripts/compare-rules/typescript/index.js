@@ -20,6 +20,7 @@ const {
   getReferenceRuleGroups,
   logDeprecared,
   logExtraneous,
+  loggerUtil,
   logMissing,
   logPrettierInterferences,
 } = require('../_utils');
@@ -69,7 +70,14 @@ const myRulesInterfereWithPrettier =
   detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
 logPrettierInterferences(myRulesInterfereWithPrettier, PLUGIN_NAME);
 
-// FIXME: remove after debug
-console.log({
-  nonDeprecatedReferenceRuleMetaEntries,
-});
+const myRulesNeedClarification = myRuleEntryTuples.reduce(
+  (output, myRuleEntryTuple) => {
+    console.log(myRuleEntryTuple);
+    return output;
+  },
+  {},
+);
+
+// loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
+//   console.log(Object.entries(myRulesNeedClarification));
+// });
