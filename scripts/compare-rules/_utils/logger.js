@@ -7,7 +7,8 @@ module.exports.loggerUtil = loggerUtil;
 
 loggerUtil.colorize = colorize;
 
-const THROW_ON_UNEXPECTED = true;
+// FIXME: enable all after debug
+const THROW_ON_UNEXPECTED = false;
 
 loggerUtil.groupLog = (groupName, log) => {
   console.group(groupName);

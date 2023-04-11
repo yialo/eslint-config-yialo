@@ -100,7 +100,26 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
     const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 
     const nextOutput = (() => {
+      const severityDefinedAsNumber =
+        myRuleEntry.severity === RULE_SEVERITY.OFF.number ||
+        myRuleEntry.severity === RULE_SEVERITY.WARN.number ||
+        myRuleEntry.severity === RULE_SEVERITY.ERROR.number;
+
+      if (severityDefinedAsNumber) {
+        loggerUtil.logAndThrow(
+          `Rule ${myRuleName}: severity should be defined as string, not number`,
+        );
+
+        return;
+      }
+
       if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
+        if (myRuleEntry.configuredAsArray) {
+          loggerUtil.logAndThrow(
+            `Rule ${myRuleName}: disabled rule should be configured as string, not tuple`,
+          );
+        }
+
         return;
       }
 

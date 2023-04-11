@@ -18,12 +18,17 @@ const {
   detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
   getReferenceRuleGroups,
+  getTopLevelSchemaType,
   logDeprecared,
   logExtraneous,
   loggerUtil,
   logMissing,
   logPrettierInterferences,
+  RULE_SEVERITY,
+  SCHEMA_TYPE,
+  TOP_LEVEL_SCHEMA_TYPE,
 } = require('../_utils');
+const { getAbsentPropsFromTupleRuleSchema } = require('./tuple-rule-schema');
 
 const PLUGIN_NAME = '@typescript-eslint/eslint-plugin';
 
@@ -72,12 +77,43 @@ logPrettierInterferences(myRulesInterfereWithPrettier, PLUGIN_NAME);
 
 const myRulesNeedClarification = myRuleEntryTuples.reduce(
   (output, myRuleEntryTuple) => {
-    console.log(myRuleEntryTuple);
-    return output;
+    const [myRuleName, myRuleEntry] = myRuleEntryTuple;
+
+    const nextOutput = (() => {
+      if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
+        return;
+      }
+
+      const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
+        ([refRuleName]) => refRuleName === myRuleName,
+      );
+
+      if (!metaEntry) {
+        return;
+      }
+
+      const { schema: topLevelSchema } = metaEntry[1];
+      const topLevelSchemaType = getTopLevelSchemaType(topLevelSchema);
+
+      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.UNKNOWN) {
+        loggerUtil.logAndThrow(
+          `Unknown rule schema type for: ${myRuleName}`,
+          loggerUtil.colorize.bgRed,
+        );
+      }
+
+      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
+        return getAbsentPropsFromTupleRuleSchema(topLevelSchema, myRuleEntry);
+      }
+
+      return {};
+    })();
+
+    return nextOutput ? { ...output, ...nextOutput } : output;
   },
   {},
 );
 
-// loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
-//   console.log(Object.entries(myRulesNeedClarification));
-// });
+loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
+  console.log(Object.entries(myRulesNeedClarification));
+});

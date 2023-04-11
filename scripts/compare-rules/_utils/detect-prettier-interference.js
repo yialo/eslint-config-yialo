@@ -29,7 +29,11 @@ module.exports.detectRulesInterfereWithPrettierInMyOnes = (
         return false;
       }
 
-      return ruleEntry.severity !== RULE_SEVERITY.OFF.string;
+      const ruleIsEnabled =
+        ruleEntry.severity !== RULE_SEVERITY.OFF.string &&
+        ruleEntry.severity !== RULE_SEVERITY.OFF.number;
+
+      return ruleIsEnabled;
     })
     .map(([ruleName]) => ruleName);
 };

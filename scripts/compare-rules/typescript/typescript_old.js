@@ -1,5 +1,7 @@
 'use strict';
 
+// FIXME: remove after debug
+
 const { rules: referenceRules } = require('@typescript-eslint/eslint-plugin');
 
 const {
