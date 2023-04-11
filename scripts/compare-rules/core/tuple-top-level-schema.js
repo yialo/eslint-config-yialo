@@ -30,15 +30,15 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
     return null;
   }
 
-  const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
+  const [firstElementSchema, secondElementSchema, thirdElementSchema] =
     Array.from({ length: MAX_SCHEMA_LENGTH }).map(
       (_, i) => new TypedSchema(tupleSchema[i]),
     );
 
   const schemaTypes = [
-    firstSchemaElement.type,
-    secondSchemaElement.type,
-    thirdSchemaElement.type,
+    firstElementSchema.type,
+    secondElementSchema.type,
+    thirdElementSchema.type,
   ];
 
   if (schemaTypes.some((type) => type === SCHEMA_TYPE.UNKNOWN)) {
@@ -50,7 +50,7 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
     return null;
   }
 
-  if (firstSchemaElement.type === SCHEMA_TYPE.ENUM) {
+  if (firstElementSchema.type === SCHEMA_TYPE.ENUM) {
     if (!Object.hasOwn(myRuleEntry.config, 0)) {
       loggerUtil.logAndThrow(
         `Rule ${myRuleName} should be configured as array with non-empty second element`,
@@ -59,16 +59,16 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
       return null;
     }
 
-    if (secondSchemaElement.type === SCHEMA_TYPE.ENUM) {
+    if (secondElementSchema.type === SCHEMA_TYPE.ENUM) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
       return null;
     }
 
-    if (secondSchemaElement.type === SCHEMA_TYPE.ABSENT) {
+    if (secondElementSchema.type === SCHEMA_TYPE.ABSENT) {
       return null;
     }
 
-    if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+    if (secondElementSchema.type === SCHEMA_TYPE.OBJECT) {
       const myRuleOptions = myRuleEntry.config[1];
 
       if (!isObject(myRuleOptions)) {
@@ -82,13 +82,13 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
       return getObjectSchemaAbsentOptionsNames({
         ruleName: myRuleName,
         myOptions: myRuleOptions,
-        refOptions: secondSchemaElement.value.properties,
+        refOptions: secondElementSchema.value.properties,
       });
     }
   }
 
-  if (firstSchemaElement.type === SCHEMA_TYPE.OBJECT) {
-    if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+  if (firstElementSchema.type === SCHEMA_TYPE.OBJECT) {
+    if (secondElementSchema.type === SCHEMA_TYPE.OBJECT) {
       loggerUtil.logAndThrow(
         `Strange config of rule: ${myRuleName}`,
         loggerUtil.bgMagenta,
@@ -109,12 +109,12 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
     return getObjectSchemaAbsentOptionsNames({
       ruleName: myRuleName,
       myOptions: myRuleOptions,
-      refOptions: firstSchemaElement.value.properties,
+      refOptions: firstElementSchema.value.properties,
     });
   }
 
-  if (firstSchemaElement.type === SCHEMA_TYPE.ANY_OF) {
-    const anyOfSchemas = firstSchemaElement.value.anyOf.map(
+  if (firstElementSchema.type === SCHEMA_TYPE.ANY_OF) {
+    const anyOfSchemas = firstElementSchema.value.anyOf.map(
       (anyOfRaw) => new TypedSchema(anyOfRaw),
     );
 
@@ -157,8 +157,8 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
     }
   }
 
-  if (firstSchemaElement.type === SCHEMA_TYPE.ONE_OF) {
-    if (secondSchemaElement.type !== SCHEMA_TYPE.ABSENT) {
+  if (firstElementSchema.type === SCHEMA_TYPE.ONE_OF) {
+    if (secondElementSchema.type !== SCHEMA_TYPE.ABSENT) {
       const mySecondConfigElement = myRuleEntry.config[1];
 
       if (!mySecondConfigElement) {
@@ -169,17 +169,17 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
         return null;
       }
 
-      if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
+      if (secondElementSchema.type === SCHEMA_TYPE.OBJECT) {
         return getObjectSchemaAbsentOptionsNames({
           ruleName: myRuleName,
           myOptions: mySecondConfigElement,
-          refOptions: secondSchemaElement.value.properties,
+          refOptions: secondElementSchema.value.properties,
           forSecondOptionObject: true,
         });
       }
     }
 
-    const oneOfSchemas = firstSchemaElement.value.oneOf.map(
+    const oneOfSchemas = firstElementSchema.value.oneOf.map(
       (onyOfRaw) => new TypedSchema(onyOfRaw),
     );
 
