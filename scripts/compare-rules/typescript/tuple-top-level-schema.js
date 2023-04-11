@@ -65,5 +65,9 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
     });
   }
 
+  if (schema.type === SCHEMA_TYPE.ONE_OF) {
+    console.log('ONE_OF');
+  }
+
   loggerUtil.throwUnhandledSchemaError(myRuleName);
 };
