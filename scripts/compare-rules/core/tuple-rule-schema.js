@@ -23,12 +23,12 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
       );
     }
 
-    return {};
+    return null;
   }
 
   if (tupleSchema.length > MAX_SCHEMA_LENGTH) {
     loggerUtil.logAndThrow(`Unexpectedly long tuple schema for: ${myRuleName}`);
-    return {};
+    return null;
   }
 
   const [firstSchemaElement, secondSchemaElement, thirdSchemaElement] =
@@ -48,7 +48,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
         schemaTypes,
       )}`,
     );
-    return {};
+    return null;
   }
 
   if (firstSchemaElement.type === SCHEMA_TYPE.ENUM) {
@@ -57,16 +57,16 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
         `Rule ${myRuleName} should be configured as array with non-empty second element`,
         loggerUtil.colorize.brightGreen,
       );
-      return {};
+      return null;
     }
 
     if (secondSchemaElement.type === SCHEMA_TYPE.ENUM) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
-      return {};
+      return null;
     }
 
     if (secondSchemaElement.type === SCHEMA_TYPE.ABSENT) {
-      return {};
+      return null;
     }
 
     if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
@@ -77,7 +77,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
           `Options config of rule ${myRuleName} should be object`,
           loggerUtil.colorize.brightMagenta,
         );
-        return {};
+        return null;
       }
 
       return getObjectSchemaAbsentOptionsNames({
@@ -94,7 +94,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
         `Strange config of rule: ${myRuleName}`,
         loggerUtil.bgMagenta,
       );
-      return {};
+      return null;
     }
 
     const myRuleOptions = myRuleEntry.config[0];
@@ -104,7 +104,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
         `Options config of rule ${myRuleName} should be object`,
         loggerUtil.colorize.brightMagenta,
       );
-      return {};
+      return null;
     }
 
     return getObjectSchemaAbsentOptionsNames({
@@ -127,7 +127,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
           )}`,
           loggerUtil.colorize.brightRed,
         );
-        return {};
+        return null;
       }
     }
 
@@ -137,7 +137,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
 
     if (objectAnyOfSchemas.length === 0) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
-      return {};
+      return null;
     }
 
     const myFirstConfigElement = myRuleEntry.config[0];
@@ -146,7 +146,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
       loggerUtil.logAndThrow(
         `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
       );
-      return {};
+      return null;
     }
 
     if (objectAnyOfSchemas.length === 1) {
@@ -167,7 +167,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
           `Rule ${myRuleName}: second config element should be present`,
           loggerUtil.colorize.bgBlue,
         );
-        return {};
+        return null;
       }
 
       if (secondSchemaElement.type === SCHEMA_TYPE.OBJECT) {
@@ -190,7 +190,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
 
     if (objectOneOfSchemas.length === 0) {
       loggerUtil.throwUnhandledSchemaError(myRuleName);
-      return {};
+      return null;
     }
 
     const myFirstConfigElement = myRuleEntry.config[0];
@@ -200,7 +200,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
         `Rule ${myRuleName}: first config element should be object but it is ${typeof myFirstConfigElement}`,
         loggerUtil.colorize.bgCyan,
       );
-      return {};
+      return null;
     }
 
     if (objectOneOfSchemas.length === 1) {
@@ -224,10 +224,10 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
 
     if (!matchedOneOfSchema) {
       loggerUtil.throwRuleConfigError(myRuleName);
-      return {};
+      return null;
     }
 
-    return {};
+    return null;
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);

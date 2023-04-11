@@ -110,7 +110,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
           `Rule ${myRuleName}: severity should be defined as string, not number`,
         );
 
-        return;
+        return null;
       }
 
       if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
@@ -120,7 +120,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
           );
         }
 
-        return;
+        return null;
       }
 
       const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
@@ -128,7 +128,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       );
 
       if (!metaEntry) {
-        return;
+        return null;
       }
 
       const { schema: topLevelSchema } = metaEntry[1];
@@ -149,7 +149,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         const typedSchema = new TypedSchema(topLevelSchema);
 
         if (typedSchema.type === SCHEMA_TYPE.EMPTY) {
-          return;
+          return null;
         }
 
         if (typedSchema.type === SCHEMA_TYPE.ANY_OF) {

@@ -33,7 +33,7 @@ module.exports.getAbsentPropsFromArraySchema = (
           )}`,
           loggerUtil.colorize.brightRed,
         );
-        return {};
+        return null;
       }
     }
 
@@ -43,7 +43,7 @@ module.exports.getAbsentPropsFromArraySchema = (
 
     if (objectAnyOfSchemas.length === 0) {
       loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
-      return {};
+      return null;
     }
 
     const hasNonObjectConfigElements = myRuleEntry.config.some(
@@ -54,7 +54,7 @@ module.exports.getAbsentPropsFromArraySchema = (
       loggerUtil.logAndThrow(
         `Rule ${myRuleEntry.name}: all config elements should be objects`,
       );
-      return {};
+      return null;
     }
 
     if (objectAnyOfSchemas.length === 1) {
@@ -73,11 +73,11 @@ module.exports.getAbsentPropsFromArraySchema = (
               absentOptionNames[myRuleEntry.name]
             }`,
           );
-          return {};
+          return null;
         }
       }
 
-      return {};
+      return null;
     }
 
     if (objectAnyOfSchemas.length === 2) {
@@ -91,7 +91,7 @@ module.exports.getAbsentPropsFromArraySchema = (
 
       if (!everyFirstSchemaOptionIsString) {
         loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
-        return {};
+        return null;
       }
 
       const secondSchemaOptions = Object.entries(
@@ -104,7 +104,7 @@ module.exports.getAbsentPropsFromArraySchema = (
 
       if (!everySecondSchemaOptionIsString) {
         loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
-        return {};
+        return null;
       }
 
       const propertiesAreTheSame = (() => {
@@ -124,7 +124,7 @@ module.exports.getAbsentPropsFromArraySchema = (
 
       if (!propertiesAreTheSame) {
         loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
-        return {};
+        return null;
       }
 
       const commonOptions = (() => {
@@ -160,11 +160,11 @@ module.exports.getAbsentPropsFromArraySchema = (
               absentOptionNames[myRuleEntry.name]
             }`,
           );
-          return {};
+          return null;
         }
       }
 
-      return {};
+      return null;
     }
   }
 
@@ -183,7 +183,7 @@ module.exports.getAbsentPropsFromArraySchema = (
           )}`,
           loggerUtil.colorize.brightRed,
         );
-        return {};
+        return null;
       }
     }
 
@@ -193,7 +193,7 @@ module.exports.getAbsentPropsFromArraySchema = (
 
     if (objectOneOfSchemas.length !== 1) {
       loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
-      return {};
+      return null;
     }
 
     const hasNonObjectConfigElements = myRuleEntry.config.some(
@@ -204,7 +204,7 @@ module.exports.getAbsentPropsFromArraySchema = (
       loggerUtil.logAndThrow(
         `Rule ${myRuleEntry.name}: all config elements should be objects`,
       );
-      return {};
+      return null;
     }
 
     for (const myConfigElement of myRuleEntry.config) {
@@ -220,11 +220,11 @@ module.exports.getAbsentPropsFromArraySchema = (
             myConfigElement,
           )} has missing option names: ${absentOptionNames[myRuleEntry.name]}`,
         );
-        return {};
+        return null;
       }
     }
 
-    return {};
+    return null;
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);

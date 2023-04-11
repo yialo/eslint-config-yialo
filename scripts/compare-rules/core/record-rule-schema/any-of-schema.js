@@ -43,7 +43,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
         matchedAnyOfSchemasWithTheOnlyParam.length ===
         anyOfSchemasMatchedByEnum.length
       ) {
-        return {};
+        return null;
       }
 
       const matchedAnyOfSchemasWithObjectAsSecondParam =
@@ -56,7 +56,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
           loggerUtil.logAndThrow(
             `Rule ${myRuleName} should be configured as array with object as third element`,
           );
-          return {};
+          return null;
         }
 
         const optionNamesOfMyConfigSecondElement = Object.keys(

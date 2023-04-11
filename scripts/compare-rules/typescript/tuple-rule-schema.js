@@ -21,7 +21,7 @@ module.exports.getAbsentPropsFromTupleRuleSchema = (
       );
     }
 
-    return {};
+    return null;
   }
 
   loggerUtil.throwUnhandledSchemaError(myRuleName);

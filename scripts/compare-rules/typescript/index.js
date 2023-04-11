@@ -81,7 +81,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
 
     const nextOutput = (() => {
       if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
-        return;
+        return null;
       }
 
       const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
@@ -89,7 +89,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
       );
 
       if (!metaEntry) {
-        return;
+        return null;
       }
 
       const { schema: topLevelSchema } = metaEntry[1];
@@ -106,7 +106,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         return getAbsentPropsFromTupleRuleSchema(topLevelSchema, myRuleEntry);
       }
 
-      return {};
+      return null;
     })();
 
     return nextOutput ? { ...output, ...nextOutput } : output;
