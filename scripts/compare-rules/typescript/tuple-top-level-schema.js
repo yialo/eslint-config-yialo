@@ -93,7 +93,61 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
         });
       }
 
-      // TODO: check is there more than one object variant
+      if (objectOneOfSchemas.length === 2) {
+        const commonOptionPropNames = (() => {
+          const propNames = [];
+
+          const firstSchemaOptionPropNames = Object.keys(
+            objectOneOfSchemas[0].value.properties,
+          );
+          const secondSchemaOptionPropNames = Object.keys(
+            objectOneOfSchemas[1].value.properties,
+          );
+
+          for (const propName of firstSchemaOptionPropNames) {
+            if (secondSchemaOptionPropNames.includes(propName)) {
+              propNames.push(propName);
+            }
+          }
+
+          return propNames;
+        })();
+
+        const commonEnumOptionPropNames = commonOptionPropNames.filter(
+          (propName) => {
+            return objectOneOfSchemas.every(
+              (oneOfSchema) => !!oneOfSchema.value.properties[propName].enum,
+            );
+          },
+        );
+
+        if (commonEnumOptionPropNames.length !== 1) {
+          loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+          return null;
+        }
+
+        const commonEnumOptionName = commonEnumOptionPropNames[0];
+        const myEnumValue = myRuleEntry.config[0][commonEnumOptionName];
+
+        const matchedOneOfSchemasByCommonEnumValue = objectOneOfSchemas.filter(
+          ({ value }) => {
+            return value.properties[commonEnumOptionName].enum.includes(
+              myEnumValue,
+            );
+          },
+        );
+
+        if (matchedOneOfSchemasByCommonEnumValue.length !== 1) {
+          loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+          return null;
+        }
+
+        return getObjectSchemaAbsentOptionsNames({
+          ruleName: myRuleEntry.name,
+          myOptions: myRuleEntry.config[0],
+          refOptions: matchedOneOfSchemasByCommonEnumValue[0].value.properties,
+        });
+      }
     }
   }
 
