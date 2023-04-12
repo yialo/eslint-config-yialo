@@ -19,6 +19,7 @@ const {
   getMyRuleGroups,
   getReferenceRuleGroups,
   getTopLevelSchemaType,
+  isSeverityOff,
   logDeprecared,
   logExtraneous,
   loggerUtil,
@@ -146,3 +147,26 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
 loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
   console.log(Object.entries(myRulesNeedClarification));
 });
+
+const CHECK_RECOMMENDED_AS_STRICT = false;
+
+if (CHECK_RECOMMENDED_AS_STRICT) {
+  const strictRefRuleNames = nonDeprecatedReferenceRuleMetaEntries
+    .filter(([_, meta]) => meta.docs.recommended === 'strict')
+    .map(([name]) => name);
+
+  const namesOfMyDisabledRulesThatAreStrictlyRecommended = myRuleEntryTuples
+    .filter(
+      ([myRuleName, myRuleConfig]) =>
+        strictRefRuleNames.includes(myRuleName) &&
+        isSeverityOff(myRuleConfig.severity),
+    )
+    .map(([name]) => name);
+
+  loggerUtil.groupLog(
+    `[${PLUGIN_NAME}] Names of my rules that are disabled but recommended as strict`,
+    () => {
+      console.log(namesOfMyDisabledRulesThatAreStrictlyRecommended);
+    },
+  );
+}

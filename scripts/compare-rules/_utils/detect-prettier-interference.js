@@ -4,17 +4,14 @@ const {
   rules: rulesThatInterfereWithPrettier,
 } = require('../../../node_modules/eslint-config-prettier');
 
+const { isSeverityOff } = require('./check-severity');
 const { RULE_SEVERITY } = require('./dicts');
 const { loggerUtil } = require('./logger');
 
 const namesOfRulesThatInterfereWithPrettier = Object.entries(
   rulesThatInterfereWithPrettier,
 )
-  .filter(
-    ([_, severity]) =>
-      severity === RULE_SEVERITY.OFF.number ||
-      severity === RULE_SEVERITY.OFF.string,
-  )
+  .filter(([_, severity]) => isSeverityOff(severity))
   .map(([ruleName]) => ruleName);
 
 module.exports.detectRulesInterfereWithPrettierInMyOnes = (
