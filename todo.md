@@ -2,6 +2,7 @@
 
 ## Tasks
 
+- Add ability to show recommended rules for plugin
 - Test fully-prepared configs with Ajv and remove extraneous rule detector
 - Make package scoped with @yialo
 - Separate Jest config
