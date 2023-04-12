@@ -121,6 +121,7 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
   '@typescript-eslint/naming-convention': 'off',
   '@typescript-eslint/no-base-to-string': 'off',
   '@typescript-eslint/no-confusing-void-expression': 'off',
+  '@typescript-eslint/no-duplicate-type-constituents': 'off',
   '@typescript-eslint/no-floating-promises': [
     'error',
     {
