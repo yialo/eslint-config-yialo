@@ -148,17 +148,17 @@ loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
   console.log(Object.entries(myRulesNeedClarification));
 });
 
-const CHECK_RECOMMENDED_AS_STRICT = false;
+const CHECK_RECOMMENDED = false;
 
-if (CHECK_RECOMMENDED_AS_STRICT) {
-  const strictRefRuleNames = nonDeprecatedReferenceRuleMetaEntries
+if (CHECK_RECOMMENDED) {
+  const recommendedAsStrictRefRuleNames = nonDeprecatedReferenceRuleMetaEntries
     .filter(([_, meta]) => meta.docs.recommended === 'strict')
     .map(([name]) => name);
 
-  const namesOfMyDisabledRulesThatAreStrictlyRecommended = myRuleEntryTuples
+  const namesOfMyDisabledRulesThatAreRecommendedAsStrict = myRuleEntryTuples
     .filter(
       ([myRuleName, myRuleConfig]) =>
-        strictRefRuleNames.includes(myRuleName) &&
+        recommendedAsStrictRefRuleNames.includes(myRuleName) &&
         isSeverityOff(myRuleConfig.severity),
     )
     .map(([name]) => name);
@@ -166,7 +166,26 @@ if (CHECK_RECOMMENDED_AS_STRICT) {
   loggerUtil.groupLog(
     `[${PLUGIN_NAME}] Names of my rules that are disabled but recommended as strict`,
     () => {
-      console.log(namesOfMyDisabledRulesThatAreStrictlyRecommended);
+      console.log(namesOfMyDisabledRulesThatAreRecommendedAsStrict);
+    },
+  );
+
+  const recommendedAsErrorRefRuleNames = nonDeprecatedReferenceRuleMetaEntries
+    .filter(([_, meta]) => meta.docs.recommended === 'error')
+    .map(([name]) => name);
+
+  const namesOfMyDisabledRulesThatAreRecommendedAsError = myRuleEntryTuples
+    .filter(
+      ([myRuleName, myRuleConfig]) =>
+        recommendedAsErrorRefRuleNames.includes(myRuleName) &&
+        isSeverityOff(myRuleConfig.severity),
+    )
+    .map(([name]) => name);
+
+  loggerUtil.groupLog(
+    `[${PLUGIN_NAME}] Names of my rules that are disabled but recommended as error`,
+    () => {
+      console.log(namesOfMyDisabledRulesThatAreRecommendedAsError);
     },
   );
 }
