@@ -181,6 +181,7 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
     {
       allowAny: false,
       allowBoolean: false,
+      allowNever: false,
       allowNullish: false,
       allowNumber: true,
       allowRegExp: false,
