@@ -34,8 +34,9 @@ const tsRules_own_nonTypeCheck = {
   '@typescript-eslint/consistent-type-imports': [
     'error',
     {
-      prefer: 'type-imports',
       disallowTypeAnnotations: true,
+      fixStyle: 'separate-type-imports',
+      prefer: 'type-imports',
     },
   ],
   '@typescript-eslint/explicit-function-return-type': 'off',
