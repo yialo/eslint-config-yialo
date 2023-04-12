@@ -139,6 +139,7 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
       checksSpreads: true,
     },
   ],
+  '@typescript-eslint/no-mixed-enums': 'error',
   '@typescript-eslint/no-redundant-type-constituents': 'off',
   '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
   '@typescript-eslint/no-unnecessary-condition': [
