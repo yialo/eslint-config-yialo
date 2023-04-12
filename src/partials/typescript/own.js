@@ -83,6 +83,7 @@ const tsRules_own_nonTypeCheck = {
   ],
   '@typescript-eslint/no-type-alias': 'off',
   '@typescript-eslint/no-unnecessary-type-constraint': 'error',
+  '@typescript-eslint/no-unsafe-declaration-merging': 'error',
   '@typescript-eslint/no-useless-empty-export': 'off',
   '@typescript-eslint/no-var-requires': 'error',
   '@typescript-eslint/non-nullable-type-assertion-style': 'off',
@@ -182,7 +183,7 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
       allowRegExp: false,
     },
   ],
-  '@typescript-eslint/sort-type-union-intersection-members': 'off',
+  '@typescript-eslint/sort-type-constituents': 'off',
   '@typescript-eslint/strict-boolean-expressions': 'off',
   '@typescript-eslint/switch-exhaustiveness-check': 'off',
 };

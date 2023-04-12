@@ -13,8 +13,8 @@
   "dependencies": {
     "@babel/eslint-parser": "7.21.3",
     "@babel/eslint-plugin": "7.19.1",
-    "@typescript-eslint/eslint-plugin": "5.35.1",
-    "@typescript-eslint/parser": "5.35.1",
+    "@typescript-eslint/eslint-plugin": "5.42.1",
+    "@typescript-eslint/parser": "5.42.1",
     "eslint": "8.38.0",
     "eslint-import-resolver-typescript": "3.2.5",
     "eslint-import-resolver-webpack": "0.13.2",
@@ -36,8 +36,8 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.21.4",
-    "prettier": "2.8.7",
-    "typescript": "^4.7.4"
+    "prettier": "^2.8.7",
+    "typescript": "^4.8.4"
   },
   "description": "Yialo's ESLint configuration",
   "homepage": "https://github.com/yialo/eslint-config-yialo#readme",
