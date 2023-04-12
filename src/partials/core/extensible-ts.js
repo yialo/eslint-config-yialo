@@ -3,6 +3,7 @@
 const { getDisabledRuleSet } = require('../_utils');
 
 const coreRules_extensibleWithTs_nonTypeCheck = {
+  'block-spacing': 'off',
   'brace-style': 'off',
   'comma-dangle': 'off',
   'comma-spacing': 'off',

@@ -49,7 +49,6 @@ const coreRules_nonExtensible = {
   'arrow-parens': 'off',
   'arrow-spacing': 'off',
   'block-scoped-var': 'error',
-  'block-spacing': 'off',
   'camelcase': 'off',
   'capitalized-comments': 'off',
   'class-methods-use-this': 'off',

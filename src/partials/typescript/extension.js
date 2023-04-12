@@ -21,6 +21,8 @@ const tsRules_extension_nonTypeCheck = {
 
   /* TypeScript-only extension rules
    * =============================== */
+  '@typescript-eslint/block-spacing':
+    coreRules_extensibleWithTs_nonTypeCheck['block-spacing'],
   '@typescript-eslint/brace-style':
     coreRules_extensibleWithTs_nonTypeCheck['brace-style'],
   '@typescript-eslint/comma-dangle':
