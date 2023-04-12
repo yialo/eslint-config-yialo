@@ -89,7 +89,6 @@ const coreRules_nonExtensible = {
   'id-match': 'off',
   'implicit-arrow-linebreak': 'off',
   'jsx-quotes': 'off',
-  'key-spacing': 'off',
   'line-comment-position': 'off',
   'linebreak-style': 'off',
   'lines-around-comment': 'off',

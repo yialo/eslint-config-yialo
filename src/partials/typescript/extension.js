@@ -39,6 +39,8 @@ const tsRules_extension_nonTypeCheck = {
     coreRules_extensibleWithTs_nonTypeCheck['indent'],
   '@typescript-eslint/init-declarations':
     coreRules_extensibleWithTs_nonTypeCheck['init-declarations'],
+  '@typescript-eslint/key-spacing':
+    coreRules_extensibleWithTs_nonTypeCheck['key-spacing'],
   '@typescript-eslint/keyword-spacing':
     coreRules_extensibleWithTs_nonTypeCheck['keyword-spacing'],
   '@typescript-eslint/lines-between-class-members': [
