@@ -67,7 +67,33 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
     }
 
     if (schema.type === SCHEMA_TYPE.ONE_OF) {
-      console.log('ONE_OF');
+      const oneOfSchemas = schema.value.oneOf.map(
+        (oneOfRaw) => new TypedSchema(oneOfRaw),
+      );
+
+      const objectOneOfSchemas = oneOfSchemas.filter(
+        ({ type }) => type === SCHEMA_TYPE.OBJECT,
+      );
+
+      if (objectOneOfSchemas.length > 0) {
+        if (!isObject(myRuleEntry.config[0])) {
+          loggerUtil.logAndThrow(
+            `Options config of rule ${myRuleEntry.name} should be object`,
+            loggerUtil.colorize.brightMagenta,
+          );
+          return null;
+        }
+      }
+
+      if (objectOneOfSchemas.length === 1) {
+        return getObjectSchemaAbsentOptionsNames({
+          ruleName: myRuleEntry.name,
+          myOptions: myRuleEntry.config[0],
+          refOptions: objectOneOfSchemas[0].value.properties,
+        });
+      }
+
+      // TODO: check is there more than one object variant
     }
   }
 

@@ -93,8 +93,15 @@ const tsRules_extension_nonTypeCheck = {
    * rule may produce issues in some cases
    * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-use-before-define.md
    */
-  '@typescript-eslint/no-use-before-define':
-    coreRules_extensibleWithTs_nonTypeCheck['no-use-before-define'],
+  '@typescript-eslint/no-use-before-define': [
+    coreRules_extensibleWithTs_nonTypeCheck['no-use-before-define'][0],
+    {
+      ...coreRules_extensibleWithTs_nonTypeCheck['no-use-before-define'][1],
+      enums: true,
+      ignoreTypeReferences: true,
+      typedefs: true,
+    },
+  ],
   '@typescript-eslint/no-useless-constructor':
     coreRules_extensibleWithTs_nonTypeCheck['no-useless-constructor'],
   '@typescript-eslint/padding-line-between-statements':
