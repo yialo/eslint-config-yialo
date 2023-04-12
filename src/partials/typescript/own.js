@@ -129,6 +129,7 @@ const tsRules_own_typeCheckOnly_nonExtensible = {
     },
   ],
   '@typescript-eslint/no-for-in-array': 'error',
+  '@typescript-eslint/no-import-type-side-effects': 'error',
   '@typescript-eslint/no-meaningless-void-operator': 'off',
   '@typescript-eslint/no-misused-promises': [
     'error',
