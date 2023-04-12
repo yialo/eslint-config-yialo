@@ -30,6 +30,9 @@ const {
 const {
   getAbsentPropsFromTupleTopLevelSchema,
 } = require('./tuple-top-level-schema');
+const {
+  getAbsentPropsFromRecordTopLevelSchema,
+} = require('./record-top-level-schema');
 
 const PLUGIN_NAME = '@typescript-eslint/eslint-plugin';
 
@@ -126,7 +129,10 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
           );
         }
 
-        loggerUtil.throwUnhandledSchemaError(myRuleName);
+        return getAbsentPropsFromRecordTopLevelSchema(
+          topLevelSchema,
+          myRuleEntry,
+        );
       }
 
       return null;

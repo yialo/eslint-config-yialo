@@ -2,13 +2,10 @@
 
 const colorize = require('colors');
 
+const THROW_ON_UNEXPECTED = true;
+
 const loggerUtil = {};
-module.exports.loggerUtil = loggerUtil;
-
 loggerUtil.colorize = colorize;
-
-// FIXME: enable all after debug
-const THROW_ON_UNEXPECTED = false;
 
 loggerUtil.groupLog = (groupName, log) => {
   console.group(groupName);
@@ -36,3 +33,5 @@ loggerUtil.throwUnhandledSchemaError = (myRuleName) => {
 
 const stringifyMultiline = (value) => JSON.stringify(value, null, 2);
 loggerUtil.stringifyMultiline = stringifyMultiline;
+
+module.exports.loggerUtil = loggerUtil;
