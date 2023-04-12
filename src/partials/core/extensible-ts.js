@@ -14,6 +14,7 @@ const coreRules_extensibleWithTs_nonTypeCheck = {
   'init-declarations': 'off',
   'key-spacing': 'off',
   'keyword-spacing': 'off',
+  'lines-around-comment': 'off',
   'lines-between-class-members': [
     'error',
     'always',

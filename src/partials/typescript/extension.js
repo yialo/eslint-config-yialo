@@ -45,6 +45,8 @@ const tsRules_extension_nonTypeCheck = {
     coreRules_extensibleWithTs_nonTypeCheck['key-spacing'],
   '@typescript-eslint/keyword-spacing':
     coreRules_extensibleWithTs_nonTypeCheck['keyword-spacing'],
+  '@typescript-eslint/lines-around-comment':
+    coreRules_extensibleWithTs_nonTypeCheck['lines-around-comment'],
   '@typescript-eslint/lines-between-class-members': [
     coreRules_extensibleWithTs_nonTypeCheck['lines-between-class-members'][0],
     coreRules_extensibleWithTs_nonTypeCheck['lines-between-class-members'][1],

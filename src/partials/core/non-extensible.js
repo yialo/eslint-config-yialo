@@ -90,7 +90,6 @@ const coreRules_nonExtensible = {
   'jsx-quotes': 'off',
   'line-comment-position': 'off',
   'linebreak-style': 'off',
-  'lines-around-comment': 'off',
   'logical-assignment-operators': 'off',
   'max-classes-per-file': 'off',
   'max-depth': 'off',
