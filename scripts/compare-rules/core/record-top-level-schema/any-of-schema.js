@@ -13,7 +13,6 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
   myRuleEntry,
 ) => {
   const anyOfSchemasRaw = anyOfSchemaTyped.value.anyOf;
-  const myRuleName = myRuleEntry.name;
 
   const anyOfSchemas = anyOfSchemasRaw.map(
     (schemaRaw) => new TypedSchema(schemaRaw),
@@ -54,7 +53,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
       if (matchedAnyOfSchemasWithObjectAsSecondParam.length > 0) {
         if (!isObject(myRuleEntry.config[1])) {
           loggerUtil.logAndThrow(
-            `Rule ${myRuleName} should be configured as array with object as third element`,
+            `Rule ${myRuleEntry.name} should be configured as array with object as third element`,
           );
           return null;
         }
@@ -77,7 +76,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
           const propertiesOfBestMatchedSchema =
             matchedAnyOfSchemasByOptionNames[0].value.items[1].properties;
           return getObjectSchemaAbsentOptionsNames({
-            ruleName: myRuleName,
+            ruleName: myRuleEntry.name,
             myOptions: myRuleEntry.config[1],
             refOptions: propertiesOfBestMatchedSchema,
           });
@@ -86,5 +85,5 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
     }
   }
 
-  loggerUtil.throwUnhandledSchemaError(myRuleName);
+  loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
 };

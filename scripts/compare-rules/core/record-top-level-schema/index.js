@@ -8,7 +8,6 @@ module.exports.getAbsentPropsFromRecordTopLevelSchema = (
   recordTopLevelSchema,
   myRuleEntry,
 ) => {
-  const myRuleName = myRuleEntry.name;
   const typedSchema = new TypedSchema(recordTopLevelSchema);
 
   if (typedSchema.type === SCHEMA_TYPE.EMPTY) {
@@ -23,5 +22,5 @@ module.exports.getAbsentPropsFromRecordTopLevelSchema = (
     return getAbsentPropsFromArraySchema(typedSchema, myRuleEntry);
   }
 
-  loggerUtil.throwUnhandledSchemaError(myRuleName);
+  loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
 };
