@@ -14,7 +14,7 @@ const {
   logExtraneous,
   logMissing,
   logPrettierInterferences,
-} = require('../_utils');
+} = require('../lib');
 
 const PLUGIN_NAME = '@babel/eslint-plugin';
 

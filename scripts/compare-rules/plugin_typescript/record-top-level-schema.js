@@ -6,7 +6,7 @@ const {
   loggerUtil,
   SCHEMA_TYPE,
   TypedSchema,
-} = require('../_utils');
+} = require('../lib');
 
 module.exports.getAbsentPropsFromRecordTopLevelSchema = (
   recordTopLevelSchema,

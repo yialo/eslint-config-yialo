@@ -6,11 +6,11 @@ const {
   loggerUtil,
   SCHEMA_TYPE,
   TypedSchema,
-} = require('../../_utils');
+} = require('../../lib');
 
 /**
  * @param {TypedSchema} arraySchemaTyped
- * @param {import('../../_utils').MyRuleEntryNormalized} myRuleEntry
+ * @param {import('../../lib').MyRuleEntryNormalized} myRuleEntry
  */
 module.exports.getAbsentPropsFromArraySchema = (
   arrayTypedSchema,

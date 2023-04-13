@@ -1,6 +1,6 @@
 'use strict';
 
-const { loggerUtil } = require('./_utils');
+const { loggerUtil } = require('./lib');
 
 console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 

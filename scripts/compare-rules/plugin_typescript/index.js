@@ -28,7 +28,7 @@ const {
   logPrettierInterferences,
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
-} = require('../_utils');
+} = require('../lib');
 const {
   getAbsentPropsFromTupleTopLevelSchema,
 } = require('./tuple-top-level-schema');

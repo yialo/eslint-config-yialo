@@ -22,7 +22,7 @@ const {
   logPrettierInterferences,
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
-} = require('../_utils');
+} = require('../lib');
 
 const PLUGIN_NAME = 'eslint-plugin-jest';
 

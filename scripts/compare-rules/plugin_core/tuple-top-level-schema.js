@@ -6,7 +6,7 @@ const {
   loggerUtil,
   SCHEMA_TYPE,
   TypedSchema,
-} = require('../_utils');
+} = require('../lib');
 
 const MAX_SCHEMA_LENGTH = 3;
 

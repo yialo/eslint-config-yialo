@@ -1,6 +1,6 @@
 'use strict';
 
-const { loggerUtil, SCHEMA_TYPE, TypedSchema } = require('../../_utils');
+const { loggerUtil, SCHEMA_TYPE, TypedSchema } = require('../../lib');
 const { getAbsentPropsFromAnyOfSchema } = require('./any-of-schema');
 const { getAbsentPropsFromArraySchema } = require('./array-schema');
 
