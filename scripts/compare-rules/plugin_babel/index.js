@@ -9,7 +9,7 @@ const {
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
-  getReferenceRuleGroups,
+  prepareReferenceRuleGroups,
   logDeprecared,
   logExtraneous,
   logMissing,
@@ -23,7 +23,7 @@ const referenceRuleMetaEntries = Object.entries(referenceRules).map(
 );
 
 const { deprecatedReferenceRuleMetaEntries, nonDeprecatedReferenceRuleNames } =
-  getReferenceRuleGroups(referenceRuleMetaEntries);
+  prepareReferenceRuleGroups(referenceRuleMetaEntries);
 
 const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
 

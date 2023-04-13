@@ -2,7 +2,7 @@
 
 const {
   isObject,
-  getObjectSchemaAbsentOptionsNames,
+  findObjectSchemaAbsentOptionsNames,
   loggerUtil,
   SCHEMA_TYPE,
   TypedSchema,
@@ -75,7 +75,7 @@ module.exports.getAbsentPropsFromAnyOfSchema = (
         if (matchedAnyOfSchemasByOptionNames.length === 1) {
           const propertiesOfBestMatchedSchema =
             matchedAnyOfSchemasByOptionNames[0].value.items[1].properties;
-          return getObjectSchemaAbsentOptionsNames({
+          return findObjectSchemaAbsentOptionsNames({
             ruleName: myRuleEntry.name,
             myOptions: myRuleEntry.config[1],
             refOptions: propertiesOfBestMatchedSchema,

@@ -12,7 +12,7 @@ const {
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
-  getReferenceRuleGroups,
+  prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
   logDeprecared,
@@ -35,7 +35,7 @@ const {
   nonDeprecatedReferenceRuleMetaEntries,
   nonDeprecatedReferenceRuleNames,
   referenceRuleNames,
-} = getReferenceRuleGroups(referenceRuleMetaEntries);
+} = prepareReferenceRuleGroups(referenceRuleMetaEntries);
 
 const myRules = {
   ...jestRules,

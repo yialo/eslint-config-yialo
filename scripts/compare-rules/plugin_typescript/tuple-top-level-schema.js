@@ -1,7 +1,7 @@
 'use strict';
 
 const {
-  getObjectSchemaAbsentOptionsNames,
+  findObjectSchemaAbsentOptionsNames,
   isObject,
   loggerUtil,
   SCHEMA_TYPE,
@@ -59,7 +59,7 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
         return null;
       }
 
-      return getObjectSchemaAbsentOptionsNames({
+      return findObjectSchemaAbsentOptionsNames({
         ruleName: myRuleEntry.name,
         myOptions: myRuleEntry.config[0],
         refOptions: schema.value.properties,
@@ -86,7 +86,7 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
       }
 
       if (objectOneOfSchemas.length === 1) {
-        return getObjectSchemaAbsentOptionsNames({
+        return findObjectSchemaAbsentOptionsNames({
           ruleName: myRuleEntry.name,
           myOptions: myRuleEntry.config[0],
           refOptions: objectOneOfSchemas[0].value.properties,
@@ -142,7 +142,7 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
           return null;
         }
 
-        return getObjectSchemaAbsentOptionsNames({
+        return findObjectSchemaAbsentOptionsNames({
           ruleName: myRuleEntry.name,
           myOptions: myRuleEntry.config[0],
           refOptions: matchedOneOfSchemasByCommonEnumValue[0].value.properties,
@@ -182,7 +182,7 @@ module.exports.getAbsentPropsFromTupleTopLevelSchema = (
         return null;
       }
 
-      return getObjectSchemaAbsentOptionsNames({
+      return findObjectSchemaAbsentOptionsNames({
         ruleName: myRuleEntry.name,
         myOptions: myRuleOptions,
         refOptions: secondElementSchema.value.properties,

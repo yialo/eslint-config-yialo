@@ -34,10 +34,10 @@ const {
   logPrettierInterferences,
 } = require('./features/detect-prettier-interference');
 const {
-  getObjectSchemaAbsentOptionsNames,
+  findObjectSchemaAbsentOptionsNames,
 } = require('./features/find-object-schema-absent-options');
 const {
-  getReferenceRuleGroups,
+  prepareReferenceRuleGroups,
 } = require('./features/prepare-reference-rule-groups');
 
 Object.assign(module.exports, {
@@ -46,8 +46,8 @@ Object.assign(module.exports, {
   detectMissingRules,
   getMyRuleGroups,
   detectRulesInterfereWithPrettierInMyOnes,
-  getObjectSchemaAbsentOptionsNames,
-  getReferenceRuleGroups,
+  findObjectSchemaAbsentOptionsNames,
+  prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isObject,
   isSeverityDefinedAsNumber,

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.getReferenceRuleGroups = (referenceRuleMetaEntries) => {
+module.exports.prepareReferenceRuleGroups = (referenceRuleMetaEntries) => {
   const deprecatedReferenceRuleMetaEntries = [];
   const nonDeprecatedReferenceRuleMetaEntries = [];
 

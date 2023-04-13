@@ -17,7 +17,7 @@ const {
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
-  getReferenceRuleGroups,
+  prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
   isSeverityOff,
@@ -46,7 +46,7 @@ const {
   deprecatedReferenceRuleMetaEntries,
   nonDeprecatedReferenceRuleMetaEntries,
   nonDeprecatedReferenceRuleNames,
-} = getReferenceRuleGroups(referenceRuleMetaEntries);
+} = prepareReferenceRuleGroups(referenceRuleMetaEntries);
 
 const myRules = {
   ...tsRules_own_nonTypeCheck,

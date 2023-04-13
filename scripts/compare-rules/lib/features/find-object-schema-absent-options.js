@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.getObjectSchemaAbsentOptionsNames = ({
+module.exports.findObjectSchemaAbsentOptionsNames = ({
   ruleName,
   myOptions,
   refOptions,

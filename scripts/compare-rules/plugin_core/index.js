@@ -7,7 +7,7 @@ const {
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
   getMyRuleGroups,
-  getReferenceRuleGroups,
+  prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
   logDeprecared,
@@ -55,7 +55,7 @@ const {
   nonDeprecatedReferenceRuleMetaEntries,
   nonDeprecatedReferenceRuleNames,
   referenceRuleNames,
-} = getReferenceRuleGroups(referenceRuleMetaEntries);
+} = prepareReferenceRuleGroups(referenceRuleMetaEntries);
 
 const myFullConfigRaw = {
   ...coreRules_extensibleWithBabel_only,

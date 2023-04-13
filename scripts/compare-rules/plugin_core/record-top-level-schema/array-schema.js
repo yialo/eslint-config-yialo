@@ -1,7 +1,7 @@
 'use strict';
 
 const {
-  getObjectSchemaAbsentOptionsNames,
+  findObjectSchemaAbsentOptionsNames,
   isObject,
   loggerUtil,
   SCHEMA_TYPE,
@@ -59,7 +59,7 @@ module.exports.getAbsentPropsFromArraySchema = (
 
     if (objectAnyOfSchemas.length === 1) {
       for (const myConfigElement of myRuleEntry.config) {
-        const absentOptionNames = getObjectSchemaAbsentOptionsNames({
+        const absentOptionNames = findObjectSchemaAbsentOptionsNames({
           ruleName: myRuleEntry.name,
           myOptions: myConfigElement,
           refOptions: objectAnyOfSchemas[0].value.properties,
@@ -146,7 +146,7 @@ module.exports.getAbsentPropsFromArraySchema = (
       })();
 
       for (const myConfigElement of myRuleEntry.config) {
-        const absentOptionNames = getObjectSchemaAbsentOptionsNames({
+        const absentOptionNames = findObjectSchemaAbsentOptionsNames({
           ruleName: myRuleEntry.name,
           myOptions: myConfigElement,
           refOptions: commonOptions,
@@ -208,7 +208,7 @@ module.exports.getAbsentPropsFromArraySchema = (
     }
 
     for (const myConfigElement of myRuleEntry.config) {
-      const absentOptionNames = getObjectSchemaAbsentOptionsNames({
+      const absentOptionNames = findObjectSchemaAbsentOptionsNames({
         ruleName: myRuleEntry.name,
         myOptions: myConfigElement,
         refOptions: objectOneOfSchemas[0].value.properties,

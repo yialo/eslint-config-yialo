@@ -1,7 +1,7 @@
 'use strict';
 
 const {
-  getObjectSchemaAbsentOptionsNames,
+  findObjectSchemaAbsentOptionsNames,
   isObject,
   loggerUtil,
   SCHEMA_TYPE,
@@ -33,7 +33,7 @@ module.exports.getAbsentPropsFromRecordTopLevelSchema = (
 
     const optionProps = items[0].properties;
 
-    return getObjectSchemaAbsentOptionsNames({
+    return findObjectSchemaAbsentOptionsNames({
       ruleName: myRuleEntry.name,
       myOptions: myRuleEntry.config[0],
       refOptions: optionProps,
