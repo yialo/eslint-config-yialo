@@ -1,65 +1,44 @@
 'use strict';
 
+const { isObject, loggerUtil } = require('./shared');
+
 const {
+  MyRuleEntryNormalized,
+  getMyRuleGroups,
+} = require('./entities/my-rule-entry');
+const {
+  TOP_LEVEL_SCHEMA_TYPE,
+  getTopLevelSchemaType,
+} = require('./entities/top-level-schema');
+const {
+  RULE_SEVERITY,
   isSeverityDefinedAsNumber,
   isSeverityOff,
-} = require('./check-severity');
+} = require('./entities/severity');
+const { SCHEMA_TYPE, TypedSchema } = require('./entities/schema');
+
 const {
   detectDeprecatedRulesInMyOnes,
   logDeprecared,
-} = require('./detect-deprecated-rules');
+} = require('./features/detect-deprecated-rules');
 const {
   detectExtraneousRulesInMyOnes,
   logExtraneous,
-} = require('./detect-extraneous-rules');
-const { detectMissingRules, logMissing } = require('./detect-missing-rules');
+} = require('./features/detect-extraneous-rules');
+const {
+  detectMissingRules,
+  logMissing,
+} = require('./features/detect-missing-rules');
 const {
   detectRulesInterfereWithPrettierInMyOnes,
   logPrettierInterferences,
-} = require('./detect-prettier-interference');
+} = require('./features/detect-prettier-interference');
 const {
-  RULE_SEVERITY,
-  TOP_LEVEL_SCHEMA_TYPE,
-  SCHEMA_TYPE,
-} = require('./config');
-const { loggerUtil } = require('./logger');
-const { MyRuleEntryNormalized } = require('./my-rule-entry-normalized');
-const { getMyRuleGroups } = require('./my-rule-groups');
-const { getReferenceRuleGroups } = require('./reference-rule-groups');
-const { TypedSchema } = require('./typed-schema');
-
-const isObject = (value) => value !== null && typeof value === 'object';
-
-const getTopLevelSchemaType = (topLevelSchema) => {
-  if (Array.isArray(topLevelSchema)) return TOP_LEVEL_SCHEMA_TYPE.TUPLE;
-  if (isObject(topLevelSchema)) return TOP_LEVEL_SCHEMA_TYPE.RECORD;
-  return TOP_LEVEL_SCHEMA_TYPE.UNKNOWN;
-};
-
-const getObjectSchemaAbsentOptionsNames = ({
-  ruleName,
-  myOptions,
-  refOptions,
-  forSecondOptionObject = false,
-}) => {
-  const myOptionNames = Object.keys(myOptions);
-  const schemaOptionNames = Object.keys(refOptions);
-  const absentOptions = schemaOptionNames.filter(
-    (refOptName) => !myOptionNames.includes(refOptName),
-  );
-
-  if (!absentOptions.length) {
-    return {};
-  }
-
-  if (forSecondOptionObject) {
-    return {
-      [`${ruleName}, second option object`]: absentOptions,
-    };
-  }
-
-  return { [ruleName]: absentOptions };
-};
+  getObjectSchemaAbsentOptionsNames,
+} = require('./features/find-object-schema-absent-options');
+const {
+  getReferenceRuleGroups,
+} = require('./features/prepare-reference-rule-groups');
 
 Object.assign(module.exports, {
   detectDeprecatedRulesInMyOnes,

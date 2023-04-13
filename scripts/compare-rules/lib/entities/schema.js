@@ -1,6 +1,24 @@
 'use strict';
 
-const { SCHEMA_TYPE } = require('./config');
+const SCHEMA_TYPE = {
+  CONST: 'const',
+  ENUM: 'enum',
+
+  ALL_OF: 'allOf',
+  ANY_OF: 'anyOf',
+  ONE_OF: 'oneOf',
+  NOT: 'not',
+  IF_THEN_ELSE: 'if/then/else',
+
+  NUMBER: 'number',
+  STRING: 'string',
+  ARRAY: 'array',
+  OBJECT: 'object',
+
+  ABSENT: 'absent',
+  EMPTY: 'empty',
+  UNKNOWN: 'unknown',
+};
 
 const getSchemaType = (schema) => {
   if (!schema) return SCHEMA_TYPE.ABSENT;
@@ -19,9 +37,14 @@ const getSchemaType = (schema) => {
   return SCHEMA_TYPE.UNKNOWN;
 };
 
-module.exports.TypedSchema = class {
+class TypedSchema {
   constructor(schema) {
     this.type = getSchemaType(schema);
     this.value = schema;
   }
-};
+}
+
+Object.assign(module.exports, {
+  SCHEMA_TYPE,
+  TypedSchema,
+});

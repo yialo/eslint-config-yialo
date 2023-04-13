@@ -2,11 +2,10 @@
 
 const {
   rules: rulesThatInterfereWithPrettier,
-} = require('../../../node_modules/eslint-config-prettier');
+} = require('../../../../node_modules/eslint-config-prettier');
 
-const { isSeverityOff } = require('./check-severity');
-const { RULE_SEVERITY } = require('./config');
-const { loggerUtil } = require('./logger');
+const { RULE_SEVERITY, isSeverityOff } = require('../entities/severity');
+const { loggerUtil } = require('../shared');
 
 const namesOfRulesThatInterfereWithPrettier = Object.entries(
   rulesThatInterfereWithPrettier,

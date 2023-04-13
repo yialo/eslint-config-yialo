@@ -1,6 +1,6 @@
 'use strict';
 
-const { loggerUtil } = require('./logger');
+const { loggerUtil } = require('../shared');
 
 module.exports.detectDeprecatedRulesInMyOnes = (
   myRuleNames,
