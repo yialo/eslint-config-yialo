@@ -6,7 +6,7 @@ const {
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
-  getMyRuleGroups,
+  prepareMyRuleGroups,
   prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
@@ -67,7 +67,7 @@ const myFullConfigRaw = {
   ...coreRules_tsCompat_typeCheckOnly,
 };
 
-const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myFullConfigRaw);
+const { myRuleEntries, myRuleNames } = prepareMyRuleGroups(myFullConfigRaw);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation =
   detectDeprecatedRulesInMyOnes(
@@ -89,78 +89,70 @@ const extraneousRuleNames = detectExtraneousRulesInMyOnes(
 logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
-  detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
+  detectRulesInterfereWithPrettierInMyOnes(myRuleEntries);
 logPrettierInterferences(
   namesOfMyRulesNeedToBeDisabledBecauseOfPrettier,
   PLUGIN_NAME,
 );
 
-const myRulesNeedClarification = myRuleEntryTuples.reduce(
-  (output, myRuleEntryTuple) => {
-    const [myRuleName, myRuleEntry] = myRuleEntryTuple;
+const myRulesNeedClarification = myRuleEntries.reduce((output, myRuleEntry) => {
+  const nextOutput = (() => {
+    const severityDefinedAsNumber = isSeverityDefinedAsNumber(
+      myRuleEntry.severity,
+    );
 
-    const nextOutput = (() => {
-      const severityDefinedAsNumber = isSeverityDefinedAsNumber(
-        myRuleEntry.severity,
+    if (severityDefinedAsNumber) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleEntry.name}: severity should be defined as string, not number`,
       );
 
-      if (severityDefinedAsNumber) {
+      return null;
+    }
+
+    if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
+      if (myRuleEntry.configuredAsArray) {
         loggerUtil.logAndThrow(
-          `Rule ${myRuleName}: severity should be defined as string, not number`,
+          `Rule ${myRuleEntry.name}: disabled rule should be configured as string, not tuple`,
         );
-
-        return null;
       }
 
-      if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
-        if (myRuleEntry.configuredAsArray) {
-          loggerUtil.logAndThrow(
-            `Rule ${myRuleName}: disabled rule should be configured as string, not tuple`,
-          );
-        }
+      return null;
+    }
 
-        return null;
-      }
+    const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
+      ([refRuleName]) => refRuleName === myRuleEntry.name,
+    );
 
-      const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
-        ([refRuleName]) => refRuleName === myRuleName,
+    if (!metaEntry) {
+      return null;
+    }
+
+    const { schema: topLevelSchema } = metaEntry[1];
+    const topLevelSchemaType = getTopLevelSchemaType(topLevelSchema);
+
+    if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.UNKNOWN) {
+      loggerUtil.logAndThrow(
+        `Unknown rule schema type for: ${myRuleEntry.name}`,
+        loggerUtil.colorize.bgRed,
       );
+    }
 
-      if (!metaEntry) {
-        return null;
-      }
+    if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
+      return getAbsentPropsFromTupleTopLevelSchema(topLevelSchema, myRuleEntry);
+    }
 
-      const { schema: topLevelSchema } = metaEntry[1];
-      const topLevelSchemaType = getTopLevelSchemaType(topLevelSchema);
+    if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
+      return getAbsentPropsFromRecordTopLevelSchema(
+        topLevelSchema,
+        myRuleEntry,
+      );
+    }
 
-      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.UNKNOWN) {
-        loggerUtil.logAndThrow(
-          `Unknown rule schema type for: ${myRuleName}`,
-          loggerUtil.colorize.bgRed,
-        );
-      }
+    loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+  })();
 
-      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
-        return getAbsentPropsFromTupleTopLevelSchema(
-          topLevelSchema,
-          myRuleEntry,
-        );
-      }
-
-      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
-        return getAbsentPropsFromRecordTopLevelSchema(
-          topLevelSchema,
-          myRuleEntry,
-        );
-      }
-
-      loggerUtil.throwUnhandledSchemaError(myRuleName);
-    })();
-
-    return nextOutput ? { ...output, ...nextOutput } : output;
-  },
-  {},
-);
+  return nextOutput ? { ...output, ...nextOutput } : output;
+}, {});
 
 loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
   console.log(Object.entries(myRulesNeedClarification));

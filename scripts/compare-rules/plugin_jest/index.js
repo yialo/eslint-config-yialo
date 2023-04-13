@@ -11,7 +11,7 @@ const {
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
-  getMyRuleGroups,
+  prepareMyRuleGroups,
   prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
@@ -42,7 +42,7 @@ const myRules = {
   ...jestTsRules_typeCheckOnly,
 };
 
-const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
+const { myRuleEntries, myRuleNames } = prepareMyRuleGroups(myRules);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation =
   detectDeprecatedRulesInMyOnes(
@@ -64,13 +64,13 @@ const extraneousRuleNames = detectExtraneousRulesInMyOnes(
 logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
-  detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
+  detectRulesInterfereWithPrettierInMyOnes(myRuleEntries);
 logPrettierInterferences(
   namesOfMyRulesNeedToBeDisabledBecauseOfPrettier,
   PLUGIN_NAME,
 );
 
-const myRulesNeedClarification = myRuleEntryTuples.reduce(
+const myRulesNeedClarification = myRuleEntries.reduce(
   (output, myRuleEntryTuple) => {
     const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 

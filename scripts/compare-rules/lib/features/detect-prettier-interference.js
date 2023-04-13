@@ -13,21 +13,19 @@ const namesOfRulesThatInterfereWithPrettier = Object.entries(
   .filter(([_, severity]) => isSeverityOff(severity))
   .map(([ruleName]) => ruleName);
 
-module.exports.detectRulesInterfereWithPrettierInMyOnes = (
-  myRuleEntryTuples,
-) => {
-  return myRuleEntryTuples
-    .filter(([ruleName, ruleEntry]) => {
+module.exports.detectRulesInterfereWithPrettierInMyOnes = (myRuleEntries) => {
+  return myRuleEntries
+    .filter((myRuleEntry) => {
       const ruleInterfereWithPrettier =
-        namesOfRulesThatInterfereWithPrettier.includes(ruleName);
+        namesOfRulesThatInterfereWithPrettier.includes(myRuleEntry.name);
 
       if (!ruleInterfereWithPrettier) {
         return false;
       }
 
       const ruleIsEnabled =
-        ruleEntry.severity !== RULE_SEVERITY.OFF.string &&
-        ruleEntry.severity !== RULE_SEVERITY.OFF.number;
+        myRuleEntry.severity !== RULE_SEVERITY.OFF.string &&
+        myRuleEntry.severity !== RULE_SEVERITY.OFF.number;
 
       return ruleIsEnabled;
     })

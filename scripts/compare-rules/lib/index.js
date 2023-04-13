@@ -2,10 +2,7 @@
 
 const { isObject, loggerUtil } = require('./shared');
 
-const {
-  MyRuleEntryNormalized,
-  getMyRuleGroups,
-} = require('./entities/my-rule-entry');
+const { MyRuleEntryNormalized } = require('./entities/my-rule-entry');
 const {
   TOP_LEVEL_SCHEMA_TYPE,
   getTopLevelSchemaType,
@@ -36,6 +33,7 @@ const {
 const {
   findObjectSchemaAbsentOptionsNames,
 } = require('./features/find-object-schema-absent-options');
+const { prepareMyRuleGroups } = require('./features/prepare-my-rule-groups');
 const {
   prepareReferenceRuleGroups,
 } = require('./features/prepare-reference-rule-groups');
@@ -44,7 +42,7 @@ Object.assign(module.exports, {
   detectDeprecatedRulesInMyOnes,
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
-  getMyRuleGroups,
+  prepareMyRuleGroups,
   detectRulesInterfereWithPrettierInMyOnes,
   findObjectSchemaAbsentOptionsNames,
   prepareReferenceRuleGroups,

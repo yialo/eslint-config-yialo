@@ -16,7 +16,7 @@ const {
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
-  getMyRuleGroups,
+  prepareMyRuleGroups,
   prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
@@ -56,7 +56,7 @@ const myRules = {
   ...tsRules_extension_typeCheckOnly,
 };
 
-const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
+const { myRuleEntries, myRuleNames } = prepareMyRuleGroups(myRules);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation =
   detectDeprecatedRulesInMyOnes(
@@ -78,84 +78,76 @@ const extraneousRuleNames = detectExtraneousRulesInMyOnes(
 logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const myRulesInterfereWithPrettier =
-  detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
+  detectRulesInterfereWithPrettierInMyOnes(myRuleEntries);
 logPrettierInterferences(myRulesInterfereWithPrettier, PLUGIN_NAME);
 
-const myRulesNeedClarification = myRuleEntryTuples.reduce(
-  (output, myRuleEntryTuple) => {
-    const [myRuleName, myRuleEntry] = myRuleEntryTuple;
+const myRulesNeedClarification = myRuleEntries.reduce((output, myRuleEntry) => {
+  const nextOutput = (() => {
+    const severityDefinedAsNumber = isSeverityDefinedAsNumber(
+      myRuleEntry.severity,
+    );
 
-    const nextOutput = (() => {
-      const severityDefinedAsNumber = isSeverityDefinedAsNumber(
-        myRuleEntry.severity,
+    if (severityDefinedAsNumber) {
+      loggerUtil.logAndThrow(
+        `Rule ${myRuleEntry.name}: severity should be defined as string, not number`,
       );
 
-      if (severityDefinedAsNumber) {
-        loggerUtil.logAndThrow(
-          `Rule ${myRuleName}: severity should be defined as string, not number`,
-        );
+      return null;
+    }
 
-        return null;
-      }
+    if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
+      return null;
+    }
 
-      if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
-        return null;
-      }
+    const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
+      ([refRuleName]) => refRuleName === myRuleEntry.name,
+    );
 
-      const metaEntry = nonDeprecatedReferenceRuleMetaEntries.find(
-        ([refRuleName]) => refRuleName === myRuleName,
+    if (!metaEntry) {
+      return null;
+    }
+
+    const { schema: topLevelSchema } = metaEntry[1];
+    const topLevelSchemaType = getTopLevelSchemaType(topLevelSchema);
+
+    if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.UNKNOWN) {
+      loggerUtil.logAndThrow(
+        `Unknown rule schema type for: ${myRuleEntry.name}`,
+        loggerUtil.colorize.bgRed,
+      );
+    }
+
+    if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
+      return getAbsentPropsFromTupleTopLevelSchema(topLevelSchema, myRuleEntry);
+    }
+
+    if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
+      const recordIsPseudoTuple = Object.keys(topLevelSchema).every(
+        (propName) => Number.isInteger(Number(propName)),
       );
 
-      if (!metaEntry) {
-        return null;
-      }
-
-      const { schema: topLevelSchema } = metaEntry[1];
-      const topLevelSchemaType = getTopLevelSchemaType(topLevelSchema);
-
-      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.UNKNOWN) {
-        loggerUtil.logAndThrow(
-          `Unknown rule schema type for: ${myRuleName}`,
-          loggerUtil.colorize.bgRed,
+      if (recordIsPseudoTuple) {
+        const preudoTupleAsTuple = Object.values(topLevelSchema).map(
+          (elementSchema) => elementSchema,
         );
-      }
 
-      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.TUPLE) {
         return getAbsentPropsFromTupleTopLevelSchema(
-          topLevelSchema,
+          preudoTupleAsTuple,
           myRuleEntry,
         );
       }
 
-      if (topLevelSchemaType === TOP_LEVEL_SCHEMA_TYPE.RECORD) {
-        const recordIsPseudoTuple = Object.keys(topLevelSchema).every(
-          (propName) => Number.isInteger(Number(propName)),
-        );
+      return getAbsentPropsFromRecordTopLevelSchema(
+        topLevelSchema,
+        myRuleEntry,
+      );
+    }
 
-        if (recordIsPseudoTuple) {
-          const preudoTupleAsTuple = Object.values(topLevelSchema).map(
-            (elementSchema) => elementSchema,
-          );
+    loggerUtil.throwUnhandledSchemaError(myRuleEntry.name);
+  })();
 
-          return getAbsentPropsFromTupleTopLevelSchema(
-            preudoTupleAsTuple,
-            myRuleEntry,
-          );
-        }
-
-        return getAbsentPropsFromRecordTopLevelSchema(
-          topLevelSchema,
-          myRuleEntry,
-        );
-      }
-
-      loggerUtil.throwUnhandledSchemaError(myRuleName);
-    })();
-
-    return nextOutput ? { ...output, ...nextOutput } : output;
-  },
-  {},
-);
+  return nextOutput ? { ...output, ...nextOutput } : output;
+}, {});
 
 loggerUtil.groupLog(`[${PLUGIN_NAME}] Rules that need clarificaiton`, () => {
   console.log(Object.entries(myRulesNeedClarification));
@@ -168,11 +160,11 @@ if (CHECK_RECOMMENDED) {
     .filter(([_, meta]) => meta.docs.recommended === 'strict')
     .map(([name]) => name);
 
-  const namesOfMyDisabledRulesThatAreRecommendedAsStrict = myRuleEntryTuples
+  const namesOfMyDisabledRulesThatAreRecommendedAsStrict = myRuleEntries
     .filter(
-      ([myRuleName, myRuleConfig]) =>
-        recommendedAsStrictRefRuleNames.includes(myRuleName) &&
-        isSeverityOff(myRuleConfig.severity),
+      (myRuleEntry) =>
+        recommendedAsStrictRefRuleNames.includes(myRuleEntry.name) &&
+        isSeverityOff(myRuleEntry.severity),
     )
     .map(([name]) => name);
 
@@ -187,11 +179,11 @@ if (CHECK_RECOMMENDED) {
     .filter(([_, meta]) => meta.docs.recommended === 'error')
     .map(([name]) => name);
 
-  const namesOfMyDisabledRulesThatAreRecommendedAsError = myRuleEntryTuples
+  const namesOfMyDisabledRulesThatAreRecommendedAsError = myRuleEntries
     .filter(
-      ([myRuleName, myRuleConfig]) =>
-        recommendedAsErrorRefRuleNames.includes(myRuleName) &&
-        isSeverityOff(myRuleConfig.severity),
+      (myRuleEntry) =>
+        recommendedAsErrorRefRuleNames.includes(myRuleEntry.name) &&
+        isSeverityOff(myRuleEntry.severity),
     )
     .map(([name]) => name);
 

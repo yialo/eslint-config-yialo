@@ -8,7 +8,7 @@ const {
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
-  getMyRuleGroups,
+  prepareMyRuleGroups,
   prepareReferenceRuleGroups,
   logDeprecared,
   logExtraneous,
@@ -25,7 +25,7 @@ const referenceRuleMetaEntries = Object.entries(referenceRules).map(
 const { deprecatedReferenceRuleMetaEntries, nonDeprecatedReferenceRuleNames } =
   prepareReferenceRuleGroups(referenceRuleMetaEntries);
 
-const { myRuleEntryTuples, myRuleNames } = getMyRuleGroups(myRules);
+const { myRuleEntries, myRuleNames } = prepareMyRuleGroups(myRules);
 
 const myRulesNeedToBeRemovedBecauseOfDeprecation =
   detectDeprecatedRulesInMyOnes(
@@ -47,7 +47,7 @@ const extraneousRuleNames = detectExtraneousRulesInMyOnes(
 logExtraneous(extraneousRuleNames, PLUGIN_NAME);
 
 const namesOfMyRulesNeedToBeDisabledBecauseOfPrettier =
-  detectRulesInterfereWithPrettierInMyOnes(myRuleEntryTuples);
+  detectRulesInterfereWithPrettierInMyOnes(myRuleEntries);
 logPrettierInterferences(
   namesOfMyRulesNeedToBeDisabledBecauseOfPrettier,
   PLUGIN_NAME,
