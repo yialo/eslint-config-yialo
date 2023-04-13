@@ -5,7 +5,7 @@ const {
 } = require('../../../node_modules/eslint-config-prettier');
 
 const { isSeverityOff } = require('./check-severity');
-const { RULE_SEVERITY } = require('./dicts');
+const { RULE_SEVERITY } = require('./config');
 const { loggerUtil } = require('./logger');
 
 const namesOfRulesThatInterfereWithPrettier = Object.entries(

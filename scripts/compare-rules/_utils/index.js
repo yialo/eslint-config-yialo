@@ -21,7 +21,7 @@ const {
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
   SCHEMA_TYPE,
-} = require('./dicts');
+} = require('./config');
 const { loggerUtil } = require('./logger');
 const { MyRuleEntryNormalized } = require('./my-rule-entry-normalized');
 const { getMyRuleGroups } = require('./my-rule-groups');

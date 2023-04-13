@@ -1,6 +1,6 @@
 'use strict';
 
-const { SCHEMA_TYPE } = require('./dicts');
+const { SCHEMA_TYPE } = require('./config');
 
 const getSchemaType = (schema) => {
   if (!schema) return SCHEMA_TYPE.ABSENT;

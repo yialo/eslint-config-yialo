@@ -1,6 +1,6 @@
 'use strict';
 
-const { RULE_SEVERITY } = require('./dicts');
+const { RULE_SEVERITY } = require('./config');
 
 module.exports.isSeverityOff = (severity) =>
   severity === RULE_SEVERITY.OFF.number ||
