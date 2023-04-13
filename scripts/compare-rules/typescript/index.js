@@ -149,7 +149,7 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
         );
       }
 
-      return null;
+      loggerUtil.throwUnhandledSchemaError(myRuleName);
     })();
 
     return nextOutput ? { ...output, ...nextOutput } : output;
