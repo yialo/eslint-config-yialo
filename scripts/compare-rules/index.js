@@ -8,12 +8,12 @@ console.log(loggerUtil.colorize.yellow.bgBlue('=== START ==='));
 // void require('./core');
 // void require('./babel');
 // void require('./import');
-// void require('./jest');
+void require('./jest');
 // void require('./jsx-a11y');
 // void require('./node');
 // void require('./promise');
 // void require('./react-hooks');
 // void require('./react');
-void require('./typescript');
+// void require('./typescript');
 
 console.log(loggerUtil.colorize.yellow.bgBlue('=== END ==='));

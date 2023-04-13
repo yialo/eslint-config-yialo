@@ -1,6 +1,9 @@
 'use strict';
 
-const { isSeverityOff } = require('./check-severity');
+const {
+  isSeverityDefinedAsNumber,
+  isSeverityOff,
+} = require('./check-severity');
 const {
   detectDeprecatedRulesInMyOnes,
   logDeprecared,
@@ -68,6 +71,7 @@ Object.assign(module.exports, {
   getReferenceRuleGroups,
   getTopLevelSchemaType,
   isObject,
+  isSeverityDefinedAsNumber,
   isSeverityOff,
   logDeprecared,
   logExtraneous,

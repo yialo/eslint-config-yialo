@@ -19,6 +19,7 @@ const {
   getMyRuleGroups,
   getReferenceRuleGroups,
   getTopLevelSchemaType,
+  isSeverityDefinedAsNumber,
   isSeverityOff,
   logDeprecared,
   logExtraneous,
@@ -85,6 +86,18 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
     const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 
     const nextOutput = (() => {
+      const severityDefinedAsNumber = isSeverityDefinedAsNumber(
+        myRuleEntry.severity,
+      );
+
+      if (severityDefinedAsNumber) {
+        loggerUtil.logAndThrow(
+          `Rule ${myRuleName}: severity should be defined as string, not number`,
+        );
+
+        return null;
+      }
+
       if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
         return null;
       }

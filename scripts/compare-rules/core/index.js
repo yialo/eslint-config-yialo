@@ -9,6 +9,7 @@ const {
   getMyRuleGroups,
   getReferenceRuleGroups,
   getTopLevelSchemaType,
+  isSeverityDefinedAsNumber,
   logDeprecared,
   logExtraneous,
   loggerUtil,
@@ -99,10 +100,9 @@ const myRulesNeedClarification = myRuleEntryTuples.reduce(
     const [myRuleName, myRuleEntry] = myRuleEntryTuple;
 
     const nextOutput = (() => {
-      const severityDefinedAsNumber =
-        myRuleEntry.severity === RULE_SEVERITY.OFF.number ||
-        myRuleEntry.severity === RULE_SEVERITY.WARN.number ||
-        myRuleEntry.severity === RULE_SEVERITY.ERROR.number;
+      const severityDefinedAsNumber = isSeverityDefinedAsNumber(
+        myRuleEntry.severity,
+      );
 
       if (severityDefinedAsNumber) {
         loggerUtil.logAndThrow(

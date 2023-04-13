@@ -2,7 +2,8 @@
 
 const colorize = require('colors');
 
-const THROW_ON_UNEXPECTED = true;
+// FIXME: toggle to true after debug
+const THROW_ON_UNEXPECTED = false;
 
 const loggerUtil = {};
 loggerUtil.colorize = colorize;
