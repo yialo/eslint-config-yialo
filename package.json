@@ -1,6 +1,9 @@
 {
   "name": "eslint-config-yialo",
   "version": "0.6.20",
+  "exports": {
+    "./*": "./src/presets/*.js"
+  },
   "scripts": {
     "test": "eslint ./**/*.js",
     "compare": "node ./scripts/compare-rules",
