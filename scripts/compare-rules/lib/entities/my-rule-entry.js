@@ -1,5 +1,7 @@
 'use strict';
 
+const { loggerUtil } = require('../shared');
+
 const MyRuleEntryNormalized = class {
   constructor(myRuleEntryRaw) {
     const [myRuleName, myRuleConfigRaw] = myRuleEntryRaw;
@@ -12,6 +14,13 @@ const MyRuleEntryNormalized = class {
   }
 };
 
+const reportDisabledRuleConfiguredAsArray = (myRuleName) => {
+  loggerUtil.logAndThrow(
+    `Rule ${myRuleName}: disabled rule should be configured as string, not array`,
+  );
+};
+
 Object.assign(module.exports, {
   MyRuleEntryNormalized,
+  reportDisabledRuleConfiguredAsArray,
 });

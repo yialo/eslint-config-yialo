@@ -2,15 +2,19 @@
 
 const { isObject, loggerUtil } = require('./shared');
 
-const { MyRuleEntryNormalized } = require('./entities/my-rule-entry');
+const {
+  MyRuleEntryNormalized,
+  reportDisabledRuleConfiguredAsArray,
+} = require('./entities/my-rule-entry');
 const {
   TOP_LEVEL_SCHEMA_TYPE,
   getTopLevelSchemaType,
 } = require('./entities/top-level-schema');
 const {
-  RULE_SEVERITY,
   isSeverityDefinedAsNumber,
   isSeverityOff,
+  reportSeverityDefinedAsNumber,
+  RULE_SEVERITY,
 } = require('./entities/severity');
 const { SCHEMA_TYPE, TypedSchema } = require('./entities/schema');
 
@@ -42,10 +46,8 @@ Object.assign(module.exports, {
   detectDeprecatedRulesInMyOnes,
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
-  prepareMyRuleGroups,
   detectRulesInterfereWithPrettierInMyOnes,
   findObjectSchemaAbsentOptionsNames,
-  prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isObject,
   isSeverityDefinedAsNumber,
@@ -56,6 +58,10 @@ Object.assign(module.exports, {
   logMissing,
   logPrettierInterferences,
   MyRuleEntryNormalized,
+  prepareMyRuleGroups,
+  prepareReferenceRuleGroups,
+  reportDisabledRuleConfiguredAsArray,
+  reportSeverityDefinedAsNumber,
   RULE_SEVERITY,
   SCHEMA_TYPE,
   TOP_LEVEL_SCHEMA_TYPE,

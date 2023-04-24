@@ -27,6 +27,7 @@ const {
   prepareMyRuleGroups,
   prepareReferenceRuleGroups,
   reportSeverityDefinedAsNumber,
+  reportDisabledRuleConfiguredAsArray,
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
 } = require('../lib');
@@ -90,6 +91,9 @@ const myRulesNeedClarification = myRuleEntries.reduce((output, myRuleEntry) => {
     }
 
     if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
+      if (myRuleEntry.configuredAsArray) {
+        reportDisabledRuleConfiguredAsArray(myRuleEntry.name);
+      }
       return null;
     }
 

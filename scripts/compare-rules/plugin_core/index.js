@@ -15,6 +15,7 @@ const {
   logPrettierInterferences,
   prepareMyRuleGroups,
   prepareReferenceRuleGroups,
+  reportDisabledRuleConfiguredAsArray,
   reportSeverityDefinedAsNumber,
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
@@ -105,11 +106,8 @@ const myRulesNeedClarification = myRuleEntries.reduce((output, myRuleEntry) => {
 
     if (myRuleEntry.severity === RULE_SEVERITY.OFF.string) {
       if (myRuleEntry.configuredAsArray) {
-        loggerUtil.logAndThrow(
-          `Rule ${myRuleEntry.name}: disabled rule should be configured as string, not tuple`,
-        );
+        reportDisabledRuleConfiguredAsArray(myRuleEntry.name);
       }
-
       return null;
     }
 
