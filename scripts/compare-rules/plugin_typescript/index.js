@@ -16,8 +16,6 @@ const {
   detectExtraneousRulesInMyOnes,
   detectMissingRules,
   detectRulesInterfereWithPrettierInMyOnes,
-  prepareMyRuleGroups,
-  prepareReferenceRuleGroups,
   getTopLevelSchemaType,
   isSeverityDefinedAsNumber,
   isSeverityOff,
@@ -26,6 +24,9 @@ const {
   loggerUtil,
   logMissing,
   logPrettierInterferences,
+  prepareMyRuleGroups,
+  prepareReferenceRuleGroups,
+  reportSeverityDefinedAsNumber,
   RULE_SEVERITY,
   TOP_LEVEL_SCHEMA_TYPE,
 } = require('../lib');
@@ -83,15 +84,8 @@ logPrettierInterferences(myRulesInterfereWithPrettier, PLUGIN_NAME);
 
 const myRulesNeedClarification = myRuleEntries.reduce((output, myRuleEntry) => {
   const nextOutput = (() => {
-    const severityDefinedAsNumber = isSeverityDefinedAsNumber(
-      myRuleEntry.severity,
-    );
-
-    if (severityDefinedAsNumber) {
-      loggerUtil.logAndThrow(
-        `Rule ${myRuleEntry.name}: severity should be defined as string, not number`,
-      );
-
+    if (isSeverityDefinedAsNumber(myRuleEntry.severity)) {
+      reportSeverityDefinedAsNumber(myRuleEntry.name);
       return null;
     }
 

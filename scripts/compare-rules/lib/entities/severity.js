@@ -1,5 +1,7 @@
 'use strict';
 
+const { loggerUtil } = require('../shared');
+
 const RULE_SEVERITY = {
   OFF: {
     number: 0,
@@ -27,8 +29,15 @@ const isSeverityDefinedAsNumber = (severity) => {
   );
 };
 
+const reportSeverityDefinedAsNumber = (myRuleName) => {
+  loggerUtil.logAndThrow(
+    `Rule ${myRuleName}: severity should be defined as string, not number`,
+  );
+};
+
 Object.assign(module.exports, {
   RULE_SEVERITY,
   isSeverityOff,
   isSeverityDefinedAsNumber,
+  reportSeverityDefinedAsNumber,
 });
