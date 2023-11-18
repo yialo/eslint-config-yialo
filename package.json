@@ -9,9 +9,8 @@
     "compare": "node ./scripts/compare-rules",
     "compare:debug": "nodemon -- compare",
     "find-disabled-internal": "node ./scripts/find-disabled-internal-rules",
-    "prettier:base": "prettier",
-    "prettier:check": "npm run prettier:base -- --list-different \"./(scripts|src)/**/*.js\"",
-    "prettier:write": "npm run prettier:base -- --write \"./(scripts|src)/**/*.js\""
+    "prettier:check": "prettier --list-different \"./(scripts|src)/**/*.js\"",
+    "prettier:write": "prettier --write \"./(scripts|src)/**/*.js\""
   },
   "dependencies": {
     "@babel/eslint-parser": "7.23.3",
@@ -39,7 +38,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^7.23.3",
-    "prettier": "^2.8.7",
+    "prettier": "^3.1.0",
     "typescript": "^5.0.4"
   },
   "description": "Yialo's ESLint configuration",
