@@ -14,8 +14,8 @@
     "prettier:write": "npm run prettier:base -- --write \"./(scripts|src)/**/*.js\""
   },
   "dependencies": {
-    "@babel/eslint-parser": "7.21.3",
-    "@babel/eslint-plugin": "7.19.1",
+    "@babel/eslint-parser": "7.23.3",
+    "@babel/eslint-plugin": "7.22.10",
     "@typescript-eslint/eslint-plugin": "5.58.0",
     "@typescript-eslint/parser": "5.58.0",
     "eslint": "8.38.0",
@@ -38,7 +38,7 @@
     "nodemon": "2.0.22"
   },
   "peerDependencies": {
-    "@babel/core": "^7.21.4",
+    "@babel/core": "^7.23.3",
     "prettier": "^2.8.7",
     "typescript": "^5.0.4"
   },
